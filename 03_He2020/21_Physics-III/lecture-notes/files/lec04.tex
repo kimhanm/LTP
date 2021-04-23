@@ -1,0 +1,129 @@
+Now let's talk about imaging resolution. When we have Fraunhofer Diffraction, we assumed that the wave hitting the aperture were planar. This assumes that the wave is coming from infinitely far away.\\
+
+In reality, we can mimic a wave coming from infinitely far away by putting lenses between the source and the aperture.\\
+
+If we put the source at the focal point of a convex lens, the lightwaves will look like a plane and we can then use the Fraunhofer approximation.\\
+
+Looking at a couple situations where we have a lightsource and a lense that focuses the light into a source, but there is an aperture is blocking some of the light. We can mimic this by imagining two lenses, a diverging and a converging one in series.
+
+The first lens cancels the convergent behaviour just before the aperture and the second lens redos the cancellation. If we assume that the two lenses get infintely close together, we obtain the original path again, all the while the wave hits the aparatus perpendicularly.
+So even if it doesn't look like Fraunhofer approximation applies, by imagining extra lenses, we can assume it does.\\
+
+
+\subsubsection{Spatial resolution of telescopes}
+In this section, we want to observe objects that emit light by letting their light go trough an aperture thats far away and looking at the resulting refraction pattern.
+
+Remember that as the aperture gets smaller, the sinc function intensity peaks get broader and broader.\\
+This was a direct consequence of the effect of the fourier transformation, where if you have a shorter signal, you can make less accurate measurements of the frequency spectrum.\\
+
+
+So if imagine two stars $A_1, A_2$ and a lens perpendicular to the optical path from $A_1$ to the lens and the angle from the second star being $\phi$.\\
+
+We will get a refraction pattern which is the sum of the refraction patters of each star, with the angle determining how much the patters are shifted.\\
+But in order to even tell that we have two refraction patterns in the firs place, we must have that the intensities of the two patters are shifted in a way that their peak intensities don't overlap.\\
+This can be stated as the \textbf{Rayleigh-criteria} which can be formulated in the equation
+\begin{empheq}[box=\bluebase]{align*}
+				X_2 := \frac{x_{A_2}}{r_{A_2}} + \frac{x_B}{r_B} = \sin\phi + \sin \theta
+\end{empheq}
+,where $\theta$ is the angle of the outgoing lightrays from the lens.\\
+The angle that satisfies Rayleigh-critera must have
+\begin{align*}
+				\sin \left(\frac{ka X_2(\theta = 0)}{2}\right) = \sin \left(\frac{k\sin\phi a}{2}\right) = 0
+\end{align*}
+And we obtain
+\begin{align*}
+				\frac{ka \sin\phi}{2} = \pi \implies \sin\phi = \frac{\lambda}{a}
+\end{align*}
+This is what we would expect. In order to tell apart to different objects far away, we need a bigger aperture i.e. a bigger telescope.\\
+
+Next we consider a plane wave entering a double slit, distance $d$ apart and then hitting a lense on the other side with Lens length $L$.\\
+The transmission function of the double slit will be
+\begin{align*}
+				\tau(x) \propto \delta(x - \frac{d}{2}) + \delta(x + \frac{d}{2})
+\end{align*}
+Using the generalized result from the previous section we have that the Field at the lens will be of the form
+\begin{align*}
+				U(x_B) &\propto e^{ik(x_b^2 + s^2)}\int_{-\infty}^{\infty}dx \tau(x) e^{ikx_b \frac{X}{\sqrt{x_B^2 + s^2}}}\\
+							 &\propto e^{ik(x_B^2 + s^2)}\cos \left(\frac{kxd}{2 \sqrt{x_B^2 + s^2}}\right)
+\end{align*}
+
+This means that if the Lens length is small, (i.e. $L \ll \frac{d}{\lambda s}$), the cosine will be just $1$, so it will look like there is only one slit.\\
+
+In order to find out that there are two slits, we must have that the distance is above the \textbf{Abbé limit}:
+\begin{align*}
+				\frac{kd \frac{L}{2}}{2 \sqrt{(\frac{L}{2})^2 + s^2}} = \pi, \quad d \gg \lambda \frac{\sqrt{s^2 + (\frac{L}{2})^2}}{L} 
+\end{align*}
+Which can be interpreted as asking: How far must two objects be apart, in order for a lens to detect that we have two objects.\\
+
+If we define the \emph{Numerical aperture} $NA = \frac{\frac{L}{2}}{\sqrt{s^2 + (\frac{L}{2})^2}}$, we can restate the formula above as
+\begin{align*}
+	d > \frac{\lambda}{2 NA}
+\end{align*}
+
+
+\begin{demo}[Abbé limit]
+	We have a light source pointing through a circular hole and a wire grid, through a lens and an adjustable slit in horizontal direction.
+	We notice that even if we rotate the slit, the image stays the same, as the slit width stays the same.\\
+	However, if we tighted the slit, the vertical lines get washed out, whereas the horizontal lies stay sharp.\\
+	If we rotat the slit again, we see that now the horizontal lines are sharp and the vertical lines are blurred.
+\end{demo}
+
+
+\subsubsection{Polarisation}
+We first look at a couple different types of polarisatiion, for a light travelling along the $z-axis$, i.e. $\vec{k} \parallel \vec{z}$\\
+
+We will first look at \textbf{Linear polarisation}, where the field always points at a fixed direction. So the field is oscillating along a straight line. The field can be expressed as
+\begin{align*}
+	\vec{E}(\vec{r},t) &= (E_x \hat{x} + E_y\hat{y})e^{i(kz + \omega t)}\\
+		 &= E_0 (\cos\theta \hat{x} + \sin \theta \hat{y}) e^{i(kz - \omega t)}
+\end{align*}
+, where $E_0 = \sqrt{E_x^2 + E_y^2}$ and $\tan \theta = \frac{E_y}{E_x}$ and $\hat{\epsilon} = (\cos\theta \hat{x} + \sin \theta \hat{y})$ is called the \textbf{polarisation unit vector}.\\
+
+
+In a more general form, we can have \textbf{Elliptical polarisation}, where the field will be of the form
+\begin{align*}
+				\vec{E}(\vec{r},t) = \left(E_x \hat{x} + E_ye^{i\phi}\hat{y}\right) e^{i(kz - \omega t)}.
+\end{align*}
+For $\phi = 0$, we recover linear polarisation, and for $\phi = \pm \frac{\pi}{2}$ we call that right(left) \textbf{circular polarisation}.\\
+Warning, the right-left convention is not universally agreed upon, but in this convention, if we place our right thumb along $\hat{k}$, the other fingers follow the polarisation.\\
+
+
+\subsubsection{Birefringence}
+Recall from the previous sections, that we called denoted the Index of refraction as $n$. This had the effect that the effective wave-length changed depending on the medium or the wave vector.
+\begin{align*}
+\lambda_0 \to \frac{\lambda_0}{n}, \quad k_0 \to \frac{n}{k_0}
+\end{align*}
+If we had a material, where the index of refraction differences in multiple directions, i.e. $n_x \neq n_y$ we get the \textbf{birefringence}  effect:
+\begin{align*}
+		\vec{E}(\vec{r},t) = \left[E_x \hat{x} e^{ik_xz} + E_y \hat{y}e^{i(k_yz + \phi)}\right]e^{-i\omega t}
+\end{align*}
+where we call the axis with higher index of refraction the \emph{slow axis}.\\
+If the light travels through a such a material with Length $L$, then the \emph{accumulated phase difference} will be equal to $(n_x - n_y)k_0L$.\\
+
+For the special case where $(n_x - n_y)k_0L = \pi$ we call that a \emph{half-wave plate}. And if it equals $\frac{\pi}{2}$, we call that a \emph{quarter-wave plate}.\\
+
+
+Next we will consider light reflection/transmission through a change in material. In the case where there are no free charges or currents we have
+
+\begin{align*}
+\nabla \cdot \vec{D} = 0, \quad \nabla \times \vec{E} = - \frac{\del B}{\del t}\\
+\nabla \cdot \vec{B} = 0, \quad \nabla \times \vec{H} = \frac{\del D}{\del t}
+\end{align*}
+For a linear material, we will have
+\begin{align*}
+\vec{B} = \mu\mu_R \vec{H}, \quad \vec{D} = \epsilon_0\epsilon_r \vec{E}
+\end{align*}
+And for non-magnetic materials we have $\mu_r = 1$, so 
+\begin{align*}
+\nabla^2 \vec{E} = \epsilon_r\epsilon_0\mu_0 \frac{\del^2 \vec{E}}{\del t^2}
+\end{align*}
+which changes the speed of light
+\begin{align*}
+				v = \frac{1}{\sqrt{\epsilon_r\epsilon_0\mu_0}} = \frac{c}{n} 
+\end{align*}
+where $n = \sqrt{\frac{\epsilon_r}{\mu_r}}$ is the index of refraction.\\
+
+For plane-waves we get
+\begin{align*}
+\vec{k} \times \vec{E} = \omega \vec{B} \implies B = \frac{k}{\omega}E = \frac{nk_0}{\omega}E = \frac{n}{c}E
+\end{align*}

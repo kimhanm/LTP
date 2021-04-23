@@ -1,0 +1,100 @@
+We have seen the theorem that given a Graph $G=(V,E)$ with adjacency matrix $A$
+\begin{align*}
+  \lambda_2(L) = 0 \iff G \text{ is disconnected}
+\end{align*}
+The proof for $\implies$ was given last week.
+
+For the other way: if $G$ is disconnected, there exists non-trivial $S,S^{c}$ such that for $y = 1_S$, $y$ and $1$ are linearly independent, so their span is two-dimensional.
+
+Then we can write
+\begin{align*}
+  y^{T}Ly = \sum_{(i,j) \in E}(y_i - y_j)^{2} = 0
+\end{align*}
+% I have no clue what bandeira is writing here.
+and because $L \geq 0$ and $Ly = 0$ and $1,y \in \Ker(L)$, the dimension of the kernel must be $\geq 2$. So $\lambda_2(L) = 0$.
+
+
+Image a network with two clusters that are almost disconnected. Is it true that $\lambda_2(L)$ is almost $0$?
+
+
+\begin{thm}[]
+  Let $G = (V,E)$ without isolated nodes and let $\mathcal{L}_G$ be the normalized graph Laplacian
+  \begin{align*}
+    \mathcal{L}_G = I - D^{-1/2}AD^{-1/2}
+  \end{align*}
+  then, for $\text{cut}(S)$ and $\text{Ncut}(S)$ given by
+  \begin{align*}
+    \text{cut}(S) = \sum_{i\in S}\sum_{j \in S^{c}} 1_{(i,j) \in E}, \quad \text{vol}(A) = \sum_{x \in A}\degree(x)
+  \end{align*}
+  \begin{align*}
+    \lambda_2(\mathcal{L}_G) \leq \min_{0 \neq S \subset V} \left(
+      \frac{\text{cut}(S)}{\text{vol}(S)}
+      +
+      \frac{\text{cut}(S)}{\text{vol}(S^{c})}
+    \right)
+  \end{align*}
+\end{thm}
+\begin{proof}
+  By the courant'fischer variational principle of eigenvalues, we have
+\begin{align*}
+  \lambda_2(\mathcal{L}_G)= \sum_{\|z\|=1, z \bot v_1(\mathcal{L}_G)} z^{T}\mathcal{L}_Gz
+\end{align*}
+But we know that $v_1(\mathcal{L}_G) = D^{1/2}1$ so by a change of variables $z = D^{1/2}y$ we get
+\begin{align*}
+  \lambda_2(\mathcal{L}_G) = \min_{y^{T}D^{1/2}\mathcal{L}_GD^{1/2}y,y^{T}D1 = 0}y^{T}D^{1/2}\mathcal{L}_GD^{1/2}y = \min_{y^{T}Dy=1,y^{T}D1=0}\sum_{(i,j) \in E}(y_i - y_j)^{2}
+\end{align*}
+By restricing the vectors $y$ to only take two values for a set $S \subset V$
+\begin{align*}
+  y_i = \left\{\begin{array}{ll}
+    a & \text{ if }i \in S\\
+    b & \text{ if }i \notin S
+  \end{array} \right.
+\end{align*}
+and we ask for which values of $a$ and $b$ does $y$ satisfy the constraints?
+\begin{align*}
+  y^{T}Dy=1 \iff \sum_{i=1}^{n}y_i^{2} \degree(i) = a^{2} \sum_{i\in S}\degree(i) + b^{2} \sum_{i \in S}\degree(i) = a^{2} \text{vol}(S) + b^{2} \text{vol}(S^{c}) = 1
+\end{align*}
+Which requires the two following equations
+\begin{align*}
+  a^{2} \text{vol}(S) + b^{2}\text{vol}(S^{c}) = 1 \quad \text{and} \quad \sum_{i=1}^{n}\degree(i)y_i = a \text{vol}(S) + b \text{vol}(S^{c})
+\end{align*}
+and we can show that the resulting $y_i$ must be given by
+\begin{align*}
+  y_i =
+  \left\{\begin{array}{ll}
+      \left(
+        \frac{\text{vol}(S^{c})}{\text{vol}(S)\text{vol}(G)}
+      \right)^{\frac{1}{2}} & \text{ if } i \in S\\
+      -\left(
+        \frac{\text{vol}(S)}{\text{vol}(S^{c})\text{vol}(G)}
+      \right)^{\frac{1}{2}} & \text{ if } i \notin S\\
+  \end{array} \right.
+\end{align*}
+now we need to compute $y^{T}\mathcal{L}_Gy$.
+\begin{align*}
+  y^{T}\mathcal{L}_Gy 
+  &= \sum_{(i,j) \in E}(y_i - y_j)^{2} 
+  \\
+  &= 
+  \sum_{i \in S}\sum_{j \in S^{c}}1_{(i,j) \in E}(y_i - y_j)^{2}
+  \\
+  &=
+  [...]
+  \\
+  &= \text{cut}(S) \frac{1}{\text{vol}(G)} \left[
+    \frac{\text{vol}(S^{c})}{\text{vol}S} + 2 + \frac{\text{vol}(S)}{\text{vol}(S^{c})}
+  \right]
+  \\
+  &=
+  \text{cut}(S) \left[
+    \frac{1}{\text{vol}(S)}
+    +
+    \frac{1}{\text{vol}(S^{c})}
+  \right]
+  = \text{Ncut}(S)
+\end{align*}
+\end{proof}
+
+
+
+Given a cluster of a graph, we want to find a partition $S,S^{c}$ with small $\text{Ncut}$.

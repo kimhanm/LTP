@@ -1,0 +1,162 @@
+Let's consider the connected components of some Lie groups.
+\begin{enumerate}
+  \item $\SO(n), \SU(n), U(n)$ are connected.
+
+    To see this, let $A \in U(n)$. Then there exists $U \in U(n)$ and
+    \begin{align*}
+      D= \begin{pmatrix}
+      e^{i \phi_1} &  & 0\\
+       & \ddots & \\
+      0 &  & e^{i \phi_n}
+      \end{pmatrix}
+    \end{align*}
+    such that $A = UDU^{\dagger}$. Define a path $\gamma(t)$ by
+    \begin{align*}
+      \gamma(t) = U
+      \begin{pmatrix}
+      e^{it \phi_1} &  & 0\\
+       & \ddots & \\
+      0 &  & e^{i t\phi_n}
+      \end{pmatrix}
+      U^{\dagger}
+    \end{align*}
+    which connects the unit matrix with $A$ as $\gamma(1) = A$ and $\gamma(0) = UU^{\dagger} = 1$.
+
+    The same proof works for $\SU(n)$: Since $\det(A) = 1$, $D$ must be such that
+    \begin{align*}
+      e^{i \phi_1 + \ldots + \phi_n} = 0 \implies \phi_1 + \ldots + \phi_n = 0
+    \end{align*}
+    which shows that $\gamma(t) \in \SU(n)$.
+      
+  \item $O(n)$ has two connected components. Those with determinant $+1$ and those with determinant $-1$.
+
+    We know from Linear Algebra II that there exists $O \in O(n)$ such that $A$ can be written as
+    \begin{align*}
+      A = O \begin{pmatrix}
+        R(\phi_1)_{\ddots} &  &  &  &  & 0\\
+                           & R(\phi_j) &  &  &  & \\
+       &  & 1_{\ddots} &  &  & \\
+       &  &  & 1 &  & \\
+       &  &  &  & -1_{\ddots} & \\
+       &  &  &  &  & -1
+      \end{pmatrix}
+      O^{T}
+      \quad \text{where} \quad R(\phi) = \begin{pmatrix}
+      \cos \phi & - \sin \phi\\
+      \sin \phi & \cos \phi
+    \end{pmatrix} \in \SO(2)
+    \end{align*}
+    If $A \in \SO(n)$ the number of $-1$ is even and we can write the $2 \times 2$ submatrices as $R(\pi)$. Then we can define the path
+    \begin{align*}
+      \gamma(t) = O \begin{pmatrix}
+        R(t \phi_1)_{\ddots} &  &  & \\
+                             & R(t \phi_j) &  & \\
+       &  & 1_{\ddots} & \\
+       &  &  & 1
+      \end{pmatrix}
+      O^{T}
+    \end{align*}
+    which connects $A$ with $1$.
+
+    If however $A \in O(n) \setminus \SO(n)$, then we connect $A$ with the matrix 
+    \begin{align*}
+      S = \begin{pmatrix}
+      1_{\ddots} &  & \\
+       & 1 & \\
+       &  & -1
+      \end{pmatrix}
+    \end{align*}
+    using a similar path.
+\end{enumerate}
+
+
+\subsection{Orbit formula nad Applications}
+\begin{dfn}[]
+Let $G$ be a group acting on a set $X$. For each $x \in X$ we associate to it
+\begin{itemize}
+  \item the \textbf{Orbit} of $x$
+    \begin{align*}
+      \mathcal{O}_x := \{gx \big\vert g \in G\} \subseteq X
+    \end{align*} 
+  \item the \textbf{stabiliser} of $x$
+    \begin{align*}
+      \Stab_x :=\{g \in G \big\vert gx = x\} \subseteq G
+    \end{align*}
+\end{itemize}
+Note that $\Stab_x$ is a subgroup of $G$
+\end{dfn}
+
+\begin{thm}[Orbit-Stabiliser theorem]
+  For every $x \in X$ the mapping
+  \begin{align*}
+    \faktor{G}{\Stab_x} \to \mathcal{O}_x, \quad [g] \mapsto  gx
+  \end{align*}
+  is bijective. In particular, we have $\abs{G} = \abs{\Stab_x} \abs{Gx}$
+\end{thm}
+\begin{proof}
+  The mapping is well defined, since for any $h \in \Stab_x$ we have
+  \begin{align*}
+    [gh] \mapsto (gh)x = g(hx) = gx
+  \end{align*}
+  Surjectivity is quite obvious as removing stabilisers doesn't affect the orbit.
+  For injectivity, assume that for two equivalence classes $[g], [g']$ we have $gx = g'x$. After multiplying by $g^{-1}$ we get htat
+  \begin{align*}
+    x = g^{-1}g' x \implies g^{-1}g' \in \Stab_x \implies [g] = [gg^{-1}g'] = [g']
+  \end{align*}
+  We will see in the exercise classes that for any subgroup $H \subseteq G$ we have $\abs{G/H} = \frac{\abs{G}}{\abs{H}}$, so the formula follows trivially.
+\end{proof}
+
+
+The theorem has quite a few applications.
+\begin{ex}[]
+  Consider the $3$-dimensional cube in $\R^{3}$ and let $O \subseteq O(3)$ be its symmetry group.
+
+  To calculate $\abs{O}$, we let $X = \{(\pm 1, \pm 1, \pm 1)\}$ be the set of its corners $v_{1}, \ldots, v_{8}$ on which $O$ acts.
+
+  Notice that every corner can be mapped to any other corner, so $\mathcal{O}_{v_1} = X$.
+
+  The stabiliser, which consists of all symmetries that fix one corner, must consist of rotations through the corner or mirror images, so $\Stab_{v_1} \iso D_3$.
+  It quickly follows that
+  \begin{align*}
+    \abs{O} = \abs{Ov_1} \cdot \abs{D_3} = 8 \cdot 6 = 48
+  \end{align*}
+\end{ex}
+
+\begin{ex}[]
+Crystalline salt grid consists of Na$^{+}$ and Cl$^{-}$ ions, where Na$^{+}$ ions lie at
+\begin{align*}
+  \Gamma_{fcc} := \{(i,j,k) \big\vert i + j + k \text{ even}\} \subseteq \Z^{3}
+\end{align*}
+and the Cl$^{-}$ at
+\begin{align*}
+  \{(i,j,k) \big\vert i + j + k \text{ odd}\}
+\end{align*}
+and we want to study the group
+\begin{align*}
+  G_{NaCl} \subseteq IO(3) = O(3) \ltimes \R^{3}
+\end{align*}
+We see immediately that
+\begin{align*}
+  \Gamma_{fcc} \subseteq G_{NaCl}, \quad O \subseteq G_{NaCl} \implies O \ltimes \Gamma_{fcc} \subseteq G_{NaClNaCl}
+\end{align*}
+Not only that, we can show that $G_{NaCl} = O \ltimes \Gamma_{fcc}$.
+\end{ex}
+\begin{proof}
+As injectivity is clear, we just need to show surjectivity. For this, let $X= \Gamma_{fcc}$ be the set of Na$^{+}$ ions in the grid and let $x = 0 \in X$ be the origin.
+By just translating the origin to any other point in the grid, it's easy to see that it's orbit $\mathcal{O}_x$ is $\Gamma_{fcc}$.
+
+The stabilizer $\text{Stab}_x$ is isomorphic to the symmetry group of the 3D cube $O$, because any element of the stabilizer must map the cube of neighboring atoms to itself.
+
+By the orbit-stabilizer theorem we get an isomorphism $\faktor{G_{NaCl}}{O} \stackrel{\iso}{\to} \Gamma_{fcc}$ so the following commutes
+\begin{center}
+\begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
+  \faktor{G_{NaCl}}{O}  \arrow[]{r}{\iso} &\Gamma_{fcc}\\
+  \faktor{O \ltimes \Gamma_{fc}}{O} \arrow[]{ur}{\iso}\arrow[]{u}{}
+\end{tikzcd}
+\end{center}
+which is only possible if $O \ltimes \Gamma_{fcc} \to G_{NaCl}$ is surjective.
+\end{proof}
+
+
+
+

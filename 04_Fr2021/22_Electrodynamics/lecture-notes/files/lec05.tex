@@ -1,0 +1,95 @@
+With the \textbf{Neumann boundary condition}, we want to find a Green's function whose gradient has a non-zero, but \emph{constant} normal component on the surface, i.e.
+\begin{align*}
+  \vec{\nabla}_{\vec{x}}G_n(\vec{x},\vec{y}) = - \frac{4 \pi}{S}\hat{n}
+\end{align*}
+, where $S$ is the total surface of the boundary $\del V$.
+
+In this case, the original equation yields
+\begin{align*}
+  \Phi(\vec{y}) = \frac{1}{4 \pi \epsilon_0} \int_V d^{3} \vec{x} G_N(\vec{x},\vec{y}) \rho(\vec{x}) + \frac{1}{4 \pi}\int_{\del V}d \vec{S} \cdot G_n(\vec{x},\vec{y}) \vec{\nabla}_{\vec{x}} \Phi(\vec{x}) + \left<\Phi\right>_{\del V}
+\end{align*}
+, where $\left<\Phi\right>_{\del V}$ is the average of the potential on the boundary.
+\begin{align*}
+  \left<\Phi\right>_{\del V} = \frac{1}{S}\int_{\del V}d \vec{S} \cdot \Phi \vec{n}
+\end{align*}
+
+
+\begin{ex}[Half-Volume]
+  Suppose the world is split in half, where in one half we have free space $V$ to measure freely and the other half is inaccessible to us.
+  We are however allowed to make measurements on the wall $\del V$.
+  Now we want to find a single Green's function $G_D(\vec{x},\vec{y})$ which vanishes on the boundary, i.e. the wall.
+
+  We chose a coordinate system such that the wall is at $(x_1 = 0,x_2,x_3)$ and we want to measure the potential inside the accessible free space.
+  
+  Starting with the Green's function $G$ of the form
+  \begin{align*}
+  G(\vec{x},\vec{y}) = \frac{1}{\abs{\vec{x} - \vec{y}}} + F(\vec{x},\vec{y}), \quad \text{for} \quad \vec{\nabla}_{\vec{x}}^{2}F(\vec{x},\vec{y}) = 0
+  \end{align*}
+  With some guessing, we find that by defining for $\vec{y}$ its \emph{dual vector} $\vec{y}^{\ast}$ to be its reflection along the wall, the Green's function
+  \begin{align*}
+    G(\vec{x},\vec{y}) := \frac{1}{\abs{\vec{x} - \vec{y}}} - \frac{1}{\abs{\vec{x}- \vec{y}^{\ast}}}    
+  \end{align*}
+  satisfies all the criteria:
+  It vanishes on the boundary and since $\vec{x}$ is always in the free space, we have
+  \begin{align*}
+    \vec{\nabla}_{\vec{x}}^{2} F(\vec{x},\vec{y}) = 4 \pi \del(\vec{x} - \vec{y}^{\ast}) = 0
+  \end{align*}
+  Now observe that since reflection is isometric, we have
+  \begin{align*}
+    \abs{\vec{x} - \vec{y}^{\ast}} = \abs{\vec{y} - \vec{x}^{\ast}}
+  \end{align*}
+  so for our potential $\Phi$ we obtain
+  \begin{align*}
+    \Phi(\vec{y})
+    &=
+    \frac{1}{4 \pi \epsilon_0} \int_Vd^{3} \vec{x} \frac{\rho(\vec{x})}{\abs{\vec{x} - \vec{y}}}\\
+    &\phantom{=} + \frac{1}{4 \pi \epsilon_0} \int_Vd^{3} \vec{x} \frac{\rho(\vec{x})}{\abs{\vec{x}^{\ast} - \vec{y}}}\\
+    &\phantom{=} - \frac{1}{4 \pi} \int_{\del V}d \vec{S} \cdot \Phi(\vec{x}) 
+    \vec{\nabla} \left[
+      \frac{1}{\abs{\vec{x}- \vec{y}}} - \frac{1}{\abs{\vec{x}^{\ast}- \vec{y}}}
+    \right]
+  \end{align*}
+  If we make tha assumption that the potential on the wall is a constant $\Phi(\vec{x}) = C$.
+  Then we can show that the surface integral becomes
+  \begin{align*}
+    - \frac{1}{4 \pi} \int_S d \vec{S} \cdot \Phi(\vec{x}) \vec{\nabla}\left[
+      \frac{1}{\abs{\vec{x} - \vec{y}}}   - \frac{1}{\abs{\vec{x}^{\ast} \vec{y}}}
+    \right]
+    = C
+  \end{align*}
+  In the special case of a discrete charge distribution of charges $q_i$ at position $\vec{x}_i$ we would find that
+  \begin{align*}
+    \Phi(\vec{y}) = \frac{1}{4 \pi \epsilon_0} \sum_{i} \frac{q_i}{\abs{\vec{y} - \vec{x}_i}} + \frac{-q_i}{\vec{y}- \vec{x}_i^{\ast}}
+  \end{align*}
+  which is the solution to the electrostatic problem in free space, except that now it looks like there are \textbf{mirror charges} $-q_i$ at positions $\vec{x}_i^{\ast}$.
+\end{ex}
+
+
+Often, we can replace special boundary conditions on some volume $V$ by introducing extra charges and forgetting about the boundary conditions.
+\begin{ex}[Spherical conductor]
+Consider a conductor sphere with radius $R$ placed at the origin next to a charge $q$ at position $\vec{d}$.
+If we define the \textbf{dual position} and \textbf{dual charge} as
+\begin{empheq}[box=\bluebase]{align*}
+  q^{\ast} = - \frac{R}{d}q \quad \text{and} \quad \vec{d}^{\ast} = \frac{R^2}{d^2}\vec{d}
+\end{empheq}
+Then the potential of the two charges will be given by
+\begin{align*}
+  \Phi(\vec{r}) = \frac{q}{4 \pi \epsilon_0} \left(
+    \frac{1}{\abs{\vec{r} - \vec{d}}}
+    -
+    \frac{\frac{R}{d}}{\abs{\vec{r} - \frac{R^2}{d^2}\vec{d}}}
+  \right)
+\end{align*}
+and in particular, on the surface of the conductor ($\abs{\vec{r}} = R$), the potential vanishes as it should:
+\begin{align*}
+  \Phi(\vec{R}) 
+  &= \frac{q}{4 \pi \epsilon_0} 
+  \left(
+    \frac{1}{\abs{\vec{R} - \vec{d}}}
+    -
+    \frac{\frac{R}{d}}{\left(
+      R^2 + \frac{R^4}{d^2} - 2 \frac{R^2}{d^2}\vec{R} \cdot \vec{d}
+    \right)^{1/2}} 
+  \right)= 0
+\end{align*}
+\end{ex}

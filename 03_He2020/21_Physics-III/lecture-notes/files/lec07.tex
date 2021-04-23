@@ -1,0 +1,107 @@
+\begin{demo}[Diffration grating]
+	In this setup, we shine some light through some gratings. If we use some with 80 slits per centimeter, we just an interference patters
+
+	At 250 slits per centimeter, we see that the first maxima are still quite white but we can see that there are multiple colours present in the smaller maxima.
+
+	At 500 slites per centimeter, the colours are visibly separated from the second maxima on.
+\end{demo}
+Also note that the Michelson Interferometer is sensitive to the index of refraction. With this, we can detect turbulences in the temperature oflight in our optical path.
+
+
+
+
+\section{Statistical Physics}
+As we did quite a bit in Optical physics, we tried to simplify complex problems until we could solve then. Statistical physics is all about simplification. If we have a gas, we know enough physics to describe each molecule individually, but we can't fully describe the system as a whole.\\
+So to make useful statements about the entire system, we ry to extrapolate information from the microscopic system to the macroscopic one.
+\begin{definition}[]
+	A \textbf{microstate} is a configuration of all the microscopic properties. For example one might describe position, momentum or velocity of individual molecules but we can never fully the microstate of a system.\\
+	A \textbf{macrostate} is a particular set of macroscopic properties. For example the temperature, the pressure, volume of a gas.\\
+	It is clear that a microstate fully determines the macrostate but not the other way around and this property \emph{must be satisfied} to to pair them.
+\end{definition}
+
+For example, if we have four coins which we can flip and tell apart, a microstate would be the configuration of the individual coins, i.e. $HTTH$ or $TTTH$. A macrostate could consist of a variable that indicates the total number of heads.
+
+In the example above, one can consider the probability that our variable takes on the value $3$ for any given microstate. We then can find out the \textbf{discrete probability distribution} for the variable over the microstates.
+
+Once we know the probability distribution of a variable $z$ we can calculate the the discrete average value to be the weighted sum over all macrostates:
+\begin{align*}
+	<x> := \sum_{x \text{microstate}} P(x) \cdot x
+\end{align*}
+
+However, when we have an infinite number of microstates, we can define a variable that can take on any value in an interval. For example if $x$ denotes the position of a particle in a 1 dimensional space, we might ask what the probabilty is for the particle to be inbetween the range $x_0$ and $x_0 + dx$. Then we have
+\begin{align*}
+	\int_{-\infty}^{\infty}p(x) dx = 1, \quad <x> \int_{-\infty}^{\infty}p(x) x dx
+\end{align*}
+where we call $<x>$ the \textbf{mean value} of the variable $x$. We can also define the mean value of a function $f(x)$ to be
+\begin{align*}
+	<f(x)> = \int_{-\infty}^{\infty}p(x) f(x) dx
+\end{align*}
+
+
+With many systems, the macroscopic variables we define tend to stabilize afte some time. We call this \textbf{Thermodynamic equilibrium}, which satisfies the following postulates:\\
+The \textbf{fundamental postulate} states that for a closed system with a fixed set of global constraints, every microstate that satisfies these constraints have equal probability of begin occupied.\\
+
+When we talk about a \textbf{closed system} we mean that there can be no exchange of matter, but energy might be exchanged with the outside.\\
+
+The second postulate states the macrostate occupied in the thermodynamic equilibrium is the one with the largest number of microstates.\\
+
+
+In our coin-toss example we keep tossing one coin every second and we ask, what is the probability that we end up with the mirostate $TTTT$ at $n$ seconds?
+\begin{align*}
+	P_n(4) &= P(4|3) P_{n-1}(3) + P(4|4) P_{n-1}(4)\\
+	P(4|3) = \frac{1}{4} \cdot \frac{1}{2}, \quad P(4|4) = \frac{1}{2}
+\end{align*}
+Where $P(a|b)$ denotes the propability that our variable $x$ takes on the variable $a$ \emph{under the condition} that we have $3$ tails.
+
+In the equilibrium we have $P_n(z) = P_{n-1}(z)$. From this we find that
+\begin{align*}
+	P_{\infty}(4) = \frac{\frac{1}{8}P_{\infty}(3)}{1 - \frac{1}{2}} = 	 \frac{1}{4} P_{\infty}(3)
+\end{align*}
+Similarly we get
+\begin{align*}
+	P_{\infty}(3) = \frac{2}{3} P_{\infty}(2), \quad P_{\infty}(1) = \frac{2}{3} P_{\infty}(2), \quad P_{\infty}(0) = \frac{1}{4} P_{\infty}(1)
+\end{align*}
+From the condition that all the probabilites must add up to zero we then get
+\begin{align*}
+	P_{\infty}(z) = \left\{\begin{array}{ll}
+		\frac{1}{16} & \text{for } z = 0,4 \\
+		\frac{4}{16} & \text{for } z = 1,3\\
+		\frac{6}{16} & \text{for } z = 2
+	\end{array} \right.
+\end{align*}
+
+For the general problem with $N$ coins we the $<x> = \frac{N}{2}$, where the width of the peak is given by the standard deviation
+\begin{align*}
+	\Delta z = \sqrt{<z^2> - <z>^2} = \frac{N}{2}
+\end{align*}
+Where the variance is $\Delta z^2 = \frac{N}{4}$ and the fractional width is $\frac{\Delta z}{<z>} \propto \frac{1}{\sqrt{N}}$\\
+
+When we want to measure a property of a system, we often do this by making it interact with another system and see how the second system reacts to it.\\
+If we write $N_i, U_i$ for the number of particles and the Energy of each system, we see that $U_0 := U_1 + U_2$ is conserved.\\
+Let $\Omega_1(N_1,U_1)$ denote the number of microstates that are consistent with $N_1$ and $U_1$. Similarly $\Omega_2$. Then we have
+\begin{align*}
+	\Omega(N_1,N_2,U_1,U_2) = \Omega_1(N_1,U_1) \cdot \Omega_2(N_2,U_2)
+\end{align*}
+be the total number of microstates for the entire system. If we pick $U_1$ as a variable, we have
+\begin{align*}
+	\left(\frac{\del \Omega_1}{\del U_1}\right)_{N_1} \Omega_2 + \left(\frac{\del \Omega_2}{\del U_2}\right)_{N_2} \left(\frac{\del U_2}{\del U_1}\right)_{N_2} \Omega_1 = 0
+\end{align*}
+Because $U_0$ is constant, $\frac{\del U_2}{\del U_1} = -1$ so
+\begin{align*}
+	\frac{1}{\Omega_1} \left(\frac{\del \Omega_1}{\del U_1}\right)_{N_1} &= \frac{1}{\Omega_2} \left(\frac{\del \Omega_2}{\del U_2}\right)_{N-2}\\
+	\implies \left(\frac{\del (\ln(\Omega_1))}{\del U_2}\right)_{N_1} &= \left(\frac{\del (\ln(\Omega_2))}{\del U_2}\right)_{N_2}\\
+	\implies \left(\frac{\del \sigma_1}{\del U_1}\right)_{N_1} &= \left(\frac{\del \sigma_2}{\del U_2}\right)_{N_2}
+\end{align*}
+for $\sigma = \ln(\Omega))$. This gives us a relation between the two system when thermodynamic equilibrium is reached. Note that the left and right hand side only depend on the variables associated to only one system. This means that for any two systems that come into contact with eachother, the quantity $ \left(\frac{\del \sigma}{\del U}\right)$ is the same for both after the thermodynamic equilibrium! This property also defines the \emph{Temperature}, since after enough time, both systems have the same temeprature. We use this to give a proper definition of Temperature
+\begin{align*}
+	\frac{1}{T} = k_B \left(\frac{\del \sigma}{\del U}\right)_{N,V}
+\end{align*}
+where $k_B = 1.38 \cdot 10^{-23}m^2 kg/s^2K$ is the \textbf{Boltzmann constant}. Since temperature and the Boltzmann constant are often paired up, we define $\beta$ to be
+\begin{align*}
+	\beta :=\frac{1}{k_BT} = \left(\frac{\del \sigma}{\del U}\right)_{N,V}
+\end{align*}
+
+We define the \textbf{Entropy} $S$ in the Boltzmann equation
+\begin{align*}
+	S = k_B \sigma = k_B \ln(\Omega)
+\end{align*}

@@ -1,0 +1,213 @@
+\subsection{Functors}
+If we look at categories where objects are Sets with structure and morphisms are strucutre preserving maps we might ask what the morphisms in the ``category of categories'' are.
+
+The structure of a category would the morphisms, so we can ask what ``morphism-preserving'' morphisms are.
+
+This gives rise to the definition of a functor.
+
+\begin{dfn}[]
+  Let $\textsf{C},\textsf{D}$ be categories. A \textbf{covariant Functor} $\mathcal{F}$ from $\textsf{C}$ to $\textsf{D}$ (written $\mathcal{F}: \textsf{C} \to  \textsf{D}$ does the following:
+
+  \begin{itemize}
+    \item It provides a map $F: \text{Ob}(\textsf{C}) \to  \text{Ob}(\textsf{D})$ that maps an object $X$ from $\textsf{C}$ to and object $F X$ in $\textsf{D}$.
+    \item It maps morphisms $f \in \Hom(X,Y)$ to a morphism $F f \in \Hom(F X, F Y)$ such that
+      \begin{enumerate}[{(}i{)}]
+        \item $F (\id_X) = \id_{F X}$
+        \item $F (g \circ f) = Fg \circ Ff$
+      \end{enumerate}
+      the second condition is equivalent to saying that for any morphism $f: X \to  Y$ in $\textsf{C}$, the following diagram commutes
+\begin{center}
+\begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
+  X \arrow[]{rr}{F} \arrow[]{d}{f} & & F X \arrow[]{d}{Ff}\\
+  Y \arrow[]{rr}{F} & & F Y 
+\end{tikzcd}
+\end{center}
+  \end{itemize}
+\end{dfn}
+
+
+
+\begin{ex}[]
+  Quite a few concepts that we encountered througout Algebra or Topology are functors.
+  \begin{enumerate}
+    \item If we have a group $(G,\cdot,e)$, we can forget the group structure and only look at the underlying set $G$.
+      Group homomorphisms turn into functions.
+      We call this the \textbf{forgetful functor}.
+      The same construction works for topological groups, where we forget the topology of a topological space.
+    \item We can turn every field into a group, by removing the $0$. Group homomorphisms then become field homomorphisms.
+    \item There is a functor $\Top \to \Htpy$ that preserves the objects (topolgocial spaces), but maps continuous maps to their homotopy equivalence classes.
+    \item Consider the \textbf{endofunctor} $\textsf{F}: \textsf{Vect}_k \to  \textsf{Vect}_k$ which maps vector spaces to their dual and linear maps to their dual maps.
+      So for vector spaces $V,W$ and a linear map $f \in \Hom(V,W)$ we define
+      \begin{align*}
+        F V = V^{\ast}, \quad \text{and} \quad Ff =: f^{\ast}: W^{\ast} \to  V^{\ast}, f^{\ast} \beta = \beta \circ f : V \to k
+      \end{align*}
+      This is an example of a \textbf{contravariant functor}, as the directon of $Ff$ is opposite to that of $f$.
+  \end{enumerate}
+\end{ex}
+
+
+\begin{lem}[]\label{lem:func-iso}
+Let $\textsf{F}: \textsf{C} \to  \textsf{D}$ be a functor.
+If $X,Y \in \text{Ob}(\textsf{C})$ and $f \in \Hom(X,Y)$ is an isomorphism, then $Ff \in \Hom(FX,FY)$ (or $\Hom(FY,FX)$ for contravariant functors) is also an isomorphism.
+\end{lem}
+\begin{proof}
+  Since $f$ is an isomorphism, there exists a morphism $g \in \Hom(Y,X)$ such that $g \circ f = \id_X$ and $f \circ g = \id_Y$.
+  By the functor laws, $Ff$ and $Fg$ satisfy for covariant functors, 
+  \begin{align*}
+    Fg \circ Ff = F(g \circ f) = F \id_X = \id_{FX} \quad \text{and} \quad Ff \circ Fg = F(f \circ g) = F \id_Y = \id_{FY}
+  \end{align*}
+  and for contravariant functors:
+  \begin{align*}
+    Fg \circ Ff = F(f \circ g) = F \id_Y = \id_{F Y} \quad \text{and} \quad Ff \circ Fg = F(g \circ f) = F \id_X = \id_{F X}
+  \end{align*}
+\end{proof}
+We can use this lemma to immediately prove that every homeomorphism (iso in $\Top$) is also a homotopy equivalence (iso in $\Htpy$).
+
+
+\section{The fundamental group}
+One central idea in category theory is the view that we can understand objects in a category by studying their Hom-sets to other objects.
+
+Of course understanding \emph{all} Hom-sets to other objects is too much to reasonably do.
+So what we can do is to instead look at ``nice'' spaces and study the Hom-sets to other spaces.
+
+One such nice space is the circle space $\IS^{1}$.
+Given a topological space $X$ and a basepoing $x_0 \in X$, we want to understand all possible maps $f \in \Hom(\IS^{1},X)$.
+This corresponds to studying \textbf{loops} with basepoint $x_0$.
+
+If we are given two loops $f,g$ that share the same basepoint $x_0$, then can move along one loop and then move along the next one to obtain a new loop with the same basepoint.
+This gives us a binary operation on the Hom-Set $\Hom_{\Top^{\ast}}(\IS^{1},(X,x_0))$
+It turns out that if we only consider continuous functions up to homotopy, then the Hom-Set $\Hom_{\Htpy^{\ast}}(\IS^{1},X)$ carries a group structure!
+
+
+\subsection{Definition and examples}
+
+
+\begin{dfn}[]
+\begin{itemize}
+  \item A path $\alpha: [0,1] \to  X$ is called a \textbf{loop} with basepoint $x_0$ if $\alpha(0) = \alpha(1) = x_0$.
+  \item Two paths $\alpha,\beta: [0,1] \to  X$ are \textbf{homotopic rel. endpoints}, if there exists a homotopy preserving the endpoints. That is, if $\alpha\sim_h \beta$ with
+    \begin{align*}
+      h(0,t) = a(0) \quad \text{and} \quad h(1,t) = \alpha(1) \quad \text{for all} \quad t \in [0,1]
+    \end{align*}
+  \item If $\alpha$ is a path from $a$ to $b$ and $\beta$ is a path from $b$ to $c$, we define their \textbf{multiplication} as
+    \begin{align*}
+      \alpha \beta : [0,1] \to  X, t \mapsto  \left\{\begin{array}{ll}
+          \alpha(2s) & s \leq \tfrac{1}{2}\\
+          \beta(2s - 1) & s \geq \tfrac{1}{2}
+      \end{array} \right.
+    \end{align*}
+\end{itemize} 
+We write $\alpha \sim \beta$ rel endpoints and
+\begin{align*}
+  [\alpha] := \{\beta | \beta\text{ is a path and } \alpha \sim \beta \text{ rel endpoints}\}
+\end{align*}
+for the equivalence class.
+\end{dfn}
+
+
+\begin{dfn}[]
+  Let $(X,x_0) \in \Top^{\ast}$.
+  The \textbf{Fundamental Group} of $(X,x_0)$ is 
+  \begin{align*}
+    \pi_1(X,x_0) := \{[\alpha] \big\vert \alpha \text{ is a loop with basepoint $x_0$}\} = \Hom_{\Htpy^{\ast}}(\IS^{1},(X,x_0))
+  \end{align*}
+  with multiplication
+  \begin{align*}
+    ([\alpha],[\beta]) \mapsto [\alpha \beta]
+  \end{align*}
+\end{dfn}
+We have to show that the multiplication is well-defined and that it does indeed define a group structure.
+\begin{proof}
+  The well-defined-ness of the multiplication is in the Exercise sheet 7, Problem 1.
+
+  The other group axioms are easily proven.
+  The identity of the group is the constant map $x_0$ and inverse is the reverse traversal of the loop.
+\end{proof}
+
+\begin{ex}[]
+Let $K \subseteq \R^{n}$ be convex and $x_0 \in K$. Then the fundamental group $\pi_1(K,x_0)$ is the trivial group $\{e\}$.
+\end{ex}
+
+\begin{thm}[]
+  \begin{enumerate}
+    \item The fundamental group of the sphere is also the trivial group. More generally, for all $n \geq 2$, $\pi_1(\IS^{n},x_0) = \{e\}$ 
+    \item The fundamental group of the circle is $\Z$ and representants of the group are the maps
+      \begin{align*}
+        \alpha_k:[0,1] \to \IS^{1}, \quad t \mapsto  e^{2 \pi i k t}
+      \end{align*}
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+\begin{enumerate}
+  \item Let $n \geq 2$ and $\alpha$ a loop with basepoint $x_0$.
+    We show that it is homotopic to the constant map $x_0$.
+    To do this, we first show that there exists a loop $\beta \sim \alpha$ rel $x_0$ which is not surjective.
+    If $\Image \alpha = \IS^{n}$, then take the hemisphere $D^{n} \subseteq \S^{n}$ with center $x_0$.
+    Take the point $-x_0$ opposite to $x_0$ on the other hemisphere
+    and let $(I_j)_{j \in J}$ be the maximal intervals such that $\Image(\alpha |_{I_J}) \subseteq D^{n}$.
+    Because $D^{n}$ is contractible, we set
+    \begin{align*}
+      \beta(t) = \left\{\begin{array}{ll}
+          \alpha(s) & s \notin \bigcup_{j \in J}I_j\\
+          \beta_j(s) & s \in I_j
+      \end{array} \right.
+    \end{align*}
+    such that $\beta_j(s): I_j \to \del D^{n}$ satisfies
+    \begin{align*}
+      \beta_j |_{\del I_j} = \alpha|_{\del I_j}
+    \end{align*}
+
+    From this, we take a point $x \in \IS^{n} \setminus \Image(B)$.
+    Then we use the isomorphism $\phi: \IS^{n} \setminus x \to \R^{n}$.
+    Because $\R^{n}$ is contractible it follows that $\alpha \sim \beta \sim x_0$.
+
+  \item We only provide an informal proof. We will do it more rigorously later.
+    For surjectvitiy of the map $\Phi: \Z \to  \pi_1(\IS^{1},1), k \mapsto  \alpha_k$, let $\alpha$ be a loop with basepoint $1$.
+
+    The idea then is that we use the map 
+    \begin{align*}
+      \psi: \R \to \IS^{1}, \quad x \mapsto e^{2 \pi i x}
+    \end{align*}
+    that wraps $\R$ around the circle.
+    We then show that there exists a path $\tilde{\alpha}: [0,1] \to  \R$ such that $\alpha = \psi \circ \tilde{\alpha}$.
+
+    So if we set $k = \tilde{\alpha}(1) \in \Z$. then we can show that $\tilde{\alpha} \sim \tilde{a}_k$ rel endpoints.
+    Therefore
+    \begin{align*}
+      \alpha = \pi \circ \tilde{\alpha} \sim \pi \circ \tilde{\alpha}_k = \alpha_k \text{ rel 1}
+    \end{align*}
+    For injectivity, we prove that $\Phi$ is group homomorphism with kernel $0$.
+\end{enumerate}
+\end{proof}
+
+
+\begin{lem}[]
+  The fundamental group defines a covariant functor $\pi_1: \Top^{\ast} \to \Grp$ that maps pointed topological spaces $(X,x_0)$ to their fundamental group $\pi_1(X,x_0)$ and that maps a basepoint preserving maps $f: (X,x_0) \to (Y,y_0)$ to group homomorphisms
+\begin{align*}
+  f_{\ast}: \pi_1(X,x_0) \to \pi_1(Y,y_0)
+  , \quad
+  [\alpha] \mapsto [f \circ \alpha]
+\end{align*}
+\end{lem}
+\begin{proof}
+We have to prove that 
+\begin{enumerate}
+  \item For any topological space $X$
+    \begin{align*}
+      (\id_X)_{\ast} = \id_{\pi_1(X,x_0)} \quad \text{ for all } x_0 \in X
+    \end{align*}
+  \item For continuous, basepoint preserving maps $f: (X,x_0) \to (Y,y_0)$, $g:(Y,y_0) \to (Z,z_0)$
+    \begin{align*}
+      (g \circ f)_{\ast} = g_{\ast} \circ f_{\ast}
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{cor}[]
+  If $f: X \to  Y$ is a homeomorphism, then $f_{\ast}: \pi_1(X,x_0) \to  \pi_1(Y,y_0)$ is a group isomorphism.
+\end{cor}
+\begin{proof}
+  This follows directly from Lemma \ref{lem:func-iso} because homeomorphisms are the isomorphisms in $\Top^{\ast}$ and group isommorphisms are the isomorphisms in $\Grp$.
+\end{proof}
+
+

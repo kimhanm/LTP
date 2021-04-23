@@ -1,0 +1,133 @@
+\subsection{Sylow's Theorem}
+Recall that Lagrange's theorem wsays that for any subgroup $H < G$ both it's order $\abs{H}$ and index $[G:H]$ are divisors of $\abs{G}$.
+
+
+
+\begin{lemma}[]
+	Let $p \in \N$, prime, $n = p^{k}m$ with $(m,p)$ coprime. Then $\binom{n}{p^k}$ is not divisible by $p$.
+\end{lemma}
+
+Proof: Set $S := \Z/(p^{k}) \times \{1, \ldots, m\}$, $G = \Z/(p^{k})$ and define a group action from $G$ to $S$ by addition in the first component ($g \cdot (a,j) = (a + g, j)$)
+
+Note that the $G$-orbits in $S$ are of the Form $G \times \{i\}$ for some fixed $i \in \{1, \ldots, m\}$. We then define
+\begin{align*}
+	T:= \left\{A \subseteq S \big\vert \abs{A} = p^{k}\right\}
+\end{align*}
+Then let define a $G$ action on $T$ with $g \cdot A = \{g \cdot (a,j)\big\vert (a,j) \in A\}$
+
+Since $G$ is a $p$-group. We know from the lemma on the cardinality of $T$ that
+\begin{align*}
+	\binom{n}{p^k} = \abs{T} = \abs{\text{Fix}_G(T)}
+\end{align*}
+We know the cardiniality of $\text{Fix}_G(T)$ because
+\begin{align*}
+	A \in \text{Fix}_G(T) \iff A \subseteq S, \abs{A} = p^{k}, g \cdot A = A \forall g \in G 
+\end{align*}
+which is then the case if $A$ is a union of $G$-orbits in $S$. We know how the Orbits look, so there are exactly $m$ of those.
+\begin{align*}
+	\binom{n}{p^{k}} = \abs{T} = \abs{\text{Fix}} = m
+\end{align*}
+and $m\not| p$.
+
+
+\textbf{Example}: \quad Let $G = \text{SL}_2(\F_p)$ of order $p(p^{2}-1)$. Then $H_p = \left\{\begin{pmatrix}
+1 & a\\
+0 & 1
+\end{pmatrix} \big\vert a \in \F_p\right\} \simeq \F_p$ is a Sylow $p$-subgroup.
+
+\begin{ntheorem}[Sylow's Theorem]
+	Let $G$ be a finite group, $p \in \N$ prime and $n = \abs{G} = p^{k}m$ for some $k \geq 1$ and $(m,p)$ coprime.
+	\begin{enumerate}
+		\item There exists a maximal $p$-subgroup $H_p$ with $\abs{H_p} = p^{k}$, which we call \textbf{Sylow $p$-subgroups}.
+		\item If $H < G$ is a $p$-subgroup, there exists a $p$-Sylow subgroup $H_p$ with $H < H_p$
+		\item Any two Sylow $p$-subgroups are conjugates. 
+	\end{enumerate}
+\end{ntheorem}
+Proof: 
+\begin{enumerate}
+	\item Let $T = \left\{A \subseteq G: \big\vert \abs{A} = p^{k}\right\}$. Then $T$ is a $G$-set with left multiplikation. From the lemma it follows that $\abs{T} = \binom{n}{p^{k}} \neq 0 \mod p$.
+		From the corollary on the Orbits and stabilizers, we know that
+		\begin{align*}
+			\abs{T} = \abs{\text{Fix}_G(T)} + \sum_{\text{non-trivial orbits}} [G: \text{Stab}_G(A)]
+		\end{align*}
+		If $n = p^{k}$, $H_p = G$ is itself a Sylow $p$-subgroup. Else if $p^{k} < n$. There doesn't exist a $G$-invariant subset $A \subseteq G$ with $\abs{A} = p^{k}$. Since we $g A \in \{\{e\},G\}$. So there are are no fixpoints of the group action.
+
+		Since $\abs{T} \neq 0 \mod p$ the formula on the cardinality says that there exists at least an $A_0 \in T$ such that $[G: \text{Stab}_G(A_0)] \neq 0 \mod p$.
+
+		We want to show that $H_o := \text{Stab}_G(A_0)$ is a Sylow $p$-subgroup with $\abs{H_p} = p^{k}$. Since
+		\begin{align*}
+			\abs{G} = \abs{H_p} \cdot [G: H_p] = p^{k}m \quad \text{and} \quad p\not| [G \cdot H_p]
+		\end{align*}
+		it must follow that $p^{k} | \abs{H_p}$ from the definition of th stabilizer, $H_p \cdot A_0 = A_0$.
+	
+	This just means that for $a_0 \in A_0$ and $h \in H_p$ we have $h \cdot a_0 \in A_0$. So $\abs{H_p} = \abs{H_p \cdot a_0} \leq \abs{A_0}$.
+	But from the way we set $A_0$ its cardinality was $p^{k}$. So we have
+	\begin{align*}
+		p^{k}| \abs{H_p} \leq p^{k} \implies \abs{H_p} = p^{k}
+	\end{align*}
+	
+	\item Let $H$ be a $p$-subgroup and $H_p$ be a Sylow $p$-subgroup. We define $T = T/H_p$ and let $H$ act on $T$ with left multiplication. From the lemma on fixpoints we know that
+		\begin{align*}
+			\abs{\text{Fix}_H(T)} = \abs{T} = [G: H_p] = \frac{n}{p^{k}} = m \neq 0 \mod p
+		\end{align*}
+		In particular there exists a Fixpoint $g H_p \in T$ such that
+		\begin{align*}
+			hgH_p = gH_p \implies hg \in gH_p \implies h \in gH_p g^{-1} \implies H < gH_p g^{-1}
+		\end{align*}
+		which shows that $gH_pg^{-1}$ is a Sylow $p$-subgroup.
+		
+	\item Let $H,H_p$ be two Sylow $p$-subgroups. Then from (b) we know that there exist a $g \in G$ such that $H < gH_pg^{-1}$. Therefore
+		\begin{align*}
+			\abs{H} = \abs{H_p} = p^{k} \implies H = gH_pg^{-1}
+		\end{align*}
+\end{enumerate}
+
+
+\subsection{Symmetric and Alternating Groups}
+
+\begin{theorem}[]
+	Let $n \geq 1$. We call the elements of $S_n = \text{Bij}(\{1, \ldots, n\})$ \textbf{permutations}.
+
+	On $S_n$ there exists a Homeomorphism $\sgn: S_n \to \{\pm 1\}$ which maps every permuation a sign, where $\sgn(\tau_{ij}) = -1$, for $i\neq j$.
+
+	We say $\sgn \in S_n$ is called \textbf{even}, if $\sgn(\sigma) = 1$ and \textbf{odd}, if $\sgn(\sigma) = -1$.
+\end{theorem}
+
+
+Proof: see Lineare algebra. We can also prove this by looking at $F \in \Z[X_1, \ldots, X_n]$ and then defining $F^{\sigma} = F(X_{\sigma(1)}, \ldots X_{\sigma(n)})$ which defines a group action from $S_n$ to $\Z[X_1, \ldots, X_n]$.
+
+Then define $P = \prod_{1 \leq i < j \leq n}(X_i - X_j)$ and we see that
+\begin{align*}
+	P^{\sigma} = \prod_{1 \leq i < j \leq}(X_{\sigma(i)} - X_{\sigma(j)}) = \sgn(\sigma)P
+\end{align*}
+which can be used as a definition of $\sgn$.
+
+\textbf{Notation:} \quad For $\sigma \in S_n$ we often write $\sigma$ in the following way
+\begin{align*}
+	\sigma =: \begin{pmatrix}
+	1 & 2 & \ldots & n\\
+	\sigma(1) & \sigma(2) & \ldots & \sigma(n)
+	\end{pmatrix}
+\end{align*}
+Or we can use the better notation using cycles, where we first find out the first non-fixpoint $i_1$ of $\sigma$. Then look at the sequence
+\begin{align*}
+	\sigma(i_1), \sigma^{2}(i_1), \ldots, \sigma^{k_1}(i_1) = i_1
+\end{align*}
+If these are all non-fixpoints, then we write
+\begin{align*}
+	\sigma = \left(i_1, \sigma(i_1), \sigma^{2}(i_1), \ldots \sigma^{k_1-1}(i_1)\right)
+\end{align*}
+If there are more, then let $i_2 > i_1$ the next non-fixpoint, etc. Then we write
+\begin{align*}
+	\sigma = \left(i_1, \sigma(i_1), \sigma^{2}(i_1), \ldots \sigma^{k_1-1}(i_1)\right) \left(i_2, \sigma(i_1), \ldots \sigma^{k_2 - 1}(i_2)\right) \ldots \left(i_r, \sigma(i_r), \ldots \sigma^{k_r -1}(i_r)\right)
+\end{align*}
+In this case we also say that $\sigma$ has cylcestructure $k_1, k_2, \ldots k_r$. (We may also chang the order of the $k_i$.)
+
+
+\begin{proposition}[]
+	Two permuatations are conjuagates in $S_n$ if and only if they have the same cycle structure.1
+\end{proposition}
+Proof: See page 122: let $\sigma \in S_n$ and $(i_1, \ldots, i_k)$ a cycle. Then
+\begin{align*}
+	\sigma\ (i_1, \ldots, i_k) \sigma^{-1} = \left(\sigma(i_1), \sigma(i_2), \ldots \sigma(i_k)\right)
+\end{align*}

@@ -1,0 +1,90 @@
+
+\begin{proof}[Proof Theorem]
+  Consider the field extension $\C/\Q$. Since $\C$ is algebraically closed, we can chose a splitting field $E$ of $f$ with $Q \subseteq E \subseteq \C$.
+  Let $R(f) = \{\alpha_{1}, \ldots, \alpha_{p}\}$ be the roots of $f$ and order them such that $\{\alpha_{3}, \ldots, \alpha_{n}\} \subseteq \R$.
+  Since $f \in \Q[X]$, its coefficients are real, so $\alpha_2 = \overline{\alpha_1}$.
+  Using Lemma \ref{lem:2.4} we can identify $\Gal(E/\Q)$ with a subgroup of $S_{R(f)} = S_p$, so we have the inclusion $\Gal(E/\Q) \subseteq S_p$.
+
+  If we write $\epsilon: \C \to \C$ to be the complex conjucation, then we have $\epsilon(E) = E$, so $\epsilon|_E \in \Gal(E/\Q)$ corresponds to the transposition $\tau_{12} \in S_p$.
+
+  We also know from Coroallary \ref{cor:rot3-9} that since $f$ is irreducible, $p$ divides $\abs{\Gal(E/\Q)}$. 
+  Cauchy's Lemma then says that there exists an element of order $p$ in $\Gal(E/\Q)$.
+  But the elements of order $p$ are exactly the $p$-cycles in $S_p$.
+
+  From exercise sheet 03 problem 6, the $p$-cycles and a transposition generate $S_p$, which concludes the proof.
+\end{proof}
+A remarkable thing about this proof is that it combines knowledge about fields, finite groups and permutation groups.
+
+\begin{ex}[]
+  We wish to compute  the Galois group of $f = X^{5} - 4X + 2 \in \Q[X]$.
+
+  $f$ fulfills the Eisenstein criterion for the prime $p = 2$ so it is irreducible (and prime).
+  $f$ also has exactly $3 = 5-2$ real roots, because $f'=5X^4 - 4$ has two real roots $\pm \sqrt[4]{\tfrac{4}{5}}$.
+\end{ex}
+
+There exists a correspondence between irreducibility and transitivity of the Galois group.
+\begin{cor}[Rotman 3.14]\label{cor:rot3-14}
+  Let $f \in k[X]$ and let $E$ be a splitting field of $f$.
+  If $f$ has no multiple roots, then
+  \begin{align*}
+    f \text{ is irreducible } \iff \Gal(E/K) \text{ acts transitively on } R(f)
+  \end{align*}
+\end{cor}
+Note: the implication $\implies$ holds without the assumption that $f$ has no mltiple roots as the following proof will show.
+\begin{proof}
+  Let $f$ be irreducible. Recall that transitivtiy means that for every $\alpha,\beta \in R(f)$ there exists a $g \in \Gal(E/k)$ such that $g \cdot \alpha = \beta$.
+
+  This is just the special case for Theorem \ref{lem:rot3-130} for $k' = k$ and $\phi = \id_K$. See Exercise sheet 02 problem 3 for details.
+
+  Now, assume the group action $\Gal(E/k) \to R(f)$ is transitive and let $f= pq$ for $p,q \in K[X]$. Then $R(p), R(q) \subseteq R(f)$.
+  Since $f$ has no multiple roots $R(p) \cap R(q) = \emptyset$.
+  But since the group action is transitive, it means that one of $R(p),R(q)$ is empty or else that would mean a $g \in \Gal(E/k)$ would map an element of $R(p)$ to an element of $R(q)$ but since $\Gal(E/k) R(p) \subseteq R(p)$ it means that their intersection is non-empty.
+  Since either one of $p$ or $q$ has no roots, $f$ is irreducible.
+\end{proof}
+
+\begin{dfn}[]
+  A field extension $E/k$ is calld \textbf{normal} if it is a splitting field of a polynomial $f \in k[X]$.
+\end{dfn}
+Note: If $E/B$ and $B/k$ are field extensions such that $E/k$ is normal, then $E/B$ is also normal as we can take the same polynomial $f \in k[X] \subseteq B[X]$.
+
+\begin{thm}[]\label{thm:surhom}
+  Let $E/B$ and $B/k$ be finite extensions such that $E/k$ and $B/k$ are normal.
+  Then for all $\sigma \in \Gal(E/k), \sigma(B) = B$ and the group homomorphism
+  \begin{align*}
+    \Gal(E/k) \to \Gal(B/k), \quad \sigma \mapsto \sigma|_B
+  \end{align*}
+  is surjective with kernel $\Gal(E/B)$.
+\end{thm}
+\begin{proof}
+  Let $f \in k[X]$ be the polynomial such that $B$ is the splitting field of $f$.
+  From Lemma \ref{lem:2-4}, it follows that
+  \begin{align*}
+    \sigma(R(f)) = R(f), \quad \forall \sigma \in \Gal(E/k)
+  \end{align*}
+  so since $B = k(R(f))$, we also get $\sigma(B) = B$. Therefore, the group homomorphism $\Gal(E/k) \to  \Gal(B/k)$ is indeed well defined.
+  The kernel is obiously $\Gal(E/B)$.
+  To show surjectivity, let $\sigma \in \Gal(B/k)$. 
+  Because $E/k$ is normal, there exists a $g \in k[X]$ such that $E$ is the splitting field of $g$.
+  But then, the induced ring homomorphism $\sigma_{\ast}$ maps $g$ to $g$, and as such, Lemma \ref{prop:2-16} says that that $\sigma$ can be extended to an automorphism $\Sigma: E \to  E$ with $\Sigma|_{B} = \sigma$.
+\end{proof}
+
+In the exercise sheet 4 problem 6 we will prove the following theorem
+
+\begin{thm}[]
+  A finite extension $E/k$ is normal if and only if every irreducible polynomial $f \in k[X]$ that has a root in $E$ also splits over $E$.
+\end{thm}
+ 
+\section{Resolvable groups}
+In this section, we will prove the insolvability of the quntic using radicals.
+The main problem is to find a good definition of what a \emph{formula} using some arithmetic operations \emph{is}.
+
+For this, we will start with a \textbf{field}, which is closed under the normal operations. 
+Then we define \textbf{pure extensions}, which are field extensions obtained by adjoining roots of polynomials.
+Then, we introduce \textbf{radical extensions} and \textbf{resolvable extensions} to check whether a polynomial can be solved.
+This will result in Galois' theorem.
+\begin{thm*}[Galois]
+  Let $f \in k[x]$ and $E$ be its splitting field.
+
+  If $f$ is solvable using radicals, then $\Gal(E/k)$ is a resolvable group.
+\end{thm*}
+

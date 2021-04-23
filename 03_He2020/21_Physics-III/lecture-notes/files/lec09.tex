@@ -1,0 +1,112 @@
+
+\subsubsection{Indistinguishable particles}
+
+In principle, if we could keep track of all particles in a gas an therefore distinguish them. But since the information is often very limited, we won't be able to do that. (As we will see later, quantum mechanics also makes it impossible to track everything)
+
+Recall that for distinguishable particles, we could write
+\begin{align*}
+	Z_D = Z_{\text{sp}}^N, \quad \text{where} \quad Z_{\text{sp}} = \frac{V}{h^3} \left(\frac{2 \pi m}{\beta}\right)^{\frac{3}{2}}
+\end{align*}
+which does not hold anymore for indistinguishable particles! For example for 2 distinguishable particles we have
+\begin{align*}
+	Z_D &= \left(\sum_{s_1}e^{-\beta \epsilon_{s_1}}\right) \left(\sum_{s_2}e^{-\beta \epsilon_{s_2}}\right)\\
+			&= \sum_{s}e^{-2 \beta \epsilon_s} + \sum_{s_1}\sum_{s_2 \neq s_1}e^{- \beta(\epsilon_{s_1}+ \epsilon_{s_2})}
+\end{align*}
+With the first term corresponding to the cases where both particles are in the same states, and the second term summing over all states, in which the two particles occupy two different states. But since we can't tell the particles apart, we are actually counting the states twice in the above example.\\
+
+So for $N$ particles, we need to divide out the multiples of the states so we get
+\begin{align*}
+	Z_I = \sum_{s}	e^{-N \beta \epsilon_s} + \ldots + \frac{1}{N!} \sum_{s_1} \ldots \sum_{s_N} e^{-\beta(\epsilon_{s_1} + \ldots + \epsilon_{s_N})}
+\end{align*}
+where the middle terms describes situations, where two ore more particles occupy the same state $s_i$.\\
+But in the \textbf{Classical regime}, we can assume that if we have so many possible states for a single particle to be in, the probabilty that two particles are in the same state is so low, that we can leave them out in our sum, so the only term that remains (if we have enough states) is the last term:
+\begin{align*}
+	Z_I = \frac{1}{N!} \sum_{s_1} \ldots \sum_{s_N} e^{-\beta(\epsilon_{s_1} + \ldots + \epsilon_{s_N})} = \frac{1}{N!} Z_{\text{sp}}^N
+\end{align*}
+So now that we have the partition function, we can calculate the average energy $\left<E\right>$ to be
+\begin{align*}
+	\left<E\right> = \frac{\del }{\del \beta} (\ln Z_I) = \frac{1}{Z_I} \frac{\del }{\del \beta}(Z_1) = \frac{3N}{2 \beta} = \frac{3}{2} N k_B T \implies \left<\epsilon\right> = \frac{<E>}{N} = \frac{3}{2} k_BT
+\end{align*}
+where $\left<\epsilon\right>$ is the average energy per particle.
+
+\subsection{Equipartition theorem}
+\begin{ntheorem}[Equipartition Theorem]
+	Each term in the energy that is quadratic in some coordinate contributes $\frac{k_B T}{2}$ to the average energy.
+\end{ntheorem}
+Examples:
+\begin{itemize}
+\item Consider a $1D$ mass on a spring. Then its energy is given by
+	\begin{align*}
+		\epsilon = \frac{1}{2} k x^2 + \frac{p^2}{2m} \implies \left<\epsilon\right> = 2 \frac{k_BT}{2} = k_B T
+	\end{align*}
+\item A diatomic molecule in free space has three degrees of freedom in its momentum of center of molecule, in addition to vibrational modes and rotational energy from its angular momentun $L$
+	\begin{align*}
+		\epsilon = \sum_{i = x,y,z} \frac{p_i^2}{2m} + \frac{1}{2} kr^2 + \frac{p_r^2}{2m} + 2 \frac{L^2}{2J} \implies \left<\epsilon\right> = (3 + 2 + 2) \frac{k_B T}{2} = \frac{7}{2}k_BT
+	\end{align*}
+\end{itemize}
+
+In general, if we have that the energy of a single particle is given by $m$ different quadratic terms:
+\begin{align*}
+	\epsilon &= \sum_{i = 1}^{m}a_i q_i^2\\
+	\implies Z_{\text{sp}} &= C \int \dots \int e^{-\beta \sum_{i = 1}^m a_i q_i^2} dq_1 \dots dq_m\\
+												 &= C \prod_{i=1}^m	 \sqrt{\frac{\pi}{\beta a_i}}
+\end{align*}
+so if we have $N$ particles, we get
+\begin{align*}
+	Z = C' (\beta^{-m/2})^N \implies <E> = - \frac{\del }{\del \beta}(\ln Z) = m \cdot \frac{N}{2}k_{B}T \implies \left<\epsilon\right> = m \cdot \frac{k_BT}{2}
+\end{align*}
+
+Recall from thermodynamics that we could define the \textbf{Heat capacity} as the quantity
+\begin{align*}
+	C_V = \left(\frac{\del E}{\del T}\right)_V
+\end{align*}
+
+But when we measure the heat capacity of for example water, we see that the heat capactiy depends on the temperature. If it is solid, then we only see three degree os freedom plaing. If it is a liquid we see five and only if it is hot enough do we se all seven.\\
+
+\subsubsection{Maxwell Boltzmann distribution}
+We build a tank with one hole in it and let the molecules shoot out of it and sort them out by how far they travel. From this we can find out the probability distribution of the momentun in this particular direction.\\
+
+
+So what is it? We see that
+\begin{align*}
+	P(v_x) dv_x \propto e^{-\beta mv_x^2/2}dv_x \implies \left<v_x\right> = 0
+\end{align*}
+which makes sense as on average, the gasses move left and right equally likely. But so if we want to know the absolute value, we just square it and get
+\begin{align*}
+	\left<v_x^2\right> = \frac{\int_{-\infty}^{\infty}v_x^2 e^{-\beta mv_x^2/2}dv_x}{\int_{-\infty}^{\infty}e^{-\beta mv_x^2/2}dv_x} = \frac{k_B t}{m}
+\end{align*}
+
+Now we can find out what the pressure of a gas is. Consider a single molecule travelling left to right between two walls with area $A$ distance $L$ apart. Then the pressure will be the quotient of the average force and the area. So
+\begin{align*}
+	p = \frac{N}{A} \left<\frac{\text{momentum transfer per particle}}{\text{time between collision}}\right>
+\end{align*}
+The momentum transerred will then be $2mv_x$ and the time between the collision will be $2L/v_x$ and we get
+\begin{align*}
+	p &= \frac{N}{A} \int_{-\infty}^{\infty}2mv_x \cdot \frac{V}{2L}p(v_x) dv_x \\
+		&= \frac{m}{L}\int_{-\infty}^{\infty}v_x^2p(v_x) dx\\
+		&= \frac{N}{V}m \left<v_x^2\right>
+\end{align*}
+where we found that $A \cdot L = V$ is the volume of the container. This can be rewritten to recover the ideal gas law
+\begin{align*}
+	pV = Nk_B T
+\end{align*}
+The next question is: what is the probability distribution the speed $v = \abs{\vec{v}}$ of the particle?
+
+\begin{align*}
+	P(p) dp &= \frac{4\pi Vp^2}{h^3}dp	\cdot \frac{e^{-\beta p^2/2m}}{Z_{\text{sp}}} \\
+	&= 4\pi p^2 \left(\frac{\beta}{2 \pi m}\right)^{3/2}e^{-\beta p^2/2m}dp
+\end{align*}
+By Multiplying with $N$ and using that $p = mv$, the number of partiles with speed between $v$ and $v + dv$ are 
+\begin{align*}
+	n(v) dv &= 4\pi Nv^2 \left(\frac{\beta m}{2\pi}\right)^{3/2}e^{-\beta mv^2/2}dv\\
+					&= Nf(v) dv
+\end{align*}
+Where $f(v)$ gives us the typical Maxwell-Boltzmann distribution of the velocity.\\
+If we want to know the average speed we get
+\begin{align*}
+	\left<v\right> = \int_{0}^{\infty}vf(v) dv = \sqrt{\frac{8k_B T}{\pi m}}
+\end{align*}
+and the peak of $f(v)$, which is the most probable speed we get
+\begin{align*}
+	v_{\text{max}} = \sqrt{\frac{2 k_B T}{m}}
+\end{align*}

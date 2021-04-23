@@ -1,0 +1,83 @@
+% ==== Default Environments ====
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+% ==== Theorem ====
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}{Corollary}[thm]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}{Proposition}[thm]
+
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{note}[thm]{Note}
+\newtheorem{ex}[thm]{Example}
+
+% ==== Custom Environments ====
+\usepackage{empheq} % bluebox
+\usepackage[most]{tcolorbox}
+    \newtcbox{\bluebase}[1][]{%
+        nobeforeafter, math upper, tcbox raise base,
+        enhanced, colframe=black,
+        colback=blue!20, boxrule=0.5pt,
+        sharp corners,
+        #1
+    }
+
+\mdfsetup{
+  innertopmargin=0pt,
+  linewidth=2pt,
+  topline=true,
+  frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+
+
+\newenvironment{orangebox}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=orange!50]{\strut #1};
+    },
+    linecolor=orange!50,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+
+\newenvironment{lbluebox}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=blue!35]{\strut #1};
+    },
+    linecolor=blue!35,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+
+\newenvironment{bluebox}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=blue!50]{\strut #1};
+    },
+    linecolor=blue!50,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+
+
+\newenvironment{redbox}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=red!50]{\strut #1};
+    },
+    linecolor=red!50,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+

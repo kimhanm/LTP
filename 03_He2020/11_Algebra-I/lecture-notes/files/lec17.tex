@@ -1,0 +1,143 @@
+\subsection{Quotients}
+
+\begin{definition}[]
+	Let $G$ be a group and $H < G$. We define the two relations on $G$
+	\begin{align*}
+		a \sim_H G \iff b^{-1}a \in H\\
+		a\  _H\sim b \iff ba^{-1} \in H
+	\end{align*}
+	We call the set $aH := \{ah \big\vert h \in H\}$ the \textbf{left-subclassses} with left representant $a$ and we also write
+	\begin{align*}
+		G/H = {aH \big\vert a \in G}	
+	\end{align*}
+	and anlogosly we define the \textbf{right-subclasses} $Ha$ and $H \setminus G$
+\end{definition}
+
+\begin{lemma}[]
+	Let $G$ be a group and $H < G$. Then $\sim_H$ defines an equivalence relation on $G$ and $G/H$ is the Quotient of $G$ with respect to $\sim_h$ and $[a]_{\sim_H} = aH$.
+\end{lemma}
+
+Proof: We have reflexivity since $a^{-1}a = e \in H$. Symmetry since $b^{-1}a \in H \implies \left(b^{-1}a\right)^{-1} = a^{-1}b \in H$. And transivity because
+\begin{align*}
+	b^{-1}a, c^{-1}b \in H \implies c^{-1}bb^{-1}a = c^{-1}a \in H
+\end{align*}
+Furthermore
+\begin{align*}
+	[a]_{\sim_H} = \left\{b \big\vert b \sim_H a\right\} = \{b \big\vert b^{-1}a \in H\} = aH
+\end{align*}
+
+For example let $G = S_3$ and set $H = <\tau_{12}> = \{e, \tau_{12}\}$. Then for some cyclic $\sigma \in S_3$ the left and right subclasses are not equal: $\sigma H \neq H \sigma$
+
+\begin{definition}[]
+	The \textbf{cardinaliy} of $G$ is also called the \textbf{order} of $G$. And the cardinality of $G/H$ is also called the \textbf{index} $[G:H]$ of $H$ in $G$.
+\end{definition}
+\begin{theorem}[]
+Let $G$ be a group and $H < G$. Then
+\begin{enumerate}
+	\item The groups $G/H$ and $H \setminus G$ have equal cardinality.
+	\item Lagrange: If $\abs{G} < \infty$, then $\abs{G} = \abs{G/H} \cdot \abs{H}$
+\end{enumerate}
+\end{theorem}
+
+Proof: We define the mappings
+\begin{align*}
+	\phi: G/H \to H \setminus G, \quad aH \mapsto (aH)^{-1} = Ha^{-1}\\
+	\psi: H \setminus G \to G/H, \quad Ha \mapsto (Ha)^{-1} = a^{-1}H
+\end{align*}
+These mappings are inverse, i.e. $\psi \circ \phi = \id_{G/H}$ and $\phi \circ \psi = \id_{H \setminus G}$\\
+
+To show Lagrange's Theorem we chose from every left subclass $aH$ for $a \in G$ one left representant $x \in aH$ and we call the set of lef representants $X$. Then $\abs{G/H} = \abs{X}$. Furthermore we can show that the mapping
+\begin{align*}
+	\Psi: X \times H \to G, \quad (x,h) \mapsto xh
+\end{align*}
+is bijective. Surjectivity holds since for any $g \in G$, $gH \in G/H$. and from construction of $X$ there is one $x \in X$ such that $x \in gH$. In particular, there exists an $h \in H$ such that $g = xh = \Psi(x,h)$.
+
+Injectivity follows from the fact that the equivalence classes are mutually disojoint: Let $(x_1,h_1)$ and $(x_2,h_2)$ such that they get mapped to the same element. Then
+\begin{align*}
+	\Psi(x_1,h_1) = \Psi(x_2,h_2) \iff x_1h_1 = x_2h_2 \implies x_1H = x_2H \implies x_1 \sim_h x_2
+\end{align*}
+But since we only chose one representant of each equivalence class, we have $x_1 = x_2$.
+From this, it follows that
+\begin{align*}
+	\abs{G} = \abs{X \times H} = \abs{X} \cdot \abs{H} = \abs{G/H} \cdot \abs{H}
+\end{align*}
+\begin{corollary}[]
+	Let $G$ be a finite group and $g \in G$. Then the order of an element $g \in G$, divides $\abs{G}$.
+\end{corollary}
+Proof: Let $m := \abs{G}$ and $n := \abs{<g>}$ be the order of $g$. Then $n|m$ from Lagrange's theorem. Let $k = \frac{m}{n}$, then
+\begin{align*}
+	g^{\abs{G}} = g^{m} = g^{nk} = \left(g^{n}\right)^{k} = e^{k} = e
+\end{align*}
+
+\begin{corollary}[]
+	In $\F_p = \Z/(p)$. Then 
+	\begin{align*}
+		a^{p-1} = \left\{\begin{array}{ll}
+				0 & \text{for } a = 0 \\
+			1 & \text{for } a \in \F_p^{\times}
+		\end{array} \right.
+	\end{align*}
+\end{corollary}
+Proof: The Group $G = \F_p^{\times}$ has order $p-1$.
+
+\begin{corollary}[First classification of groups]
+	Let $G$ be a finite group and $\abs{G} = p \in \N$ prime. Then $G$ is isomorphic to $\Z/(p)$
+\end{corollary}
+Proof: Let $g \in G \setminus \{e\}$. Then $n = \abs{<g>} > 1$ and divides $p$. Since $p$ is prime, $n = p$, which means $<g> = G$.\\
+
+In general, the subsets $G/H$ and $H \setminus G$ are not groups.
+\begin{definition}[]
+	Let $G$ be a group and $H < G$. If$G/H$ is a group such that the projection $\pi: G \to G/H$, $\pi(g) = gH$ is a group homomorphism, we say $H$ is \textbf{normal} in $G$ or is a \textbf{normal divosor} of $G$ and we write $H \lhd G$ and we call $G/H$ the \textbf{factor group} of $G$ modulo $H$.\\
+	We say that $G$ \textbf{simple}, if only $\{e\}$ and $G$ itself are the only normal divisors of $G$.
+\end{definition}
+
+\begin{theorem}[]
+Let $G$ be a group and $H < G$. Then the following are equivalent:
+\begin{enumerate}
+	\item $xH = hX$ for all $x \in G$
+	\item $xHx^{-1} = H$ for all $x \in G$
+	\item There exists a group $G_1$ and a group homomorphism $\phi: G \to G_1$ such that $H = \Ker \phi$
+	\item $(xH)(yH) = (xy)H$ for all $x,y \in G$
+	\item $H \lhd G$
+\end{enumerate}
+\end{theorem}
+Proof: Missing:
+
+
+
+For example an abalien group is simple if and only if $G \simeq \Z/(p)$ for a prime $p \in \N$.\\
+On $S_n$, the sign is a homomorphism: $\text{sgn}: S_n \to \{\pm 1\}$, whose kernel is called the \textbf{alternating group} $A_n$, which is non-abelian for $n \geq 5$
+
+
+\begin{ntheorem}[First Isomorphism Theorem]
+Let $\phi: G \to H$ be a homomorphism for two groups $G,H$. Then $\phi$ induces an Isomorhpism $\overline{\phi}: G/\Ker \phi \to \Image \phi$ such that the following diagram commutes:
+\begin{center}
+	\begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
+		G \arrow[swap]{d}{\pi} \arrow[]{r}{\phi} & H\\
+		G/\Ker \phi \arrow[swap]{r}{\overline{\phi}}& \Image \phi < H \arrow[swap]{u}{\iota}
+	\end{tikzcd}		
+\end{center}
+where $\pi$ is the canonical projection and $\iota$ is the inclusion mapping.
+\end{ntheorem}
+Proof: We show that $\overline{\phi}(x \Ker \phi) = \phi(x)$ on $G|_{\Ker \phi}$ is well defined and injective:
+
+\#\#\# Missing 30 mins.
+
+
+
+
+\begin{corollary}[Second Isomorphism Theorem]
+Let $G$ e a group and $H \lhd G$ and $K < G$. Then
+\begin{align*}
+	KH = HK < G, \quad H \lhd KH, \quad H \cap K \lhd K, \quad \text{and} \quad K/(H\cap K)	 \simeq KH/H
+\end{align*}
+\end{corollary}
+Proof: For $k \in K$ we have $kH = Hk$. By taking the union of all $k$ we know $KH = HK$.
+If $k_1,k_2 \in K$ and $h_1,h_2 \in H$, then
+\begin{align*}
+	(k_1h_1)(k_2h_2) \in KHKH = HKKH = HKH = KHH = KH\\
+	(k_1h_1)^{-1} = h_1^{-1}k_1^{-1} \in HK = KH	
+\end{align*}
+which shows that $KH < G$ is a subgroup. Furthermore, since $H < KH$ and for any $x \in KH \subseteq G$ we know that \#\#\# Missing 10 ins
+
+

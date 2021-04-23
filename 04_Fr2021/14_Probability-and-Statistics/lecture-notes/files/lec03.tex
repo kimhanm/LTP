@@ -1,0 +1,77 @@
+\subsection{Conditional Probability}
+For now, let $(\Omega,\mathcal{A},\IP)$ be a discrete P-space and set $\mathcal{A} = \mathcal{P}(\Omega)$. 
+
+\begin{dfn}[]
+  For $A, B \in \mathcal{A}$, the \textbf{conditional probability} of $A$ given $B$ is given by
+  \begin{align*}
+    \IP[A|B] := \frac{\IP[A \cap B]}{\IP[B]}
+  \end{align*}
+\end{dfn}
+
+In the ``frequentist'' interpretation, where we take $n$ trials and set $\IP[C] = \frac{n_c}{n}$ to be the relative frequency that $C$ occurs, the conditional probability $\IP[A|B]$ is equivalent to the relative probability that $A$ occurs under those, where $B$ occured, i.e
+\begin{align*}
+  \IP[A|B] \sim \frac{n_{A \cap B}/n}{n_B / n} = \frac{n_{A\cap B}}{n_B}
+\end{align*}
+hence the name.
+
+
+For a fixed $B \subseteq \Omega$, we obtain a new probability measure $\IP[\cdot|B]$ with weights
+\begin{align*}
+  p_B(\omega) = \left\{\begin{array}{ll}
+      C \cdot p(\omega) & \omega \in B \\
+    0 & \omega \notin B
+  \end{array} \right.
+\end{align*}
+where $C$ is some constant depending on $B$.
+
+
+\begin{ex}[Two dice]
+  Set $\Omega = \left\{(i,j) \big\vert 1 \leq i,j \leq 6\right\}$ and $\IP$ to be the equal distribution.
+  If $A_i$ is the event that the first dice shows $i$ and $B_k$ is the event that the sum of the die is $k$, then
+  \begin{align*}
+    \IP[A_i|B_7] = \frac{\IP[\text{sum is $7$ and first throw is $i$}]}{\IP[\text{sum is $7$}]} = \frac{1/36}{1/6} = \frac{1}{6} = \IP[A_i]
+  \end{align*}
+\end{ex}
+
+
+Using the formula for conditional probability, we immediately obtain the following theorem, which allows us to calculate the total probability of any event $B$ if we understand the conditional probabilites given $B$.
+\begin{thm}[Total proability theorem]
+  Let $(A_i)_{i \in I}$ be a partition of $\Omega$, (i.e. $\bigcup_{i \in I}A_i = \Omega$ and $A_i \cap A_j = \emptyset$ for $i \neq j$). Then for any $B \subseteq \Omega$ we have
+  \begin{align*}
+    \IP[B] = \sum_{i \in I}\IP[B \cap A_i] = \sum_{i \in I}\IP[B|A_i]\IP[A_i]
+  \end{align*}
+\end{thm}
+In the special case where our partition of $\Omega$ is $A \sqcup A^{c}$ we get
+\begin{align*}
+  \IP[B] = \IP[B|A]\IP[A] + \IP[B|A^{c}](1 - \IP[A])
+\end{align*}
+
+By repeatedly using the definition of conditional probability, we get the following proposition for finite set of events
+\begin{prop}[]
+  For a finite set of events $A_{1}, \ldots, A_{n}$ we have
+  \begin{align*}
+    \IP[A_{1}\cap \dots\cap A_{n}] = \IP[A_1]\IP[A_2|A_1]\IP[A_3|A_1 \cap A_2] \dots \IP[A_n|A_{1}\cap \dots \cap A_{n-1}]
+  \end{align*}
+  as long as $\IP[A_{1}\cap \dots \cap  A_{n}] > 0$.
+\end{prop}
+
+
+Another consequence of our definition of conditional probability is Baye's forumla.
+\begin{cor}[Bayes' Formula]
+Given two events with \emph{non-zero} probability, the following formula holds
+\begin{align*}
+  \IP[B|A] = \frac{\IP[A|B]\IP[B]}{\IP[A]}
+\end{align*}
+and with the formula of total probability, we get
+\begin{align*}
+  \IP[B|A] = \frac{\IP[A|B] \IP[B]}{\IP[A|B]\IP[B] + \IP[A|B^{c}](1 - \IP[B]}\
+\end{align*}
+or, for a general partition $\Omega = \bigsqcup_{i \in I}B_i$ we have
+\begin{align*}
+  \IP[B_i|A] = \frac{\IP[A|B_i] \IP[B_i]}{\sum_{j \in I}\IP[A|B_j]\IP[B_j]}
+\end{align*}
+\end{cor}
+
+We will see that Bayes formula is the simplest formula that generates a lot of unintuitive results.
+
+

@@ -1,0 +1,101 @@
+\subsection{Construction of Measures}
+Let $X$ be non-empty set.
+
+\begin{dfn}[]
+  A collection of subsets $\mathcal{K} \subseteq \mathcal{P}(X)$ is called a \textbf{covering} of $X$ if
+  \begin{align*}
+    \emptyset \in \mathcal{K} \quad \text{and} \quad \exists (K_j)_{j \in \N} \subseteq \mathcal{K}: \quad X = \bigcup_{j=1}^{\infty}K_j
+  \end{align*}
+\end{dfn}
+It is easy to see that every Algebra $\mathcal{A}$ of $X$ is a covering since $\emptyset,X \in \mathcal{A}$.
+\begin{thm}[]
+  Let $\mathcal{K}$ be a covering of $X$ and $\lambda: \mathcal{K} \to [0,\infty]$ with $\lambda(\emptyset) = 0$. Then we can define a measure $\mu$ on $X$ given by
+  \begin{align*}
+    \mu(A) = \inf \left\{
+      \sum_{j=1}^{\infty}\lambda(K_j) \big\vert
+      K_j \in \mathcal{K}, A \subseteq \bigcup_{j=1}^{\infty}K_j
+    \right\}
+  \end{align*}
+\end{thm}
+\begin{proof}
+  We show $\sigma$-subadditivity of $\mu$.
+\end{proof}
+\begin{dfn}[]
+  Let $\mathcal{A}\subseteq \mathcal{P}(X)$ be an algebra. A mapping $\lambda: \mathcal{A} \to [0,\infty]$ is called a \textbf{pre-measure} if
+  \begin{enumerate}
+    \item $\lambda(\emptyset) = 0$
+    \item For every $A \in \mathcal{A}$ such that $A = \bigsqcup_{k=1}^{\infty}A_k$, $A_k \in \mathcal{A}$ 
+      \begin{align*}
+        \lambda(A) = \sum_{k=1}^{\infty}\lambda(A_k)
+      \end{align*}
+  \end{enumerate}
+  $\lambda$ is called \textbf{$\sigma$-finite} if there exists a covery $X = \bigcup_{k=1}^{\infty}S_k$, $S_k \in \mathcal{A}$ such that $\lambda(S_k) < \infty, \forall k$.
+\end{dfn}
+Given a pre-measure $\lambda$ on $\mathcal{A}$, we can obtain a measure $\mu$ on $\mathcal{P}(X)$ that coincides with $\lambda$ on $\mathcal{A}$, i.e. $\mu$ extends $\lambda$.
+\begin{thm}[Carathéodory-Hahn extension]
+  Let $\lambda: \mathcal{A} \to [0,\infty]$ be a pre-measure on $X$. Then for
+  \begin{align*}
+    \mu: \mathcal{P}(X) \to [0,\infty],\quad \mu(A) := \inf \left\{
+      \sum_{k=1}^{\infty} \lambda(A_k) \big\vert A \subseteq \bigcup_{k=1}^{\infty}A_k, A_k \in \mathcal{A}
+    \right\}
+  \end{align*}
+  it holds that
+  \begin{enumerate}
+    \item $\mu: \mathcal{P} \to [0,\infty]$ is a measure.
+    \item $\mu(A) = \lambda(A) \forall A \in \mathcal{A}$
+    \item All $A \in \mathcal{A}$ are $\mu$-measurable.
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+\begin{enumerate}
+  \item This just follows from the previous theorem
+  \item 
+  \item 
+\end{enumerate}
+\end{proof}
+
+Not only does such an extension exist always, we can show that under certain assumptions it is unique:
+\begin{thm}[Uniqueness of Carathéodory-Hahn extension]
+  Let $\lambda: \mathcal{A} \to  [0,\infty]$ be a $\sigma$-finite pre-measure on $X$ and $\mu$ the Carathéodory-Hahn extension of $\lambda$ and let $\Sigma$ be the $\sigma$-algera of $\mu$-measurable sets.
+
+  If $\tilde{\mu}: \mathcal{P}(X) \to [0,\infty]$ if another measure with $\tilde{\mu}|_{\mathcal{A}} = \lambda$, then $\tilde{\mu}|_{\Sigma} = \mu$
+\end{thm}
+\begin{proof}
+  We show
+  \begin{enumerate}
+    \item $\forall A \in \mathcal{P}(X)$: $\tilde{\mu}(A) \leq \mu(A)$.
+    \item $\forall A \in \Sigma$: $\tilde{\mu}(A) \geq \mu(A)$.
+  \end{enumerate}
+  For the first claim, let $A \subseteq \bigcup_{k=1}^{\infty}A_k$ with $A_k \in \mathcal{A}$.
+  By $\sigma$-subadditivity of $\mu$ it follows that
+\begin{align*}
+  \tilde{\mu} \leq \sum_{k=1}^{\infty}\tilde{\mu}(A_k) = \sum_{k=1}^{\infty}\lambda(A_k)
+\end{align*}
+So by taking the infimum over all such coverings $(A_k)_{k \in \N}$ as in the definition of $\mu$, the inequality still holds: $\tilde{\mu}(A) \leq \mu(A)$.
+
+  For the second claim we consider two cases: One where there exists an $S \in \mathcal{A}$ such that
+  \begin{align*}
+    A \subseteq S \quad \text{and} \quad \lambda(S) < \infty
+  \end{align*}
+  Then, using the first claim on $S \setminus A$ and monotonicity of $\mu$, it follows that
+  \begin{align*}
+    \tilde{\mu}(S \setminus A) \leq \mu(S \setminus A) \leq \mu(S) = \lambda(S)
+  \end{align*}
+    Since $S \in \mathcal{A}$ is $\mu$-measurable and $S \cap A = A$ we get
+  \begin{align*}
+    \tilde{\mu}(A) + \tilde{\mu}(S \setminus A) 
+    &\leq
+    \mu(A \cap S) + \mu(S \setminus A) = \mu(S)\\
+    &=
+    \lambda(S) = \tilde{\mu}(S)\\
+    &\leq 
+    \tilde{\mu}(A) + \tilde{\mu}(S \setminus A)
+  \end{align*}
+  where we used sub-additivity of $\tilde{\mu}$ in the last step.
+\end{proof}
+
+
+The condition for the uniqueness cannot be weakened as the following counterexample shows:
+\begin{ex}[]
+
+\end{ex}

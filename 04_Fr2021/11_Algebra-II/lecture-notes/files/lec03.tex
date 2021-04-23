@@ -1,0 +1,126 @@
+\begin{thm}[Rotman 3.7]\label{thm:rot3-7}
+  Let $\phi: k \to k'$ be a field isomorphism, $f \in k[X]$, $f_{\ast} = \phi_{\ast}(f)$ and $E/k$ be a splitting field of $f$ and $E_{\ast}$ a splitting field of $f_{\ast}$.
+    
+  If $f$ is seperable, then there are exactly $[E:k]$ isomorphisms $\Phi: E \to  E_{\ast}$ extending $\phi$.
+  In particular, $\abs{\Gal(E/k)} = [E:k]$ as we can just take $k'=k, E'=E$ and use $\phi = \id_k$.
+\end{thm}
+\begin{proof}
+  We prove this using induction on $[E:k]$. For $[E:k]=1$ it's clear as $f$ already splits over $k$.
+
+  If $[E:k] >1$, then there exists an irreducible factor $p \in k[X]$ of $f$ of highest degree $\degree p = d > 1$.
+  So if we write $f = p \cdot g$ for some $g \in k[X]$ then we can use the fact that $\phi_{\ast}$ is a ring isomorphism to get
+  \begin{align*}
+    \phi_{\ast}(f) = \phi_{\ast}(p) \phi_{\ast}(g) = p_{\ast} \cdot g_{\ast} = f_{\ast}
+  \end{align*}
+  since $p$ is irreducible, so too must be $p_{\ast}$ and separable as $\deg(p_{\ast}) = \deg(p) = d > 1$. 
+  If we name the roots $\alpha_{1}^{\ast}, \ldots, \alpha_{d}^{\ast}$we can use the previous lemma, which gives us for every $\alpha_i^{\ast}$ an Isomorphism
+  \begin{align*}
+    \hat{\phi}_i : k(\alpha_i)  \to  k'(\alpha_i^{\ast}) \quad \text{with} \quad \hat{\phi}_i(\alpha) = \alpha_i^{\ast}
+  \end{align*}
+  extending $\phi$. 
+  Now write $\alpha = \alpha_i$ for some $i$ to clear up the notation.
+
+  We can view the fields $k(\alpha)$ and $k(\alpha^{\ast}$ as subfields of $E$ and $E_{\ast}$, respectively.
+
+  Using the multiplicity of the field extension dimensions we get
+  \begin{align*}
+    [E:k(\alpha)] = \frac{[E:k]}{[k(\alpha):k} = \frac{[E:k]}{d} < [E:k]
+  \end{align*}
+  using induction on $[E:k(\alpha)]$, we get that there should be exactly $[E:k(\alpha)$ isomorphisms extending $\hat{\phi}: k(\alpha) \to  k'(\alpha_{\ast})$ to $E \to  E_{\ast}$.
+
+
+  [$<$???$>$]
+
+  Now we can look at $f \in k[X]$ as polynomials with coefficients in $k(\alpha)$. Same goes for $f_{\ast}$. 
+  By the universal property of the polynomial ring, this then induces an isomorphism
+  \begin{align*}
+    \left(
+      \widehat{\phi}
+    \right)_{\ast}
+    :
+    k(\alpha) \to 
+    k(\alpha_{\ast}) 
+  \end{align*}
+  which maps $f \in k(\alpha)[X]$ to $f_{\ast} \in k(\alpha_{\ast})[X]$.
+  So they are both separable again.
+
+  [$<$/???$>$]
+
+  Doing this for all $1 \leq i \leq d$ we get exactly 
+  \begin{align*}
+    d \cdot [E:k(\alpha)] = [k(\alpha):k][E:k(\alpha)] = [E:k]
+  \end{align*}
+  isomorphisms $E \to  E_{\ast}$ extending $\phi$.
+\end{proof}
+
+
+\begin{cor}[Rotman 3.9] \label{cor:rot3-9}
+  Let $E/k$ be a splitting field of a separable polynomial $f \in k[X]$ of degree $\degree(f) =n$.
+  If $f$ is irreducible, then $n$ divides $\abs{\Gal(E/k)}$.
+\end{cor}
+\begin{proof}
+  Let $\alpha \in R(f) \subseteq E$. Then $k(\alpha) \subseteq E$ and since $f$ is irreducible $[k(\alpha):k] = n = \degree f$.
+
+  From the previous theorem (the special case) we immediately get that
+  \begin{align*}
+    \abs{\Gal(E/k)} = [E:k] = [E:k(\alpha)]\cdot [k(\alpha):k]= [E:k(\alpha)] \cdot n
+  \end{align*}
+\end{proof}
+
+\begin{thm}[Rotman 3.15]
+Let $p$ be prime, $n \geq 1 \in \N$.
+Then $\Gal(\F_{p^{n}}/\F_p) \iso \Z/n\Z$ an a generating element is given by the \textbf{Frobenius} homomorphism
+\begin{align*}
+  \text{Fr}: \F_{p^{n}} \to \F_{p^{n}}, \quad x \mapsto  x^{p}
+\end{align*}
+\end{thm}
+\begin{proof}
+Note that the group of units has $\abs{\F_{p^{n}}^{\times}} = p^{n}-1$ elements. So $\F_{p^{n}}^{\times}$ is exactly the roots of the polynomial $X^{p^{n} -1} - 1 \in \F_{p}[X]$.
+
+This polynomial has no multiple roots, which means it is separable. So using the previous theorem, we get that $\abs{\Gal(\F_{p^{n}}/\F_p)} = [\F_{p^{n}}: \F_p] = n$.
+
+We now show that $\text{Fr}$ generates all $n$ Elements of the Galois group.
+For $k \geq 1 \in \N$ we can see that $\text{Fr}^{k}(\xi) = \xi^{p^{k}}$. 
+Let $m$ be the order of $\text{Fr} \in \Gal(\F_{p^{n}}/\F_p)$. 
+This means that we would have $\xi^{p^{m}} = \xi$ for all $\xi \in \F_{p^{n}}$ which gives us $n \leq m \leq n$.
+\end{proof}
+
+
+\begin{thm}[]
+  Let $p$ be prime and $f \in \Q[X]$ with $\degree f = p$ and a splitting field $E$.
+
+  Assume that $f$ is irreducible and $f$ has exactly $p-2$ real roots. 
+  Then $\Gal(E/\Q) \iso S_p$.
+\end{thm}
+We know from the previous corollary that $\degree f = p$ divides $\abs{\Gal(E/\Q)}$.
+
+To complete the proof, we need the following lemma.
+\begin{lem}[Cauchy]
+  Let $G$ be a finite group and $p$ prime that divides the order of $G$. 
+  Then $G$ contains an element of order $p$.
+\end{lem}
+We could obviously use the Sylow-theorem to prove the existence of a subgroup of order $p$, but there is also a more elementary proof.
+\begin{proof}[Proof Lemma]
+  Let
+  \begin{align*}
+    \Gamma_p = \{
+      (g_1, \ldots, g_p) \in G^{p} \big\vert g_1 \dots g_p = e
+    \} \subseteq G^{p}
+  \end{align*}
+  and define a group action of the symmetry group $S_p$ on $G^{p}$ by permutation of the elements.
+
+  We claim that the $p$-cycle $\sigma = (1, 2, \ldots, p) \in S_p$ is an invaraint, since
+  \begin{align*}
+    g_{2}\dots g_{p}g_1 &= g_1^{-1}(g_{1}\dots g_{p})g_1 = g_1^{-1} e g_1 = e 
+  \end{align*}
+  and therefore, the cyclic subgroup generated by $\sigma$ also keeps $\Gamma_p$ invariant.
+  If we let $C_p = \{\id, \sigma, \ldots, \sigma^{p-1}\} < S_p$, then we see that $\Gamma_p$ can be written as the disjoint union of $C_p$ orbits.
+
+  Further, the only possible cardinalities of a $C_p$ orbit is either $1$ or $p$. 
+  Since $p$ divides $\abs{G}^{p-1}$ it must also divide the cardinality of the set of $C_p$ orbits of cardinality $1$. 
+  So there is at least one non-trivial element there.
+  But the only possible $C_p$ orbits of cardinality $1$ are orbits of elements of the form $(h,h, \ldots,h)$ with the trivial element being $(e,e,\ldots,e)$.
+
+  This shows the existence of such an $h$ with order $p$.
+\end{proof}
+

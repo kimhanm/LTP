@@ -1,0 +1,115 @@
+\begin{theorem}[Quotient Field]
+                                Let $R$ be an integral domain. Then there exists a field $k$ which contains $R$ and such that $K = \{\frac{p}{q} \big\vert p,q \in R, q \neq 0\}$. For $R = \Z$, we have $K = \Q$
+\end{theorem}
+
+\textbf{Proof:} \quad We define the relation $\sim$ on the set $X = R \times R \setminus \{0\}$ as follows:
+\begin{align*}
+        (a,b) \sim (p,q) \Leftrightarrow aq = pb
+\end{align*}
+We can think of the tuple $(a,b)$ as the fraction $\frac{a}{b}$, without having to define fractions.\\
+This relation is an equivalence relation. Indeed since we have the equal sign in the definition, reflexivity and symmetry follow immediately.\\
+Moreover, if $(a,b) \sim (p,q)$ and $(p,q) \sim (m,n)$ we have
+\begin{align*}
+aq = pb \land pn = mq \implies aqn = pbn \land pnb = mqb
+\end{align*}
+Because $R$ is an integral domain and $q \neq 0$, we get $an = mb$, which shows transitivity.
+
+Now consider $K = X/_{\sim}$ and the Elements 
+\begin{align*}
+                                0_k := [(0,1)]_{\sim} \quad \text{and} \quad 1_K := [(1,1)]_{\sim}
+\end{align*} 
+together with the operations $+$ and $\cdot$ defined as follows:
+\begin{align*}
+                                [(a,b)]_{\sim} + [(p,q)]_{\sim} &:= [(aq + pb, bq)]_{\sim}\\
+                                [(a,b)]_{\sim} \cdot [(p,q)]_{\sim} &:= [(ap,bq)]_{\sim}
+\end{align*}
+
+There operations are welldefined (i.e. independent on the choice of representation), refer to the Book!\\
+
+Lastly, we need to show that $K$ fulfills the field axioms. We will skip many of them here, so refer to the book.
+
+We have that $[(a,b)]_{\sim} + [(p,q)]_{\sim} = [(aq + bp)]_{\sim} = [(pb + aq,qb]_{\sim}$.\\
+
+It is also clear that $0_k = [(0,1)]_{\sim} \neq [(1,1)]_{\sim} = 1_k$, as $0 \cdot 1 \neq 1 \cdot 1$ in $R$.\\
+Also if $[(a,b)]_{\sim} \neq [(0,1)]_{\sim} = 0_k$, then $a \neq 0$ so we can write
+\begin{align*}
+                                [(a,b)]_{\sim} \cdot [(b,a)]_{\sim} = [(ab,ab)]_{\sim} = 1_k
+\end{align*}
+From now on, we will write $\frac{a}{b} := [(a,b)]_{\sim}$.\\
+
+To show that $R$ is contained in $K$, we identify $a \in R$ with $\frac{a}{1} \in K$. Note that the corresponding mapping $\iota(a) = \frac{a}{1}$ is an \emph{injective} Ringhomomorphism because for $a \neq 0$ we have $\frac{a}{1} \neq \frac{0}{1}$, so $\Ker \iota = \{0\}$
+
+\begin{definition}[]
+                                Let $K$ be a field and $L \subseteq K$ a subring that is also a field. We then call $L$ a subfield of $K$.
+\end{definition}
+
+
+
+Exercise: Use SageMath to find out, for which $p = 2, 3, \ldots 100$ there exists a $g \in (\Z/_{p \Z})^\times$ such that
+\begin{align*}
+                                (\Z/_{p\Z})^x = \{g^k: k = 0,1, \ldots\}
+\end{align*}
+
+\subsection{Polynomial Ring}
+In the following, $R$ is always a commutative ring. We want to define the Polynomialring $R[X]$ of Polynomials in the variable $X$ and coefficients in $R$.\\
+
+For the field $\F_2 = \{0,1\}$ we do \emph{not} want the Polynomiasl $X^2 + X$ to equal the zero polynomial, despite the fact that for any $x \in \F$ we have $x^2 + x = 0$. Therefore, we have to define the polynomials through its coefficients.\\
+
+\begin{definition}[Polynomial Ring]
+                                Let $R$ be a commutative Ring. We define the Ring of formal power-series (in one variable over the Ring R) as
+        \begin{itemize}
+                                        \item   The set of all sequences $\left(a_{n}\right)_{n \geq 0} \subseteq R^\N$
+                                        \item $\bm{0} := (\left(0_{n}\right)_{n \geq 0}$ and $\bm{1} = (1,0,0, \ldots)$
+                                        \item $+: (a_n)_{n \geq 0} + (b_n)_{n \geq 0} := (a_n + b_n)_{n\geq 0}$
+                                        \item $\cdot: (a_n)_{n \geq 0} \cdot (b_n)_{n \geq 0} := (c_n)_{n \geq 0}$ where
+                \begin{align*}
+                c_n = \sum_{i = 0}^{n} a_i b_{n-1}  = \sum_{i+j = n} a_i b_j
+                \end{align*}
+        If $a_n = 0$ for all $n \geq N$ large enough, we call this the Polynomial Ring (in one Variable) over the Ring $R$      
+        \end{itemize}
+\end{definition}
+
+As usual, we have to show all the ring axioms but we will omit some of them.
+\begin{itemize}
+\item $(\bm{1} \cdot a)_n = \sum_{i+j = n} \underbrace{\bm{1}_i}_{\delta_{i0}} a_j = a_n$
+\item $(ab)c = a(bc)$ since
+                \begin{align*}
+                                                ((ab)c)_n = \sum_{i+j=n}(ab)_icJ = \sum_{i+j+k = n} a_ib_jc_k
+                \end{align*}
+\item $((a+b) \cdot c)_n = \sum_{i+j=n} (a+b)_ic_j = \sum_{i+j=n} a_i c_j + \sum_{i+j=n}b_ic_j = (ac + bc)_n$
+\item   We further check that the product of two polynomials is again a polynomial. So if $a,b$ are polynomials, there exists $I,J \in \N$ such that $a_n = 0, \forall n \geq I$ and $b_n = 0, \forall n \geq J$. So $(a+b)_n = 0$ for $n \geq \max{I,J}$ and $(a \cdot b)_n = 0, \forall n \geq I + J$
+\end{itemize}
+Notation: We introduce a new Symbol $X$ and identify the Symbol with the polynomial $X = (0,1,0, \ldots)$, aswell as its powers $X^2 = (0, 0, 1, \ldots)$ etc.\\
+More generally, let $a = (a_0, a_1, a_2, \ldots)$ be a polynomial, then we have
+\begin{align*}
+                                X \cdot a = (0, a_0, a_1, a_2, \ldots), \quad (X \cdot a)_n = \sum_{i+j=n}X_ia_j = a_{n-1} \quad \text{for } n \geq 1
+\end{align*}
+
+
+We will write $R[X] = \left\{\sum_{i=0}^{n}a_i X^i \big\vert n \in \N, a_i \in R\right\}$ (``$R$-adjoint-X'') for the Polynomialring in the variable $X$.\\
+And $R[[X] = \{\sum_{i=0}^{\infty} \big\vert a_i \in R\}$ for the Ring of formal power series in the variable $X$.
+
+
+
+\begin{definition}[Degree]
+                                Let $p \in R[X] \setminus\{0\}$. The \textbf{degree} of $p$, write $\deg(p)$ equals $n$, if $p_n \neq 0$ and $p_k = 0$ for $k > n$. We call $p_n$ the leading coefficient of $p$. We define $\deg(0) := -\infty$
+\end{definition}
+
+
+\begin{proposition}[]
+                                Let $R$ be an integral domain. Then $R[X]$ is also an integral domain.
+Further we have for $p,q \in R[X] \setminus \{0\}$:
+\begin{itemize}
+\item   $\deg(pq) = \deg(p) + \deg(q)$ and the leading coefficient of the product is the product of the leading coefficients.
+\item   $\deg(p+q) \leq \max{\deg(p), \deg(q)}$
+\item   If $p|q$, then $\deg(p) \leq \deg(q)$
+\end{itemize}
+\end{proposition}
+
+
+\textbf{Proof:} \quad Let $f = p \cdot q \neq 0$. Then $f_n = \sum_{i+j=n} p_iq_j$.\\
+If we assume $n > \deg(p) + \deg(q)$, then $p_iq_j = 0$ for all $i+j = n \implies f_n = 0$. For $n = \deg(p) + \deg(q)$, the only summand that doesn't vanish is for $i = \deg(p)$ and $j = \deg(q)$.\\
+Assume, $p | q$, then there exists a Polynomial $g \neq 0$ such that $q = p \cdot g$. Since $\deg(q) = \deg(p) + \underbrace{\deg(g)}_{\geq 0} \geq \deg(p)$\\
+Angenommen $p = \sum_{n = 0}^{\deg p}p_nX^n, q = \sum_{n = 0}^{\deg q}q_n X^n$. Dann ist $p + q = \sum_{n = 0}^{\max\{\deg p,\deg q\}}(p_n + q_n)X^n$. Also folgt die Aussage. Die Ungleichheit gilt nur dann, falls $p_{\deg n} = - q_{\deg n}$ für $n = \deg q = \deg q$\\
+
+

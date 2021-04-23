@@ -1,0 +1,170 @@
+\begin{theorem}[]
+	Now let $f\neq 0$ be analytic in a neighborhood of $a$ with an isolated singularity at $a$.
+\begin{enumerate}
+	\item  If there exists some $\alpha \in \R$, such that 
+	\begin{align*}
+		\text{(A)} \quad	&\lim_{z \to a}\abs{z-a}^{\alpha} \abs{f(z)} = 0
+	\end{align*}
+	,then $g(z) = (z-a)^{\alpha}f(z)$ has a removable singularity with $g(a) = 0$. 
+	And if $a$ is a zero of $g$ of order $k$, then 
+	\begin{align*}
+		\forall  \beta > \alpha - k: \quad \lim_{z \to a}(z-a)^{\beta} f(z) = \lim_{z \to a}(z-a)^{\beta - \alpha}g(z) = 0\\
+		\forall  \gamma < \alpha - k: \quad \lim_{z \to a} (z-a)^{\gamma}f(z) = \infty
+	\end{align*}
+	\item If there exists some $\beta \in \R$ such that
+	\begin{align*}
+		\text{(B)} \quad &\lim_{z \to a} \abs{z-a}^{\beta} \abs{f(z)} = \infty
+	\end{align*}
+
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}[]
+	If (A) is satisfied for some $\alpha \in \R$. Then there exists an $h \in \Z$ such that
+	\begin{itemize}
+		\item (A) is satisfied for all $\alpha > h \in \Z$ .
+		\item (B) is satisfied for all $\beta < h$
+	\end{itemize}
+\end{corollary}
+Afonso plz do maths.
+
+
+
+
+\begin{theorem}[]
+	Let $f$ have an isolated singularity at $a$. Then one of the following must hold
+	\begin{enumerate}
+		\item $f$ is identically zero.
+		\item There exists some $h \in \Z$ such that (A)/(B) are satisfied for $\beta < h < \alpha$
+		\item Neither (A) or (B) are satisfied for any $\alpha \in \R$.
+	\end{enumerate}
+\end{theorem}
+We want to look at the third case more closely.
+
+\begin{definition}[]
+	An isolated singularity $a$ of $f$ is called an \textbf{essential singularity} if neither (A) or (B) are satisfied for any $\alpha \in \R$
+\end{definition}
+
+\begin{theorem}[Weierstrass]
+	An analytic function comes arbitrarily close to any point in $\C$ in a neighborhoood of an essential singularity $a$. In other words
+	\begin{align*}
+		\forall \epsilon > 0 \left\{f(z) \big\vert z \in B(a, \epsilon)\right\} \text{ is dense in } \C
+	\end{align*}
+\end{theorem}
+Proof by contradiction:
+\begin{align*}
+	\exists A \in \C \exists \delta > 0: \forall z \in N_a: \abs{z-a} < \delta: \lim_{z \to a} \abs{z-a}^{-1} \abs{f(z) - A} = \infty
+\end{align*}
+Then $a$ is not an essential singularty of $g(z) = \abs{f(z) - A}$, since there would exist some $\beta \in \R$ such that
+\begin{align*}
+	\lim_{z \to a}\abs{z-a}^{\beta}g(z) = 0
+\end{align*}
+Therefore we can pick $\alpha > 0$, with $\alpha > \beta$ such that
+\begin{align*}
+	\lim_{z \to a}\abs{z-a}^{\alpha}g(z) = 0
+\end{align*}
+but then we would have
+\begin{align*}
+	\abs{z-a}^{\alpha} g(z) \geq \abs{z-a}^{\alpha} \abs{f(z)} - \underbrace{\abs{z-a}^{\alpha}\abs{A}}_{\to 0}\\
+	\implies \lim_{z \to a}\abs{z-a}^{\alpha}\abs{f(z)} = 0
+\end{align*}
+so $a$ is not an essential singularity.
+
+
+
+Let $f\neq 0$ be analytic in a open disk $\Delta$. such that $f$ has only finitely many zeros $z_{1}, \ldots, z_{n} \in \Delta$ counted with multiplicity, i.e. such that if $z$ is of order $k$, then it occurs $k$-times in the list.
+
+THen if $\gamma$ is a closed curve in $\Delta$ that doesn't contain any zeros, then we can write
+\begin{align*}
+	f(z) = (z-z_1)(z-z-2) \ldots (z-z_n) g(z)
+\end{align*}
+where $g(z)$ does not have any zeros in $\Delta$. If we take the logarithmic derivative
+\begin{align*}
+	\frac{f'(z)}{f(z)} = \frac{(z-z_2)g(z) + (z-z_1)(z-z_3)g(z) + \ldots + (z-z_1)\dots(z - z_n)g'(z)}{(z-z_1)(z - z_2) \dots (z-z_n)g(z))} = \frac{1}{z-z_1} + \frac{1}{z - z_2} + \ldots + \frac{g'(z)}{g(z)}
+\end{align*}
+Since $\frac{g'(z)}{g(z)}$ is analytic, by Cauchy's Theorem on the disk we have that
+\begin{align*}
+	\int_{\gamma}\frac{g'(z)}{g(z)}dz = 0
+\end{align*}
+Then we can take the path integral on both sides to get
+\begin{align*}
+	\int_{\gamma} \frac{f'(z)}{f(z)} dz = \sum_{k=1}^n	\int_{\gamma}\frac{1}{z - z_k}dz
+\end{align*}
+but the right hand side is basically the sum of all the winding numbers:
+\begin{empheq}[box=\bluebase]{align*}
+	\int_{\gamma} \frac{f'(z)}{f(z)}dz = 2\pi i \sum_{k=1}^n	n(\gamma,z_k)
+\end{empheq}
+
+Now let's see what happends when we have a map $f: \Delta \to \C$ that sends a path $\gamma$ to another path $\Gamma$. Then if we write $\omega = f(z)$, then
+\begin{align*}
+	n(\Gamma,0) = \frac{1}{2\pi i} \int_{\Gamma} \frac{1}{\omega}d \omega = \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)}dz = \sum_{k} n(\gamma,z_k)
+\end{align*}
+So if we want to find the solutions for $f(z) = a$ for some $a \in \C$ we can count the zeros of $g(z) = f(z) - a$ by looking at the image $\Gamma$ and the point $a$.
+\begin{align*}
+	n(\Gamma,a) = \frac{1}{2\pi i}\int_{\Gamma}\frac{d \omega}{\omega - a} = \frac{1}{2\pi i}\int_{\gamma} \frac{f'(z)}{f(z) - a} = \sum_{k} n(\gamma, z_k)
+\end{align*}
+, where $z_k$ are the solutions to $f(z) = a$.
+
+So if $a$ and $b$ are in the same region of $\C \setminus \Gamma$, they both have the same winding number. In particular, they have an equal number of solutions $f(z) = a$ and $f(z) = b$.
+In other words, for all $a \notin \Gamma$, there exists a $\delta > 0$ such that
+\begin{align*}
+	\forall b \in B(a, \delta): \quad n(\Gamma,a) = n(\Gamma,b)
+\end{align*}
+
+
+\begin{theorem}[]
+	For $\omega_0 \in \C$, if $f(z)$ is analytic at $z_0$, such that $z_0$ is a zero of $f(z) - \omega_0$ or order $n$, then for any $\epsilon > 0$ there eexists a $\delta >0$ such that
+	\begin{align*}
+		\abs{\omega - \omega_0} < \delta \implies f(z) = w \text{ has $n$ solutions in } B(z_0,\epsilon)
+	\end{align*}
+\end{theorem}
+Proof: Since $f$ is analytic in $B(z_0,\epsilon)$ take $\gamma$ as a circle around $z_0$ with radius $\epsilon$ and use the formula from before.
+
+
+% ==== 20.11.20 ====
+
+\begin{theorem}[]
+	If $f(z)$ is anaytic at $z_0$ and $w_0 = f(z_0)$ and $g(z) := f(z) - w_0$ has a zero of order $n$. 
+	Then for $\epsilon > 0$ small enough there exists a $\delta > 0$ such that for all point $a: 0 \abs{a-w_0} < \delta$, the equation $f(z) = a$ has exactly $n$ solutions in the open disk $\abs{z - z_0} < \epsilon$
+\end{theorem}
+In the special case where $n = 1$, i.e. if $f'(z_0) \neq 0$, 
+it shows that $f$ is one to one, which can be interpreted as $f$ maps a neighborhood of $z_0$ into a neighborhood of $w_0$.
+So we can even show that $f$ is locally homoeomorphic.
+
+From this theorem, we get many corollaries for free:
+
+\begin{corollary}[]
+If $f$ is a non-constant analytic function, then $f$ maps open sets to open sets.
+\end{corollary}
+Proof: Let $U$ be an open neighborhood of $z_0$. Then take $\epsilon > 0$. The theorem says that there exists a $\delta > 0$ such that \begin{align*}
+\forall w: \abs{w - w_0} < \delta \exists z \in Z:f(z) = w
+\end{align*}
+so we found an open neighborhood around $w_0$
+\begin{align*}
+	w \in f(U) \implies \{w: \big\vert \abs{w - w_0} < \delta\} \subseteq f(U)
+\end{align*}
+
+
+\begin{corollary}[Maximum Principle]
+	If $f: \Omega \to \C$ is analytic in a region $\Omega$, and $f$ is non-constant, then $\abs{f(z)}$ does not attain a maximum in $\Omega$.
+\end{corollary}
+
+\begin{corollary}[]
+If $f$ is continuous in a closed bounded set $E$ and anylytic on the interior, then the maximum of $f$ is attained in $\del E$.
+\end{corollary}
+
+Another proof of the maximum principle is using Cauchy's Integral formula:
+
+Let $z_0 \in \Omega$ and $\epsilon > 0$ such that $\overline{B}(z_0,\epsilon) \subseteq \Omega$. Then from the integral formula we have
+\begin{align*}
+	f(z_0) &= \frac{1}{2\pi i}\int_C \frac{f(\xi)}{\xi - z_0}d\xi\\
+				 &= \frac{1}{2\pi i} \int_{0}^{2\pi} \frac{f(z_0 + re^{i\theta})}{z_0 + r e^{i\theta} z_0} \frac{d\xi}{d \theta} d \theta \\
+				 &=	\frac{1}{2\pi i} \int_{0}^{2\pi} \frac{f(z_0 + re^{i\theta}}{re^{i \theta}} ri e^{i \theta} d \theta \\
+				 &= \frac{1}{2\pi} \int_{0}^{2\pi} f(z_0 + re^{i \theta}) d \theta\\
+			 \implies \abs{f(z_0)} \leq \frac{1}{2\pi} \int_{0}^{2 \pi} \abs{f(z_0 + re^{i \theta}} d \theta
+\end{align*}
+but if $\abs{f(z_0)}$ were a maximum, then $\abs{f(z_0 + re^{i \theta})} = \abs{f(z_0)}$, so $f$ would need to be constant in a neighborhood of $z_0$.
+
+Now that we saw what Cauchy's Theorem can do for us, we might be interested in finding out for which regions $\Omega$ or curves $\gamma$ Cauchy's Theorem is true. 
+
+The answer that Topology gives is that it is the case when the domain is simply connected.

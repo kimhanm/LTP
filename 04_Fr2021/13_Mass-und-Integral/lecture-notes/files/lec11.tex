@@ -1,0 +1,37 @@
+\subsection{Hausdorff Measures}
+The Lebesgue measure of a subset of $\R^{n}$ of dimension less than $n$ is always zero.
+It also has the weakness of failing to properply measure fractal sets.
+The Hausdorff measure tries to solve this.
+
+We start by introducing an intermediate measure, where instead of covering a subset $A$ with quaders, we do this using open balls of radius smaller than some given $\delta >0 $.
+\begin{dfn}[]
+For $s \geq 0, \delta > 0$ and $A \subseteq \R^{n}$ non-empty, we set
+\begin{align*}
+  \mathcal{H}_{\delta}^{s}(A) := \inf \left\{
+    \sum_{k \in I}r_k^{s}, A \subseteq \bigcup_{k \in I}B(x_k,r_k), 0< r_k \delta
+  \right\}
+\end{align*}
+where the set $I$ is at most countable and we set $\mathcal{H}_{\delta}^{0}(\emptyset) = 0$.
+\end{dfn}
+
+\begin{rem}[]
+  $\mathcal{H}_{\delta}^{s}$ defines a measure on $\R^{n}$ and for fixed $s,A$ it is inversely monotonous with respect to $\delta$, that is
+  \begin{align*}
+    \delta_2 \leq \delta_1 \implies \mathcal{H}_{\delta_1}^{s}(A) \leq \mathcal{H}_{\delta_2}^{s}(A)
+  \end{align*}
+  since every $\delta_2$ covering is also a $\delta_1$ covering.
+\end{rem}
+Since $\mathcal{H}_{\delta}^{s}$ is non-increasing in $\delta$, the limit
+\begin{align*}
+  \mathcal{H}^{s}(A) := \lim_{\delta \downarrow 0} \mathcal{H}_{\delta}^{s}(A) = \sup_{\delta > 0}\mathcal{H}_{\delta}^{s}(A)
+\end{align*}
+exists. We now use this as for our next definition.
+
+\begin{dfn}[]
+We call $\mathcal{H}^{s}$ the \textbf{$s$-dimensional Hausdorff measure} on $\R^{n}$
+\end{dfn}
+For $s = 0$, we call $\mathcal{H}^{0}$ the \textbf{counting measure}, which measure the cardinality of $A$.
+
+Now that we call it a measure, we should of course prove some things
+
+

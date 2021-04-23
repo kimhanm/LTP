@@ -1,0 +1,165 @@
+\section{Complex Integration}
+
+We define the integral of complex valued functions using the real-valued Integral. So let $f:[a,b] \to \C$ be a continuous function with $f(t) = u(t) + iv(t)$, then we define it's integral to be
+\begin{align*}
+	\int_{a}^{b}f(t) dt := \int_{a}^{b}u(t) dt + i \int_{a}^{b}v(t) dt
+\end{align*}
+The Integral will have the following properties:
+\begin{enumerate}
+	\item $\int_{a}^{b} c f(t) dt = c \int_{a}^{b}f(t) dt$
+	\item Triangle Inequality:
+		\begin{align*}
+			\abs{\int_{a}^{b}f(t) dt}	\leq \int_{a}^{b} \abs{f(t)}dt
+		\end{align*}
+\end{enumerate}
+Proof: If $\int_{a}^{b}f(t) dt = 0$, then there is nothing to show. If it is nonzero, then we can talk about its argument $\theta = \arg \int_{a}^{b}f(t) dt$. 
+Since $\abs{z} = \text{Re}(\exp(-i \theta)z)$, we can write
+\begin{align*}
+	\abs{\int_{a}^{b}f(t) dt}	= \text{Re} \left[\exp(-i \theta) \int_{a}^{b}f(t) dt \right] = \int_{a}^{b} \text{Re} \left[\exp(-i \theta) f(t) \right] dt \leq \int_{a}^{b} \underbrace{\abs{\exp(-i \theta)}}_{= 1} \abs{f(t)}dt
+\end{align*}
+Where we used the fact that that the Real part is always smaller than the absolute value and tha the absolute value is multiplicative.
+
+Now that we know how to integrate over Intervals $[a,b] \subseteq \R$, we want to know how to integrate over paths/arcs.\\
+
+Let $\gamma$ be an arc that is parametrized by a differentiable function $z(t)$ for $a \leq t \leq b$.
+Say $f$ is continuous on the arc $\gamma$. Then we define the Integral over the arc to be 
+\begin{align*}
+	\int_{\gamma} f(z) dz := \int_{a}^{b} (f \circ z)(t) \cdot \dot{z}(t) dt
+\end{align*}
+And if $\gamma$ is only piece-wise differentiable, then we define the integral piecewise, i.e. summing over all the differentiable parts.
+
+Now this definition better be well defined, i.e. invariant under reparametrisations. If $t(\tau)[\alpha, \beta] \to [a,b]$ with $t(\alpha) = a, t(\beta) = b$ is a reparametrisation of $[a,b]$, then using the chain rule we have
+\begin{align*}
+ \int_{\tilde{\gamma}} f(z) dz &= \int_{\alpha}^{\beta}(f \circ z \circ t)(\tau) \cdot \frac{d}{d \tau}(z \circ t)(\tau) d \tau \\
+															 &= \int_{\alpha}^{\beta} (f \circ (z \circ t))(\tau) \cdot \dot{z}(t(\tau)) \dot{t}(\tau) d \tau\\
+															 &= \int_{a}^{b} (f \circ z)(t) \dot{z}(t) dt = \int_{\gamma}f(z) dt
+\end{align*}
+
+It is clear that if we traverse an arc the other way around with $w: [-b,-a] \to \C$ for $w(t) = z(-t)$, then 
+\begin{align*}
+	\int_{-\gamma} f(z) dz &= \int_{-b}^{-a}(f \circ w)(t) \dot{w}(t) dt = \int_{-b}^{-a} (f \circ z)(-t) (-\dot{z}(-t)) dt\\
+												 &= \int_{a}^{b} (f \circ z)(t) \dot{z}(t) dt = - \int_{\gamma}f(z) dt
+\end{align*}
+
+Now if we have multiple arcs that intersect in their endpoints, we cann add the arcs and the integrals then
+\begin{align*}
+	\int_{\gamma_1 + \ldots + \gamma_n}^{\infty} f dz = \int_{\gamma_1}f dz + \ldots + \int_{\gamma_n}f dz
+\end{align*}
+
+Now what if a single harc has the same start end endpoints? It will create a loop and we can say that the Integral over closed curves is independent on the starting point. So if
+$\gamma = \gamma_1 + \gamma_2$, then
+\begin{align*}
+	\int_{\gamma} = \int_{\gamma_1} + \int_{\gamma_2} = \int_{\gamma_2} + \int_{\gamma_1}
+\end{align*}
+
+\#\#\# Missing text.
+\begin{align*}
+\int_{\gamma} f(z) \overline{dz} := \overline{\int_{\gamma} \overline{f(z)} dz}\\
+	\int_{\gamma}f dx := \frac{1}{2} \left(\int_{\gamma} f dz + \int_{\gamma} f \overline{dz}\right)\\
+	\int_{\gamma}f dy := \frac{1}{2i} \left(\int_{\gamma} f dz - \int_{\gamma} f \overline{dz}\right)
+\end{align*}
+So if $f(z) = u(z) + iv(z)$ we can write with $dz = dx + dy$ that
+\begin{align*}
+	\int_{\gamma} f(z) dz = \int_{\gamma} u dx - v dy + i \int_{\gamma} v dx + u dy
+\end{align*}
+And we can also integrate with respect to length:
+\begin{align*}
+	\int_{\gamma} f ds := \int_{\gamma}f \abs{dz} = \int_{a}^{b} (f \circ z)(t) \cdot \abs{\dot{z}(t)} dt
+\end{align*}
+So in this case it doesn't matter what direction our arc is parametrized.\\
+
+
+This allows us to define the line-integral as a function of the arcs. If $\Omega$ is a region (open and connected), and we wan to find out  $\int_{\gamma} p(x,y) dx + q(x,y) dy$, then we will sometimes see that this will only depend on the endpoints of $\gamma$ and not on the arc itself.
+This might help us even integrate functions of the reals. We then can integrate along a different path over the complex numbers, such that the integration will be slightly easier to compute.\\
+
+
+In the next chapters, we will focus on finding out when exactly the Integral only depends on the endpoints.
+
+If $pdx + qdy$ are fixed, the the Integral depends only on the end points of $\gamma$ if and only if $\int_{\gamma} = 0$ for closed gamma.
+
+Proof: $\implies:$ Becuse $\gamma$ and $-\gamma$ have the same endpoints we must have $\int_{\gamma} = \int_{-\gamma} = - \int_{\gamma} = 0$.\\
+$\impliedby:$ If two curves have the same endpoints, then consider closed curve $\gamma_1 + (- \gamma_2)$. Whose integral must be zero, so then the integrals are the same.
+
+In the real case, we often substituted the integral with the primive $F$ of a function $f$. Now we can write it like this:
+
+\begin{theorem}[]
+ The line integral $\int_{\gamma} pdx + qdy$ defined in a region $\Omega$ depends only on the end points of $\gamma \subseteq \Omega$ if and only if
+ \begin{align*}
+	 \exists U(x,y) \text{ on } \Omega \text{ such that } \frac{\del U}{\del x} = p, \frac{\del U}{\del y} = q 
+ \end{align*}
+ Since its derivatives are fixed, it is clear that the primitive $U$ is unique up to a constant.
+\end{theorem}
+Proof: If the primitive $U$ exists, then
+\begin{align*}
+	\int_{\gamma} pdx + qdy &= \int_{a}^{b} \frac{\del U}{\del x}\dot{x}(t) + \frac{\del U}{\del y} \dot{y}(t) dt\\
+													&= \int_{a}^{b} \frac{d}{dt} U(x(t), y(t)) dt = U(x(b), y(b)) - U(x(a),y(a))
+\end{align*}
+If on the other hands the integrals only depend the endpoints, then chose any $(x_0,y_0) \in \Omega$. For any other point in $\Omega$, since it is connected, we have an arc going from our startpoint to that point. So we can just set
+\begin{align*}
+	U(x,y) = \int_{\gamma} pdx + qdy
+\end{align*}
+which is well defined, since the choice of $\gamma$ doesn't matter and we just have to check that it indeed is a primitve, but that is trivial:
+\begin{align*}
+	U(X;Y) = \text{const. } + \int_{\gamma} pdx + q dy \implies \frac{\del U}{\del x} = P
+\end{align*}
+
+
+So this gives us the central question, when is it that
+\begin{align*}
+	f(z) dz = f(z) dx + i f(z) dy
+\end{align*}
+is an exact differential? If we decompose our path into real and imaginary components, 
+\begin{align*}
+	z(t) = x(t) + iy(t)
+\end{align*}
+we would get 
+\begin{align*}
+	\int_{\gamma} f(z) dz &= \int_{a}^{b} (f \circ z)(t) \dot{z}(t) dt = \int_{a}^{b}f\left(x(t) + iy(t)\right) (x'(t) + iy'(t)) dt\\
+												&= \int_{\gamma} f(x + iy) (dx + idy) 
+\end{align*}
+which can be viewed as a function from $\R^2$ to $\R^2$. So if we write $f(x,y) = u(x,y) + iv(x,y)$ we get
+\begin{align*}
+	\int_{\gamma}f(z) dz = \int_{\gamma}f(x,y) (dx + idy) = u(x,y) + iv(x,y) (dx + idy) = \int_{\gamma} u(x,y) dx - v(x,y) dy + i \int_{\gamma} u(x,y) dy + v(x,y) dx
+\end{align*}
+So we also could have defined the complex integral this way.\\
+
+Now let's see when $f(z) dz$ is an exact differential. Does there exist an $F(x,y)$ such that $dF(z) = f(z) dz$. By decomposing we can write
+\begin{align*}
+	F(x,y) = U(x,y) + iV(x,y) = F(x+ iy)
+\end{align*}
+Then we can write the differential as
+\begin{align*}
+	dF(x,y) &= \frac{\del U}{\del x}(x,y)dx + \frac{\del U}{\del y}(x,y)dy + i \frac{\del V}{\del x}dx + i \frac{\del V}{\del y}dy\\
+					&= \left(\frac{\del U}{\del x}(x,y) + i \frac{\del V}{\del x}(x,y)\right)dx + \left(\frac{\del U}{\del y}(x,y) + i \frac{\del V}{\del y}(x,y)\right)dy\\
+					&= \frac{\del F}{\del x} dx + \frac{\del F}{\del x} dy
+\end{align*}
+so when is it equal to $f(z) dz$?. This is then the case if we have
+\begin{align*}
+	\frac{\del F}{\del x} = \left(\frac{\del U}{\del x}(x,y) + i \frac{\del V}{\del x}(x,y)\right) = \left(u(x,y) + i v(x,y)\right)\\
+	\frac{\del F}{\del y} = \left(\frac{\del U}{\del y}(x,y) + i \frac{\del V}{\del y}(x,y)\right) = i\left(u(x,y) + i v(x,y)\right)
+\end{align*}
+So this is the case when
+\begin{empheq}[box=\bluebase]{align*}
+	\frac{\del F}{\del y} = i \frac{\del F}{\del x}	\iff \frac{\del U}{\del x} = \frac{\del V}{\del y} \quad \text{and} \quad \frac{\del U}{\del y} = -\frac{\del V}{\del x}
+\end{empheq}
+which means $F$ satisfies the Cauchy-riemann equations. So $F$ is analytic and we can $f$ in terms of the derivative.
+\begin{align*}
+	f(z) = \frac{\del F}{\del x}(z) = F'(z)
+\end{align*}
+
+So we end up with the following theorem.
+\begin{theorem}[]
+	Let $\Omega \subseteq C$ be a region, $f$ continous in $\Omega$, then $\int_{\gamma} f(z) dz$ depends only on the endpoints of $\gamma$ if and only if $f$ has a primitive $F: \Omega \to \C$ with $F'(z) = f(z)$
+\end{theorem}
+
+For example: for the function $f(z) = z$, is $f(z) dz$ an exact differential?  Homework!\\
+
+Let's say we have a closed curve $\gamma \subseteq \C$ and let $n \geq 0$ and consider the function $f(z) = (z-a)^n$. What can we say about the integral $\int_{\gamma}f(z) dz = \int_{\gamma}(z-a)^n dz$?\\
+
+Since $f$ is analytic and has primitive $\frac{(z-a)^{n+1}}{n+1}$, which is analytic in $\C$ the integral must be zero.
+
+But if $n = -2$, then $(z-a)^{-2}$ is the derivative of $\frac{-1}{z-a}$, which is analytic except for $\C \setminus \{a\}$, but for $n = -1$, it has a primitive, but which isn't analytic. And then take the circle $C$ around $a$. Calculate as an exercise.
+\begin{align*}
+	\int_C \frac{1}{z-a} dz = ?
+\end{align*}
+

@@ -1,0 +1,174 @@
+% ==== 03.11.20 ====
+Our next candidate will be the disk:
+\begin{proposition}[Cauchy's Theorem on a disk]
+	Let $\Delta$ be an open disk in $\C$. If $f: \Delta \to \C$ is anyltic in $\Delta$ and $\gamma$ is a closed ruve in $\Delta$, then $\int_{\gamma}f(z) dz = 0$.
+\end{proposition}
+The idea behind the proof is that show that $f$ has a primitive, i.e. that $f(z) dz = d F(z)$.
+We define a function $F(z)$ by
+\begin{align*}
+	F(z) := \int_{\gamma} f dz
+\end{align*}
+where $\gamma$ consists of the horizontal line segment from the center $(x_0, y_0)$ to $(x,y_0)$ and the vertical component $(x,y_0)$ to $(x,y)$. We then complete the square by going back the other way with $\gamma_2$. And using the previous theorem, the Integral over the square vanishes.
+
+The function $F(z)$ is also a primitive of $f$, since
+\begin{align*}
+	F(z) = \int_{\gamma_1} f(z) dz, \quad \frac{\del }{\del y}F(z) = i f(z)\\
+	F(z) = \int_{\gamma_2}f(z) dz, \quad \frac{\del }{\del x}F(z) = f(z)
+\end{align*}
+So we see that $F$ satisfies the Cauchy-Riemann equations with derivative $f(z)$.\\
+
+
+We saw that in the case of the rectangle we were allowed to remove a finite number of points. The same is true for open disks.
+
+
+\begin{corollary}[]
+	Let $f$ be analytic in a region $\Omega'$ obtained from an open disk $\Omega$ and removing a finite number of points $\left(\xi_{n}\right)_{n =1}^K$
+
+	If $f: \Omega \to \C$ satisfies that for all $k$
+	\begin{align*}
+		\lim_{z \to \xi_k} (z - \xi_k) f(z) = 0
+	\end{align*}
+	then path integrals over closed curves in $\Omega'$ vanish.
+\end{corollary}
+``Proof'': Instead of taking one rectangle from $(x_0,y_0)$ to $(x,y) \in \Omega'$ that may include removed points $\xi_k$ on the edges, we can instead make smalller rectangles from $(x_0,y_0)$ to $(x_1, y_1)$ to $\ldots$ to $(x_n,y_n) = (x,y)$ that only contain removed points on the inside of the rectangles. So we can use the previous corollary inside the proof so the same proof still works.\\
+
+
+\subsection{Winding Numbers}
+We saw that in the example of the punctured circle 
+\begin{align*}
+	C := \{z \in \C \big\vert \abs{z-a} = r\}
+\end{align*}
+The closed path integral $\int_{C} \frac{1}{z - a}dz = 2\pi i$ did not vanish.
+And we saw that the reason was that we had to loop around the point $a$. So to further investigate this, we want to define something that tells us how often a path winds around a point. 
+Therefore we define the \textbf{winding number} of the curve $\gamma$ for the point $a$ to be the integral
+\begin{align*}
+	\frac{1}{2\pi i} \int_{\gamma} \frac{1}{z-a}dz =: \eta(\gamma,a)
+\end{align*}
+
+Which gives us the following theorem
+\begin{theorem}[]
+	Let $a \in \C$ and $\gamma$ be a closed arc such that $a \notin \gamma$. Then
+	\begin{align*}
+		n(\gamma,a) = \frac{1}{2 \pi i} \int_{\gamma}\frac{1}{z-a}dz \in \Z
+	\end{align*}
+\end{theorem}
+Proof: we show that the integral is an integer multiple of $2\pi i$ by taking the exponential function and showing that it equals $1$.
+
+If we take a parametrisation of the curve $z(t)$ for $\alpha \leq t \leq \beta$ then the partial curve integral up to $T$ is
+\begin{align*}
+	h(T) := \int_{\alpha}^{T}\frac{z'(t)}{z(t) - a}dt
+\end{align*}
+we know that $h(\alpha) = 0$ and that $h(\beta)$ is the integral over the path. Taking the derivative of $h$ we get that
+\begin{align*}
+	h'(T) = \frac{z'(T)}{z(T) - a}
+\end{align*}
+So when taking the derivative of the exponential we get
+\begin{align*}
+	\frac{d}{d T} \left[\exp\left(-h(T)\right)\left(z(T) - a\right)\right] &= -h'(T) \exp(-h(T))(z(T) - a) + \exp(-h(T))z'(T) = 0
+\end{align*}
+Which shows that the function is a constant. In particular we must have that
+\begin{align*}
+	\exp(-h(\alpha))(z(\alpha) - a) = \exp(-h(\beta))(z(\beta) - a)
+\end{align*}
+And since $a \notin \gamma$, the parts $z(\alpha) - a, z(\beta) - a$ are non-zero, so we have that 
+\begin{align*}
+	\exp(-h(\beta)) = \exp(-h(\alpha)) = \exp(0) = 1
+\end{align*}
+
+
+The next property of the winding number is that if the point lies ``outside'' of the curve, then the winding number should be zero.\\
+So if $\Delta \subseteq \C$ is a disk containing $\gamma$ such that $a \notin \Delta$. Then the function $\frac{1}{z-a}$ is analytic in $\Delta$ and therefore the integral over $\gamma$ is zero.
+
+In a more general statement, we get the following theorem
+\begin{theorem}[]
+	Let $\gamma$ be a closed curve in $\C$. If $a,b$ are enclosed in the same region determined by $\gamma$, then
+	\begin{align*}
+		n(\gamma,a) = n(\gamma,b)
+	\end{align*}
+\end{theorem}
+
+Proof: Since $a$ and $b$ can be linked by a polygon line that never crosses $\gamma$, we can assume without loss of generality, that there exists a direct line segment between $a$ and $b$ that doesn't intersect with $\gamma$.
+Consider the function $f(z) = \log\left(\frac{z-a}{z-b}\right)$. Since the line segment doesn't intersect with $\gamma$, the log is continous and
+\begin{align*}
+	f'(z) = \log'\left(\frac{z-a}{z-b}\right) = \frac{1}{z-a} - \frac{1}{z-b}
+\end{align*}
+This means that $f'(z)$ has a primivte, so the closed integral over $f'(z)$ vanishes. But that is just the difference between the winding numbers
+\begin{align*}
+	n(\gamma,a) - n(\gamma,b) =  \int_{\gamma} \left(\frac{1}{z-a} - \frac{1}{z-b}\right) dz = \int_{\gamma}f'(z) dz = 0
+\end{align*}
+
+
+The winding number can give us insight into the regularity of analytic functions, as shown in the Cauchy Integral formula:
+\begin{theorem}[]
+	Let $f: \Delta \to \C$ be analytic in an open disk $\Delta\subseteq \C$ and let $\gamma$ be a closed curve in $\Delta$. For $a \notin \gamma$, the following equation holds
+	\begin{align*}
+		n(\gamma,a) f(a) = \frac{1}{2\pi i} \int_{\gamma} \frac{f(z)}{z- a}dz
+	\end{align*}
+\end{theorem}
+Proof: Consider the function $F(z)$ defined as
+\begin{align*}
+	F(z) := \frac{f(z) - f(a)}{z-a}
+\end{align*}
+Since $f$ is analytic, so is $F$ in $\Delta \setminus \{a\}$ and we have that
+\begin{align*}
+	\lim_{z \to a} (z-a) F(z) = \lim_{z \to a} \left(f(z) - f(a)\right) = 0
+\end{align*}
+So we get that using the Cauchy's Theorem the integral over $F$ must be zero. So 
+\begin{align*}
+	0 = \int_{\gamma}F(z) dz = \int_{\gamma} \frac{f(z)}{z-a}dz - \underbrace{\int_{\gamma} \frac{f(a)}{z-a} dz}_{= f(a) n(\gamma,a)}
+\end{align*}
+
+% ==== 06.11.2020 ====
+\begin{center}
+	Lecture 06.11.2020 partially missing
+\end{center}
+This theorem is extremely powerful, since it allows us to represent the derivative of $f$ in terms of an integral.
+
+
+In the special case where $f$ is analytic in an open disk $\Delta \subseteq \C$ and $\gamma$ is a closed curve in $\Delta$, then for 
+
+Since $n(\gamma,z) = 1$, we have that
+\begin{align*}
+	f(z) = \frac{1}{2\pi i} \int_C \frac{f(z')}{z' - z}dz'
+\end{align*}
+and if we can take the derivative inside the integral we get
+\begin{align*}
+	f'(z) = \frac{1}{2\pi i} \int_C \frac{f(z')}{(z' -z)^2}dz'
+\end{align*}
+and we can repeat this however often we want to calculate the $n$-th derivative of $f$:
+
+\begin{align*}
+	f^{(n)}(z) = \frac{n!}{2\pi i} \int_C \frac{f(z')}{(z' - z)^{n+1}}d z'
+\end{align*}
+So in particular, if $f$ is analytic in an open set, 
+
+
+\begin{ntheorem}[Morera's Theorem]
+If $f$ is continuous in a region $\Omega$ and for any closed path in $\gamma$ in $\Omega$ the path integral vanishes, then $f$ is analytic.
+\end{ntheorem}
+Proof: Since $\int_{\gamma} f(z) dz = 0$ for all closed paths, $f$ has a prmitive $F(z)$. And $F(z)$ is analytic and therefore also has a second (and third and ...) derivative. So $f'(z) = F''(z)$.
+
+
+\begin{ntheorem}[Cauchy Estimates]
+	Let's say $f$ is anyltic in a disk $\Delta$ and $C$ is a circle in $\Delta$ with radius $r$ such that
+	\begin{align*}
+		\abs{f(\xi)} \leq M \forall \xi \in C
+	\end{align*}
+Then we can bound the derivatives using
+\begin{align*}
+	\abs{f^{(n)}(z)} \leq \frac{n!}{2\pi} \int_C \frac{M}{r^{n+1}} \abs{d \xi} = n! M r^{-n}
+\end{align*}
+\end{ntheorem}
+In particular if $r$ can be arbitrarily big, we get the following theorem
+\begin{ntheorem}[Liouville's Theorem]
+	If $f: \C \to \C$ is entire (analytic everywhere in $\C$), and $f$ is bounded, then $f$ is constant!
+\end{ntheorem}
+Proof: for $n = 1$ the derivative Cauchy's estimate gives us that $\abs{f'(z)} \leq \frac{M}{r}$, so since $r$ is arbitrary, $f'(z) = 0$.
+
+This gives us the one-liner Proof for the fundamental theorem of algebra: If a polynomial $f$ is non-zero, then the inverse $\frac{1}{f}$ is bounded and analytic.
+
+It is bounded since for $\abs{z} > R$ for some $R$ large enough, $P(z)$ will not keep getting smaller.
+
+
+
+

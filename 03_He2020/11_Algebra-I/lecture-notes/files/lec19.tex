@@ -1,0 +1,183 @@
+
+\begin{corollary}[]
+Let $G$ be a group and $T$ a G-set. If $\abs{G} < \infty$, then
+\begin{align*}
+	\abs{G} = \abs{G \cdot t_0} \cdot \abs{\text{Stab}_G(t_0)}
+\end{align*}
+\end{corollary}
+Proof: It follows from the theorem, that $G \cdot t_0 \simeq G/\text{Stab}_G(t_0)$ therefore, using Lagrange's theorem, the formula holds.
+
+\begin{corollary}[]
+	Let $G$ be a group and $T$ a finite $G$-set. Then
+	\begin{align*}
+		\abs{T} = \abs{\text{Fix}_G(T)} + \sum_{\abs{G \cdot t} > 1} \left[G: \text{Stab}_G(t)\right]
+	\end{align*}
+\end{corollary}
+Proof: We know that the orbits form a partition on $G$. So
+\begin{align*}
+	T = \bigsqcup_{\text{Orbits}} G \cdot t = \text{Fix}_G(T) \sqcup \bigsqcup_{\text{non-trivial orbits}} G \cdot t
+\end{align*}
+
+
+
+\begin{ntheorem}[Cayley's Theorem]
+	Let $G$ be a finite group. Then $G$ is isomorphic to a subgroup of the symmetric group $S_n$ for some $n \in \N$
+\end{ntheorem}
+Proof: Set $T = G$ and use group multiplication for the group action. This is equivalent to a Homomorphism
+\begin{align*}
+	\alpha: G \to \text{Bij}(G), \quad g_1 \mapsto \alpha g_1: (g_2 \mapsto g_1g_2)
+\end{align*} 
+$\alpha$ is injective, because its kernel is given by
+\begin{align*}
+	\Ker \alpha = \left\{g \in G \big\vert \alpha_g = \id\right\}	\subseteq \left\{g \in G \big\vert ge = e\right\} = \{e\}
+\end{align*}
+From the first isomorphism theorem, $\Image(\alpha) < \text{Bij}(G) \simeq S_n$, for $n = \abs{G}$.\\
+
+Note the following
+\begin{enumerate}
+	\item If $H < G$ has finite index, $[G:H]$, there exists a Homomorphism $\alpha: G \to S_n$ for $n = [G:H]$ and $\Ker \alpha < H$.
+\end{enumerate}
+
+
+\subsection{Nilpotent and resolvable groups}
+\begin{definition}[]
+Let $G$ be a group. We say $G$ is \textbf{nilpotent} of  \textbf{order} $1$, if $G$ is abelian.
+
+We say $G$ is nilpotent of order $n+1$ for $n \geq 1 \in \N$ if $G/Z_G$ is nilpotent of order $n$.
+\end{definition}
+
+
+Let $R$ be a ring. The Heisenberg group
+\begin{align*}
+	H_R = \left\{\begin{pmatrix}
+	1 & a & b\\
+	0 & 1 & c\\
+	0 & 0 & 1
+	\end{pmatrix} \big\vert a,b,c \in R\right\}
+\end{align*}
+is nilpotent of order $2$. We can show that
+\begin{align*}
+	Z_{H_R} = \left\{\begin{pmatrix}
+	1 & 0 & b\\
+	0 & 1 & 0\\
+	0 & 0 & 1
+	\end{pmatrix}\big\vert b \in R\right\}
+\end{align*}
+and $H_R/Z_{H_R} \simeq R^2$
+
+
+\begin{definition}[]
+Let $G$ be a group and $p \in \N$ prime. We say $G$ is a $p$-group if $\abs{G} = p^{k}$ for some $k \in \N$
+\end{definition}
+
+\begin{lemma}[Fixpoints of $p$-groups]
+Let $p \in \N$ be prime and $G$ be a $p$-Group and $T$ be a $G$-set. Then
+\begin{align*}
+	\abs{\text{Fix}_G(T)} \equiv \abs{T} \mod p
+\end{align*}
+\end{lemma}
+Proof: From the corollary on the cardinality of $T$, we know that
+\begin{align*}
+	\abs{T} = \abs{\text{Fix}_G(T)} + \sum_{\text{non-trivial Orbits}} [G: \text{Stab}_G(t)
+\end{align*}
+and since $\abs{G} = p^{k}$. For non-trivial orbits we know $[G: \text{Stab}_G(t)] = p^{l}$ for some $l \geq 1$, if $t$ is not a fixpoint. Therefore, $p$ must divide the sum.
+
+\begin{theorem}[]
+Every $p$-Group is nilpotent.
+\end{theorem}
+Proof: We set $T = G$ and use konjugation to make $G$ a $G$-set. Then
+\begin{align*}
+	\text{Fix}_G(T) = \left\{t \in G \big\vert gtg^{-1} = t\right\}Z_G
+\end{align*}
+From the lemma above, we konw
+\begin{align*}
+	\abs{\text{Fix}_G(T)} = \abs{Z_G} \equiv \abs{G} = p^{k} = 0 \mod p
+\end{align*}
+Since $e \in Z_G$, we know that $\abs{Z_G} \geq 1$, but since $\abs{G} = \abs{Z_G} \geq p$, the center is non-trivial dn $G/Z_G$ is a smaller $p$-Group. We can use induction on $\abs{G}$ to show that $G/Z_G$ is nilpotent.
+Further, if $\abs{G} = p$, $G = Z_G$ is nilpotent and of order $1$. 
+
+
+\begin{corollary}[]
+Let $p \in \N$ be prime and $G$ a $p$-Group of order $\abs{G} = p^{2}$. Then $G$ is abelian.
+\end{corollary}
+Proof: From the theorem, we know that $Z_G$ is non-trivial. If $Z_G = G$, it is clearly abelian. If that is not the case, then $\abs{Z_G} = p$. Then $G/Z_G$ is of order $p$. Therefore there exists a $g \in G$ such that
+\begin{align*}
+	G/Z_G = <gZ_G> = \{g^{k Z_G \big\vert k = 0, \ldots, p-1}\}
+\end{align*}
+So we can also write $G$ as being
+\begin{align*}
+	G = \left\{g^{k}z \big\vert k = 0, \ldots p-1, z \in Z_G\right\}
+\end{align*}
+but then for $g^{k_1}z,g^{k_2}z_2 \in G$ we have that
+\begin{align*}
+	g^{k-1}z_1g^{k_2}z_2 = g^{k_1+k_2}z_1z_2 = g^{k_2}z_2g^{k_1}z_1
+\end{align*}
+which contradictions our assumption $Z_G \neq G$.
+
+
+\begin{definition}[]
+	Let $G$ be a group. A \textbf{subnormal series} in $G$ is a chain of subgroups, such that
+	\begin{align*}
+		\{e\} = G_0 \lhd G_1 \lhd G_2 \lhd \ldots \lhd G_n = G
+	\end{align*}
+	such that every Subgroup is normal in the next one.
+\end{definition}
+
+\begin{definition}[]
+Let $G$ be a group. We say $G$ is \textbf{resolvable}, if there exsits a subnormal series in $G$ such that $G_{k+1}/G_k$ is an abelian Group for $k = 0, \ldots, n-1$.
+\end{definition}
+
+Examples:
+\begin{enumerate}
+	\item The dihedral group $D_{2n}$ is resolvable
+	\item THe affine group $A_k = \left\{\begin{pmatrix}
+	a & b\\
+	0 & 1
+\end{pmatrix}: a \in R^{\times},b \in R\right\}$ is resolvable and is not nilpotent if $\abs{R^{\times}} > 1$.
+\end{enumerate}
+
+
+\begin{proposition}[]
+	Let $G$ be a group. Then $[G,G] = \scal{\{[a,b] \big\vert a,b \in G\}} \lhd G$ and $G/[G,G]$ is abelian.\\
+	If $H$ is an abelian Group and $\phi: G \to H$ is a group homomorphism, then $\phi([G,G]) = \{e_H\}$ and $\phi$ induces a Group homomrophism $\overline{\phi}: G/[G,G] \to H$ such that the following diagram commutes.
+\begin{center}
+\begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
+	G	\arrow[]{r}{\phi} \arrow[swap]{d}{\pi} & H\\
+	G/[G,G] \arrow[]{ur}{\overline{\phi}}
+\end{tikzcd}
+\end{center}
+In this sense, $G/[G,G]$ is the largest abelian factor group.
+\end{proposition}
+
+Proof: Since $[G,G]$ is a characteristic subgroup (invariant under automorphisms) it is also invariant under conjugation and thus a normal subgroup of $G$.
+
+Let $a,b \in G$. Then
+\begin{align*}
+	[a[G,G],b[G,G]] = [a,b][G,G] = [G,G]
+\end{align*}
+but that just means that $a[G,G]$ and $b[G,G]$ commute in $G/[G,G]$.
+Now let $H$ be abelian and $\phi: G \to H$ a homomorphism. For $a,b \in G$ we have
+\begin{align*}
+	\phi([a,b]) = [\phi(a), \phi(b)] = e_H \implies \phi([G,G]) = \{e_H\}
+\end{align*}
+from a corollary of the first isomorphism theorem, the diagram commutes.
+
+
+\begin{proposition}[]
+Let $G$ be a group. Then $G$ is resolvable if and only if the following inductively defined higher commutator groups reach the trivial subgroup $\{e\}$:
+\begin{align*}
+	G^{(0)} := G, \quad G^{(1)} := [G^{(1)}, G^{(1)}], \quad \ldots G^{(n+1)} := [G^{(n)}, G^{(n)}]
+\end{align*}
+\end{proposition}
+Proof: If there exists some $n$, such that $G^{(n+1)} = \{e\}$, then we obtain the following subnormal series
+\begin{align*}
+	\{e\} = \lhd G^{(n+1)} \lhd G^{(n)} \lhd \ldots \lhd G^{(1)} \lhd G^{(0)}
+\end{align*}
+From the proposition before, the quotients are abelian each. So $G$ is resolvable.
+
+Now if $G$ is resolvable and the chain is a subnormal series, then the factor groups $G^{(k)}/G^{(k+1)}$ are abelian, so for each $k$
+\begin{align*}
+	[G^{(k)},G^{(k)}] = G^{(k+1)} < G^{(k)},
+\end{align*}
+Using induction on $n$, it follows that $G^{(n)} < G_0 = \{e\}$
+

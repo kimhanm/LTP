@@ -1,0 +1,123 @@
+One property of random walks is that they are random.
+This might seem like an obvious fact but it turns out that (we) humans are bad at generating random numbers.
+
+When people are tasked to draw random walks of length $100$ and we plot a histogram that measures the number of longest runs, the data does not fit what we expect if the walks were random.
+
+In particular, almost all truly random walks had a longest run length of $7$ or above.
+But humans see a sequence of $7$ identical outcomes back-to-back and think that it doesn't seem random.
+A professor tested their students with flipping $100$ coins and from their results was able to tell when they actually used random events or made it up by seeing what the longest run length was.
+
+Random events show some structure, not \emph{despite} their inherent randomness, but \emph{because} of it.
+
+\subsubsection{The Arcsine Law}
+Let
+\begin{align*}
+  L(\omega) = \max \{0 leq n \leq 2N \big\vert S_n(\omega) = 0\}
+\end{align*}
+be the time of the last visit of the origin of a random walk $\omega$.
+
+What does the distribution of $L$ look like? 
+\begin{thm}[Arcsine Law]
+The distribution of $L$ is the \textbf{discrete Arcsine} distribution
+\begin{align*}
+  \IP[L = 2n] = \IP[S_{2n} = 0]\IP[S_{2N - 2n} = 0] = 2^{-2N} \binom{2n}{n} \binom{2N - 2n}{N-n}
+\end{align*}
+which is symmetric around $N$ and looks like a U-shape.
+So if we had to guess at what time the last return to monke was, it should be either in the beginning or at the end.
+
+It is called the Arcsine law because for $f(x) = \frac{1}{\pi \sqrt{x(1-x)}}$ we have
+\begin{align*}
+  \IP\left[\frac{L}{2N}\leq z\right] \sim \sum_{k: \frac{k}{N}\leq z} \frac{1}{N}f\big(\frac{k}{N}\big) \sim \int_{0}^{z}f(x)dx = \frac{2}{\pi} \arcsin \sqrt{z}
+\end{align*}
+\end{thm}
+\begin{proof}
+  If we let $Z_{m}$ be time of the last return to origin in the first $m$ moves, then  we can use independence of the random variables to write
+\begin{align*}
+  \IP[Z_{2n} = 2k] 
+  &= 
+  \IP[S_{2k} = 0, S_{2k+1} \neq 0, \ldots S_{2n} \neq 0]\\
+  &=
+  \IP[S_{2k}=0] \cdot \IP[S_1 \neq 0, \ldots, S_{2n-2k} \neq 0]
+\end{align*}
+To calculate the right hand side we use the maximum principle t get
+\begin{align*}
+  \IP[S_1 \geq 0, S_2 \geq 0, \ldots S_{2n} \geq 0] = \binom{2n}{n} 2^{-2n}
+\end{align*}
+and by substituting the weak inequality with a strict inequality, we obtain
+\begin{align*}
+  \IP[S_1 > 0, \ldots S_{2j} > 0]
+  &=
+  \IP[S_1 = 1, S_2 \geq 1,\ldots, S_{2j} \geq 1]\\
+  &=
+  \IP[S_1 = 1] \cdot \IP[S_2 \geq1, \ldots, S_{2j} \geq 1]\\
+  &=
+  \IP[S_1 = 0] \IP[S_2 \geq 0, \ldots, S_{2j} \geq 0]\\
+  &=
+  \binom{2j}{j}2^{-2j}
+\end{align*}
+so combining the first and last result, we get
+\begin{align*}
+  \IP[Z_{2n} = 2k] = \binom{2k}{k}\binom{2j}{j}2^{-2j}
+\end{align*}
+\end{proof}
+Note that $0$ and $2n$ are the two most probable values for $Z_{2n}$.
+
+\subsubsection{Game systems}
+Recall that the expected value of the endpoint is zero
+\begin{align*}
+  \E[S_n] = 0
+\end{align*}
+in terms of game systems, this means that for a fair game the ``gain'' after $n$ rounds is zero.
+
+\begin{dfn}[]
+An event $A \subseteq \Omega$ is called \textbf{observable} until cycle $n$, if it is of the Form
+\begin{align*}
+  \left\{
+    \omega \in \{\pm 1\}^{N} \big\vert (X_1(\omega), \ldots X_n(\omega)) \in C \quad \text{for some} \quad C \subseteq \{\pm 1\}^{n}
+  \right\}
+\end{align*}
+Denote the set of all until cycle $n$ observable events as $\mathcal{F}_n$.
+\end{dfn}
+Here we use the convention $\mathcal{F}_0 = \{\emptyset, \Omega\}$. It is then clear that $\mathcal{F}_{n} \subseteq \mathcal{F}_{n+1}$.
+
+Assume we know how the game will play out in the future. This information could then tell us whether we should continue to play or to stop. 
+
+A stopping time should only make use of the information up to the $n$-th round. We should not be able to say stop at round $n$ \emph{after} the $n$-th round is played.
+To formalize this, we use the following definition
+\begin{dfn}[]
+A map $T: \Omega \to \{0, \ldots, N\}$ is a \textbf{stopping-time},if
+\begin{align*}
+  \{\omega: T(\omega) \leq n\} \in \mathcal{F}_n, \quad \forall n \in \{0, \ldots, N\}
+\end{align*}
+\end{dfn}
+
+\begin{ex}[]
+A non-example is to say stop when at cycle $n$ we get the maximum value obtainable from outcome $\omega$, i.e.
+\begin{align*}
+  T(\omega) = \min\left\{
+    0 \leq n \leq N \big\vert S_n(\omega) = \max_{0 \leq k \leq N}S_k(\omega)
+  \right\}
+\end{align*}
+this is obviously not a stopping-time as for example $\{\omega: T(\omega) = 0\}$ must require that $S_k \leq 0$ at all times $k$, which requires knowledge of all future rounds and is not a part of $\mathcal{F}_0$.
+\end{ex}
+
+We said earlier that unless we had some extra information about the game is going to play out, we should not be able to tell whether to stop or not.
+This can be formalised as follows:
+\begin{thm}[]
+  For every stopping-time $T$,
+  \begin{align*}
+    \E[S_T] = 0
+  \end{align*}
+  where $S_T(\omega) = S_{T(\omega)}(\omega)$ is the accumulated win when using the stopping rule $T$.
+\end{thm}
+This is telling us that no blind strategy is going to make (or lose) us money in a fair game. The game's fairness cannot be chated.
+
+While we're already looking at random walks as the outcomes of a game, let's generalize this to get a definition to model general games that come in discrete cycles.
+\begin{dfn}[]
+  A \textbf{game system} is a sequence of random variables $V = \left(V_{k}\right)_{k \in \N},V_k: \Omega \to \R$ such that $V_1$ is constant and for $k \geq 2$ there exist functions
+  \begin{align*}
+    \phi_k: \{+1,-1\}^{k-1} \to  \R \quad \text{with} \quad V_k(\omega) = \phi_k\left(
+      X_1(\omega), \ldots, X_{k-1}(\omega)
+    \right)
+  \end{align*}
+\end{dfn}

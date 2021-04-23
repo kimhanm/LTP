@@ -1,0 +1,72 @@
+
+\section{Complex Numbers}
+The basic idea is that we start with the real numbers $\R$ and we ``add'' the number $i$ such that $i^2 = -1$.\\
+
+We define the complex numbers to be
+\begin{align*}
+				\C := \{\alpha + i \beta: \alpha, \beta \in \R\}
+\end{align*}
+We define addition between two complex numbers as follows
+\begin{align*}
+(\alpha + i \beta) + (\gamma + i \delta) := (\alpha + \gamma) + i(\beta + \gamma)
+\end{align*}
+
+And Multiplication:
+\begin{align*}
+				(\alpha + i\beta) \cdot (\gamma + i \delta) := (\alpha \cdot \gamma - \beta \delta) + i(\alpha \delta + \beta \gamma)
+\end{align*}
+
+For division, we just have to find the multiplicative inverse for any $z = ( \alpha + i \beta) \neq 0$. The condition for its inverse $(x + iy)$ must then be
+\begin{align*}
+				( \alpha + i \beta)(x + iy) = 1 \implies \alpha x - \beta y = 1, \beta x + \alpha y = 0
+\end{align*}
+Which just be written as a linear transformation
+\begin{align*}
+				\begin{pmatrix}
+								\alpha & - \beta\\
+								\beta & \alpha
+				\end{pmatrix}
+				\begin{pmatrix}
+						x\\ y
+				\end{pmatrix} = \begin{pmatrix} 1\\0 \end{pmatrix}
+\end{align*}
+To solve this, we have to find the (non-zero) determinant $\det(A) = \alpha^2 + \beta^2$ and get
+\begin{align*}
+				\frac{1}{( \alpha + i\beta)} := \frac{( \alpha - i \beta)}{\alpha^2 + \beta^2} 
+\end{align*}
+
+
+One of the main reasons to introduce the complex numbers was to find the square root of $-1$, so can we find square roots of any complex number?\\
+
+In particular, we are looking for a solution to $(x + iy)^2 = (x^2 - y^2) + i(2 xy) = \alpha + i \beta$.\\
+Squaring the factors we get
+\begin{align*}
+				(x^2 + y^2)^2 = (x^2 - y^2)^2 + 4x^2y^2 = \alpha^2 + \beta^2
+\end{align*}
+In particular, we have 
+\begin{align*}
+				x^2 + y^2 = \sqrt{ \alpha^2 + \beta^2}, \quad x^2 - y^2 = \alpha\\
+				\implies x^2 = \frac{1}{2} \left( \alpha + \sqrt{ \alpha^2 + \beta^2}\right), y^2 = \frac{1}{2} \left(- \alpha + \sqrt{ \alpha^2 + \beta^2}\right)
+\end{align*}
+Which gives us the solutions
+\begin{align*}
+				x = \pm \sqrt{ \frac{1}{2} \left( \alpha + \sqrt{ \alpha^2 + \beta^2}\right)}, \quad y = \pm \sqrt{ \frac{1}{2} \left(- \alpha + \sqrt{ \alpha^2 + \beta^2}\right)}
+\end{align*}
+This might look like we have four solutions, but as we have $2xy = \beta$, if $ \beta \neq 0$, we must have $\text{sign}(xy) = \text{sign}( \beta)$. So only two of them are valid.\\
+If $ \beta$ is zero, then either $x$ or $y$ must be zero.
+In the case where $ \alpha \geq 0$, then $x = \pm \sqrt{ \alpha}$ and $y = 0$. And if $ \alpha < 0$, then $x = 0$ and $y = \pm \sqrt{- \alpha}$
+
+So this means that the root function wants to take on two branches, so we need to make a choice when deciding what value the square root of $( \alpha + i \beta)$ is.\\
+
+A very useful operation is the complex conjugate, which visually flips the complex plane along the real axis:
+
+\begin{align*}
+				\overline{ \cdot}: \C \to \C, \quad ( \alpha + i \beta) \mapsto (\alpha - i \beta)
+\end{align*}
+which has the following properties:
+
+\begin{align*}
+				\overline{a + b} = \overline{a} + \overline{b}, \quad \overline{ab} = \overline{a} \overline{b}
+\end{align*}
+
+Exercise: Try to show that $a \overline{a} \geq 0 \in \R$.

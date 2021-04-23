@@ -1,0 +1,63 @@
+\begin{lemma}[]
+	Let $K$ be a field and $a \in K$, then for every $f \in K[X]$
+	\begin{align*}
+		f(a) = 0 \iff (X-a)|f(X)
+	\end{align*}
+\end{lemma}
+Proof: By using polynomial division for $f(x)/(X-a)$, then 
+\begin{align*}
+	f(X) = (X-a)g(X) + r \quad \text{for} \quad g(X) \in K[X], r \in K
+\end{align*}
+
+\begin{proposition}[]
+	Let $K$ be a field. Then linear Polynomials of the Form $X-a$ for $a \in K$ are irredicuble in $K[X]$. For quadratic and cubic polynomials $f \in K[X]$:
+	\begin{align*}
+		f \text{ irreducible } \iff \forall a \in K: f(a) \neq 0
+	\end{align*}
+\end{proposition}
+Proof: For linear polynomials, it follows directly from the lemma. If $\deg(f) \in \{2,3\}$, and $f = gh$ for some $g,h \notin K[X]^{\times}$, then $\deg(f) = \deg(g) + \deg(h)$ so at least of $g,h$ is of degree $1$. If $\deg(g) = 1$, then $g$ has a root, and $f = gh$ has one aswell.\\
+If $f$ hast a root, then again take the previous lemma.
+
+
+\begin{ntheorem}[Fundamental Theorem of Algebra]
+	Every polynomial $f \in \C[X]$ with $\deg(f) > 0$ has a root and the irreducible elements of $\C[X]$ are the linear Polynomials. In particular, every polynomial $f \in \C[X]$ has a linear factorisation
+	\begin{align*}
+		f(X) = a \prod_{i = 1}^{\deg(f)}(X - z_i)
+	\end{align*}
+	For some $a \in \C^\times$ and $z_i \in \C$
+\end{ntheorem}
+
+As a corollary, we get the the Fundamental theorem for $K = \R$:\\
+A polynomial in $\R[X]$ is irreducible if and only if $\deg(f) = 1$ or $\deg(f) = 2$ and $f$ has no roots (in $\R$).\\
+Proof: We look at the polynomial as an element in $\C[X]$. Since it has real coefficients, the complex roots come in conjugate pairs $z, \overline{z}$. Then we see that $(X-z)(X- \overline{z}) = (X^2 - (z + \overline{z})X + z \overline{z}) | f(X)$ in $\C[X]$. And since the coefficients $z + \overline{z}, z \overline{z}$ are real, the same also holds in $\R[X]$.
+
+\begin{proposition}[]
+	Let $R$ be a UFD and $f \in R[X]$ and $\frac{a}{b} \in K = \text{Quot}(R)$ with $b \neq 0$ and $a,b$ coprime. If $f(\frac{a}{b}) = 0$, then $b$ divides the leading coefficient of $f$ and $a$ divides the constant  coefficient of $f$.
+\end{proposition}
+Proof: Let $f(\frac{a}{b}) = 0$. Then $(X - \frac{a}{b})|f(X)$ in $K[X]$, therefore $(bX - a)| f(X)$, but this time in $R[X]$, because if we then write $f(X) = (bX-A)h(x)$ for some $h \in K[X]$, then since the content is multiplicative, and since $b$ and $a$ are coprime we get
+\begin{align*}
+	R \ni I(f) \simeq \underbrace{I(b X - a)}_{\sim 1} I(h) \simeq I(h)
+\end{align*}
+Therefore $h(x) \in R[X]$. From this we get that the leading coefficient of $f$ equals $b$ times the leading coefficient of $h$. And the constant coefficient of $f$ is $-a$ times the constant coefficient of $h$.\\
+
+For example, we can ask for which $a \in \Z$ we have that the polynomial
+\begin{align*}
+	f_a(X) := X^2 + a X + 1 \in \Z[X]
+\end{align*}
+is irreducible. Using the proposition, we know that the roots must either be $+1$ or $-1$ or else they wouldn't divide the leading/constant coefficients of $f$. Then
+\begin{align*}
+	f_a(1) = 0 \iff a = -2 \quad \text{and} \quad f_a(-1) = 0 \iff a = 2
+\end{align*}
+so for $a \in \Z \setminus \{\pm 2\}$, $f_a \in \Z[X]$ is irreducible, since it is primitve and has no roots.\\
+
+For the next example, let $K$ be a field and look at $f(X,Y) = Y^3 - X^5 \in K[X,Y]$. In this case, we can look at the ring $R = K[X]$ and show that it is irreducible in $R[Y]$:\\
+
+Since $f$ is primitive in $R[Y]$, it is irreducible in $R[Y]$ if and only if $f$ is irreducible in $\text{Quot}(R)[Y] = K(X)[Y]$. If we assume that $f$ is not irreducible in $K(X)[Y]$, then it must have a root in $K(X)$. Now let $p,q \in K(X)$, such that $f(\frac{p}{q}) = 0$. Since $K(X)$ is a field, without loss of generality $q = 1$ and $f(q) = 0$. Then 
+\begin{align*}
+	f(y) = Y^3 - X^5 \implies p(X)^3 = X^5 \in K[X]
+\end{align*}
+but then since $p(X) | X^5$, we must have
+\begin{align*}
+	p(X) = aX^k \implies p(X)^3 = a^3 X^{3k} = X^5 \lightning
+\end{align*}
+therefore $f(Y)$ has no roots in $K[X]$, it is irreducible in $K(X)[Y]$ and primitive in $K[X][Y]$ and therefore also  irreducible in $K[X][Y] = K[X,Y]$.

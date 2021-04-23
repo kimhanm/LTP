@@ -1,0 +1,180 @@
+\begin{ntheorem}[Classification theorem (second part)]
+	Let $R$ be a PID and $M_{\text{tors}}$ a finitely generated torsion module. Then there exist $d_{1}|d_2|\ldots| d_{n} \in R \setminus \{0\}$ such that
+	\begin{align*}
+		M_{\text{tors}} \iso \faktor{R}{(d_1)} \times \ldots \times \faktor{R}{(d_n)}
+	\end{align*}
+	alternatively, we can write
+	\begin{align*}
+		M_{\text{tors}} \iso \prod_{j = 1}^{k} M_{\text{tors}}^{(p_i)}
+	\end{align*}
+	where $p_1, \ldots, p_k \in R$ are non-conjugate primes in $R$ and
+	\begin{align*}
+		M_{\text{tors}}^{(p_i)} &:= \left\{m \in M_{\text{tors}} \big\vert \exists l \in \N \text{ with }p_i^{l}m = 0\right\}\\
+														&\iso \faktor{R}{\left(
+															p_j^{n_j,1}
+													\right)} \times \ldots \times \faktor{R}{\left(
+														p_j^{n_j,k}
+													\right)}
+	\end{align*}
+\end{ntheorem}
+
+\begin{ntheorem}[Smith Canonical Form]
+	Let $R$ be a PID, $k,n \geq 1 \in \N$ and $A \in \Mat_{kl}(R)$. Then there exist $g \in \GL_k(R)$ and $h \in \GL_l(R)$ such that
+	\begin{align*}
+		gAh^{-1} = \begin{pmatrix}
+		d_1 &  &  & \\
+		 & \ddots &  & \\
+		 &  & d_n & \\
+		 &  &  & 0_{\ddots}
+		\end{pmatrix}, \quad \text{for} \quad d_1|d_2|\ldots|d_n \in R \setminus \{0\}
+	\end{align*}
+\end{ntheorem}
+We will prove this theorem only for euclidean rings.
+In the Gaussian elimination algorithm, row operations are left-multiplication with elements of $\GL_k(R)$ and column operations coorrespond with right-multiplication with elements of $\GL_l(R)$
+
+Proof for euclidean rings: We will use induction on $\max(k,l)$.
+
+If $\max(k,l) = 1$, either $A = (0)$ or $A = (d_1)$ for some $d_1 \in R \setminus \{0\}$.
+
+Now let $\max(k,l) \geq 2$. If $A = 0$, we're done. Let
+\begin{align*}
+	N := \min_{A_ij \neq 0} \phi(a_{ij}) \in \N \quad \text{for} \quad  \phi \text{ the norm on $R$}
+\end{align*}
+By swapping rows and columns we can assume that 
+\begin{align*}
+	d_1 = A_{11} \neq 0 \quad \text{and} \quad \phi(d_1) = N
+\end{align*}
+then use division with rest to get
+\begin{align*}
+	A_{1j} = a_j d_1 + r_1 \quad \text{for} \quad j = 2, \ldots l \quad \text{and} \quad r_i = 0 \quad \text{or} \quad \phi(r_i) < \phi(d_1)
+\end{align*}
+and subtract $a_j$ time hte first row of the $j$-th row for $j = 2, \ldots, l$ and we obtain the matrix
+\begin{align*}
+	A' = \begin{pmatrix}
+	d_1 & r_1 & \ldots & r_l\\
+	A_{21} &  &  & \\
+	\vdots &  &  & \\
+	A_{k1} &  &  & 
+	\end{pmatrix}
+\end{align*}
+If $r_i \neq 0$, then $N' = \min_{A'_{ij}} \phi(A_{ij}') < N$ and w can use Induction to let $A'$ have Smith normalform. Therefore without loss of generality, $r_2 = r_3 = \ldots = r_l = 0$
+
+Analogously we can repeat this argument for the first column to get a matrix
+\begin{align*}
+	A'' = \begin{pmatrix}
+	d_1 & 0 & \ldots & 0\\
+	0 &  &  & \\
+	\ldots &  &  & \\
+	0 &  &  & 
+	\end{pmatrix}
+\end{align*}
+If $\max(k,l) = 1$, then $A''$ is already in smith normalform. Else the submatrix of $A''$ has dimension $k-1,l-1$. So the maximum decreases and induction step gives us a matrix of the form
+\begin{align*}
+	A''' = \begin{pmatrix}
+	d_1 &  &  & \\
+	 & \ddots &  & \\
+	 &  & d_n & \\
+	 &  &  & 0_{\ddots}
+	\end{pmatrix}
+\end{align*}
+now we have to show that $d_1|d_2|\ldots|d_n$. If $d_1|d_2$ then smith normalform is reached.
+
+If $d_1 \not|d_2$, then we can add the second row to the first and make division with rest and get a matrix of smaller norm to get
+\begin{align*}
+	A''' \mapsto \begin{pmatrix}
+	d_1 & & 0\\
+	0 & d_2 & \\
+		&  & {d_3}_{\ddots}
+	\end{pmatrix} \mapsto \begin{pmatrix}
+	d_1 & r & 0\\
+	0 & d_2 & \\
+	 &  & 0
+	\end{pmatrix} \mapsto A''' \text{ in Smith canonical form.}
+\end{align*}
+
+
+Now we can prove the second classification theorem.
+
+Let $M$ be a finitely generated module and $R$ a euclidean ring. If we assume $x_1, \ldots, x_k \in M$ generate $M$, then
+\begin{align*}
+	\Phi: a \in R^{k} \mapsto \sum_{i = 1}^{k}a_ix_i \in M
+\end{align*}
+is surjective. Then $N = \Ker \Phi \subseteq R^{k}$ is a submodule and also a free module itself from a previous proposition. Write $N = <r1,\ldots,r_l>$, so $M \iso \faktor{R^{k}}{N}$.
+
+We define the Matrix
+\begin{align*}
+	A = (r_1,\ldots,r_k) \in \Mat_{kl}(R)
+\end{align*}
+and put it in Smith canonical form, so there exist $g \in \GL_k(R), h \in \GL_l(r)$ such that
+\begin{align*}
+	B := gAh^{-1} = \begin{pmatrix}
+	d_1 &  & 0 & \\
+	 & \ddots &  & \\
+	0 &  & {d_n}_{\ddots} & \\
+	 &  &  & 0
+	\end{pmatrix} \quad \text{with} \quad d_1|d_2|\ldots|d_n \in R \setminus \{0\}
+\end{align*}
+	Since $A$ can be identified with a linear map $R^{l} \to R^{k}$, we get that
+	\begin{align*}
+		N = \Image A = A(R^{l}), \quad \text{and} \quad \Image B = B(R^{k}) = gAh^{-1}(R^{l}) = g \Image A = g N
+	\end{align*}
+	then let's take a look at what $g$ does to $R^{k}$:
+	\begin{align*}
+		R^{k} \stackrel{g}{\to} R^{k}, N = \Image A \mapsto gN = \Image B
+	\end{align*}
+	which induces an isomorphism (First isomorphism theorem)
+	\begin{align*}
+		M \iso \faktor{R^{m}}{N} \to \faktor{R^{k}}{g_N} = \faktor{R^{k}}{\Image B}
+	\end{align*}
+	but since $B$ is diagonal, we know that
+	\begin{align*}
+		\Image B = (d_1) \times (d_2) \times \ldots \times (d_n) \times \{0\}^{k-n}
+	\end{align*}
+	so we can extend the isomorphism
+	\begin{align*}
+		M \iso \faktor{R^{k}}{\Image B} \iso \faktor{R}{(d_1)} \times \faktor{R}{(d_2)} \times \ldots \times \faktor{R}{(d_n)} \times R^{k-n}
+	\end{align*}
+	which is a decomposition in to a torsion and a free part.
+
+
+	\subsection{Finitely generated abelian gruops}
+
+	\begin{theorem}[]
+		Let $G$ be a finitely generated abelian group. Then
+		\begin{align*}
+			G \iso \faktor{Z}{(d_1)} \times \ldots \times \faktor{\Z}{(d_n)} \times \Z^{k}
+		\end{align*}
+		where $1 \leq d_1|d_1|\ldots|d_n \neq 0$  and $k \geq 0$. Alternatively we can write
+		\begin{align*}
+		G \iso \prod_{p \text{prime}} G_p \times \Z^{k} \quad \text{for} \quad G_p \iso \faktor{\Z}{(p^{k_p,1}} \times \ldots \times \faktor{\Z}{(p^{k_p,n}}
+		\end{align*}
+	\end{theorem}
+	This follows directly from the classification theorem because abelian groups are $\Z$-modules.
+
+\subsection{Jordan canonical form}
+
+\begin{theorem}[]
+	Let $V$ be a finite-dimensional $\C$-vector space and $\phi: V \to V$ linear. Then there exists a basis of $V$ such that $\phi$ has a matrix representation in jordan canonical form.
+\end{theorem}
+Proof: Since $V$ is finite-dimensional and $\C[X]$ is infinitely dimension, $V$ must be a torsion-module over $\C[X]$. Further more, $V$ is a finitely generated $\C[X]$-module. Using the classification theorem for modules, we get that
+\begin{align*}
+	V \iso \prod_{(\lambda,k)} \faktor{\C[X]}{((X-\lambda)^{k})}
+\end{align*}
+where we used the fundamental theorem of Algebra, to show that the only irreducible elements in $\C[X]$ are of the form $(X - \lambda)$.
+
+We then can describe multiplication with $X$ as aplication of $\phi$ to subspaces on $V$ on $M = \faktor{\C[X]}{((X - \lambda)^k)}$. Which has the basis
+\begin{align*}
+	1, (X - \lambda), (X - \lambda)^{2}, \ldots, (X - \lambda)^{k_1}
+\end{align*}
+over $\C$ and so multiplication with $X$ has the following matrix representation with respect to this basis
+\begin{align*}
+	\begin{pmatrix}
+	\lambda & 0 &  &  & 0\\
+	1 & \lambda & 0 &  & \\
+	0 & 1 & \ddots &  & \\
+	\vdots &  &  &  & \\
+	0 &  & 1 &  \lambda& 
+	\end{pmatrix}
+\end{align*}
+
+

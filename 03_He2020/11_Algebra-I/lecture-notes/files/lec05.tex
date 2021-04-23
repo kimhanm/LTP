@@ -1,0 +1,191 @@
+\begin{lemma}[]
+Let $R$ be a commutative Ring. Then
+\begin{enumerate}
+	\item $(a) \subseteq (b) \Leftrightarrow b | a$
+	\item If $R$ is an integral domain, then
+		\begin{align*}
+			(a) = (b) \Leftrightarrow \exists c \in  \R^{\times}: b = ac
+		\end{align*}
+\end{enumerate}
+\end{lemma}
+Proof: Let $(a) \subseteq (b)$. Since $a = 1 \cdot a \in (a)$ it follows that $a \in (b) = Rb$, which means that there exists some $x \in R$ such that $a = xb$, i.e $b|a$. If on the other hand, if $b|a$, then $a \in (b)$, so $(a) = Ra \subseteq (b)$.\\
+For the second item, the implication to the left follows from the first item. So if $(a) = (b)$, then there exist $x,y \in R$ such that $a = xb$ and $b = ya$. We then get $a = xb = xya$. If $a = 0$, then also $b = 1$ and we can just use $c := 1 \in R^{\times}$. If $a \neq 0$, then we have $xy = 1$ so $x,y \in R^{\times}$.\\
+
+
+\textbf{Beispiel}  Sei $R = C_\R([0,3])$. Betrachte die Funktionen
+\begin{align*}
+	a(x) = \left\{\begin{array}{rcl}
+			-x + 1, &\text{für}& x \in [0,1], \\
+			x - 2, &\text{für}&  x \in [2,3],\\
+			0 & \text{sonst}
+	\end{array} \right.\\
+	b(x) = \left\{\begin{array}{rcl}
+			x - 1, &\text{für}& x \in [0,1], \\
+			x - 2, &\text{für}&  x \in [2,3],\\
+			0 & \text{sonst}
+	\end{array} \right.\\
+\end{align*}
+Behauptung: Die Ideale $(a) = (b)$ sind gleich, aber $b \notin R^\times a$.\\
+Die Ideale sind gleich, denn $a = b \cdot f$ für 
+\begin{align*}
+	f(x) = \left\{\begin{array}{rcl}
+			-1, &\text{für}& x \in [0,1], \\
+			1, &\text{für}&  x \in [2,3],\\
+			2x - 3 & \text{sonst},
+	\end{array} \right.
+\end{align*}
+Aber aus dem Zwischenwertsetz folgt, dass $f(x) = 0$ für ein $x \in [0,3]$. Also ist $f$ nicht invertierbar (i.e. $f \notin R^\times$)\\
+
+
+Falls $I \subseteq R$ ein Ideal ist und $a \in R$, dann ist die Restklasse für Äquivalenz modulo $I$ gleich
+\begin{align*}
+	[a]_{\sim} = \{x \in R. x \sim a\} = a + I
+\end{align*}
+
+
+
+\begin{nsatz}[Erster Isomorphiesatz]
+	Angenommen $R,S$ sind kommutative Ringe und $\phi: R \to S$ ist ein Ringhomomorphismus.
+	\begin{enumerate}
+	\item Dann induziert $\phi$ einen Ringisomorphismus
+		\begin{align*}
+			\overline{\phi}: R/\Ker \phi \to \Image \phi = \phi(R) \subseteq R
+		\end{align*}
+	\end{enumerate}
+	so dass $\phi = \overline{\phi} \circ \rho$, wobei $\rho: R \to R/ \Ker \phi$ die kanonische Projektion ist. Das heisst es gilt folgendes \textbf{kommmutatives Diagramm}.
+
+	\begin{tikzcd}
+		R \arrow[]{r}{\phi} \arrow[]{d}{\rho}& S\\
+		R/ \Ker \phi \arrow[]{ur}{\overline{\phi}} 
+	\end{tikzcd}
+\item Sei $I \subseteq \Ker \phi$ ein Ideal in $R$. Dann induziert $\phi$ einen Ringhomomorphismus $\overline{\phi}: R/I \to S$ mit $\phi = \overline{\phi} \circ \rho_I$. 
+	\begin{tikzcd}
+		R \arrow[]{r}{\phi} \arrow[]{d}{\rho_I}& S\\
+	R/I \arrow[]{ur}{\overline{\phi}} 
+	\end{tikzcd}
+\end{nsatz}
+
+Beweis: Wir beginnen mit 2) und definieren
+\begin{align*}
+	\overline{\phi}(x + I) = \phi(x)
+\end{align*}
+Dies ist wohldefiniert. Falls $x + I = y + I$, so ist $x-y \in I \subseteq \Ker \phi$. Also ist $\phi(x) - \phi(y) = \phi(x-y) = 0$.\\
+
+Da $\phi$ ein Ringhomomorphismus ist, gilt 
+\begin{align*}
+	\phi(1_R) = 1_S \implies \overline{\phi(1 + I) = 1_S}\\
+\overline{\phi}(x + i + y + I) = \phi(x + I) + \phi(y + I)\\
+\overline{\phi}((x + I)(y + I)) = \overline{\phi}(xy + I) = \phi(xy) = \phi(x) + \phi(y) = \overline{\phi}(x + I) \overline{\phi}(y + I)
+\end{align*}
+
+Und es gilt auch $\phi = \overline{\phi} \circ \rho_I$, denn für $x \in R$ gilt $\phi_I(x) = x + I$, also $\overline{\phi} \circ \rho_I(x) = \overline{\phi}(x + I) = \phi(x)$ per Definition von $\overline{\phi}$. Also kommutiert das Diagramm.\\
+Weiterhin haben wir
+\begin{align*}
+	\Ker \overline{\phi} = \{x + I \big\vert \phi(x) = 0\} = \Ker \phi/I\\
+	\Image(\overline{\phi}) = \{\overline{\phi}(x) \big\vert x \in R/I\} = \Image \phi
+\end{align*}
+Da $\Ker \phi$ ein Ideal Ist, folgt aus dem zweiten Teil, dass $\overline{\phi}$ ein Ringhomomorphismus ist.\\
+Weiterhin ist
+\begin{align*}
+	\Ker \overline{\phi} = \Ker \phi/ \Ker \phi = \{0 + \Ker \phi\}
+\end{align*}
+Also ist $\overline{\phi}$ injektiv. 
+
+
+Bemerkung: Sei $I_0 \subseteq R$ ein Ideal in einem kommutativen Ring. Dann gibt es eine kanonische Korrespondenz zwischen Idealen in $R/I_0$ und Idealen in $R$, die $I_0$ enthalten. Betrachte die Abbildung
+\begin{align*}
+	(I \subseteq R, I_0 \subseteq I) \mapsto I/I_0 = \{x + I_0 \big\vert x \in I\} \subseteq R/I_0
+\end{align*}
+
+\begin{align*}
+	J \subseteq R/_i \mapsto \rho_{I_0}^{-1}(J) \subseteq R
+\end{align*}
+
+
+\begin{definition}[]
+Wir sagen zwei Ideale $I,J$ in einem kommutativen Ring sind \textbf{coprim}, falls $I + J = R$ ist. Also $\exists a \in I, b \in J$ mit $a + b = 1$.
+\end{definition}
+
+Beispiel $I = \subseteq(p)$ und $J = (q) \subseteq \Z = R$. Dann sind die Ideal coprim, falls $q$ und $p$ verschiedene Primzahlen sind.
+
+
+\begin{nproposition}[Chinese remainder Theorem]
+Let $R$ be a commutative Ring and let $I_1, \ldots, I_n$ be pairwise coprime Ideals. Then the Ringhomomorphism 
+\begin{align*}
+\phi: R \to R/I_1 \times \ldots \times R/I_n\\
+x \mapsto (x + I_1, \ldots, x + I_n)
+\end{align*}
+is surjective and $\Ker \phi = I_1 \cap \ldots \cap I_n$
+\end{nproposition}
+
+
+Proof: It follows directly from the definition, that $\Ker \phi = I_1 \cap \ldots \cap I_n$\\
+We show that $\phi$ is surjective, by finding an $x_i \in R$ for each $i$ such that
+\begin{align*}
+	\phi(x_i) = (0 + I_n, \ldots, 1 + I_i, \ldots 0 + I_n) \in \Image (\phi)
+\end{align*}
+Without loss of generality, we can assume that $i = 1$. Then we want to show, that there exist $a \in I_1$ and $b \in I_2 \cap \ldots \cap I_n$ such that $a + b = 1$. We then can show that $x_1 = b$ satisfies
+\begin{align*}
+	\phi(x_1) = (b + I_1, b + I_2, \ldots, b + I_n) = (1 + I_1, 0 + I_2, \ldots, I_n)
+\end{align*}
+We show this using induction on $n$. For $n = 2$, $I_1$ and $I_2$ we obtain the case in the previous lemma.\\
+Now assume that $I_1$ and $I_2 \cap \ldots I_{n}$ are coprime, i.e. there exist $a \in I_1$ and $b \in I_2 \cap \ldots \cap I_{n}$ such that $a + b = 1$. Furthermore, since $I_1$ is coprime to $I_{n+1}$, (there exist $c \in I_1, d \in I_{n+1}$ such that $c + d = 1$.\\
+We can then write
+\begin{align*}
+	a + b(c+d) = 1 \implies a + bc + bd = 1
+\end{align*}
+Since $a$ and $c$ are in $I_n$, the term $a + bc$ is also in $I_1$. And because the Intersectin of Ideals is again an ideal, we get $bd \in I_2 \cap \ldots \cap I_n$ and $bd \in I_{n+1}$. This shows that $bd \in I_2 \cap \ldots \cap I_{n+1}$\\
+We can use this to show that $\phi$ is indeed surjective. Let 
+\begin{align*}
+	(a_1 + I_2, \ldots, a_n + I_n) \in R/I_{1} \times \ldots \times R/I_{n}
+\end{align*}
+Then we can write
+\begin{align*}
+	\phi(a_1x_1 + \ldots + a_nx_n) = (a_1x_1 + \ldots + a_n x_n + I_1, \ldots, a_1x_1 + \ldots + a_nx_n + I_n) = (a_1 + I_1, \ldots, a_n + I_n)
+\end{align*}
+
+\subsection{Characteristic of a Field}
+
+Let $K$ be a field, Then there exists a Ringhomomorphism 
+\begin{align*}
+	\phi: \Z \to K, \quad n \in N \mapsto 1 + \ldots + 1, \quad -n \in \N \mapsto -(1 + \ldots + 1)
+\end{align*}
+Let $I = \Ker \phi$ such that
+\begin{align*}
+\Z/I \simeq \Image \phi \subseteq K
+\end{align*}
+Since $K$ is a field, we know that $\Image \phi$ is an integral domain.\\
+
+\begin{lemma}[]
+	Let $I \subseteq \Z$ be an ideal. Then it is also a principal Ideal $I = (m)$ for an $m \in \N$. The quotient is an integral domain if and only if $m = 0$ or if $m$ is a prime number.
+\end{lemma}
+The proof will follow a similar idea as when showing that o
+If $I \cap \N_{> 0}$ is the empty set, it's clear that $I = \{0\}$. Else we can look for the smallest non-zero element $m \in I \cap \N_{> 0}$. If $n \in I$ we can use division with remainder to obtain $n = k \cdot m + r$ for $k \in \Z$ and $r \in \{0, \ldots, m-1\}$. But since $I$ is an ideal, $r$ is also in $I$ and because $m$ is the smallest element, $r = 0$. So $I = (m)$.\\
+If $m = ab$ trivial. If $m > 0$ is prime, then $\Z/(m)$ is a field and thus an integral domain.\\
+
+
+\begin{definition}[Characteristic]
+	Let $K$ be a field. We say that $K$ has \textbf{characteristic} zero, if $\phi: \Z \to K$ is injective. We say that $K$ has characteristic $p \in \N_{>0}$, if $\Ker \phi = (p)$.
+\end{definition}
+
+Example: The fields $\Q,\R,\C$ have characteristic zero. Note that since $\Z$ is the initial ring, we can always divide out $\Q = (\Z \times \Z)/\sim$. So such a field always contains an isomorphic copy of $\Q$.\\
+The Field $\F_p = \Z/(p)$, for $p$ prime (or else it's not a field) has characteristic $p$\\
+
+
+\begin{proposition}[]
+	Let $K$ be a field with characteristic $p > 0$. Then the \emph{Frobeniusmap}
+	\begin{align*}
+		F: x \in K \to x^{p}
+	\end{align*}
+	a Ring homomorphism. If $\abs{K} < \infty$, $F$ is a Ring automorphism.
+\end{proposition}
+
+Proof: $F(0) = 0, F(1) = 1$ $F(xy) = F(x) F(y)$. For addition, we use the binomial expansion.
+\begin{align*}
+	F(x+y) = (x + y)^p = \sum_{k=0}^{p} \binom{p}{k}x^k y^{p-k} = x^p + y^p = F(x) + F(y)
+\end{align*}
+Where we used $p | \binom{p}{k}$ for $k \notin \{0,p\}$. Since
+\begin{align*}
+	\binom{p}{k} := \frac{p!}{k!(p-k)!} = \frac{p(p-1) \dots (p-k+1)}{k!}
+\end{align*}
+If $\abs{K} < \infty$, $F$ is also surjective since it is injective by $\Ker \phi = \{0\}$ because $K$ is finite. 

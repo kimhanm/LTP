@@ -1,0 +1,45 @@
+\begin{empheq}[box=\bluebase]{align*}
+    \begin{array}{c}
+        A \in GL(m,K), b \in M(m\times n,K), C \in M(n\times m,K), D \in GL(n,K)\\
+        \begin{pmatrix}
+            A & B\\
+            C & D
+        \end{pmatrix}
+            = \begin{pmatrix}
+            A & 0\\
+            C & E_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            E_m & A^{-1}B\\
+            0 & D - CA^{-1}B
+        \end{pmatrix}
+        = \begin{pmatrix}
+            E_m & B\\
+            0 & D
+        \end{pmatrix}
+        \begin{pmatrix}
+            A - BD^{-1}C & 0\\
+            D^{-1}C & E_n
+        \end{pmatrix}\\
+        \implies \det \begin{pmatrix}
+            A & B\\
+            C & D
+        \end{pmatrix} = \det(A) \cdot \det(D - CA^{-1}B) = \det(D) \cdot \det(A - BD^{-1}C)
+    \end{array}
+\end{empheq}
+
+
+Die \textbf{Vandermonde Matrix} ist gegeben durch 
+
+\begin{empheq}[box=\bluebase]{align*}
+    V(x_1, \ldots, x_n) = \begin{pmatrix}
+        1 & x_1 & x_1^2 & \cdots & x_1^{n-1}\\
+        1 & x_2 & x_2^2 & \cdots & x_2^{-1}\\
+        \vdots & \ddots & \ddots & \vdots\\
+        1 & x_n & x_n^2 & \cdots & x_n^{n-1}
+    \end{pmatrix}, \quad \det V(x_1, \ldots,x_n) = \prod_{1 \leq i < j \leq n} (x_j - x_i)
+\end{empheq}
+
+\begin{empheq}[box=\bluebase]{align*}
+    \sum_{i = 1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}, \quad \sum_{i = 1}^{n}i^3 = \left(\sum_{i = 1}^{n}i\right)^2 = \frac{n^2(n+2)^2}{4}, \quad \prod_{i=1}^{n-1}(1 + \frac{1}{i})^i = \frac{n^n}{n!}
+\end{empheq}

@@ -1,0 +1,174 @@
+
+\section{Representation Theory}
+\subsection{Definition and Examples}
+
+\begin{dfn}[]
+  A \textbf{representation} of a group $G$ on a vector space $V \neq 0$ is a group homomorphism $\rho: G \to \GL(V)$.
+  We say that $V$ is the \textbf{representation space} of the representation $\rho$.
+  The dimension of the representation is the dimension of $V$.
+\end{dfn}
+So a representation $\rho$ associates to each $g \in G$ an invertible linear map $\rho(g): V \to  V$ that is compatible with the group multiplication, i.e.
+\begin{align*}
+  \rho(gh) = \rho(g) \rho(h)
+\end{align*}
+
+
+\begin{ex}[]
+  \begin{itemize}
+    \item Every group $G$ can act on any vector space $V$ by $\rho(g) = \id_V$, which is the \emph{trivial representation}.
+    \item For $G = S_n$ and $V = \C^{n}$ with basis $e_{1}, \ldots, e_{n}$, we define the representation as
+      \begin{align*}
+        \rho(\sigma)e_i = e_{\sigma(i)}
+      \end{align*}
+    \item For $G = O(3)$ and $V = C^{\infty}(\R^{3})$, we map $g \mapsto  \rho g$ defined by $(\rho(g)f)(x) = f(g^{-1}(x)$
+  \end{itemize}
+\end{ex}
+
+\begin{dfn}[]
+  The \textbf{regular representation} of a finite group $G$ is the representation on $\C(G)$ of all functions $f: G \to  \C$
+  \begin{align*}
+    (\rho_{\text{reg}}(G)f)(h) = f(g^{-1}h), \quad f \in \C(G), g,h \in G
+  \end{align*}
+\end{dfn}
+Any function $f: G \to \C$ can also be described as an infinite sum of ``delta distributions''.
+In other words, $\C(G)$ has a basis $\{\delta_g\}_{g \in G}$ and $\phi_{\text{reg}}$ is the representation such that $\rho_{\text{reg}}(g)\delta_h = \delta_{gh}$
+
+
+\begin{dfn}[]
+  A homomorphism of representations $(\rho_1,V_1) \to (\rho_2,V_2)$ is a linear map $\phi: V_1 \to V_2$ such that
+  \begin{align*}
+    \phi \circ \rho_1(g) = \rho_2(g) \circ\phi
+  \end{align*}
+  we say that two representations are \textbf{equivalent} (or isomorhpic), if there exists a representation homomorphism $\phi: V_1 \to  V_2$ that is also a vector space isomorphism.
+
+  We denote the vector space of all representation homomorphisms as $\Hom_G((\rho_1,V_1),(\rho_2,V_2))$ or sometimes just $\Hom_G(V_1,V_2)$
+\end{dfn}
+Equivalently, $\Hom_G(V_1,V_2)$ consists of linear maps $\phi: V_1 \to  V_2$ such that the following diagram commutes for all $g \in G$.
+\begin{center}
+\begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
+  V_1 \arrow[]{r}{\phi} \arrow[swap]{d}{\rho_1(g)}& V_2 \arrow[]{d}{\rho_2(g)}\\
+  V_1 \arrow[]{r}{\phi}& V_2
+\end{tikzcd}
+\end{center}
+
+Note that if $\rho: G \to \GL(V)$ is a representation, then $\rho$ can be extended to any vector space $W \supseteq V$ by taking $\rho \oplus \id_{V^{\bot}}$.
+The resulting representation does not ``make use'' of the additional dimension in $W$ and we could come to the conclusion that we only need to study the smallest dimensional representations of a group.
+\begin{dfn}[]
+  An \textbf{invariant subspace} of a representation $(\rho,V)$ is a subspace $W \subseteq V$ such that $\rho(g)W \subseteq W$ for all $g \in G$.
+  A representation is said to be \textbf{irreducible}, if the only invariant subspaces are $V$ and $\{0\}$.
+
+  If $W \neq \{0\}$ an invariant subspace, then the representation induces a representation by restrction of $\rho(g)$ on $W$.
+  We call this the \textbf{subrepresentation}
+  \begin{align*}
+    \rho|_W : G \to \GL(W), g \mapsto \rho(g)|_W
+  \end{align*}
+\end{dfn}
+
+\begin{dfn}[]
+  A representation $(\rho,V)$ is called \textbf{completely reducible}, if there exist invariant subspaces $V_{1}, \ldots, V_{n}$ such that $V = V_1 \oplus \ldots \oplus V_n$ such that the subprepresentations $(\rho|_{V_i},V_i)$ are irreducible.
+\end{dfn}
+Such a decomposition is also called a decomposition into irreducible representations.
+
+
+Altough most reducible representations we want to study are completely reducible, there are some counterexamples.
+\begin{ex}[]
+  The representation $\rho: \Z \to \GL(2,\C)$ given by
+  \begin{align*}
+    \rho(n) = \begin{pmatrix}
+    1 & n\\
+    0 & 1
+    \end{pmatrix}
+    \in \GL(2,\C)
+  \end{align*}
+  is reducible, but \emph{not} complete reducible. 
+  The only non-trival invariant subspace is $\text{span} e_1$.
+\end{ex}
+
+We can ask, \emph{when} are representations completely reducible?
+\begin{lem}[]
+  Set $(\rho,V)$ be a finite dimensional representation of $G$ such that to every subpsace $W \subseteq V$ there exists an invariant subspace $W' \subseteq V$ such that $V = W \oplus W'$. Then $(\rho,V)$ is completely reducible.
+\end{lem}
+\begin{proof}
+We use induction on $d = \dim V$: For $d = 1$, $V$ is irreducible so $V = V$ is such a decomposition.
+
+Let $\dim V = d + 1$. If $V$ is reducible, there exists an invariant subspace $W \subseteq V$ with $1 \leq \dim W \leq d$ and an invariant subspace $W' \subseteq V$ such that $V = W \oplus W'$.
+
+We now show that $W$ fulfills the conditions for the lemma. Then by induction the proof follows.
+
+So let $U \subseteq W$ be invariant. Then there exists an invariant subspae $U' \subseteq V$ such that $V = U \oplus U'$, then $W = U \oplus (W \cap U')$, since every $w \in W$ can be uniquely written as a sum $w = u + u'$ for $u \in U, u' \in U'$. But since $U \subseteq W$, $u' = w - u \in W$.
+\end{proof}
+
+\subsection{Examples}
+Consider the representation $\rho$ of the group $S_3$ on $\C^{3}$ with basis $e_1,e_2,e_3$ with $\rho(\sigma)e_i = e_{\sigma(i)}$.
+
+Tis representation has two invariant subspaces
+\begin{align*}
+  V_1 = \text{span} \begin{pmatrix}
+  1\\
+  1\\
+  1 
+  \end{pmatrix}
+  \quad \text{and} \quad V_2 = \{(x_1,x_2,x_3) \big\vert x_1 + x_2 + x_3 = 0 \}
+\end{align*}
+and $V = V_1 \oplus V_2$, since 
+\begin{align*}
+  (1,1,1)^{T}, (1,-1,0)^{T}, (0,1,-1)^{T}
+\end{align*}
+are a basis of $\C^{3}$.
+Furthermore, since $\dim V_1 = 1$ it is irreducible. 
+We can also show that $V_2$ is irreducible, because if $W \subseteq V_2$ were a $1$-dimensional subspace, we could write 
+\begin{align*}
+  W = \text{span} w = \text{span} (x_1,x_2,x_3)^{T} \neq \{0\}, \quad x_1+x_2+x_3 = 0
+\end{align*}
+but since $W$ should be $\rho(g)$ invariant, we would have that
+\begin{align*}
+  \rho(\tau_{1,2})(x_1,x_2,x_3)^{T} = (x_2,x_1,x_3)^{T} \in W \implies (x_2,x_1,x_3)^{T} = \lambda (x_1, x_2,x_3)^{T}
+\end{align*}
+doing this for the other permutations, it follows that $x_1=x_2=x_3$ which is a contradiction.
+
+This decomposition can easily be generalized for $\C^{n}$
+\subsection{Unitary Representations}
+
+In this section, we want to show that all representations of finite groups are completely reducible.
+
+\begin{dfn}[]
+  A representation $\rho$ on $V$ with inner product is called \textbf{unitary}, if $\rho(g)$ is unitary for all $g \in G$, i.e.
+  \begin{align*}
+    (\rho(g)u, \rho(g)v) = (u,v) \forall g \in G, \forall u,v \in V
+  \end{align*}
+\end{dfn}
+In particular $\rho(g)^{\ast} = \rho(g)^{-1}$.
+
+\begin{thm}[]
+  Unitary finite dimensional representations are completely reducible.
+\end{thm}
+\begin{proof}
+  Let $W$ be a invariant subspace of a unitary representation $(\rho,V)$ and let $W^{\bot}$ be its orthogonal complement.
+  Then $W^{\bot}$ is again invariant, since
+  \begin{align*}
+    v \in W^{\bot}, w \in W, g \in G \implies (\rho(g)v,w) = (\rho(g)^{-1}\rho(g)v, \rho(g)^{-1}w) = 0
+  \end{align*}
+  which shows that $\rho(g) v \in W^{\bot}$. Therefore we can use the previous lemma on the decomposition $V = W \oplus W^{\bot}$ to show that $V$ is completely reducible.
+\end{proof}
+
+We might ask when there exists such an inner product $(\cdot,\cdot)$ on $V$ such that the representation is unitary. The answer is always.
+\begin{thm}[]
+  Let $(\rho,V)$ be a finite dimensional representaion of a finite group $G$. Then there exists an inner product $(\cdot,\cdot)$ on $V$ such that $(\rho,V)$ is unitary.
+\end{thm}
+\begin{proof}
+  Let $(\cdot,\cdot)_{0}$ be any inner product on $V$ and construct the inner product $(\cdot,\cdot)$ defined as
+  \begin{align*}
+    (v,w) := \sum_{g \in G} (\rho(g)v, \rho(g)w)_0
+  \end{align*}
+  which is an inner product on $V$ as it is the sum of symmetric positve definite matrices.
+  
+  To show that it is unitary, let $g \in G$. Then
+  \begin{align*}
+    (\rho(g)v, \rho(g)h) = \sum_{h \in G}(\rho(hg)v, \rho(hg)w) = \sum_{h' = hg \in G} (\rho(h')v),\rho(h')w) = (v,w)
+  \end{align*}
+\end{proof}
+
+\begin{cor}[]
+  Every finite dimensional representation of finite groups is completely reducible.
+\end{cor}
+

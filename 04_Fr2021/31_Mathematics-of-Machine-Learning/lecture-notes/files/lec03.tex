@@ -1,0 +1,68 @@
+\section{Dimension Reduction}
+The idea in dimension reduction (or principal component analysis) is that we have data consisting of $m$ points $y_{1}, \ldots, y_{m}$ in a high-dimensional space $\R^{p}$, and we want to find the best $d$-dimensional approximation of the data, where $d \ll p$.
+
+
+We start by centering the points around their weighted average. So let
+\begin{align*}
+  x_k = y_k - \frac{1}{m} \sum_{k=1}^{m}y_k
+\end{align*}
+and we are looking for $m$ points $z_{1}, \ldots, z_{m}$ that lie in a $d$-dimensional subpsace of $\R^{p}$ that lie as close as possible.
+Write $Z$ as a matrix, where the rows are $z_{1}, \ldots, z_{m}$ and the same for $X$.
+\begin{align*}
+  Z = \begin{pmatrix}
+  \vert &  &\vert \\
+   z_1& \ldots &z_m \\
+   \vert&  & \vert
+  \end{pmatrix}
+  \quad \text{and} \quad 
+  X = \begin{pmatrix}
+  \vert &  &\vert \\
+   x_1& \ldots &x_m \\
+   \vert&  & \vert
+  \end{pmatrix}
+\end{align*}
+The requirement that $z_{1}, \ldots, z_{m}$ lie in a $d$-dimensional space is equivalent to saying that $\text{rank}(Z) \leq d$.
+And requiring that they approximate $x_{1}, \ldots, x_{m}$ as best as possible is to minimize
+\begin{align*}
+  \sum_{k=1}^{m}\|x_k - z_k\|^{2} = \|X - Z\|_F^{2}
+\end{align*}
+the solution to this is just the truncated SVD of $X$, so we would find
+\begin{align*}
+  Z = U \Sigma V^{T}, \quad \text{for} \quad U \in \R^{p \times d}, \Sigma \in \R^{d \times d}, V \in \R^{m \times d}
+\end{align*}
+The $k$-th column of $V^{T}$ (and thus also $\Sigma V^{T}$) can be viewed as a representation of $x_k$ as a $d$-dimensional vector.
+So let's define
+\begin{align*}
+  \beta_k = k\text{-th column of } \Sigma V^{T}, \quad k = 1, \ldots, m
+\end{align*}
+By letting $\mu$ to be the weighted average of all $y_k$, we can write
+\begin{align*}
+  \frac{1}{m-1}XX^{T} = \frac{1}{m-1} \sum_{k=1}^{m}(y_k - \mu)(y_k - \mu)^{T}
+\end{align*}
+but also, using the SVD of $X$: $X = U_f \Sigma_f V_f^{T}$ we get
+\begin{align*}
+  \frac{1}{m-1}XX^{T} 
+  &= \frac{1}{m-1}U_f \Sigma_FV_f^{T}\left(
+    U_f \Sigma_f V_f^{T}
+  \right)^T
+  \\
+  &= \frac{1}{m-1}U_f \Sigma_f^2 U_f^{T}
+\end{align*}
+Not instead of $XX^{T}$ let's consider $X^{T}X$. We can make sense of the entries of the matrix as
+\begin{align*}
+  (X^{T}X)_{ij} =\left<x_i,x_j\right>
+\end{align*}
+then take the leading eigenvectors of $X^{T}X$ and use them as a basis.
+
+Another concept is that of \textbf{Manifold learning}, where we trust small distances over large distances.
+
+[Missing 30 mins]
+
+Given an undirected graph. We can take its adjacency matrix $A$ and see what the leading eigenvectors of $A$ say about the network.
+
+\begin{align*}
+  \lambda_2(L) = 0 \iff G \text{ is disconnected}
+\end{align*}
+
+
+

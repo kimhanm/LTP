@@ -1,0 +1,21 @@
+\begin{theorem}[Cauchy- Integral Formula]
+For
+\end{theorem}
+
+
+
+\begin{ntheorem}[Higher derivatives]
+	Let $f: \Delta \to \C$ be holomorphic. For $k \geq 0$ and $\gamma \subseteq \Delta$ a closed path. Then for all $z \notin \gamma$
+	\begin{empheq}[box=\bluebase]{align*}
+		n(\gamma,z) f^{(k)}(z) = \frac{k!}{2\pi i} \int_{\gamma} \frac{f(\xi)}{(\xi - z)^{k+1}}d\xi
+	\end{empheq}
+\end{ntheorem}
+As a corollary, we get the Cauchy estimate for a bounded function $f(z) \leq M$ we have
+\begin{align*}
+	\abs{f^{(k)}(z)} \leq \frac{k!Mr}{(R - \abs{z - a}^{k+1}} \leq \frac{k! M}{r^{k}}
+\end{align*}
+
+As a corollary
+\begin{ntheorem}[Liouville Theorem]
+	Every bounded entire function is constant.
+\end{ntheorem}

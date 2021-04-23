@@ -1,0 +1,83 @@
+\begin{proposition}[]
+	Let $R$ be a UFD and $p \in R$ prime. If $f \in R[X] \setminus \{0\}$ satisfies
+	\begin{align*}
+		f \text{ primitive}, \quad \deg(f) = \deg(f_{\mod p}, \quad f_{\mod p} \in R/(p)[X] \text{ is irreducible}
+	\end{align*}
+	then $f \in R[X]$ is prime.
+\end{proposition}
+Proof: Let $f$ satisfy the above conditions and let $g, h \in R[X]$ such that $f = gh$. Then also $f_{\mod p} = g_{\mod p} h_{\mod p}$, and since $f_{\mod p}$ is irreducible in $R/(p)[X]$, we know that either $g_{\mod p}$ or $g_{\mod p}$ is a unit in $R/(p)[X]$. 
+Without loss of generality, we can assume that it is $g_{\mod p}$, so in particular we can write 
+\begin{align*}
+	g \equiv a \mod p, \quad \text{for some} \quad a \in R
+\end{align*}
+We then can show that $g_{\mod p}$ is of degree zero. Since $g$ modulo $p$ is a constant, then the coefficient of any non-constant term must be divisible by $p$. But then the leading coefficient of $f$ must also be divisible by $p$, but that isn't possible since $\deg(f) = \deg(f_{\mod p}$, which wouldn't be true.
+Therefore $g | I(f)$, but since $f$ is primitive, $I(f) \sim 1$ and therefore $g \in R^{\times} = R[X]^{\times}$. Which shows that $f$ irreducible, and since $R$ is a UFD, by Gauss's Theorem $R[X]$ is also a UFD so $f$ is also prime.\\
+
+
+Let's test this condition for $f(X) = X^4 + 3X^3 - X^2 + 1 \in \Z[X]$ by showing that for $p = 5$, $f$ satisfies these three conditions.
+Because its leading coefficient is $1$, it is clearly primitive and keeps its degree under $\mod 5$.
+Here, $R/(p)[X]$ is exactly $\F_5[X]$ so to show that it is irreducible
+we wil show that $f_{\mod 5} \in \F_5$ has no linear or quadratic factors.
+We can rule out the linear factors because $f_{\mod p} \in \F_5$ has no roots:
+\begin{align*}
+	f(0) = 1 \neq 0, \quad f(1) = -1 \neq 0, \quad \ldots
+\end{align*}
+The quadratic factors can also be ruled out using \href{https://www.sagemath.org/}{SageMath}\footnotemark.
+\footnotetext{SageMath is a free open-source mathematics software system licensed under the GPL. It builds on top of many existing open-source packages: NumPy, SciPy, matplotlib, Sympy, Maxima, GAP, FLINT, R and many more.}
+
+Alternatively we can find out that
+\begin{align*}
+	f_{\mod 2} = (X + 1)(X^3 + X + 1) \quad \text{and} \quad f_{\mod 3} = (X^2 + 1)^2
+\end{align*}
+So if $f = gh \in \Z[X]$ were a non-trivial factorisation, for some $g,h \notin \Z[X]^{\times}$, then the same must be true $\mod 2$ and $\mod 3$.
+But the calculation $\mod 2$ gives us, that the degree of $g$ is either $1$ or $3$, whereas the calculation $\mod 3$ need its degree to be $2$.
+
+
+\begin{ntheorem}[Eisenstein-Criterium]
+	Let $R$ be a UFD and $p \in R$ prime. And let $f(X) = \sum_{i = 1}^{n}a_i X^i$ be primitive for $n \geq 1$ such that
+	\begin{align*}
+		p\not|a_n, \quad p|a_i, \text{ for } 0\leq i \leq n-1, \quad p^2\not| a_0
+	\end{align*}
+	then $f$ is prime in $R[X]$.
+\end{ntheorem}
+Proof: Let $f = gh$ be a non-trivial decomposition for $g,h \notin R[X]$. Since $f$ is primitive, also $g$ and $h$ must be primitive. Set $\deg(g) =: k > 0$ and $\deg(h) =: l > 0$ and let's look at $f = gh$ modulo $p$:
+\begin{align*}
+f_{\mod p} = {a_n}_{\mod p} X^n = g_{\mod p} h_{\mod p}
+\end{align*}
+Now let's look at this in $K[X] := \text{Quot}(R/(p))[X]$, where $a_n \neq 0$ is a unit and $X$ is a prime factor. We know that
+\begin{align*}
+	g_{\mod p} = bX^{k'}, \quad h_{\mod p} = c X^{l'} \quad \text{for some} \quad k' \leq k, l' \leq l, b\neq 0, c \neq 0
+\end{align*}
+But $k' + l' = n$, which is only possible if $k' = k, l' = l$. Therfore$p$ must divide the constant term of both $g$ and $h$, since $p$ is prime. So looking at $f = gh$ in $R[X]$ again, we see that $a_0$ is the product of two coefficients, both of which are divisible by $p$.
+But that would mean that $p^2|a_0$, which contradicts the assumtion $\lightning$.
+Therefore, $f$ is irreducible and since $R$ is a UFD, $f$ is also prime.\\
+
+
+For an example we can use the Eisenstein criterium to show that $X^n - 2 \in \Z[X]$ is irreducible for every $n \geq 1$.
+
+\begin{corollary}[]
+	For every prime number $p \in \N$, the $p$-th circle divison polynomial
+	\begin{align*}
+		\Phi_p(X) = 1 + X + X^2 + \ldots X^{p-1} = \frac{X^p - 1}{X - 1}
+	\end{align*}
+	is irreducible in $\Z[X]$
+\end{corollary}
+Proof: We use the Eisenstein Criterium for
+\begin{align*}
+	f(Y) = \frac{(Y+1)^p - 1}{Y} = Y^{-1} \left(\sum_{k = 0}^{n} \binom{p}{k} Y^k - 1\right) = \sum_{k=1}^{p} \binom{p}{k} Y^{k-1}
+\end{align*}
+We can immediately see that the highest coefficient $k = p$ is normed, since $\binom{p}{p} = 1$, so $f$ is primitive. Further, the other terms, excluding the non constant term are divisible by $p$, and the constant term is $1$, which is not divisible by $p^2$. By the Eisenstein criterium, $f(Y)$ is irreducible in $\Z[Y]$.
+
+To import this property onto $\Z[X]$ we show that $\Z[Y]$ and $\Z[X]$ ar isomorphic for $X = Y + 1$ using the evalution mapping to define the isomorphisms
+\begin{align*}
+	\Psi(f(Y)) = f(X-1), \quad \tilde{\Psi}(g(X)) = g(Y + 1)
+\end{align*}
+So since $f \in \Z[Y]$ is irreducible and since $\Phi_p(X) = \Psi(f)$, the ciricle division polynomial is also irreducible.\\
+
+Another application of the Eisenstein Criterium is that we can show that for every $n \geq 1$ the polynomial $X^n + Y^n - Z^n \in \C[X,Y,Z]$ is irreducible, by setting $R = \C[Y,Z]$, and $p = Y - Z \in R$ prime. Then $p| Y^n - Z^n$ since
+\begin{align*}
+	(Y - Z)(Y^{n-1} + Y^{n-2}Z + \ldots + YZ^{n-2} + Z^{n-1}) = Y^n - Z^n
+\end{align*}
+and $p^2 \not| Y^n - Z^n$ by showing that $(Y - Z)$ does not divide the right side $(Y^{n-1} + \ldots + Z^{n-1})$.
+
+

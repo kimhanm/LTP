@@ -1,0 +1,33 @@
+\section{Magnetostatics}
+In Magnetostatics, we consider systems where the current is steady. This means in particular that
+\begin{align*}
+  \vec{J} = \const, \implies \rho = \const, \quad \vec{E} = \const, \quad \vec{B} = \const
+\end{align*}
+
+Under the \textbf{Coulomb-Eichung}
+\begin{table}[h]
+\centering
+\begin{tabular}{L|L}
+  \text{Electrostatics} & \text{Magnetostatics}\\
+  \Phi(\vec{x}) = \frac{1}{4 \pi \epsilon_0} \int d^{3}\vec{y} \frac{\rho(\vec{y})}{\abs{\vec{x}-\vec{y}}}
+  &
+  A(\vec{x}) = \frac{1}{4 \pi \epsilon_0c^{2}} \int d^{3} \vec{y} \frac{\vec{J}(\vec{y})}{\abs{\vec{x}- \vec{y}}}
+\\
+  \vec{E} = - \nabla \Phi
+  &
+  \vec{B} = \vec{\nabla} \times \vec{A}
+\\
+  \vec{\nabla} \cdot \vec{E} = \frac{\rho}{\epsilon_0}
+  &
+  \vec{\nabla} \times \vec{B} = \frac{\vec{J}}{\epsilon_0c^{2}}
+\\
+  \vec{\nabla} \times \vec{E} = 0
+  &
+  \vec{\nabla} \cdot \vec{B} = 0
+\\
+  \int_{\del V} d \vec{S} \cdot \vec{E} = \frac{Q_{\text{inside}}}{\epsilon_0}
+  &
+  \oint_{\del S}\vec{B}\cdot d \vec{\ell} = \frac{I_{\text{inside}}}{\epsilon_0 c^{2}}
+\end{tabular}
+\caption{Analogies between Electrostatics and Magnetostatics}
+\end{table}

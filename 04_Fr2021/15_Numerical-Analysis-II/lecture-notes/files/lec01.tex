@@ -1,0 +1,61 @@
+
+\begin{dfn}[]
+  An Ordinary differential equation (\textbf{ODE}) is an equation that contains one or more derivatives of un an unknown function $x(t)$. The equation may contain $x$ itself and constants.
+  We saythat and ODE \textbf{of order $n$} if $x^{(n)}(t)$ is the highest order derivative in the equation.
+\end{dfn}
+
+
+\begin{center}
+Missing 10 min
+\end{center}
+
+
+\section{Methods of resolution}
+\subsection{Separation of variables}
+Let $I,J$ be two open variables and $f \in C^0(I), g \in C^0(J)$. When doing separation of variables, we look for solutions to the equation
+\begin{align*}
+  \frac{d x}{d t} = f(t)g(x)
+\end{align*}
+with some initial conditions $t_0 \in I, x_0 = x(t_0) \in J$.
+In the special case where $g(x_0) = 0$, then the constant function $x(t) = x_0$ is a solution to this equation.
+
+Suppose that $g(x_0) \neq 0$ is non-zeo, then in a neighborhood of $x_0$, $g$ is non-zero so we can divide by $g(x)$ to separate the variables. We find
+\begin{align*}
+  \frac{dx}{g(x)} = f(t) dt
+\end{align*}
+If we let $F(t)$ and $G(x)$ be primites of $f(t)$ and $\frac{1}{g(x)}$, we get by integration that
+\begin{align*}
+  \int \frac{dx}{g(x)} = \int f(t) dt + c \implies x(t) = G^{-1}(F(t) + c)
+\end{align*}
+
+\subsection{Change of variables}
+Consider the following homogeneous ODE:
+\begin{align*}
+  \frac{d x}{d t} = f \left(
+    \frac{x(t)}{t}
+  \right)
+\end{align*}
+, where $f: I \to \R$ is a continuous function on an open interval $I \subseteq \R$.
+We change the variable to $x(t) = t y(t)$
+
+
+Any ODE can be turned into an autonomous ODE.
+
+
+We can see that from
+\begin{align*}
+  g'^T Jg' = J
+\end{align*}
+if we take the determinant on both sides, we see that $\det g'$ must be $\pm 1$, so $g'$ must be invertible.
+
+Given a hamiltonian system
+\begin{align*}
+  \frac{d x}{d t} = J^{-1} \nabla H(x)
+\end{align*}
+a symplectic change of variables $y = g(x)$ preserves the hamiltonian sytem
+\begin{align*}
+  \frac{d y}{d t} = J^{-1} \nabla_y G(y)
+\end{align*}
+
+
+

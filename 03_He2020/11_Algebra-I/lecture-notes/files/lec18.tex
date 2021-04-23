@@ -1,0 +1,188 @@
+\begin{corollary}[Third Isomorphism Theorem]
+Let $G$ be a group, $H \lhd G, K \lhd G$ and $K < H$. Then
+\begin{align*}
+	H/K \lhd G/K \quad \text{and} \quad (G/K)/(H/K) \simeq G/H \quad \text{where} \quad (xK)(H/K) \simeq xH
+\end{align*}
+\end{corollary}
+Proof: Since $K \subseteq H$ we can define the mapping
+\begin{align*}
+	\phi: G/H \to G/H, \quad gK \mapsto gH
+\end{align*}
+Since the group structures of $G/K$ and $G/H$ are defined by multiplication wit the representant, we also know that $\phi$ is a Group homomorphism:
+\begin{align*}
+	\phi\left((g_1K)(g_2K)\right) = \phi\left((g_1g_2)K\right) = (g_1g_2)H = \phi(g_1K)\phi(g_2K).
+\end{align*}
+$\phi$ is also surjective because \#\#\#
+Therefore
+\begin{align*}
+	(G/K)\Ker \phi \simeq G/H \quad \text{and} \quad \Ker \phi = \left\{gK \big\vert gH = eH\right\} = \left\{hK \big\vert h \in H\right\} = H/K
+\end{align*}
+
+
+\begin{corollary}[Modulus-Hom Adjunction]
+	Let $G$ be a group and $H \lhd G$. For any other Group $K$ there exists a natural isomorphism 
+	\begin{align*}
+		\Hom(G/H,K) \simeq \left\{\phi \in \Hom(G,K) \big\vert \phi|_H \equiv e_K\right\}
+	\end{align*}
+\end{corollary}
+
+\begin{corollary}[]
+Let $G$ be a group and $H \lhd G$. Then the following mappins are in inverse relation to eachother:
+\begin{align*}
+	(K < G \text{ with } H < K) &\mapsto K/H < G/H
+\end{align*}
+\end{corollary}
+Proof: Exercise
+
+
+\textbf{Examples:}
+\begin{itemize}
+	\item $C_n \lhd D_{2n}$ since rotations are in $C_n$ and a reflection will be conjugated to a rotation: $TRT^{-1} = R^{-1} \in C_n$ nd every subgroup $H < C_n$ is also a normal divisor of $D_{2n}$
+	\item The center $Z_G$ and the commutator grop $[G,G]$ are always normal.
+	\item The affine group $G = \{\begin{pmatrix}
+	a & b\\
+	0 & 1
+	\end{pmatrix} \big\vert a \in K^{\times}, b \in K\}$ for a field $K$.
+	\begin{align*}
+		H_1 = \left\{\begin{pmatrix}
+		1 & b\\
+		0 & 1
+		\end{pmatrix}\big\vert b \in K\right\} \lhd G\\
+		H_2 = \left\{\begin{pmatrix}
+		a & 0\\
+		0 & 1
+		\end{pmatrix} \big\vert a \in K^{\times}\right\} < G
+	\end{align*}
+\item Exercise: Let $G$ be a group and $H < G$ with index $2$. Then $H \lhd G$
+\item Exercise: classify/describe all groups of order $\leq 7,8,10$
+\end{itemize}
+
+
+\subsection{Group actions}
+We noticed that many groups can be understood not just through the group itself, but how other objects ``transform''. In this section, we will learn how to better understand groups by studying how groups can ``act'' on other objects.
+
+\begin{definition}[]
+	Let $G$ be a group and $T$ a set. A \textbf{Group action} (or \textbf{left action}) of $G$ on $T$ is a morphism
+	\begin{align*}
+		\cdot: G \times T \to T, \quad (g,t) \mapsto g \cdot t	
+	\end{align*}
+	such that for any $t \in T, g_1,g_2 \in G$
+	\begin{align*}
+		e \cdot t = t \quad \text{and} \quad g_1 \cdot (g_2 \cdot t) = (g_1g_2) \cdot t
+	\end{align*}
+	In this case we call $T$ a $G$-Set
+\end{definition} 
+
+Note: The definition is equivalent to the following:
+
+There exists a group homormophism
+\begin{align*}
+	\alpha: G \to \text{Bij}(T), \quad g \mapsto \alpha g, \quad \text{where} \quad \alpha_g(t) = g \cdot t
+\end{align*}
+
+\textbf{Example}
+\begin{itemize}
+	\item Let $T$ be a set and $G$ a group, then we have the trivial group action $g \cdot t = t$ 
+	\item The group $G = S_n$ can be though of as \emph{acting} on $T = \{ 1, \ldots, n\}$ with $\sigma \cdot t = \sigma(t)$.
+	\item $G = \GL(V)$ can act on a vector space $V$ through $A \cdot v = Av$ for $A \in \GL(V)$ and $v \in V$
+	\item Let $G$ be a group and $H < G$. We can define $T = G/H$ and
+		\begin{align*}
+			g \cdot (xH) = gxH \text{ for } g \in G, xH \in G/H
+		\end{align*}
+		We can also define a group action on $H \setminus G$ but this time with $g \cdot (Hx) = HXg^{-1}$
+	\item For a group $G$, se can set $T = G$ and see conjugation as a group action
+		\begin{align*}
+			g \cdot x = gxg^{-1}, \text{ for } g \in G, x \in T = G
+		\end{align*}
+	\item Let $G$ be a group and set $T = \mathcal{P}(G)$ as the power set. Define the group action
+		\begin{align*}
+			g \cdot A = gA = \{ga \big\vert a \in A\}
+		\end{align*}
+	\item For a group $G$ and $T$ the set of subgroups of $G$, $T = \left\{H < G\right\}$ define
+		\begin{align*}
+			g \cdot H = gH g^{-1}
+		\end{align*}
+		which is well-defined.
+\end{itemize}
+
+
+\begin{definition}[]
+Let $G$ be a set and $T$ a $G$-set. 
+\begin{itemize}
+	\item We say $S \subseteq T$ is \textbf{invariant}, if $g \cdot S = S$ for all $g \in G$
+	\item $t_0 \in T$ is called a \textbf{fixpoint} of the group action, if $g \cdot t_0 = t_0$ for all $g \in G$. We denote the set of all fixpoints as
+		\begin{align*}
+			\text{Fix}_G(T) = \left\{t_0 \in T \big\vert t_0 \text{ is fixpoint}\right\}
+		\end{align*}
+	\item For $t_0 \in T$ we call the the set 
+		\begin{align*}
+			G \cdot t_0 = \left\{g_0 \cdot t \big\vert g \in G\right\}
+		\end{align*}
+		the \textbf{$G$-(orbit)} of $t_0$.
+	\item For $t_0 \in T$, the \textbf{stabilizer} of $t_0$ is the subset
+		\begin{align*}
+			\text{Stab}_G(t_0) = \left\{g \in G \big\vert g \cdot t_0 = t_0\right\}
+		\end{align*}
+		which can be shown to be a subgroup of $G$
+	\item If the mapping $\alpha: g \in G \mapsto \alpha_g \in \text{Bij}(T)$ is injective, we call the group action \textbf{faithful}.
+	\item We call the group action \textbf{transitive}, if for every pair $t_1,t_2 \in G$ there exists a $g \in G$ such that $g \cdot t_1 = t_2$.
+	\item Wa transitive group action is called \textbf{sharply transitive}, if such a $g$ is uniquely determined.
+	\item The set of $G$-orbits is written as
+		\begin{align*}
+			G \setminus T = \{G \cdot t_0 \big\vert t_0 \in T\}
+		\end{align*}
+\end{itemize}
+\end{definition}
+
+
+\begin{lemma}[]
+Let $G$ be a group and $T$ a $G$-set. Then the relation
+\begin{align*}
+	t_1 \sim_G t_2 \iff \exists g \in G \text{ such that } g \cdot t_1 = t_2
+\end{align*}
+is an equivalence relation. The orbits are exactly the equivalence classes and $G/\sim_G = G \setminus T$ is the quotient space
+\end{lemma}
+Proof: Reflexivity follos from using $g = e$. Symmetry follows by taking the inverse $g$:
+\begin{align*}
+	t_1 \sim t_2 \iff \exists g \in G: g \cdot t_1  t_2 \implies t_1 = e \cdot t_1 = (g^{-1}g)t_1 = g^{-1}\cdot (g \cdot t_1)) = g^{-1} \cdot t_2
+\end{align*}
+For transitivity, there exist $g_1,g_2 \in G$ such that $g_1 \cdot t_1 = t_2$ and $g_2 \cdot t_2 = t_3$. Then
+\begin{align*}
+	(g_2g_1) \cdot t_1 = g_2 \cdot (g_1 \cdot t_1) = g_2 \cdot t_2 = t_3
+\end{align*}
+
+\begin{definition}[]
+	Let $G$ be a group and $T_1, T_2$ two $G$-sets. A \textbf{$G$-Morphism} from $T_1$ to $T_2$ is a mapping $f: T_1 \to T_2$ that respects the group actions:
+	\begin{align*}
+		f(g \cdot t) = g \cdot f(t), \quad \forall g \in G, t\in T_1	
+	\end{align*}
+	We further say $f$ is a $G$-Isomorphism, if $f$ is also bijective.
+\end{definition}
+
+\begin{theorem}[]
+	Let $G$ be a group and $T$ a $G$-set, $t_0 \in T, T_0 = G \cdot t_0$ and $H = \text{Stab}_G(t_0)$. Then $H < G$, $T_0$ is invariant and the mapping
+	\begin{align*}
+			f: G/H \to T_0, \quad gH \mapsto g \cdot t_0	
+	\end{align*}
+	is a (well-defined) $G$-isomorphism. So the orbit is isomorph to the the modulo group of the stabilisator.
+\end{theorem}
+Proof: Let $h_1, h_2 \in H$. Then 
+\begin{align*}
+	(h_1h_2) \cdot t_0 = h_1 \cdot (h_2 \cdot t_0) = h_1 \cdot t_0 = t_0 \quad \text{and} \quad h_1^{-1} \cdot t_0 = t_0
+\end{align*}
+since also $e \in H$, it is non empty so $H < G$. Now let $g \in G$ and $g' \cdot t_0 \in T_0 = G \cdot t_0$. $T_0$ is invariant since
+\begin{align*}
+	g \cdot (g' \cdot t_0) = (gg') \cdot t_0 \in T_0 = G \cdot T_0
+\end{align*}
+If $g_1,g_2 \in G$. Then
+\begin{align*}
+	g_1 \cdot t_0 = g_2 \cdot t_0 \iff (g_2^{-1}g_1) \cdot t_0 = t_0 \iff g_2^{-1}g_1 \in H \iff g_1H = g_2H
+\end{align*}
+Reading it from right to left show that $f$ is well-defined and from left to right shows that $f$ is injective. Surjectivity is also true, since
+\begin{align*}
+	T_0 = G \cdot t_0 = f(G) = \Image f
+\end{align*}
+Now let $g_1,g_2 \in G$ then $f$ is a G-Morphism, since
+\begin{align*}
+	f(g_1 \cdot(g_2 H)) f(g_1g_2)H) = (g_1g_2) \cdot t_0 = g_1(g_2 \cdot t_0) = g_1 f(g_2H)
+\end{align*}

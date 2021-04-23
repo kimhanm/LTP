@@ -1,0 +1,94 @@
+\section*{Introduction}
+The main topics for this course will the the study of Algebraic methods and symmetry. 
+We will see later that we can describe symmetries with groups and representations.
+
+Here are some examples of symmetry in physics
+\begin{itemize}
+  \item In mechanics, we could have coupled harmonic oscillators displaying mirror symmetry.
+  \item The kepler problem will use $O(3)$-symmetry
+  \item In solid state physics, we can look at crystal grids displaying translational $\Z^3$-symmetries
+  \item In Quantum mechanics from last semester, we saw the hydrogen atom.
+  \item In nuclear and particle physics, representation theory is central and gives us Gauge theory.
+  \item In relativity, we see Lorentz symmetry.
+\end{itemize}
+We want too find out how to describe and use symmetry.
+
+\section{Groups}
+
+\subsection{Basic definitions and examples}
+For completeness, we quickly repeat some definitions used.
+
+\begin{dfn}[Basics]
+A group is a set $G$ with a binary operation 
+\begin{align*}
+  \cdot: G \times G \to G, \quad (g,h) \mapsto g \cdot h = gh
+\end{align*}
+that satisfies the following
+\begin{enumerate}
+  \item (Associativity): $(gh)k = g(hk)$
+  \item (Neutral element) $\exists 1 \in G$ such that $1 \cdot g = g \cdot 1 = g$ for all $g \in G$
+  \item (Inverse elements) $\forall g \in G, \exists g^{-1} \in G$ such that $gg^{-1} = g^{-1}g = 1$
+\end{enumerate}
+It follows from the group axioms that the unit $1$ and the inverse elements are uniquely determined.
+
+We define the \textbf{order} of $G$ to be its cardinality $\abs{G}$, where we just write $\infty$ if $G$ is infinite.
+
+A group $G$ is \textbf{abelian}, if for all $g,h \in G$ we have $gh = hg$. 
+For abelian groups, the additive notation ($g + h = h + g$) is often used, where we write the unit as $0$ and inverses as $-g$.
+
+A \textbf{subgroup} of a group $G$ is a non-empty subset $H \subseteq G$ that is closed under the group multiplication, that is
+\begin{enumerate}
+  \item $h_1,h_2 \in H \implies h_1h_2 \in H$
+  \item $h \in H \implies h^{-1} \in H$
+\end{enumerate}
+
+The \textbf{direct product} is the cartesian product $G_1 \times G_2$ with component-wise multiplication (i.e $(g_1,h_1) \cdot (g_2,h_2) = (g_1g_2,h_1h_2)$ with $(1_G,1_H)$ as unit)
+\end{dfn}
+
+\begin{ex}[]
+
+\begin{itemize}
+  \item $\Z,\R,\C$ or vector spaces are abelian groups under addition.
+  \item The cyclic group $\Z/n\Z$ with addition is abelian and has order $n$
+  \item The symmetric group $S_n$, consisting of bijective maps $\pi: \{1,\ldots,n\} \to \{1,\ldots,n\}$ called \emph{permutations}. It has order $\abs{S_n} = n!$
+  \item The Dihedral group $D_{n}$ for $n \geq 2$, consisting of rotations $R \in O(2)$ that keep a regular $n$-gon invariant. The elements are
+    \begin{align*}
+      1, R, R^2, \ldots, R^{n-1}, S, RS, \ldots, R^{n-1}S
+    \end{align*}
+    where $R$ is multiplication with $e^{\frac{2 \pi i}{n}}$ and $S$ is complex conjucation, if one corner of the $n$-gon is situated at $1 \in \C$. In particular, $\abs{D_n} = 2n$.
+
+    To prove this, we need to show that each element listed above is different and that they are all possible symmetries of the $n$-gon.
+    If we let $v_0, \ldots v_{n-1}$ be the corners of the $n$-gon, then we see that every element above maps the two corners $(v_0,v_1)$ to different coner-pairs.
+    Now let $X \in D_n$, then set $j$ such that $X v_0 = v_j$. Then it must be that $Xv_1$ is either $v_{j+1}$ or $v_{j-1}$.
+    In the first case, we see that $R^{-j}Xv_0 = v_0$ and $R^{-j}Xv_1 = v_1$, so $X = R^{j}$.
+    In the second case we see that $SR^{-j}Xv_0 = v_0$ and $SR^{-j}Xv_1 = v_1$, so $X = R^{j}S$.
+    Additionally we can show that $SRS = R^{-1}$.
+  \item The general linear groups $\GL(n,K)$ for $n \in \N$ and $K$ a field consisting of invertible $n \times n$ matrices.
+  \item Similarly the orthogonal groups $O(n) \subseteq \GL(n,\R)$ consisting of orthogoal $n \times n$ matrices (i.e. $A^{T}A = 1$). Or equivalently, matrices such that $(Ax,Ay) = (x,y)$ with the standard dot product $(-,-)$.
+    More generally we can define the symmetric bilinear form on $\R^{p+q}$ defined as
+    \begin{align*}
+      (x,y)_{p,q} = \sum_{i=1}^{p}x_iy_i - \sum_{j=p+1}^{p+q}x_i y_i
+    \end{align*}
+    we can use this to define the group $O(p,q) \subseteq \GL(n,\R)$ that preserve this bilinear form.
+    Notice that this bilinear form is no longer positive/definite. Ofspecial interest is $(-,-)_{1,3}$ called the \emph{Minkowski}-``metric'' with the \textbf{Lorentz group} $O(1,3)$
+  \item The \textbf{unitary group} $U(n) \subseteq \GL(n,\C)$ consisting of complex $n \times n$ such that $A^{\dagger}A = 1$, or that preserve the complex inner product $(-,-)$
+    where we use the physics convention in the inner product
+    \begin{align*}
+      (x,y) = \sum_{j=1}^{n} \overline{x_j}y_j
+    \end{align*}
+  \item The \textbf{symplectic group}: Consider the antisymmetric bilinear form on $\R^{2n}$ given by
+    \begin{align*}
+      \omega(X,Y) = \sum_{i=1}^{n} (X_{2i - 1}Y_{2i} - X_{2i} Y_{2i-1}
+    \end{align*}
+    the symplectic group is then the subset $\text{Sp}(2n) \subseteq \GL(n,\R)$ that preserve this bilinear form: $\omega(X,Y) = \omega(AX,AY)$.
+    This group can useful to describe hamiltonian systems, where the first $n$ coordinates represent space, and the other $n$ coordinates correspond to impulse.
+  \item For any subgroup $G \subseteq \GL(n,\R)$ or $G \subseteq \GL(n,\C)$ we define the subgroup
+    \begin{align*}
+      SG := \{A \in G \big\vert \det A = 1\} \subseteq G
+    \end{align*}
+    Some special cases include the \textbf{special linear group} $\text{SL}(n,K)$, the special orthogonal/unitary group $SO(n)$ and $SU(n)$.
+\end{itemize}
+\end{ex}
+
+  
+

@@ -1,0 +1,98 @@
+% ==== Symbols ====
+
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\F}{\mathbb{F}}
+
+
+\DeclareMathOperator{\charac}{char}
+\DeclareMathOperator{\degree}{deg}  
+
+\newcommand{\del}{\partial}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand{\es}{\text{\o}}
+% ==== Delimiters ====
+
+\DeclarePairedDelimiter\abs{\vert}{\vert}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\Norm{\vert\vert}{\vert\vert}
+\DeclarePairedDelimiter\dbrack{\llbracket}{\rrbracket}
+
+
+% ==== Math Operators ====
+% Algebra
+\DeclareMathOperator{\Bil}{Bil}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\rang}{rang}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Eig}{Eig}
+\DeclareMathOperator{\Hau}{Hau}
+\DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\rot}{rot} 
+\DeclareMathOperator{\ad}{ad}
+
+\newcommand{\Kernel}{\text{Ker}} % Still in use
+
+% obot
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{
+      <5> <6> <7> <8> <9> <10> gen * matha
+      <10.95> matha10 <12> <14.4> <17.28> <20.74> <24.88> matha12
+      }{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+
+\DeclareMathSymbol{\obot}         {2}{matha}{"6B}
+\DeclareMathSymbol{\bigobot}       {1}{mathx}{"CB}
+
+
+% Analysis
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\graph}{graph}
+\DeclareMathOperator{\supp}{supp}
+
+\newcommand{\pdiff}[2]{
+  \frac{\partial #1}{\partial #2}
+}
+\newcommand{\npdiff}[3]{
+  \frac{\partial^{#1} #2}{\partial #3^{#1}}
+}
+\newcommand{\pderiv}[2]{\frac{\partial #1}{\partial #2}}
+
+% ==== Formatting ====
+\newsavebox\MBox
+\newcommand\cunderline[2][red]{ % Colored underline
+  {\sbox\MBox{$#2$}%
+  \rlap{\usebox\MBox}\color{#1}\rule[-1.2\dp\MBox]{\wd\MBox}{0.5pt}}
+} 
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+
+
+% ==== Tikz ====
+\def\centerarc[#1](#2)(#3:#4:#5){ 
+    \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); 
+}
+% Syntax: [draw options] (center) (initial angle:final angle:radius)

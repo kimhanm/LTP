@@ -1,0 +1,115 @@
+
+Let $E$ be topological space. We call a subset $\Omega \subseteq E$ a \textbf{region}, if it is open and connected\\
+
+The point is that regions are a natural place to define cuntions on.
+
+
+In order to define continuity on arbitrary topological spaces (without a metric) we note the following theorem:\\
+A function $f: \Omega \to \C$ is continuous (in the metric space sense) if and only if the inverse image of open sets are open.\\
+So we can define continuity of functions between topological spaces as just that:
+
+A function $f: \Omega \to \C$ is called \textbf{open} (in the topological sense) if the inverse image of open sets is open in $\Omega$.\\
+
+A nice consequence of this theorem is that we can sometimes prove results for continuouty in a simpler fashion. For example the proof that the composition of continuous functions is continuous is trivial using this new definition, whereas we formerly had to work with lots of epsilons and deltas.\\
+
+Another example is that we can show that the image of compact sets under continuous functions is again compact.
+The proof here becomes also quite simple, since any open covering of the image $f(S)$ can be used to create an open covering of $S$. Then using compactness of $S$ we obtain a finite sub-covering of $S$ and ``push'' it onto $f(S)$.\\
+
+As a consequence, if $f: \Omega \to \R$ is continous and $S \subseteq \Omega$ is compact, then $f|_S$ attains its maximum and minimum.\\
+Another one: A continuous function takes connected sets to connected sets.\\
+
+
+However, for metric spaces, we can define something stronger than just continuity. We saw that in the $\epsilon, \delta$ definition, we could have a different $\delta$ for every $x \in E$. We can restrict the condition to require such a $\delta$ for all points:\\
+
+We call a function $f: E \to \C$ \textbf{uniformly continuous}, if 
+\begin{align*}
+		\forall \epsilon > 0 \exists \delta > 0 \text{ such that } \forall x,x' \in E: d(x,x') < \delta	\implies d(f(x),f(x')) < \epsilon
+\end{align*}
+
+Which leads to the following theorem that on compact sets, continous functions are automatically uniformly continuous.\\
+
+
+Eventually, we want to integrate over curves in $\C$. To be able to do this, we define first what a curve is:
+
+An \textbf{arc} $\gamma$ on the complex plane is the image of a closed and bounded interval by a continuous function $z [\alpha, \beta] \to \C$
+\begin{align*}
+	z(t) = x(t) + iy(t), \quad \alpha \leq t \leq \beta
+\end{align*}
+If $\phi: [\alpha', \beta'] \to [\alpha, \beta]$ is continuous, then we call $(z \circ \phi): [\alpha', \beta']$ a \textbf{reparametrisation} of $z$ if $\phi(\alpha') = \alpha$ and $\phi(\beta') = \beta$ and $\phi$ is monotone.\\
+We call an arc \textbf{differentiable}, if $z'(t)$ exists \emph{and is continuous!}.\\
+We call a differentiable arc \textbf{regular}, if $z'(t) \neq 0, \forall t$\\
+A \textbf{path} is a continuous function $\gamma: [a,b] \to \C$
+An arc is \textbf{Jordan}, if it doesn't intersect itself, i.e if $z$ is injective.\\
+
+The next thing is that we might want to ``add'' or ``subtract'' paths. This can make sense if two paths overlap or have matching endpoints.\\
+
+Another nice thing paths allow us is that we can parametrize certain objects. For example we have that for a circle
+\begin{align*}
+	\left\{z \in \C \big\vert \abs{z - c} = r\right\}
+\end{align*}
+can be seen as the image of the function
+\begin{align*}
+	z(t) = c + re^{it}, \quad t \in [0, 2\pi)
+\end{align*}
+
+\begin{definition}[]
+	A function $f: \Omega \subseteq \C \to \C$ is \textbf{analytic} in an open set $\Omega$ if $f$ has a derivative in every point of $\Omega$. \\
+	If $A \subseteq \Omega$, then we also say that $f$ is analytic in $A$.
+\end{definition}
+
+One thing that often happens, is that many functions \emph{want} to be multi-valued. For example the square root function $f(z) = \sqrt{z}$ wants to have solutions $\pm \sqrt{z}$, but if we allowed that $f$ wouldn't be a function anymore so we have to create a \textbf{branch}, which is a subset of the co-domain. For example the half-plane 
+\begin{align*}
+	H:= \{z \in \C \big\vert \text{Re}(z) > 0\} 
+\end{align*}
+can be used to obtain a single-valued function $\sqrt{\cdot}: \C \to H$.
+
+Restricting the function alllows us the say that the function is continuous in $\C/\{z \leq 0\}$\\
+
+If $f: \Omega \to \C$ is analytic on a region (open + connected) $\Omega$ and $f'(z) = 0, \forall z \in \Omega$, then $f$ is constant.\\
+The same is true for the $\text{Re}(f), \Image(f), \arg(f), \abs{f}$.\\
+
+This shows that the definition of region is a nice one to see.
+
+
+If we think of a region $\Omega$ and its geometric properties, we can think of how a function transforms the geometric properties of $\Omega$.
+For example, if we take an arc $\gamma$ with parametrised with the function $z(t)$ under a continuous function, what can we say about the new arc that results of the new function $\omega := f \circ z$.
+
+If $f$ is analytic, then using the chain rule we get that
+\begin{align*}
+	\omega'(t) = f'(z(t)) \cdot z'(t)
+\end{align*}
+
+Let's set $t_0$ such that $f'(z(t_0)) \neq 0$. If $z$ is regular ($z'(t) \neq 0 \forall t$), then we have
+\begin{align*}
+	\arg(\omega'(t_0)) = \arg(f'(z(t_0)) + \arg(z(t_0))
+\end{align*}
+We can think of $\arg(\omega'(t_0))$ as the direction the arc is moving. It says that locally, the original arc is turned according to the derivative $f'(z(t_0))$.
+
+In particular if two arcs are tangent before the mapping, then the arcs are tangent after the mapping under analytic functions with nonzero derivative.
+
+Furthermore, if two arc cross with some angle $\alpha$, then their image will also cross with the same angle. It means that it locally preserves angles.\\
+
+So with this we get the following theorem:
+\begin{theorem}[]
+	Let $f: \Omega \to \C$. Be an analytic function from a region $\Omega \subseteq \C$ (open + connected). And $z_0 \in \Omega$ such that $f'(z_0) \neq 0$. Then
+	\begin{enumerate}
+	\item $f$ takes tangent arcs into tangent arcs
+	\item $f$ takes two arcs intersecting at angle $\alpha$ into arcs with the same relative angle.
+	\end{enumerate}
+\end{theorem}
+
+Which gives us the definittion
+\begin{definition}[Conformal Map]
+	An analytic function $f: \Omega \to \C$ is called a \textbf{conformal map}, if $f'(z) \neq 0, \forall z \in \Omega$
+\end{definition}
+
+For example, let's look at the complex exponential, maps the real line to the positive numbers and the imaginary axis to the unit circle. So from this we see that it maps lines into circles (with possibly infinite radius). Moreover, it maps the the half plane with negative real part into the area inside the unit circle.\\
+
+If $f: \Omega \to \C$ is analytic then its derivative tells us how much the space gets shrinked locally. So $\abs{f'(z_0)}$ tells us how much the space gets expanded independent of direction.
+
+
+
+
+
+
+

@@ -1,0 +1,334 @@
+\newpage
+\section{Determinante}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $K$ ein Körper, $n \in \N^*$. Eine Abbildung
+\begin{align*}
+    \det: M(n\times n,K) &\rightarrow K\\
+    A &\mapsto \det A
+\end{align*}
+heisst \textbf{Determinante}, wenn gilt
+\begin{itemize}
+    \item[D1)] $\det$ ist linear in jeder Zeile (multilinear): $\forall i \in \{1,\ldots, n\}$
+    $A = \begin{pmatrix}
+        --a_1--\\
+        \vdots\\
+        --a_n--
+    \end{pmatrix}$
+    Ist $a_i = b_i + c_i$, so ist
+    \begin{align*}
+        \det \begin{pmatrix}
+            \vdots\\
+            --a_i--\\
+            \vdots
+        \end{pmatrix}
+        = \det \begin{pmatrix}
+            \vdots\\
+            --b_i--\\
+            \vdots
+        \end{pmatrix}
+        + \det \begin{pmatrix}
+            \vdots\\
+            --c_i--\\
+            \vdots
+        \end{pmatrix}
+    \end{align*}
+    
+    \item[D2)] $\det$ ist alternierend. Sind zwei Zeilen gleich, so ist $\det A = 0$
+    
+    \item[D3)] $\det$ ist normiert: $\det E_n = 1$
+\end{itemize}
+\end{mdframed}
+Weiterhin gelten folgende Rechenregeln:
+\mdfsetup{backgroundcolor=black!10}
+\begin{mdframed}
+\begin{itemize}
+    \item[D4)] $\forall \lambda \in K: \det (\lambda \cdot A) = \lambda^n \cdot \det A$
+    
+    \item[D5)] Ist eine Zeile $= 0$, so ist $\det A = 0$
+     
+    \item[D6)] Entsteht $B$ durch das Vertauschen zweier Zeilen, so ist $\det B = -\det A$
+    
+    \item[D7)] Ist $\lambda \in K$ und ensteht $A$ durch Addition des $\lambda$-fachen der $j$-ten Zeile zur $i$-ten Zeile, $i \neq j$, so ist $\det B = \det A$
+    
+    \item[D8)] $\det \begin{pmatrix}
+        \lambda_1 & & (*)\\
+         & \ddots & \\
+         0 & & \lambda_n
+    \end{pmatrix}
+    = \lambda_1 \cdot \lambda_2 \cdot \ldots \cdot \lambda_n$
+
+    \item[D9)] Ist $n\geq 2$ und besteht $A = \begin{pmatrix}
+        A_1 & C\\
+        0 & A_2
+    \end{pmatrix}$ aus quadratischen Blöcken $A_1, A_2$, so ist $\det A = \det A_1 \cdot A_2$
+    
+    \item[D10)] $\det A = 0 \Leftrightarrow \text{rang}A < n \Leftrightarrow A \text{nicht invertierbar}$
+    
+    \item[D11)] $\det(A\cdot B) = \det(A)\cdot \det(B), \quad \det(A^{-1}) = \det(A)^{-1}$ 
+\end{itemize}
+\end{mdframed}
+In der Symmetrischen Gruppe $S_n$ heisst eine Permutation $\tau \in S_n$ \emph{Transposition}, falls $\tau$ zwei Elemente vertauscht und alle übrigen festlässt.\\
+\textbf{Lemma} Ist $n\geq 2$, so existieren für alle $\sigma \in S_n$ Transpositionen $\tau_1, \ldots, \tau_k$, sodass $\sigma = \tau_1 \circ \ldots \circ \tau_k$ (Nicht eindeutig bestimmt).\\
+Ist $\sigma \in S_n$, so heisst jedes Paar $(i,j)$, mit $i < j \in {1, \ldots, n}$ \textbf{Fehlstand} von $\sigma$, wenn gilt $\sigma(i) > \sigma(j)$.
+\begin{align*}
+    \text{sign}(\sigma) = \begin{cases}
+        +1, \quad \# \text{ Fehlstände gerade} \implies \sigma \text{ gerade}\\
+        -1, \quad \# \text{ Fehlstände ungerade}, \implies \sigma \text{ ungerade}
+    \end{cases}
+\end{align*}
+\begin{align*}
+    \text{\textbf{Lemma:}} \qquad \forall \sigma \in S_n: \quad \text{sign}(\sigma) = \product{i < j}{} \frac{\sigma(j) - \sigma(i)}{j-i} = \product{i = 1}{n-1} \product{j = i+1}{n} \frac{\sigma(j) - \sigma(i)}{j-i}
+\end{align*}
+\begin{align*}
+    \text{\textbf{Satz:}} \qquad \forall \sigma, \tau \in S_n: \quad \text{sign}(\sigma \circ \tau) = \text{sign}(\sigma) \cdot \text{sign}(\tau), \text{sign}({\sigma}^{-1}) = \text{sign}(\sigma)
+\end{align*}
+Das macht $\text{sign}: (S_n, \circ) \rightarrow ({\pm 1}, \cdot)$ eine Gruppenhomomorphismus
+\begin{align*}
+    \text{\textbf{Korollar:}} \qquad \forall \sigma \in S_n: \quad \text{det}\begin{pmatrix}
+    e_{\sigma(1)} \\ \vdots \\	 e_{\sigma(n)}
+    \end{pmatrix} = \text{sign}(\sigma)
+\end{align*}
+Für $n \geq 2$ gilt:
+\begin{enumerate}[{(}1{.)}]
+    \item	Für jede Transposition $\tau \in S_n$ ist $\text{sign}(\tau) = -1$
+    
+    \item Ist $\sigma \in S_n$ und ist $\sigma = \tau_1, \ldots, \tau_k$, so ist $\text{sign}(\sigma) = (-1)^k$
+\end{enumerate}
+\mdfsetup{backgroundcolor=red!10}
+\begin{mdframed}
+\textbf{Leibnitz Formel:} \quad Ist $K$ ein Körper, $n \geq 1$, so gibt es genau eine Determinante $\text{det}: M(n\times n,K) \rightarrow K$ und es gilt:
+\begin{align*}
+    \text{det} A = \summe{\sigma \in S_n}{} \text{sign}(\sigma) a_{1\sigma(1)} \cdot \ldots \cdot a_{n\sigma(n)}
+\end{align*}
+\end{mdframed}
+\textbf{Satz:} \quad $\text{det}A^T = \text{det}A$, also gelten alle Regeln der Determinante, die für Zeilen gelten, auch für Spalten.\\
+Man kann $\text{det}: K^(n \times n) \rightarrow K$ als Polynom mit $n^2$ Variablen anschauen. Die Abbildung ist stetig und differenzierbar, falls $K = \R, \C$
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+\textbf{Entwicklungssatz von Laplace:} \quad Ist $n \geq 2, A \in M(n\times n,K)$, so gilt für alle $i$ oder $j \in  {1, \ldots, n}$\\
+$\text{det}A = \summe{j = 0}{n} (-1)^{i+j} \cdot a_{ij} \cdot \text{det} A_{ij}' = \summe{i = 0}{n} (-1)^{i+j} \cdot a_{ij} \cdot \text{det} A_{ij}'$, \quad mit $A_{ij}' =$
+\begin{tikzpicture}[baseline = -0.5ex]
+\matrix [matrix of math nodes,left delimiter=(,right delimiter=)] (m)
+{
+    a_{11} & \ldots & a_{1j} & \ldots & a_{1 n} \\
+    \vdots & \ddots & \vdots & \iddots & \vdots \\
+    a_{i1} & \ldots & a_{ij} & \ldots & a_{in} \\
+    \vdots & \iddots & \vdots & \ddots & \vdots \\
+    a_{n1} & \ldots & a_{nj} & \ldots & a_{n n} \\	
+};
+\node[fill=red,fill opacity=0.5,inner sep=0.5pt,fit=(m-1-3.north)(m-5-3.south)] {};
+\node[fill=red,fill opacity=0.5,inner sep=0.5pt,fit=(m-3-1.west)(m-3-5.east)] {};
+\end{tikzpicture}\\
+$A_{ij}' \in M(n-1\times n-1,K)$ ist eine \textbf{Streichungsmatrix} von $A$
+\end{mdframed}
+\textbf{Satz} Sei $A \in GL(n,K)$, Sei $C = (c_{ij}) \in M(m\times n,K)$ mit $c_{ij} = (-1)^{i+j} \cdot \det A_{ij}'$, so ist ${A}^{-1} = \frac{1}{\det A} C^T$\\
+\mdfsetup{backgroundcolor=black!10}
+\begin{mdframed}
+\textbf{Cramer'sche Regel:} \quad Sei $A \in GL(n,K), b \in K^n, x = \begin{pmatrix}
+x_{1} \\ \vdots \\	 x_{n}
+\end{pmatrix} \in K^n$. Die Eindeutig bestimmte Lösung von $A \cdot x = b$ mit $x = {A}^{-1} \cdot b$ und $A = \begin{pmatrix}
+    a^1 \vert \ldots \vert a^n
+\end{pmatrix}$, dann gilt $\forall i \in {1, \ldots, n}$ 
+\begin{align*}
+    x_i = \frac{\det \begin{pmatrix}
+        a^1 \vert \ldots \vert a^{i-1} \vert b \vert a^{i+1} \vert \ldots \vert a^n
+    \end{pmatrix}}{\det A}
+\end{align*}
+Ist $K = \R$ oder $\C$, so hängt $x$ stetig von $A$ und $b$ ab.
+\end{mdframed}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $A \in M(m\times n,K), k \leq \min\{m,n\}$, so heisst $A' \in M(k\times k,K)$ $\mathbf{k}$\textbf{-reihige Teilmatrix} von $A$, wenn $A'$ durch Streichen von Zeilen und Spalten von $A$ enstanden ist. Dann ist $\det A'$ ein $\mathbf{k}$\textbf{-reihiger Minor} von $A$. Durch Zeilen und Spaltenumformungen kann $A$ kann auf die Form $\begin{pmatrix}
+    A' & * \\ * & *
+\end{pmatrix}$ gebracht werden.
+\end{mdframed}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Die zu $A \in M(n\times n,K)$ \textbf{Komplementäre Matrix} $A^{\#} = \left(a_{ij}^{\#}\right) \in M(n\times n,K)$ ist definiert durch\\
+$a_{ij}^{\#} := (-1)^{i+j} \cdot \det A_{ji}' =: \det A_{ji}$ \quad 
+Und es gilt $A \cdot A^{\#} = A^{\#} \cdot A = \det A \cdot E_n$, da $\summe{j=1}{n}a_{ij}^{\#}a_{jk} = \summe{j = 1}{n}a_{jk}\det A_{ji}$
+\end{mdframed}
+\textbf{Satz:}\quad Sei $A \in M(m\times n,K), 0 < r \leq \min\{m,n\}$. Dann sind äquivalent
+\begin{enumerate}[{(}i{)}]
+    \item $r = \rang A$
+    
+    \item Es gibt einen $r$-reihigen Minor $\neq 0$ und für $k > r$ ist jeder $k$-reihiger Minor $= 0$\\
+    Diese $r$-reihigen Minoren erlauben uns, die Eigenschaft $\det(A \cdot B) = \det A \cdot \det B$ auf nicht-quadratische Matrizen zu erweitern.
+\end{enumerate}
+\vspace{-5pt}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $V$ ein $K$-Vektorraum, $A = (v_1, \ldots, v_n), B = (w_1, \ldots, w_n)$ Basen von $V$ und $F \in \End(V)$ der eindeutig bestimmte Endomorphismus, so dass $F(v_i) = w_i$.\\
+Dann heissen $A$ und $B$ \textbf{gleichorientiert}, wenn $\det F > 0$. Die \textbf{Orientierung} der kanonischen Basis wird als positiv bezeichnet.
+\end{mdframed}
+\vspace{-5pt}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $V$ ein $K$-Vektorraum, $F \in \End(V)$. Ein $\lambda \in K$ heisst \textbf{Eigenwert} von $F$, wenn es einen Vektor $v \in V, v \neq 0$ gibt, sodass $F(v) = \lambda \cdot v$. $v$ ist dann ein \textbf{Eigenvektor} von $F$. ($\lambda = 0$ ist erlaubt, $v = 0$ nicht.)\\
+$F \in \End(V)$ heisst \textbf{diagonalisierbar}, wenn es eine Basis von $V$ aus Eigenvektoren von $F$ gibt. \\
+Entsprechend gilt für Matrizen: $A \in M(n\times n,K)$ heisst diagonalisierbar, wenn es eine Matrix $S \in GL(n,K)$ gibt, sodass $S A {S}^{-1}$ eine Diagonalmatrix ist.
+\end{mdframed}
+Ist $\dim V < \infty$, so ist $F \in \End(V)$ genau dann diagonaliserbar, wenn es eine Basis $B = (v_1, \ldots, v_n)$ gibt, sodass $M_{B}^{}(F) (= [F]_B)$ eine Diagonalmatrix ist mit Einträgen $\begin{pmatrix}
+    \lambda_{1_{\ddots}} & 0\\ % wtf?
+    0 & \lambda_n
+\end{pmatrix}$ wobei $\lambda_1, \ldots, \lambda_n$ die zu den Eigenvektoren $v_1, \ldots, v_n$ zugehörigen Eigenwerte sind.\\
+\textbf{Satz:}\quad Sei $F \in \End(V)$ mit paarweise verschiedenen Eigenwerte $\lambda_1, \ldots, \lambda_n, n = \dim V$ Dann ist $F$ diagonaliserbar.\\
+\textbf{Lemma:}\quad Sei $F \in \End(V)$ mit Eigenvektoren $v_1, \ldots, v_n$ zu paarweise verschiedenen Eigenwerten $\lambda_1, \ldots, \lambda_n$, dann sind $v_1, \ldots, v_n$ linear unabhängig.\\
+\vspace{-10pt}
+\mdfsetup{backgroundcolor=black!10}
+\begin{mdframed}
+    Sei $F \in \End(V), \lambda \in K$ dann ist der \textbf{Eigenraum} von $F$ bezüglich $\lambda$:
+    \begin{align*}
+        \Eig(F;\lambda) := \{v \in V \big\vert F(v) =\lambda \cdot v\} \subseteq V
+    \end{align*}
+\begin{enumerate}[{(}a{)}]
+    \item $\Eig(F;\lambda)$ ist ein Untervektorraum
+    
+    \item $\lambda$ ist ein Eigenwert $\Leftrightarrow \Eig(F;\lambda) \neq \{0\}$
+    
+    \item $\Eig(F;\lambda)\mathbf{\backslash \{0\}}$ ist die Menge aller Eigenvektoren von $F$
+    
+    \item $\Eig(F;\lambda) = \Kernel(F - \lambda \cdot id_V)$
+    
+    \item Sind $\lambda_1, \ldots, \lambda_n$ paarweise verscheiden, so ist $\Eig(F;\lambda_i) \cap \Eig(F;\lambda_j) = \{0\}$
+\end{enumerate}
+\end{mdframed}
+\mdfsetup{backgroundcolor=black!10}
+\begin{mdframed}
+Sei $F\in \End(V), \lambda \in K$. Dann sind äquivalent 
+\begin{enumerate}[{(}i{)}]
+    \item $\lambda$ ist ein Eigenwert von $F$
+    
+    \item $\det(F - \lambda \cdot id_V) = 0$
+\end{enumerate}
+Also sind die Eigenwerte die Nullstellen des \textbf{Charakteristischen Polynoms}
+\begin{align*}
+    p_F : K \rightarrow K \quad \lambda \mapsto \det(F - \lambda \cdot id_V)
+\end{align*}
+\end{mdframed}
+\textbf{Lemma} Ähnliche Matrizen haben das gleiche charakteristische Polynom und das charakteristische Polynom \quad $p_F(t) = p_{M_{}^{}(F)}(t) = \det(M_{A}^{}(F) - t \cdot E_n)$ \quad ist unabhängig von der Wahl der Basis.\\
+\textbf{Satz:} \quad Sei $V$ ein $K$-Vektorraum mit $\dim V = n < \infty$ und $F \in \End(V)$. Dann hat das charakteristische Polynom folgende Eigenschaften.
+\begin{enumerate}[{(}a{)}]
+    \vspace{-5pt}
+    \item Der Grad von $p_F(t) = n$
+    \vspace{-5pt}
+    \item Die Nullstellen von $p_F(t)$ sind die Eigenwerte von $F$
+    \vspace{-5pt}
+    \item Ist $A = M_{A}^{}(F)$, so ist $p_F(t) = \det(A - t \cdot E_n)$
+    \vspace{-5pt}
+    \item Ist $A \in \End(K^n)$ durch $A \in M(m\times n,K)$ beschrieben, so ist
+    \vspace{-5pt} 
+    \begin{align*}
+        \Eig(A;\lambda) = \text{Lös}(A - \lambda \cdot E_n,0) = \Kernel(A - \lambda \cdot E_n) = \{x \in K^n \big\vert (A - \lambda \cdot E_n) \cdot x = 0\}
+    \end{align*}
+\end{enumerate}
+\vspace{-10pt}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+\textbf{Diagonalisierung:} \quad Sei $F \in \End(V), \dim V = n < \infty$
+\begin{enumerate}[{(}a{)}]
+    \vspace{-5pt}
+    \item Ist $F$ diagonaliserbar, so zerfällt das Charakteristische Polynom in Linearfaktoren: $p_F = \pm (t - \lambda_1) \cdots (t - \lambda_n)$.
+    \vspace{-5pt}
+    \item Ist $p_F(t) = \pm (t - \lambda_1) \cdots (t - \lambda_n)$ mit $\lambda_i \neq \lambda_j$, so ist $F$ diagonalisierbar.
+    \vspace{-5pt}
+    \item Schreibe $r_i = \mu(p_F, \lambda_i)$ für die Vielfachheit der Nullstelle von $\lambda_i$\\
+    Dann lässt sich das Charakteristische Polynom schreiben als: $p_F = (t - \lambda_1)^{r_1} \cdots (t - \lambda_k)^{r_k}$ mit $1 \leq r_i \leq n$ und $\summe{i = 1}{k}r_i = n$
+    \vspace{-5pt}
+    \item Ist $\lambda$ ein Eigenwert von $F$, so gilt
+    \begin{align*}
+        1 \leq \underbrace{\dim(\Eig(F;\lambda))}_{\text{geometrische Vielfachheit}} \leq \underbrace{\mu(p_F, \lambda)}_{\text{algebraische Vielfachheit}}
+    \end{align*}
+\end{enumerate}
+\vspace{-20pt}
+Es sind äquivalent:
+\begin{enumerate}[{(}i{)}]
+    \item $F$ ist diagonalisierbar
+    
+    \vspace{-5pt}
+    \item $p_F$ zerfällt in Linearfaktoren und geometrische Vielfachheit $=$ algebraische Vielfachheit
+    
+    \vspace{-5pt}
+    \item Sind $\lambda_1, \ldots, \lambda_k$ die Paarweise verschiedenen Eigenwerte von $F$, so ist $V = \underset{i = 1}{\overset{k}{\bigoplus}} \Eig(F;\lambda_i)$
+\end{enumerate}
+\end{mdframed}
+\mdfsetup{backgroundcolor=blue!08}
+\begin{mdframed}
+\textbf{Diagonalisierung von }$\mathbf{F}$\\
+\begin{enumerate}[{(}1{.)}]
+    \item	Wähle eine Basis $A$ von $V$
+    
+    \item   Berechne das charakteristische Polynom $p_F$
+    
+    \item Finde die Nullstellen. Wenn es keine gibt, so ist $F$ \emph{nicht} diagonalisierbar
+    
+    \item Für jeden Eigenwert, bestimme die Eigenräume $\Eig(F;\lambda) = \Kernel(A - \lambda_i \cdot E_n)$\\
+    Falls $\dim \Eig(F;\lambda) = \mu(p_F, \lambda_i)$, so ist $F$ diagonaliserbar.
+    
+    \item Die Basen der Eigenräume bilden eine Eigenbasis $B$ von $V$. Dann ist 
+    \begin{align*}
+        M_{B}^{}(F) = [F]_B = \begin{pmatrix}
+        | &  & |\\
+        [F(v_1)]_B & \ldots & [F(v_n)]_B\\
+        | &  & |
+        \end{pmatrix}
+        = \begin{pmatrix}
+            \lambda_1 & & 0\\
+            & \ddots & \\
+            0 & & \lambda_n
+        \end{pmatrix}
+    \end{align*}
+\end{enumerate}
+\end{mdframed}
+\newpage
+Zwei diagonaliserbare Endomorphismen $F,G \in \End(V)$ heissen \textbf{simultan diagonalisierbar}, wenn es eine Basis $B$ von $V$ gibt, sodass $[F]_B = M_{B}^{}(F)$ und $[G]_B = M_{B}^{}(G)$ diagonal sind.\\
+\textbf{Satz:} Das ist genau dann der Fall, wenn $F \circ G = G \circ F$ ist.
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $P(t) = \alpha_rt^r + \alpha_{r-1}t^{r-1} + \ldots + \alpha_{1}t + \alpha_0 \in K[t]$ ein Polynom und $F \in \End(V)$. Dann gibt
+\begin{align*}
+    P(F) = \alpha_r \underbrace{F^r}_{F \circ F \circ \ldots \circ F} + \ldots + \alpha_1F + \alpha_0id_V \in \End(V)
+\end{align*}
+eine Abbildung
+\begin{align*}
+    \Phi_F: K[t] &\rightarrow \End(V) \\
+    p &\mapsto P(F)
+\end{align*}
+Das ist ein Homomorphismus von Ringen und von $K$-Vektorräume mit 
+
+\begin{itemize}
+    \item Bild $K[F] := \{P(F) \big\vert P \in K[t]\} \subseteq \End(V)$
+    
+    \item Kern $I_F:= \{P(t) \in K[t] \big\vert P(F) = 0\} \subseteq K[t]$ heisst \textbf{Ideal} von $F$
+\end{itemize}
+\end{mdframed}
+\mdfsetup{backgroundcolor=black!10}
+\begin{mdframed}
+\textbf{Satz von Cayley-Hamilton}: \quad Sei $V$ ein endlich dimensionaler $K$-Vektorraum, $F \in \End(V)$ und $P_F$ das charakteristische Polyom von $F$. Dann gilt $P(F) = 0$. Also ist $P_F \in I_F$ und $P_A(A) = 0, \forall A \in M(n\times n,K)$
+\end{mdframed}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $(R, +, \cdot, 0)$ ein kommutativer Ring. Eine nichtleere Teilmenge $I \subseteq R$ heisst \textbf{Ideal}, falls gilt
+\begin{itemize}
+    \item[I$1$)] $\forall P, Q \in I: P + Q \in I$
+    
+    \item[I$2$)] $\forall P \in I, \forall Q \in \R: P \cdot Q = Q \cdot P \in I$
+\end{itemize}
+Sei $I \subseteq R$ ein Ideal, dann ist der Quotientenring $R_{/I}$ definiert durch die Äquivalenzrelation $x \sim y$, falls $x-y \in I$.\\
+$R_{/I}$ ist ein Kommutativer Ring.
+\end{mdframed}
+\textbf{Satz:} \quad Zu jedem Ideal $I \subseteq K[t]$ mit $I \neq \{0\}$ gibt es ein eindeutiges Polynom $M \in K[t]$, sodass
+\begin{enumerate}[{(}a{)}]
+    \item $M$ ist normiert (d.h. $M(t) = 1 \cdot t^d + \ldots$)
+    
+    \item $\forall P \in I$ gibt es ein $Q \in K[t]$, sodass $P = M \cdot Q$
+\end{enumerate}
+$M$ heisst \textbf{Minimalpolynom} von $I$\\
+\textbf{Satz:} \quad Sei $\dim V = n < \infty$, $F \in \End(V)$. Dann gilt
+\begin{enumerate}[{(}a{)}]
+    \item $M_F$ teilt $P_F$
+    
+    \item $P_F$ teilt $M_F^n$ für $K = \C$
+\end{enumerate}
+

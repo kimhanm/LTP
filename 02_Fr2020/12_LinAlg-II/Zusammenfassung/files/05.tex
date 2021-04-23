@@ -1,0 +1,59 @@
+
+\section{Polynome}
+\begin{itemize}
+    \item   Ein Ring $(R,+,\cdot,0)$ heisst \textbf{nullteilerfrei}, falls $a \cdot b = 0 \implies a = 0$ oder $b = 0$.\\
+    Für jeden Körper $K$ ist $K[t]$ nullteilerfrei.
+    \item   Ist $R$ ein Ring mit Eins, so ist seine \textbf{Charakteristik} definiert durch
+    \begin{align*}
+        \text{char}(R) := \left\{ \begin{array}{rcl}
+            0, &\text{falls}& n \cdot 1 \neq 0, \forall n \geq 1\\
+            \min\{n \in \N^*\}: n \cdot 1 = 0, &\text{sonst}
+        \end{array} \right.
+    \end{align*}
+    \item   Eine nichtleere Teilmenge $I \subseteq R$ heisst \textbf{Ideal}, falls für alle $f, f' \in I, g \in R$ gilt: $f - f' \in I, f \cdot g \in I$.
+    \item   Sei $R$ ein kommutativer Ring, $f,g \in \R \setminus \{0\}$. Dann heisst $f$ \textbf{teilt} $g$ oder $f | g$, falls ein $h \in R$ exisitert mit $hf = g$.
+    \item   Ein kommutativer Ring heisst \textbf{Hauptidealring}, falls es zu jedem Ideal $\{0\} \neq I \subseteq R$ ein eindeutiges Element $M_I \in I$ gibt, sodass $I = R M_I = \{fM_I \big\vert f \in R\}$.\\
+    Der Polynomring $K[t]$ ist ein Hauptidealring und $M_I$ heisst \textbf{Minimalpolynom} von $I$.
+    \item   (Polynomdivision)
+    Sind $f,g \in K[t]$ mit $g \neq 0$, so gibt es eindeutig bestimmte Polynome $q,r \in K[t]$, sodass
+    \begin{align*}
+        f = q \cdot g + r \quad \text{und} \quad \deg r < \deg g
+    \end{align*}
+\end{itemize}
+
+
+
+\begin{definition}{ggT, kgV}
+    Für Polynome $f,g$ ist der \textbf{ggT} von $f,g$ das normierte Polynom $q$ vom höchsten Grad, sodass $q|f$ und $q|g$. Der $\text{ggT}(f,g)$ ist auch das Minimalpolynom vom Ideal $fK[t] + gK[t]$. und es existieren $a,b \in K[t]$, sodass $\text{ggT}(f,g) = af + bg$\\
+    Das \textbf{kgV} von $f,g$ ist gleich das Minimapolynom des Schnittes der von $f$ und $g$ erzeugten Ideale: $\kgV(f,g) = M_{fK[t] \cap gK[t]}$
+\end{definition}
+
+\begin{satz}{Primfaktorzerlegung}
+    Ein Polynom $f \in K[t]$ heisst \textbf{irreduzibel}, falls 
+    \begin{align*}
+        f = gh \implies \exists 0 \neq c \in K: f = cg \text{ oder } f = ch
+    \end{align*}
+    $f$ heisst \textbf{prim}, falls für $g \neq 0$ 
+    \begin{align*}
+        f| gh \implies f|h \text{ oder } f|h
+    \end{align*}
+    $f$ prim $\implies f$ irreduziblel und falls $\degree f > 0$ gilt auch die Umkehrung.\\
+    Sei $0 \neq f \in K[t]$ ein Polynom. Dann gibt es eindeutig bestimmte irreduzible, normierte Polynome positiven Grades $p_1, \ldots, p_n \in K[t]$ ($n \geq 0$) und ein $0 \neq c \in K$, sodass $f = c p_1 \cdots p_n$. Also $K[t]$ ist ein \textbf{faktorieller Ring}.
+\end{satz}
+
+\begin{lemma}{Maximale- und Primideale}
+    Sei $R$ ein kommutativer Ring. Ein Ideal $I \subset R$ heisst \textbf{maximal}, falls $I \neq R$ und es kein Ideal $J$ gibt, sodass $I \subset J \subset R$.\\
+    $I$ heisst \textbf{prim}, falls $I \neq R$ und für alle $f,g \in R$ gilt 
+    \begin{align*}
+        fg \in I \implies f \in I \text{ oder } g \in I
+    \end{align*}
+    \begin{itemize}
+        \item   $I$ ist genau dann maximal, wenn $R/I$ ein Körper ist.
+        \item   $I$ ist genau dann prim, wenn $R/I$ nullteilerfrei ist.
+    \end{itemize}
+    Hierbei ist der Quotient durch die Äquivalenzrelation $\sim$ definiert:
+    \begin{align*}
+        R/I = R/_{\sim}, \quad f \sim g \Leftrightarrow f - g \in I
+    \end{align*}
+\end{lemma}
+

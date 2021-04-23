@@ -1,0 +1,190 @@
+\subsection{Free Modules}
+
+\begin{definition}[]
+Let $I$ be a set and $R$ a ring. We call
+\begin{align*}
+	R^{(I)} := \left\{x: I \to R \big\vert x_i = 0, \text{for all but finitely many }i \in I\right\}
+\end{align*}
+the \textbf{free R-Module} (over $I$). We call
+\begin{align*}
+	e_i = \mathds{1}_{\{i\}}, \quad \text{ for } i \in I
+\end{align*}
+the \textbf{standard basis} of $R^{(I)}$. A free module $M$ is a module isomorphic to $R^{(i)}$ for a set.
+
+The cardinality of $I$ is called the \textbf{rank} of $M \iso R^{(I)}$.
+\end{definition}
+
+\begin{lemma}[]
+	Let $R \neq \{0\}$ ba ring. Then the rank of a module over $R$ is well-defined.
+\end{lemma}
+Proof: Let $J_{\max} \subseteq R$. a maximal ideal. For the existence we need Zorn's Lemma.
+
+Let $M$ be a free $R$-Module. Then
+\begin{align*}
+	J_{\max} \cdot M = \left\{\sum_{k}a_km_k \big\vert a_k \in J_{\max}, m_k \in M\right\}
+\end{align*}
+is a submodule. Now let $I$ be a set such that $M \iso R^{(I)}$. Then
+\begin{align*}
+	J_{\max} \cdot M \text{ is mapped to } \left\{\sum_{i \in I}a_i e_i: \big\vert a_i \in J_{\max}, a_i = 0 \text{ for all but finitely many }i \in I\right\}
+\end{align*}
+Then we can look at the quotient
+\begin{align*}
+	\faktor{M}{J_{\max} \cdot M} \iso \left(
+		\faktor{R}{J_{\max}}
+	\right)^{(I)}
+\end{align*}
+which is a vector space over $\faktor{R}{J_{\max}}$ of dimension $\abs{I}$. Using the proof that the dimension of vector spaces is well-defined, the proof follows.
+
+Note: Free modules behave very much like vector spaces.
+
+
+\begin{proposition}[]
+Let $m,n \geq 1$ be natural numbers and $R$ a Ring. Then
+\begin{align*}
+	\Hom(R^{n},R^{m}) \iso \text{Mat}_{mn}(R)
+\end{align*}
+\end{proposition}
+Proof: just like in linear algebra, we can use the standard basis.
+
+\begin{definition}[]
+	Let $M$ be an $R$-module. We say $x_{1}, \ldots, x_{n} \in M$ are \textbf{free} or \textbf{linearly independent}, if the mapping
+	\begin{align*}
+		a \in R^{n} \mapsto \sum_{i = 1}^{n} a_i x_i
+	\end{align*}
+	is injective. If $x_{1}, \ldots, x_{n} \in M$ are linearly independent, the image of the mapping above is a free submodule of $M$.
+\end{definition}
+
+\subsection{Torsion modules}
+\begin{definition}[]
+	Let $R$ be a Ring and $M$ and $R$-module. We say $m \in M$ is a \textbf{torsion element} of $M$, if there exists an $a \in R \setminus \{0\}$ such that $a \cdot m = 0$.\\
+
+	We say $M$ is a \textbf{torsion module}, if every $m \in M$ is a torsion element.\\
+
+	We say $M$ is \textbf{torsion-free} if $m = 0$ is the only torsion element of $M$.
+\end{definition}
+
+
+Exampels:
+\begin{enumerate}
+	\item If we set $R = \Z$ and $M = G$ an additively closed finite group, then $M$ is a torsion module. Just chose $a = \text{ord}(g)$ for $g \in G$
+	\item Let $R = \Z$. Then $M = \faktor{\Q}{\Z}$ is a torsion module. We have to multiply by the denominator.
+	\item Let $V$ be a finite dimensional vector space over a field $k$ and $A: V \to V$ linear. We use $A$ to make $V$ to a $K[X]$-module. Then $V$ is a torsion module over $K[X]$, since the mapping
+		\begin{align*}
+			f \in K[X] \mapsto f \cdot v \in V 
+		\end{align*}
+		can't be injective. In particular, if we chose $f$ to be the characteristic polynomial of $A$, then $f \cdot v = 0$
+	\item If $R$ is an integral domain and $M$ is a free module, then $M$ is torsion free.
+\end{enumerate}
+
+
+
+\subsection{Structure of finitely generated modules over PIDs}
+
+\begin{definition}[]
+Let $R$ be a ring and $M$ an $R$-module. For a subset $X \subseteq M$ we call
+\begin{align*}
+	<X>_R := \left\{\sum_{x \in E}a_x x \big\vert a_x \in R, \text{ for } x \in E \text{ and } E \subseteq X \text{ finite}\right\}
+\end{align*}
+the $R$-linear \textbf{shell} of $X$ or the submodule \textbf{generated} by $X$. If there exists a finite subset $X \subseteq M$ such that $M = <X>_R$, we call $M$ \textbf{finitely generated}
+\end{definition}
+
+Example: For $R = K[X_{1}, \ldots,]$ the submodule $I = <X_1, x_2, \ldots>$ is not finitely generated.
+
+From now on we will look at PIDs.
+\begin{ntheorem}[Classification theorem (First part)]
+	Let $R$ be a PID and $M$ a finitely generated module over $R$. Then $M$ is isomorphic to a direct product
+	\begin{align*}
+		M \iso R^{n} \times T , \quad \text{where} \quad T = M_{\text{tors}} = \left\{m \in M \big\vert m \text{ is torsion element of }M\right\}
+	\end{align*}
+	and $n$ is the rank of $\faktor{M}{M_{\text{tors}}}$\\
+	In particular, $M$ is a free module if and only if $M_{\text{tors}} = \{0\}$
+\end{ntheorem}
+
+
+\begin{proposition}[]
+Let $R$ be a PID and $n \geq 1$. Then every submodule $M \subseteq R^{n}$ is a free $R$-module with rank $\leq n$
+\end{proposition}
+Proof: Let $e_i$ for $i = 1, \ldots, n$ be the standard basis for $R^{n}$. We define the submodules
+\begin{align*}
+	M_i = M \cap <e_1, e_2, \ldots, e_i>
+\end{align*}
+Using induction on $i$ we can show that $M_i$ is a free module of rank $\leq i$.
+
+For $i = 1$ we trivially have $M_1 = M \cap <e_1> \simeq J \subseteq R$. And because $R$ is a PID, either $J = \{0\}$ or $J = (d_1)$ with rank $1$.
+
+If we assume that $M_{i-1}$ is free with rank $\leq i-1$, then we can look at the mapping
+\begin{align*}
+	\Phi: M_i \to R, \quad (x_1, \ldots x_i, 0, \ldots, 0) \mapsto x_i
+\end{align*}
+Since $\Image \Phi$ is a submodule of $R$, it follows that either $\Image \Phi = \{0\}$ and $M_i = M_{i-1}$ with rank $\leq i-1$ or $\Image \Phi = (d_i)$, so $m_i \in M_i$ and $\Phi(m_i) d_i$.
+
+In this case we define
+\begin{align*}
+	\Psi: M_{i-1} \times R \to M_i
+\end{align*} 
+which is an isomorphism and shows that $M_i$ is free and is of rank $\leq i$
+
+
+Now we can prove the first part of the classification theorem.
+
+\begin{itemize}
+	\item $M_{\text{tors}}$ is a submodule. (We take the product of the $a_1,a_2 \neq 0$)
+	\item Since $R$ is an integral domain, a free module has no torsion elements, because if $x_{1}, \ldots, x_{n} \in M$ are generators of $M$, then we take a maximal linearly indepenedent subset $y_{1}, \ldots, y_{k} \in M$. Then
+		\begin{align*}
+			N = <y_{1}, \ldots, y_{k}> \iso R^{k}
+		\end{align*}
+		It can be shown that for all $x_i$ in the generating set there exsts an $a_i \in R \setminus \{0\}$ such that $a_ix_i \in N$. If $x_i = y_j$ then just thake $a_i = 1$. On the other hand, if $x_i \neq y_j$ for all $j$, then we can look at the mapping
+		\begin{align*}
+			\phi: R \times N \to M, \quad (a,m) \mapsto ax_i + m
+		\end{align*}
+		which can't be injective because if $\Image \phi$ were free, with rank $k+1$, then $y_1, \ldots, y_k$ wouldn't be maximal. 
+
+		So there would exist som $(a,m) <neq 0$ such that $ax_i + m = 0$. If $a = 0$, then $m$ would also be $0$. This means that
+		\begin{align*}
+			a + 0, \text{ and } ax_i \in N
+		\end{align*}
+From this we can show that for $a = a_1 a_2 \dots a_n$ it follow that $aM \subseteq N \iso R^{k}$. So $aM$ is isomorpic to a submodule of $R^{k}$ and is free. Further, $a \cdot: M \to aM$ is an isomorphism, because
+		\begin{align*}
+			\Ker(a \cdot) = \left\{m \in M \big\vert am = 0\right\} \subseteq M_{\text{tors}} = \{0\}
+		\end{align*}
+		so $M$ is free.
+\end{itemize}
+
+This shows the equivalence
+\begin{align*}
+	M \text{ free } \iff M_{\text{tors}} = \{0\}
+\end{align*} 
+
+
+Now let $M$ be a finitely generated $R$-module. Then $M' := \faktor{M}{M_{\text{tors}}}$ is also finitely generated and torsion free.
+
+Ten let $m + M_{\text{tors}} \in M'$ be a torsionelement, and $a \in R \setminus \{0\}$ such that
+\begin{align*}
+	a(m + M_{\text{tors}}) = 0 + M_{\text{tors}}
+\end{align*}
+but that would mean that $am \in M_{\text{tors}}$, so there would be a $b \in R \setminus \{0\}$ such that $bam = 0$, which would mean
+\begin{align*}
+	(ab) \cdot m = 0 \implies m \in M_{\text{tors}} \implies (m + M_{\text{tors}}) = 0 + M_{\text{tors}} \in M'
+\end{align*}
+which shows that $M'$ is torsion-free. Therefore $\faktor{M}{M_{\text{tors}}} \iso R^{n}$ is a free module.
+
+
+Now assume $x_1 + M_{\text{tors}}, \ldots, x_n + M_{\text{tors}}$ are free generators of $\faktor{M}{M_{\text{tors}}}$.
+Then also $x_{1}, \ldots, x_{n}$ are free (in $M$) because
+\begin{align*}
+	\sum_{i = 1}^{n}a_ix_i = 0 \in M \implies \sum_{i=1}^{n}a_i(x_i + M_{\text{tors}}) = 0
+\end{align*}
+We define the mapping
+\begin{align*}
+	\Psi: \in R^{n} \times M_{\text{tors}} \to M \quad, (a,m') \mapsto \sum_{i=1}^{n}a_ix_i + m' \in M
+\end{align*}
+and show that it is an isormorphism.
+It is injective since it's kernel is zero:
+\begin{align*}
+	\Psi(a,m') = \sum_{i=0}^{n}a_ix_i + m' = 0 \implies \sum_{i=1}^{n}a_i(x_i + M_{\text{tors}}) \implies a = 0, m' = 0
+\end{align*}
+to show surjectivity, let $m \in M$. Then there exists an $a \in R^{n}$ such that
+\begin{align*}
+	m + M_{\text{tors}} = \sum_{i = 1}^{n}
+\end{align*}
+\#\#\# missing 2 mins

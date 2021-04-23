@@ -1,0 +1,137 @@
+\begin{thm}[]
+  Let $\mu: \mathcal{P}(X) \to [0,\infty]$ be a measure. Then the collection of measurable sets
+  \begin{align*}
+    \Sigma = \{A \subseteq X \big\vert A \text{is $\mu$-measurable}\}
+  \end{align*}
+  is a $\sigma$-algebra.
+\end{thm}
+\begin{proof}[]
+Let $B \subseteq X$
+\begin{itemize}
+  \item $X\in \Sigma$: It's trivial to see that
+    \begin{align*}
+      \mu(B \cap X) + \mu(B \setminus X) = \mu(B) + \mu(\emptyset) = \mu(B)
+    \end{align*}
+  \item $A \in \Sigma \implies A^{c} \in \Sigma$: It holds that
+    \begin{align*}
+      B \cap A^{c} = B \setminus A, \quad \text{and} \quad B \setminus A^{c} = B \cap A
+    \end{align*}
+    therefore
+    \begin{align*}
+      \mu(B \cap A^{c}) + \mu(B \setminus A^{c}) = \mu(B \setminus A) + \mu(B \cap A) = \mu(B)
+    \end{align*}
+  \item $A_1,A_2 \in \Sigma \implies A_1 \cup A_2 \in \Sigma$: Let $B \subseteq X$. From the previous remark, it is sufficient to just show the inequality
+    \begin{align*}
+      \mu(B) \geq \mu\big(B \cap (A_1 \cup A_2)\big) + \mu \big(B \setminus (A_1 \cup A_2)\big)
+    \end{align*}
+    By chosing the test set $B \setminus A_2$ and using $\mu$-measurability for $A_1$, we get
+    \begin{align*}
+      \mu(B \setminus A_2) &= \mu\big((B \setminus A_2) \cap A_1\big) + \mu \big((B \setminus A_2) \setminus A_1\big)\\
+                           &= \mu \big((B \setminus A_2) \setminus A_1\big) + \mu \big(B \setminus (A_2 \cup A_1)\big)
+    \end{align*}
+    Using the decompositions
+    \begin{align*}
+      B \setminus A_2 &= [(B \setminus A_2) \cap A_1] \sqcup [B \setminus (A_1 \cup A_2)]\\
+      B \cap (A_1 \cup A_2) &= (B \cap A) \cup [(B \setminus A_2) \cap A_1]\\
+      \implies \mu\big(B \cap (A_1 \cup A_1)\big) &\leq \mu(B \cap A) + \mu \big((B \setminus A_2) \cap A_1\big)
+    \end{align*}
+    and the property (b) of any measure, we get
+    \begin{align*}
+      \mu(B) &= \mu(B \cap A_2) + \mu(B \setminus A_2)\\
+             &= \mu(B \cap A_2) + \mu \big((B \setminus A_2) \cap A_1\big) + \mu \big((B \setminus A_2) \setminus A_1\big)\\
+             &\geq \mu \big(B \cap (A_2 \cup A_1)\big) + \mu \big(B \setminus (A_2 \cup A_1)\big)
+    \end{align*}
+
+  \item $\left(A_{n}\right)_{n \in \N} \subseteq \Sigma \implies A = \bigcup_{n=1}^{\infty}A_n \in \Sigma$:
+
+    We can assume without loss of generality that the sets are mutually disjoint. Otherwise, consider the sequence $\left(\tilde{A}_{n}\right)_{n \in \N} \subseteq \Sigma$ given by
+    \begin{align*}
+      \tilde{A}_1 := A_1, \tilde{A}_n := A_n \setminus \bigcup_{k=1}^{n-1}A_k \quad\text{ which satisfy } \quad \bigcup_{k=1}^{\infty}\tilde{A}_k = \bigcup_{k=1}^{\infty}A_k
+    \end{align*}
+    We can use $\mu$-measureability of $A_m$ with the test set $B\cap \bigcup_{k=1}^{m}A_k$ to find that
+    \begin{align*}
+      \mu \left(
+        B \cap \bigcup_{k=1}^{m}A_k
+      \right)
+      &=
+      \mu \left(
+        \left(
+          B \cap \bigcup_{k=1}^{m}A_k
+        \right)
+        \cap A_m
+      \right)
+      +
+      \mu \left(
+        \left(
+          B \cap \bigcup_{k=1}^{m}A_k
+        \right)
+        \setminus A_m
+      \right)
+      \\
+      &=
+      \mu(B \cap A_m)
+      +
+      \mu \left(
+        B \cap \bigcup_{k=1}^{m-1}A_k
+      \right)
+      \\
+      &= \sum_{k=1}^{m} \mu(B \cap A_k)
+    \end{align*}  
+    and since $\mu$ is monotonous, we get with $\bigcup_{k=1}^{m}A_k \subseteq A$ that
+    \begin{align*}
+      \mu(B)
+      &=
+      \mu \left(
+        B \cap \bigcup_{k=1}^{m}A_k
+      \right)
+      +
+      \mu \left(
+        B \setminus \bigcup_{k=1}^{m}A_k
+      \right)
+      \\
+      &\geq \sum_{k=1}^{m} \mu(B \cap A_k) + \mu(B \setminus A)
+    \end{align*}
+    for all $m \in \N$. Taking the limit as $m \to \infty$, we ge that 
+    \begin{align*}
+      \mu(B) &\geq \sum_{k=1}^{\infty}\mu(B \cap A_k) + \mu(B \setminus A)\\
+      &\geq
+      \mu(B \cap A) + \mu(B \setminus A)
+    \end{align*}
+    which shows $\mu$-measurability of $A$.
+\end{itemize}
+\end{proof}
+
+
+
+
+\begin{dfn}[]
+  A \textbf{measure space} is a tuple $(X, \Sigma, \mu)$ consisting of measure $\mu$ on a set and the $\sigma$-algebra of $\mu$-measurable sets $\Sigma$.
+\end{dfn}
+
+
+\begin{ex}[]
+  \begin{itemize}
+    \item For every $x \in X, A \subseteq X$, define the \textbf{Dirac measure at $x$}
+      \begin{align*}
+        \delta_x(A) =\left\{\begin{array}{ll}
+            1 & x \in A \\
+            0 & x \notin A
+        \end{array} \right.
+      \end{align*}
+    \item For every $A \in \mathcal{P}$, the \textbf{counting measure} is a measure, where every subset is $\mu$-measurable:
+      \begin{align*}
+        \mu(A) = \left\{\begin{array}{ll}
+            \abs{A} & \text{if $A$ is finite} \\
+           \infty & \texttt{otherwise}
+        \end{array} \right.
+      \end{align*}
+    \item The \textbf{indiscrete measure} given by
+      \begin{align*}
+        \mu(A) = \left\{\begin{array}{ll}
+          1 & A \neq \emptyset \\
+          0 & A = \emptyset
+        \end{array} \right.
+      \end{align*}
+      only has $\emptyset,X$ as $\mu$-measurable sets.
+  \end{itemize}
+\end{ex}

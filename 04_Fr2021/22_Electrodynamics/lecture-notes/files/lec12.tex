@@ -1,0 +1,151 @@
+Suppose we are given a charge distribution $\rho$ and we want to find out the potential that solves
+\begin{align*}
+  \square \Phi_{\text{sol}} = \frac{\rho}{\epsilon_0}
+\end{align*}
+Note that by adding a potential with $\square \Phi_{\text{free}} = 0$
+we obtain another solution $\Phi' = \Phi_{\text{sol}} + \Phi_{\text{free}}$.
+
+So the uniqueness of $\Phi$ must be found using the boundary conditions.
+
+Given a green's function $G$ we can set
+\begin{align*}
+  \Phi(\vec{x},t) = 
+  \int_{-\infty}^{\infty}
+  dt' \int d^{3}\vec{y}G(\vec{x} -\vec{y}, t - t') \frac{\rho(\vec{y},t'}{\epsilon_0}
+\end{align*}
+and indeed, $\square \Phi = \frac{\rho}{\epsilon_0}$ 
+But looking at the integral, we have to integrate the time variable over all time, so we need to ``see into the future'' to compute the integral.
+How can it be that the Green's function in the future affects the Potential in the past?
+This is very unphysical in that it violates causality.
+
+To remedy this problem, we need to extend Maxwell's theorey such that it incorporates causality explicitly.
+
+The way we do this is to take write
+\begin{align*}
+  \frac{1}{c} \frac{\del }{\del t} = \lim_{\delta \to 0}\frac{1}{c} \frac{\del }{\del t} + \delta
+\end{align*}
+and deform the d'Alembert operator $\square$ to a modified operator
+\begin{align*}
+  \square_{\delta} = \left(
+    \frac{1}{c}\frac{\del }{\del t} + \delta
+  \right)^{2}
+  - \nabla^{2}
+\end{align*}
+and find a solution $\vec{A}_{\delta}(\vec{x},t)$ for the equation
+\begin{align*}
+  \square_{\delta}\vec{A}_{\delta}(\vec{x},t) = \frac{1}{\epsilon_0 c^{2}} \vec{J}
+\end{align*}
+and then take the limit
+\begin{align*}
+  \vec{A}(\vec{x},t) := \lim_{\delta \to 0} \vec{A}_{\delta}(\vec{x},t)
+\end{align*}
+It turns out that taking this limit will eliminate the need to ``see into the future'' to solve for the potential
+
+With the Fourier transform
+\begin{align*}
+  \tilde{f}(\vec{k}) = \frac{1}{\sqrt{2 \pi}} \int d \vec{x} e^{-i \vec{k} \cdot \vec{x}} f(\vec{x})
+\end{align*}
+and its inverse transform, the simple Green's function can be written as
+\begin{align*}
+  G(\Delta\vec{x}, \Delta t) = \frac{1}{(2 \pi)^{4}} \int d^{3} \vec{k} dE e^{-1(E c \Delta t, - \vec{k} \cdot \Delta \vec{x}} \tilde{G}(\vec{k},E)
+\end{align*}
+which, gives us
+\begin{align*}
+  \tilde{G}(\vec{k},E) = - \frac{c}{E^{2} - k^{2}}
+\end{align*}
+and when we enter the $\delta$ corrections we obtain
+\begin{empheq}[box=\bluebase]{align*}
+  \tilde{G}(\vec{k},E) = \frac{-c}{(E + i \delta)^{2} - k} = \frac{c}{2k} 
+  \left[\frac{1}{E + k + i \delta} - \frac{1}{E - k + i \delta}\right]
+\end{empheq}
+so given the fourier transform, we can recover the Green's function as
+\begin{align*}
+  G(\Delta \vec{x}, \Delta t) = \frac{c}{2(2 \pi)^{4}} \int d^{3} \vec{k} dE \frac{1}{k} e^{-i \left(
+      (E + i \delta) c \Delta t - \vec{k} \cdot \Delta \vec{x}
+  \right)}
+  \left[\frac{1}{E + k + i \delta} - \frac{1}{E - k + i \delta}\right]
+\end{align*}
+to calculate the integral, we use spherical coordinates and end up with
+\begin{align*}
+  G(\Delta \vec{x}, \Delta t) = \frac{i c}{2(2 \pi)^{3} \Delta x} \int d k \left[e^{-ik \Delta x} - e^{+ik \Delta x}\right]
+  \int dE e^{-i(E + i \delta)c \Delta t}
+  \left[\frac{1}{E + k + i \delta} - \frac{1}{E - k + i \delta}\right]
+\end{align*}
+We will do the integral 
+\begin{align*}
+  \int_{- \infty}^{\infty} dE \frac{e^{-ic \Delta tE}}{(E + i \delta)^{2} - k^{2}}
+\end{align*}
+not over $(-\infty,\infty)$, but over a closed semi-circle.
+For $\Delta t < 0$ we use the upper complex half-plane, and for $\Delta t > 0$ we use the lower half-plane to make the integrand go to zero.
+
+On the upper half-plane, the integrand has no poles and therefore the integral is zero for negative $\Delta t$, i.e
+\begin{align*}
+  G(\Delta \vec{x}, \Delta t) = 0 \quad \text{for} \quad \Delta t < 0
+\end{align*}
+
+But on the upper complex half-plane. We have two poles at $E = \pm k - i \delta$.
+With the residue theorem, we obtain
+\begin{align*}
+  G(\Delta \vec{x}, \Delta t)
+  &=
+  \frac{c}{2(2 \pi)^{2} \Delta x} \int_{-\infty}^{\infty}dk e^{-ik(c \Delta t - \Delta x)} - e^{+ ik(c \Delta t + \Delta x}
+  \\
+  &=
+  [...]\\
+  &=
+  \frac{c}{4 \pi \abs{\vec{x} - \vec{y}}} \delta(c \delta t - \Delta x) \quad \text{for} \quad \Delta t > 0
+\end{align*}
+So combining the two cases, we arrive at the compact formula
+\begin{empheq}[box=\bluebase]{align*}
+  G(\vec{x} - \vec{y}, t - t') = \frac{1}{4 \pi \abs{\vec{x} - \vec{y}}} \delta\left(
+    t - t' - \frac{\vec{x} - \vec{y}}{c} 
+  \right)
+  \Theta(t - t')
+\end{empheq}
+so, doing the integral for $\Phi$, we get
+\begin{align*}
+  \Phi(\vec{x},t) 
+  &= 
+  \frac{1}{4 \pi \epsilon_0} \int d^{3} \vec{y} \int_{-\infty}^{\infty}t' \rho(\vec{y},t') \frac{1}{\abs{\vec{x} - \vec{y}}} \delta\left(
+    t - t' - \frac{\vec{x} - \vec{y}}{c} 
+  \right)
+  \Theta(t - t')
+  \\
+  &=
+  \frac{1}{4 \pi \epsilon_0}
+  \int d^{3} \vec{y} \frac{1}{\abs{\vec{x} - \vec{y}}}\rho\left(\vec{y}, t - \tfrac{\abs{\vec{x} - \vec{y}}}{c}\right)
+\end{align*}
+Now, if the charge density $\rho$ is time-independent, then we recover the usual result
+\begin{align*}
+  \Phi(\vec{x},t) = \frac{1}{4 \pi \epsilon_0} d^{3}\vec{y} \frac{\rho(\vec{y},t)}{\abs{\vec{x} - \vec{y}}}
+\end{align*}
+
+Looking again at 
+\begin{align*}
+  \Phi(\vec{x},t) 
+  \frac{1}{4 \pi \epsilon_0}
+  \int d^{3} \vec{y} \frac{1}{\abs{\vec{x} - \vec{y}}}\rho\left(\vec{y}, t - \tfrac{\abs{\vec{x} - \vec{y}}}{c}\right)
+\end{align*}
+what this is saying is that in order to compute the potential, we do not look at whatwhat  the charge density is now, but need to know what the charge distribution was back when light started to travel from the location $\vec{y}$ was.
+
+This seems very intuitive, because the information that the charge density has changed only arrives after $\frac{\abs{\vec{x}- \vec{y}}}{c}$ time has passed.
+
+So by defining the \textbf{time retardation} 
+\begin{align*}
+  t_{\text{ret}} := t - \frac{\abs{\vec{x} - \vec{y}}}{c}
+\end{align*}
+we can write more compactly
+\begin{empheq}[box=\bluebase]{align*}
+  \Phi(\vec{x},t) = \frac{1}{4 \pi \epsilon_0} \int d^{3} \vec{y} \frac{\rho(\vec{y},t_{\text{ret}})}{\abs{\vec{x} -\vec{y}}}
+\end{empheq}
+and likewise, we get the \textbf{retarded vector potential} 
+\begin{empheq}[box=\bluebase]{align*}
+  \vec{A}(\vec{x},t) = \frac{1}{4 \pi \epsilon_0 c^{2}} \int d^{3} \vec{y}
+  \frac{\vec{J}(\vec{y},t_{\text{ret}}}{\abs{\vec{x} - \vec{y}}}
+\end{empheq}
+and the Green's function becomes
+\begin{align*}
+  G(\vec{x}-\vec{y},t - t') = \frac{1}{4 \pi} \frac{1}{\abs{\vec{x} - \vec{y}}}\delta(t - t_{\text{ret}})
+\end{align*}
+
+

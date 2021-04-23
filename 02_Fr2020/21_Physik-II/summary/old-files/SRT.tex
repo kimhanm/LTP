@@ -1,0 +1,153 @@
+\section{SRT}
+\subsection{Vierervektor}
+Der \textbf{Vierervektor} ist der Posititionsvektor eines Ereignisses im \textbf{Minkowski-Raum}. Dazu gehören der Vektor $\beta$ und der Skalar $\gamma$
+\begin{align*}
+    x^{\mu} = \begin{pmatrix}
+        x_0\\
+        x_1\\
+        x_2\\
+        x_3
+    \end{pmatrix} = \begin{pmatrix}
+        ct\\
+        \vec{x}
+    \end{pmatrix}, \quad \vec{\beta} = \frac{\vec{v}}{c}, \quad \gamma = \frac{1}{\sqrt{1 - \beta^2}}
+\end{align*}
+
+
+Das \textbf{Viererskalarprodukt} im Minkowski-Raum ist die symmetrische bilineare Abbildung definiert durch
+\begin{align*}
+        \left<x^{\mu},y^{\nu}\right> = g_{\mu \nu}x^{\mu} y^{\nu} \begin{pmatrix}
+        x_0\\x_1\\ x_2\\ x_3
+    \end{pmatrix}^T \begin{pmatrix}
+        1\\
+        0 & -1\\
+        0 & 0 & -1\\
+        0 & 0 & 0 & -1
+    \end{pmatrix} \begin{pmatrix}
+        y_0\\ y_1 \\ y_2 \\ y_3
+    \end{pmatrix}
+\end{align*}
+Sie lässt sich auch mit der gewöhnlichen Skalarprodukt notation leicht verändert aufschreiben
+\begin{align*}
+    \Norm{x^{\mu}}^2 = x^{\mu} \cdot x_{\mu} = \begin{pmatrix}
+        x_0\\
+        x_1\\
+        x_2\\
+        x_3
+    \end{pmatrix} \cdot \begin{pmatrix}
+        x_0\\
+        -x_1\\
+        -x_2\\
+        -x_3
+    \end{pmatrix}
+\end{align*}
+Das \textbf{Raumzeitintervall} ist dann unter Lorentz-Transformationen erhalten:
+\begin{align*}
+        (\Delta s)^2 := (c\Delta t)^2 - (\Delta x_1^2 + \Delta x_2^2 + \Delta x_3^2) = (\Delta s')^2
+\end{align*}
+
+\subsection{Zeit \& Länge}
+
+Die \textbf{Zeitdilatation} hat den Effekt, dass die Zeit für bewegende Uhren scheinbar langsamer läuft. Die Eigenzeit $\Delta t'$ des mitbewegten Systems verläuft schneller als die gemessene Zeit $\Delta t$ im Laborsystem.
+\begin{empheq}[box=\bluebase]{align*}
+    \Delta t' =   \frac{\Delta t}{\gamma}
+\end{empheq}
+Bewegte Objekte erscheinen wegen der \textbf{Längenkontraktion} kürzer im Laborsystem ($\Delta x$) als die gemessene Eigenlänge im mitbewegten System ($\Delta x'$)
+\begin{empheq}[box=\bluebase]{align*}
+    \Delta x' = \gamma \Delta x
+\end{empheq}
+
+
+Die Transformation der Koordinaten vom Laborsystem $K$ zum mitbewegten System $K'$, das sich mit der konstanten Geschwindigkeit $\vec{v} = \vec{\beta}c$ in $x$-Richtung bewegt ist gegeben durch 
+\begin{align*}
+    \Lambda_{K'}^K = \begin{pmatrix}
+        \gamma & - \beta \gamma & 0 & 0\\
+        -\beta \gamma & \gamma & 0 & 0\\
+        0 & 0 & 1\\
+        0 & 0 & 0& 1
+    \end{pmatrix}, \quad 
+    \Lambda_{K}^{K'} = \begin{pmatrix}
+        \gamma & + \beta \gamma & 0 & 0\\
+        +\beta \gamma & \gamma & 0 & 0\\
+        0 & 0 & 1\\
+        0 & 0 & 0& 1
+    \end{pmatrix}
+\end{align*}
+
+
+Bewegt sich $K'$ mit Geschwindigkeitet $v$ relativ zu $K$ und misst die Geschwindigkeit $u'$ in die gleiche Richtung, so gilt
+
+\begin{empheq}[box=\bluebase]{align*}
+    u = \frac{u' + v}{1 + \frac{u' v}{c^2}} < c
+\end{empheq}
+
+
+\subsection{Energie, Impuls}
+Die \textbf{Vierergeschwindigkeit} die von der Eigenuhr gemessene Zeit $\tau$ berechneter Vierervektor.
+\begin{align*}
+    u^{\mu} = \frac{d x^{\mu}}{d \tau} = c\gamma \begin{pmatrix}
+        1\\
+        \bm{\beta}
+    \end{pmatrix}, \quad \Norm{u}^2 = u^{\mu}u_{\mu} = c^2
+\end{align*}
+
+\textbf{Viererimpuls}
+\begin{align*}
+    P^{\mu} = m \cdot u^{\mu} = \begin{pmatrix}
+        m \gamma c\\
+        m \gamma c \vec{\beta}
+    \end{pmatrix} = \begin{pmatrix}
+        \frac{E}{c}\\
+        \vec{p}
+    \end{pmatrix}\\
+    \implies \abs{P}^2 = P_{\mu}P^{\mu} = \frac{E^2}{c^2} - \abs{\vec{p}}^2 = m^2 c^2
+\end{align*}
+\begin{empheq}[box=\bluebase]{align*}
+    E_{\text{tot}} = \underbrace{E_0}_{= mc^2} + E_{\text{kin}} = m \gamma c^2
+\end{empheq}
+
+\begin{empheq}[box=\bluebase]{align*}
+    E^2 = \abs{\vec{p}}^2c^2 + m^2c^4
+\end{empheq}
+
+
+Das Photon hat keine Masse. Darum gilt $E_{\nu} = \abs{\vec{p}}_{\nu} c$
+
+
+\begin{empheq}[box=\bluebase]{align*}
+    m \gamma \vec{a} = \vec{F} - \frac{\vec{F} \cdot \vec{v}}{c^2} \vec{v}
+\end{empheq}
+
+
+Die Taylor-Entwicklung von $\gamma$ ist 
+\begin{align*}
+    \gamma = \frac{1}{\sqrt{1 - \beta^2}} \simeq 1 + \frac{1}{2} \beta^2
+\end{align*}
+\subsection{Doppler-Effekt}
+Allgemein: Setze $\theta$ als den Winkel zwischen $v_q$ und der Verbindungsstrecke $B-Q$:
+
+
+\begin{empheq}[box=\bluebase]{align*}
+    f_B = f_Q \frac{\sqrt{1 - \beta^2}}{1 - \beta \cos \theta}
+\end{empheq}
+\textbf{Longitudinaler Doppler-Effekt}: Spezialfälle $Q$ bewegt sich zu $B$ ($\theta = 0$) und $Q$ bewegt sich von $B$ weg ($\theta = \pi$)
+\begin{align*}
+    f_B|_{\theta = 0} = f_Q\sqrt{\frac{1 + \beta}{1 - \beta}}, \quad f_B|_{\theta = \pi} = f_Q \sqrt{\frac{1 - \beta}{1 + \beta}}
+\end{align*}
+
+\textbf{Transversaler Doppler-Effekt}: Quelle bewegt sich senkrecht zum Beobachter $\theta = \frac{\pi}{2}$
+\begin{align*}
+    f_B = f_Q \sqrt{1 - \beta^2}
+\end{align*}
+
+
+Im \textbf{Minkowski-Diagramm} ist der Winkel der transformierten Raum-Zeitachsen $\alpha$ gegeben durch $\tan(\alpha) = \beta = \frac{ct}{x}$
+
+\subsection{Relativistische Transformationen}
+
+Die $\vec{E}$ und $\vec{B}$-Felder transformieren sich mit $\vec{E} = \vec{E}_{\parallel} + \vec{E}_{\bot}$ wie folgt: 
+
+\begin{empheq}[box=\bluebase]{align*}
+    \mathbf{E}_{\parallel}' = \mathbf{E}_{\parallel}, \quad \mathbf{E}_{\bot}' = \gamma \left(\mathbf{E}_{\bot} + c \vec{\beta} \times \mathbf{B}_{\bot} \right)\\
+    \mathbf{B}_{\parallel}' = \mathbf{B}_{\parallel}, \quad \mathbf{B}_{\bot}' = \gamma (\mathbf{B}_{\bot} - \frac{\vec{\beta}}{c} \times \mathbf{E}_{\bot})
+\end{empheq}

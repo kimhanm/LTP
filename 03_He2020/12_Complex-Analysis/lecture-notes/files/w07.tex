@@ -1,0 +1,93 @@
+The Problem with this function is that the $\log(z - a)$ is not single valued. So if we take the integral over $C_r := \left\{z \in \C \big\vert \abs{z-a} = r\right\}$ we get that for $z(t) = a + re^{it}$
+\begin{align*}
+	\int_{C_r}\frac{1}{z-a}dz = \int_{0}^{2 \pi} \frac{1}{a + re^{it}} z'(t) dt = \int_{0}^{2 \pi} \frac{ri e^{it}}{re^{it}} dt = \int_{0}^{2 \pi} i dt = 2 \pi i
+\end{align*}
+which can be seen a as saying that the log, when we go move along $C_r$, takes on a different value at the end that in the beginning.
+
+But if $\Omega$ is a half space not containing $a$, then $\log(z-a) = \log(\abs{z-a}) + i \arg(z-a)$ and if we never go around $a$, then $\arg(z-a)$ will always stay between $-\frac{\pi}{2}$ and $\frac{\pi}{2}$ and we won't have a problem like before.
+
+This gives us a really nice outlook on finding out what the space looks like by calculating curve integrals. This algebraic struture that fits on topological spaces will give rise to the powerful tools of Algebraic Topology.\\
+
+Informally, the Cauchy's theorem states that if $\Omega \subseteq \C$ is \emph{nice enough} and $f$ is analytic in $\Omega$, then $\int_{\gamma}f(z) dz = 0$ for all closed curves $\gamma \subseteq \Omega$.\\
+
+
+Note that the almost nice set $\Omega = \C \setminus \{0\}$ is connected, open, path connected, but for Cauchy's Theorem it is not nice enough.
+
+Recall that we looked at $p dx + q dy = dU$ and we argued that if we had to paths connecting $z_0 = (x_0,y_0)$ and $z_1 = (x_1,y_1)$ we could  calculate the path integral independent of whether we would take the path $(x_0,y_0) -- (x_0,y_1) -- (x_1,y_1)$ or the path $(x_0,y_0) -- (x_1,y_0) -- (x_1,y_1)$. So all we need is if we show it for the rectangle, we can generalize it for more and more subsets of $\C$.
+
+We begin with the rectangle. Let $R = [a,b] \times i[c,d] \subseteq \C$. And let $f: R \to \C$ be analytic in $R$. Then $\int_{R} f(z) dz = 0$.\\
+
+One approach to prove this is to try to do this over the real numbers. But that is quite tiresome. The nice way to do this is to use that $f$ is analytic and zoom in in a small region of the rectangle and approximate $f$, controlling the error.
+
+Let $\eta(R) = \int_{\del R}f(z) dz$. We will keep dividing the rectangle the rectangle into smaller rectangles by bisecting int on each side to get four rectangles $R^{(1)}, R^{(2)}, R^{(3)}, R^{(4)}$ and parametrize them such that on each smaller rectangle, we go along clockwise.\\
+
+Since on each inner side, we integrate twice, but in opposite directions, the Integrals cancel out. So we get
+\begin{align*}
+	\eta(R) = \eta(R^{(1)} + \eta(R^{(2)} + \eta(R^{(3)} + \eta(R^{(4)}
+\end{align*}
+Using a pidgeon-hole like argument, there must be an $i$ such that 
+\begin{align*}
+	\abs{\eta(R^(i)} \geq \abs{\eta(R)}
+\end{align*}
+and call that one $R_1$. We repeat this and get a sequence of rectangles
+\begin{align*}
+	R \supseteq R_1 \supseteq R_2 \supseteq R_3 \ldots \quad \text{with} \quad \abs{\eta(R_n)} \geq \frac{1}{4^n} \abs{\eta(R)}
+\end{align*}
+
+Not let $z^* \in R$ such that $\forall \epsilon > 0$ there exists an $n$ with $R_n \in B(z^*,\delta)$. For some $\delta$ small enough that $f$ is analytic in $B(z^{\ast},\delta)$. Then we can write
+\begin{align*}
+	\forall \epsilon > 0:  \exists \delta > 0 \text{ such that } \abs{\frac{f(z) - f(z^*)}{z - z^*} - f'(z)} < \epsilon \quad \text{for all} \quad z \in B(z^*,\delta)
+\end{align*}
+And by multiplying with $\abs{z - z^*}$ we get that
+\begin{align*}
+	\abs{f(z) - f(z^*) - f'(z^*)(z-z^*)} < \epsilon \abs{z - z^*}
+\end{align*}
+Next we fix some $\epsilon > 0$ and pick $\delta$ such that we get a linear approximation of our function $f$. Then consider the integrals
+\begin{align*}
+	\int_{\gamma}1 dz = 0 \quad \text{and} \quad \int_{\gamma}z dz = 0
+\end{align*}
+since both $1$ and $z$ have primitives. Therefore, the linear approximation of the Integrals
+\begin{align*}
+	\eta(R_n) &= \int_{\del R_n}f(z) dz = \int_{\del R_n} f(z) dz - \int_{\del R_n}f(z^*) + f'(z^*)(z - z^*) dz \\
+						&= \int_{\del R_n} f(z) - f(z^*) - f'(z^*)(z - z^*) dz
+\end{align*}
+so since $R_n$ is inside the Ball $B(z^*, \delta)$ we can use the previous approximations and get using the triangle inequality that
+\begin{align*}
+	\abs{\eta(R_n)} \leq \int_{\del R_n} \epsilon \abs{z - z^*} \abs{dz}
+\end{align*}
+Now let $d_n$ be the diagonal length of $R_n$ and $l_n$ be its perimeter. So since $d_n = 2^{-n} d$ and $L_n = 2^{-n} L$, we can write
+\begin{align*}
+	\abs{\eta(R_n)}	\leq \epsilon \int_{\del R_n} d_n \abs{dz} = \epsilon d_n L_n = \epsilon 4^{-n}dL \\
+	\implies \abs{\eta(r)} \leq 4^h \abs{\eta(R_n)} \leq \epsilon dL
+\end{align*}
+So we find that the closed integral $\eta(R)$ is zero. So this gives us the proposition
+
+\begin{proposition}[Cauchy's Theorem on a rectangle]
+	If $f: \Omega \to \C$ is analytic in a rectangle $R \subseteq \Omega$, then the contour integral is zero.
+	\begin{align*}
+		\int_{\del R}f(z) dz = 0
+	\end{align*}
+\end{proposition}
+But we can make this proposition a little bit stronger. The proposition is true, even if we remove a finite number of points from the interior of the rectangle:\\
+
+\begin{corollary}[]
+	If $f: \Omega \to \C$ is analytic in $R'$, where $R'$ is obtained by removing a finite number of points $\left(\xi_{k}\right)_{k =1}^{K}$ from the interior of a rectangle $R'$, such that for all $k$ 
+	\begin{align*}
+		\lim_{z \to \xi_k}(z - \xi_k)f(z) = 0	\quad \text{then} \quad \int_{\del R} f(z) dz = 0
+	\end{align*}
+\end{corollary}
+
+Since we can subdivide the rectangle $R$ into smaller rectangles that only contain one point, we can assume without loss of generality that $K = 1$. By subdividing the rectangle even further, we can make the rectangle containing the point $\xi$ arbitrarily small, which we call $R_0$. Since the other rectangles have no points missing, the only integral that remains is the one ove $R_0$.
+\begin{align*}
+	\int_{\del R}f(z) dz = \int_{\del R_0}f(z) dz	
+\end{align*}
+Using the fact that the limit $\lim_{z \to \xi}(z - \xi)f(z) = 0$, in particular we have that for all $z \in R_0' := R_0 \setminus \{\xi\}$
+\begin{align*}
+	\abs{f(z)} &\leq \frac{\epsilon}{\abs{z - \xi}}\\
+	\implies \abs{\int_{\del R_0} f(z) dz} \leq \int_{\del R_0} \abs{f(z)} dz \leq \int_{\del R_0} \frac{\epsilon}{\abs{z - \xi}}dz \leq 8 \epsilon
+\end{align*}
+so the integral over $R_0$ and thus over $R$ vanishes.\\
+
+
+With this we want to show that if $f$ is analyti over a nice enough space $\Omega$, then any integral over a closed curve is zero. Here we must have that our definition for nice enough must exclude disks with holes in it, since $\int_{\del B(0,1)}\frac{1}{z}dz = 2 \pi i \neq 0$.
+

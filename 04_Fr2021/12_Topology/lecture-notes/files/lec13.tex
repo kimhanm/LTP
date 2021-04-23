@@ -1,0 +1,294 @@
+\newpage
+\section{Category Theory}
+
+One of the main goals of category theory is to obtain a language with which we can talk about mathematical objects (such as sets, spaces, groups etc.) in various contexts.\footnote{I am deviating from what is given in the lecture by Prof. Feller, with mostly my own notes,, but still using the definitions from the lecture.}
+
+Some of the notions used in the language of Category theory are not compatible with the restrictions in set theoretical frameworks such as plain ZFC.
+
+For example, talking about the \emph{Category of Categories} may get a little awkward.
+
+To remedy this, category theorists usually work in an extension of ZFC with new axioms to let us distinguish between sets and proper classes\footnote{Check out Michael Shulman's "Set theory for category theory" that explores this in more detail.}.
+
+Covering these axioms systematically is rather tedious, so we will largely skip this step and focus more on using the language of Category theory without worrying about the low-level stuff going on.
+
+For example, we will write things like \emph{collections} of objects and talk about them using our intuitive understanding of what such a phrase might mean, just like most of the things we do in Topology anyways.
+
+The main goal of this section is to give a basic understanding of category theory with a focus on Topology until we have sufficient vocabulary to understand some of the tools used in the rest of the lectures.
+
+A resource I found extremely useful to understanding category theory was the \textbf{nlab} \url{https://ncatlab.org/nlab/show/HomePage} which is a wiki that provides definitions and motivations for many category theoretic concepts.
+Another great resource is Emily Riehl's \textbf{Category Theory in Context} \url{https://math.jhu.edu/~eriehl/context.pdf} which provides a nice guide to category theory and its applications together with some helpful exercises.
+
+\subsection{The Notion of a Category}
+A \textbf{category} $\textsf{C}$ consists of the following data: 
+\begin{itemize}
+  \item A class (collection) $\text{Ob}(\textsf{C})$ of mathematical objects. The objects can be anything we want them to be and don't need to be defined using sets or anything thelike.
+  \item A \textbf{Hom-Set} $\Hom(X,Y)$ (or sometimes written $\textsf{C}(X,Y)$ for every pair of objects $X,Y \in \text{Ob}(\textsf{C})$. 
+    The Hom-set consists of \textbf{Morphisms} between these objects, that is: every morphism must have well-defined object as its \textbf{domain} and \textbf{codomain}.
+    If $X$ and $Y$ are objects in a category $\textsf{C}$, we write $f: X \to Y$ (or $X \stackrel{f}{\to}Y$) to denote a morphism $f$ with domain $X$ and codomain $Y$.
+\end{itemize}
+For the data to from a valid category they must fulfill the following requirements:
+\begin{itemize}
+  \item Morphisms can be composed: If $f:X \to Y$ and $g: Y \to Z$ are morphisms, then there exists a morphism $g \circ f: X \to Z$.
+    More formally, for every triple $(X,Y,Z)$ there exists a map
+    \begin{align*}
+      \Hom(X,Y) \times \Hom(Y,Z) \to \Hom(X,Z), \quad (f,g) \mapsto g \circ f
+    \end{align*}
+  \item Composition is associative: For morphisms $X \stackrel{f}{\to } Y \stackrel{g}{\to} Z \stackrel{h}{\to} W$ we have the equality $(f \circ g) \circ h = f \circ (g \circ h)$.
+  \item For every object $X$ in a category $\textsf{C}$, there exists an \textbf{identity morphism} $\id_X: X \to  X$ that satisfies the left and right unit laws: For any object $Y \in \text{Ob}(\textsf{C})$
+    \begin{align*}
+      \forall f \in \Hom(X,Y): f \circ \id_X = f \quad \text{and} \quad \forall g \in \Hom(Y,X): \id_X \circ g = g
+    \end{align*}
+\end{itemize}
+
+Let's take a look at some categories. 
+When we say that something is a category, we usually specify what the objects are and what the morphisms (and composition) look like.
+
+\begin{ex}[]
+  Make sure to verify that these do indeed form categories by checking the properties above.
+  \begin{itemize}
+    \item The category of sets, denoted $\Set$, where the objects are sets and morphisms are functions.
+    \item The category of topological spaces, written $\Top$ where the objects are topological spaces (with their topology) and where the morphisms are \emph{continuous} functions.
+    \item The category $\Grp$, where the objects are groups and morphisms are group homomorphisms.
+    \item The category $\Top_{\ast}$, with Topological spaces with a basepoint $(X,\tau,x_0)$ as objects and where the morphisms are continous, base-point preserving functions.
+    \item The category $\Ring$ with Rings as objects and ring homomorphisms as morphisms.
+    \item \textsf{Graph} has graphs as objects and graph homomorphisms as morphisms.
+    \item For a fixed field $k$, the category $\textsf{Vect}_k$ has $k$-vector spaces as objects with linear maps as morphisms.
+    \item One rather weird category is the category of fields with field homomomorphisms.
+  \end{itemize}
+  Some of these categories will be of special interest later (in particular $\Top_{\ast}$ and $\Grp$)
+\end{ex}
+
+It is traditional to name categories after their objects and imply what the morphisms are.
+But just like how topological spaces should always be considered with their topology, we have to think of the objects and morphisms together when taking about categories.
+
+
+\begin{ex}[]
+  The examples above are categories were objects were \emph{sets with structure} and the morphisms were \emph{structure preserving} maps.
+  But the objects need not be sets, and morphisms need not be functions!
+\begin{itemize}
+  \item The trivial category, which consists of a single object $\ast$ and its identity morphism $\ast \stackrel{\id}{\to} \ast$.
+  \item A group (or monoid) $(G,\cdot,e)$ can be viewed as a category with a single object $\ast$, where the morphisms $g: \ast \to \ast$ are the elements $g \in G$ and where composition of morphisms is defined as the multiplication in $G$: $g \circ h := g \cdot h$.
+  \item A poset $(P,\leq)$ is a category where the objects are the elements of $P$ and there exist unique morphisms $x \to y$ if and only if $x \leq y$.
+  \item \textsf{Htpy} has the same objects as $\Top$, but morphisms are homotopy classes of continuous maps.
+  %\item In functional programming, one might talk about the category of types in a given language. In Haskell for example, the objects are all valid Haskell types such as \texttt{Int}, \texttt{[String]}, \texttt{Double -> ([Bool],Char)} etc. and where the morphisms are functions of the given type signature.
+  \item Given a category $\textsf{C}$, we can talk about its \textbf{arrow category}, where the objects are morphisms $f: X \to Y$ from $\textsf{C}$ and a morphism between objects $X_0 \stackrel{f}{\to} Y_0, X_1 \stackrel{g}{\to}Y_1$ are pairs of morphisms $\alpha: X_0 \to X_1$ and $\beta: Y_0 \to Y_1$ such that the following diagram commutes:
+    \begin{center}
+    \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+      X_0 \arrow[]{r}{\alpha} \arrow[swap]{d}{f} & X_1 \arrow[]{d}{g}\\
+      Y_0 \arrow[]{r}{\beta} & Y_1
+    \end{tikzcd}
+    \end{center}
+    i.e. such that $g \circ \alpha = \beta \circ f$.
+\end{itemize}
+\end{ex}
+
+The language of category theory lets us unify similar ideas from different contexts:
+\begin{dfn}[]\label{dfn:cat-iso}
+  In any category, an \textbf{isomorphism} (or \textbf{iso}, for short) is a morphism with a two-sided inverse.
+That is, a morphism $f: X \to Y$ is iso, if there exists a morphism $g: Y \to X$ such that $f \circ g = \id_Y$ and $g \circ f = \id_X$.
+\end{dfn}
+In $\Set$, the isomorphisms are bijective functions. In $\Grp$, they are group isomorphisms. In $\Top$ they are homeomorphisms. In $\Htpy$ an isomorphism is a homotopy equivalence (up to homotopy of course).
+
+The possibility to use the same definition and applying it to different contexts to recover ``classical'' definitions is quite common and also what makes category theory so nice to use.
+
+\subsection{Duality}
+
+If we visualize the morphisms in a category as arrows pointing from their domain to their codomain, one might be tempted to reverse the directions of all the arrows.
+
+\begin{dfn}[]
+Let $\textsf{C}$ be a category. The \textbf{opposite category} $\textsf{C}^{\text{op}}$ has the same objects as $\textsf{C}$, but for every morphism $f: X \to Y$ in $\textsf{C}$, we have a morphism $f^{\text{op}}: Y \to X$ in $\textsf{C}^{op}$
+\end{dfn}
+Verify that this forms a valid category by defining composition and checking associativity as well as the left/right unit relations for the identity morphisms.
+
+\begin{dfn}[]
+  In the following, let $c$ be an object in a Category $\textsf{C}$.
+  \begin{itemize}
+    \item There is a category $c/\textsf{C}$ called the \textbf{slice category} of $\textsf{C}$ \textbf{under} $c$, where the objects are morphisms $f: c \to X$ from $\textsf{C}$, 
+      and a morphism between objects $c \stackrel{f}{\to}$ and $c \stackrel{g}{\to}Y$ is a morphism $h: X \to Y$ from $\textsf{C}$ such that the following diagram commutes:
+      \begin{center}
+        \begin{tikzcd}[column sep=0.8em] %\arrow[bend right,swap]{dr}{F}
+         &  c \arrow[swap]{dl}{f} \arrow[]{dr}{g}\\
+          X \arrow[]{rr}{h} & & Y
+        \end{tikzcd}
+      \end{center}
+      i.e. so that $h \circ f = g$ .
+    \item There is a category $\textsf{C}/c$ called the \textbf{slice category} of $\textsf{C}$ \textbf{over} $c$, where the objects are morphisms $f: X \to c$ and a morphism between objects $X \stackrel{f}{\to}c$, $Y \stackrel{g}{\to}c$ is a morphism $h: X \to Y$ such that the following diagram commutes:
+      \begin{center}
+        \begin{tikzcd}[column sep=0.8em] %\arrow[bend right,swap]{dr}{F}
+          X \arrow[swap]{dr}{f}\arrow[]{rr}{h} & & Y \arrow[]{dl}{g}\\
+         &  c 
+        \end{tikzcd}
+      \end{center}
+  \end{itemize}
+  Note how the two examples above are \emph{dual} to eachother. We used one definition, reversed the arrows and obtained another definition of a category.
+\end{dfn}
+
+The definition of injective/surjective maps between sets we have seen in introductory set theory makes use of the word ``element'' (A function $f: X \to Y$ is injective, if for all $x,y \in X$ such that \ldots).
+In category theory however, cannot talk about ``elements'' or what is ``inside'' an object.
+We wish to understand objects not by analyzing its internal properties, but rather through its relation to other objects from that category.
+
+\begin{dfn}[]
+A morphism $f: X \to Y$ in a category is said to be
+\begin{itemize}
+  \item a \textbf{monomorphism} (or \textbf{monic}), if for any pair of parallel morphisms $g,h: W \to X$ we have the implication $f \circ g =f \circ h \implies g = h$.
+    \begin{center}
+      \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+        W \arrow[transform canvas={yshift=0.4ex}]{r}{g}
+        \arrow[swap,transform canvas={yshift=-0.4ex}]{r}{h}
+        & X \arrow[]{r}{f} & Y
+      \end{tikzcd}
+    \end{center}
+
+  \item an \textbf{epimorphism} (or \textbf{epic}), if for any pair of parallel morphisms $g,h: Y \to Z$ we have the implication $g \circ f =h \circ f \implies g = h$.
+    \begin{center}
+      \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+        Z  &
+        Y  
+        \arrow[swap,transform canvas={yshift=0.4ex}]{l}{g}
+        \arrow[transform canvas={yshift=-0.4ex}]{l}{h}
+           & X \arrow[swap]{l}{f}
+      \end{tikzcd}
+    \end{center}
+\end{itemize}
+\end{dfn}
+
+In the categories $\Set,\Top$ and some others, monomorphisms/epimorphisms are excactly the injective/surjective maps.
+Just like how in topology, a bijective continuous function need not be a homeomorphism, a morphism in a category that is both monic and epic need not be iso.
+
+Another counter example is the canonical embedding $\Z \hookrightarrow \Q$ in the category $\Ring$, which is both monic and epic, but clearly not an isomorphism.
+
+The fact that these definitions of monomorphisms and epimorphisms are dual to each other is useful because if we can prove something for monic maps, then the same holds true in the opposite category for epic maps, because the monomorphisms in $\textsf{C}$ are excatly the epimorphisms in $\textsf{C}^{\text{op}}$.
+
+\begin{lem}[]
+  \phantom{a}
+  \begin{enumerate}
+    \item If $f: X \mono Y$ and $g: Y \mono Z$ are monomorphisms, then so is $g \circ f: X \mono Z$
+    \item If $f: X \to Y$ and $g: X \to Z$ are morphisms such that $g \circ f$ is monic, then $f$ is monic.
+  \end{enumerate}
+  And dually:
+  \begin{enumerate}
+    \item[(a')] If $f: X \epi Y$ and $g: Y \epi Z$ are epimorphisms, then so is $g \circ f: X \epi Z$.
+    \item[(b')] If $f: X \to Y$ and $g: X \to Z$ are morphisms such that $g \circ f$ is epic, then $g$ is epic.
+  \end{enumerate}
+\end{lem}
+We only need to prove (a) and (b) here. (a') and (b') follow by duality.
+
+\begin{dfn}[]
+If $A \stackrel{s}{\to} X \stackrel{r}{\to} A$ are morphisms such that $r \circ s = \id_A$, then we call $s$ a \textbf{section} or \textbf{right inverse} to $r$, while $r$ defines a \textbf{retraction} or \textbf{left inverse} to $s$.
+We call $A$ a \textbf{retract} of the object $X$.
+\end{dfn}
+Applying this definition in the category $\Top$, we recover the definition of rectraction: 
+A retraction (in the sense of Definition \ref{dfn:retraction}) is a left inverse to the inclusion map $\iota$.
+A deformation retract is a right inverse to the inclusion map $\iota$: $X \stackrel{\rho}{\to} A \stackrel{\iota}{\hookrightarrow} X$ in the category $\Htpy$.
+
+Many objects (such as Quotient Spaces, Tensor product, Product topology, Polynomial rings etc.) we studied in Linear Algebra and Topology could be understood as a construction, where we directly defined the object through its elements and its structure.
+It turns out that we can understand them through their relationship with other objects.
+The special relationships usually came in the form of \textbf{universal properties}. 
+
+\begin{dfn}[]
+	Let $\textsf{C}$ be a category.
+	\begin{itemize}
+		\item An \textbf{initial object} of the category, if it exists, is an object $\emptyset$ with the \textbf{universal property} that, for any other object $X$ in $\textsf{C}$, there exists a \emph{unique} morpshism $\emptyset \to X$.
+		\item A \textbf{terminal object}, if it exists, is an object $1$ with the universal property that, for any other object $X$ in $\textsf{C}$, there exists a unique morphism $X \to 1$.
+	\end{itemize}
+\end{dfn}
+\begin{ex}[]
+The notation used for $\emptyset$ and $1$ are suggestive, but can be misleading depending on the category.
+\begin{itemize}
+	\item In the category $\Set$ (and in $\Top$), the initial object is the empty set $\emptyset$ and the terminal object is the singleton set $\{\ast\}$.
+	\item In the category $\Grp$, the trivial group $\{e\}$ is both an initial and terminal object. In this case, we also call it a \textbf{zero object}.
+	\item In the category $\Ring$, the initial object is the ring of integers $\Z$. 
+		Depending on whether we use the axiom $0 \neq 1$ in the definition of a ring, the category may or may not have a terminal object $\{1\}$.
+\end{itemize}
+\end{ex}
+Notice that we wrote ``the'' initial object or ``the'' terminal object even though for example, there are multiple sets with a single element. 
+That is because in category theory, if two things are isomorphic (in the sense of definition \ref{dfn:cat-iso}) they can be thought of as being essentially the same in that category.
+\begin{lem}[] \label{lem:unique-iso}
+	In any category, the inital and terminal objects, \emph{if they exist}, are unique up to isomorphism.
+\end{lem}
+\begin{proof}
+	Again, since the terminal object is the initial object in the opposite category, we only need to prove it for one of them.
+	Suppose $X,Y$ are initial objects with identity morphisms $\id_X$ and $\id_Y$, respectively.
+	By their universal properties there exist (unique) morphisms $f: X \to Y$ and $g: Y \to X$. 
+	Considering their composition, we get a morphism $g \circ f: X \to X$.
+	But by the universal propery, there can only be one unique morphism $X \to X$, so $g \circ f = \id_X$.
+	Likewise for $Y$, we get $f \circ g = \id_Y$.
+\end{proof}
+
+We can use the notion of universal property in a more general way by using a meta-defintion.
+\begin{dfn}[]
+  An object is said to have a \textbf{universal property}, if it is the inital or terminal object in the category of objects with this property.
+\end{dfn}
+
+Let's see how the meta-definition can be used to describe universal properties of some known objects.
+\begin{ex}[Product]
+  In the category $\Set$, the (cartesian) product $X \times Y$ of two sets $X,Y$ is equipped with \textbf{projection mappings}
+  \begin{align*}
+    \pi_X: X \times Y \to X, \quad (x,y) \mapsto x, 
+    \quad \text{and} \quad
+    \pi_Y: X \times Y \to Y, \quad (x,y) \mapsto y
+  \end{align*}
+  The cartesian product has the universal property that, for any other set $Z$ with functions $f: Z \to X, g: Z \to Y$, there exists a \emph{unique} function $\phi:Z \to X \times Y$ such that the following diagram commutes.
+  \begin{center}
+  \begin{tikzcd}[column sep=1em] %\arrow[bend right,swap]{dr}{F}
+    Z \arrow[bend left]{drr}{f} \arrow[bend right]{ddr}{g}\arrow[dashed]{dr}{!\exists\phi}\\
+    & X \times Y \arrow[]{r}{\pi_X} \arrow[]{d}{\pi_Y}& X\\
+    & Y
+  \end{tikzcd}
+  \end{center}
+  Where the map $\phi$ is given by $\phi: Z \to X \times Y, z \mapsto (f(z),g(z))$.
+  
+  If we view this in the category where the objects are sets with functions to $X$ and $Y$, and where a morphism between objects 
+  $\left\{Z' \stackrel{f'}{\to}X, Z' \stackrel{g'}{\to}Y\right\}$
+  and
+  $\left\{Z \stackrel{f}{\to}X, Z \stackrel{g}{\to}Y\right\}$
+  is a function $\phi: Z'  \to Z$ such that $f \circ \phi = f'$ and $g \circ \phi = g'$, 
+  then the cartesian product $X \times Y$ is the terminal object of this category.
+
+ In the category $\Top$, the cartesian product with the product topology has the same universal property of being the terminal object of such a category.
+
+ In the category $\textsf{k-Vect}$, the direct product $V \oplus W$ has the same universal property.
+\end{ex}
+This leads to our definition of a Product in a general category:
+\begin{dfn}[]
+  Let $(X_i)_{i \in I}$ be a collection of objects in a category. The (cartesian) \textbf{product} of these objects (if it exists), is an object $Z$ with morphisms 
+  $\left\{Z \stackrel{\pi_i}{\to}X\right\}_{i \in I}$ 
+  such that for any other object $Z'$ with morphisms
+  $\big\{Z' \stackrel{\pi_i'}{\to}X\big\}_{i \in I}$ there exists a \emph{unique} morphism $\phi: Z' \to Z$ such that for all $i \in I$ the following diagram commutes
+  \begin{center}
+  \begin{tikzcd}[column sep=0.8em] %\arrow[bend right,swap]{dr}{F}
+    & Z' \arrow[dashed,swap]{dl}{!\exists \phi} \arrow[]{dr}{\pi_i'}\\
+    Z \arrow[]{rr}{\pi_i} & & X_i
+  \end{tikzcd}
+  \end{center}
+\end{dfn}
+Again, it follows from the universal proparty (and more specifically, Lemma \ref{lem:unique-iso}) that the product is unique up to isomorphism.
+
+The dual notion of a product is the \emph{coproduct}. 
+We could just say that the coproduct of objects $(X_i)_{i \in I}$ is the product in the opposite category and call it a day, but it's a little easier with some examples
+\begin{ex}[Coproduct]
+In the category $\Set$, the \textbf{disjoint union} $X \sqcup Y$ of sets $X,Y$ is equipped with canonical \textbf{embeddings}
+\begin{align*}
+  \iota_X: X \to X \sqcup Y, x \mapsto (x,0)
+  \quad \text{and} \quad 
+  \iota_Y: Y \to X \sqcup Y, y \mapsto (y,1)
+\end{align*}
+This embedding is universal in that for any other set $Z$ with maps $f: X \to Z, g: Y \to Z$, there exists a unique function $\phi: X \sqcup Y \to Z$ such that the following diagram commutes
+  \begin{center}
+  \begin{tikzcd}[column sep=1em] %\arrow[bend right,swap]{dr}{F}
+    Z 
+    \\
+    & X \sqcup Y 
+    \arrow[dashed]{ul}{!\exists\phi}
+    &
+    X
+    \arrow[bend right]{ull}{f}
+    \arrow[swap]{l}{\iota_X} 
+    \\
+    & Y
+    \arrow[bend left]{uul}{g} 
+    \arrow[]{u}{\iota_Y}
+  \end{tikzcd}
+  \end{center}
+\end{ex}
+

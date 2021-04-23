@@ -1,0 +1,237 @@
+\section{Tensorprodukt}
+
+\textbf{Motivation:} \quad Betrachte $W = \{ax^2+bx+c \big\vert a,b,c \in \R\}$ und $V = \{\alpha x + \beta \big\vert \alpha, \beta \in \R\}$ mit
+\begin{align*}
+    B: V^2 \to W \quad (p,q) \mapsto pq
+\end{align*}
+Das "Polynom produkt" ist leider kein Vektorraum
+
+
+Seien $V, W$ $K$-Vektorräume mit Basen $(v_i)_{i\in I}$ bzw. $(w_j)_{j \in J}$. Ist $(u_{ij})_{(i,j) \in I \times J}$ in $U$ eine beliebig gegeben Familie, so gibt es genau eine bilineare Abbildung
+\begin{align*}
+    \xi: V \times W \to U \quad \text{mit} \quad \xi(v_i,w_j) = u_{ij}
+\end{align*}
+
+\begin{definition}{Tensorprodukt}
+    Seien $V,W$ zwei $K$-Vektorräume, das \textbf{Tensorprodukt} ist ein $K$-Vektorraum $V \otimes W$ mit der \emph{universellen Eigenschaft}, es gibt eine bilineare Abbildung $\eta: V \times W \to V \otimes W$ sodass für jeden $K$-Vektorraum $U$ mit bilinearen Homomorphismus $\xi: V \times W \to U$ eine eindeutig bestimmte \textbf{lineare} Abbildung $\xi_{\otimes}: V \otimes W \to U$ gibt, sodass $\xi = \xi_{\otimes} \circ \eta$ bzw. das folgende diagram kommutiert
+    \begin{center}
+        \begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
+            V \times W \arrow[]{r}{\xi} \arrow[]{d}{\eta} & U\\
+            V \otimes W \arrow[dotted]{ur}{\xi_{\otimes}}
+        \end{tikzcd}
+    \end{center}
+    Das Tensorprodukt $V \otimes W$ ist durch die universelle Eigenschaft bis auf einen Isomorphismus eindeutig bestimmt.
+\end{definition}
+Sind $\mathcal{A}, \mathcal{B}$ Basen von $V,W$ dann ist
+\begin{align*}
+    \{a \otimes b \big\vert a \in \mathcal{A}, b \in \mathcal{B}\}
+\end{align*}
+eine Basis von $V \otimes W$ und es gilt $\dim V \otimes W = \dim V \cdot \dim W$. Die Elemente von $V \otimes W$ sind dann (endliche) Summen $V \otimes W \ni \alpha = \sum_{(i,j) \in I \times J}' \alpha_{ij} v_i \otimes w_j$.
+
+Es gelten die Rechenregeln für alle $v_1,v_2 \in V, w_1, w_2 \in W, \lambda \in K$
+\begin{align*}
+    (v_1 + v_2) \otimes w = v_1 \otimes w + v_2 \otimes w\\
+    v \otimes (w_1 + w_2) = v \otimes w_1 + v \otimes w_2\\
+    (\lambda v) \otimes w = \lambda (v \otimes w) = v \otimes (\lambda w)
+\end{align*}
+Für mehrfache Tensorprodukte ist das Tensorprodukt assoziativ. d.h. sie sind isomorph:
+\begin{align*}
+    U \otimes (V \otimes W) \cong (U \otimes V) \otimes W 
+\end{align*}
+
+\textbf{Beispiel:} \quad Die Abbildung 
+\begin{align*}
+    \xi: K[x] \times K[y] \to K[x,y] \quad (p,q) \mapsto pq
+\end{align*}
+ist bilinear. Also gibt es eine lineare Abbildung
+\begin{align*}
+    \xi_{\otimes}: K[x] \otimes K[y] \to K[x,y] \quad (x^i, y^j) \mapsto x^i \otimes y^j
+\end{align*}
+Da aber die Doppelmonome $x^iy^j$ auch eine Basis von $K[x,y]$ bildet sind die Vektorraäume isomorph und wir können sie identifizieren
+\begin{align*}
+    K[x] \otimes K[y] \cong K[x,y] \quad x \otimes 1 = x \in K[x,y] \text{ und } 1 \otimes y = y \in K[x,y]
+\end{align*}
+
+
+\begin{proposition}{Adjunktionsformel}
+    Es existieren eindeutig bestimmte natürliche Isomorphismen
+    \begin{align*}
+        \text{Bil}(V,W;U) \cong \Hom(V \otimes W,U) \cong \Hom(V, \Hom(W,U))
+    \end{align*}
+    mit $\xi(v,w) = \xi_{\otimes}(v \otimes w) = \phi(v)(w)$ und einen natürlichen Isomorphismus
+    \begin{align*}
+        K^m \otimes K^n \cong M(m\times n,K) \quad v \otimes w \longleftrightarrow vw^T
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{}
+    Es gibt natürliche Einbettungen
+    \begin{align*}
+        V^* \otimes W \hookrightarrow \Hom(V,W) \quad \alpha \otimes w \mapsto (v \mapsto \alpha(v) \cdot w)\\
+        \implies V^* \otimes W^* \hookrightarrow \Hom(V,W^*) = \Hom(V, \Hom(W,K)) \cong \Hom(V \otimes W,K) = (V \otimes W)^*
+    \end{align*}
+    Sind $V,W$ endlich dimensional, so sind die Einbettungen Isomorphismen.
+
+    Die Korrespondenz $V^* \otimes W^* \cong (V \otimes W)^*$ lässt sich erklären durch
+    \begin{align*}
+        (\phi \otimes \psi)(v \otimes w) := \phi(v) \cdot \psi(w)
+    \end{align*}
+\end{proposition}
+Lineare Abbildung $f: V \to W$ sind Covektor-Vektor paare und Bilinearfomen $s: V \times W \to K$ sind Covektor-Covektor paare.
+
+\begin{satz}{Komplexifizierung}
+    Sei $V$ ein $\R$-Vektorraum. Betrachte den $\R$-Vektorraum $V \otimes_{\R} \C$, welcher als einem $\C$-Vektorraum betrachtet werden kann, wobei die komplexe Multiplikation für $\mu, \lambda \in \C$ gegeben ist durch
+    \begin{align*}
+        \C \times V \otimes_{\R} \to V \otimes_{\R} \C \quad \mu \cdot (v \otimes \lambda) := v \otimes \mu \lambda \in V \otimes_{\R} \C
+    \end{align*}
+\end{satz}
+
+Sei $\beta: V^k \to W$ eine bilineare Abbildung. Wir nenn $\beta$
+\begin{itemize}
+    \item   \textbf{symmetrisch}, falls $\forall \sigma \in S_k: \beta(v_1, \ldots, v_k) = \beta(v_{\sigma(1)}, \ldots v_{\sigma(k)})$
+    \item   \textbf{alternierend}, falls $\exists i\neq j: v_i = v_j \implies \beta(v_1, \ldots, v_k) = 0$
+    \item   \textbf{antisymmetrisch}, falls $\forall \sigma \in S_k: \beta(v_1, \ldots v_k) = \text{sign}(\sigma) \cdot \beta(v_{\sigma(1)}, \ldots, v_{\sigma(k)})$
+\end{itemize}
+Allgemein gilt alternierend $\implies$ antisymmetrisch. Und für $\text{char}(K) \neq 2$ auch die Umkehrung.
+
+\begin{definition}{Höheres Tensorprodukt}
+    Sei $k \geq 0$. Das $k$-fache Tensorprodukt von $V$ ist ein $K$-Vektorraum $\bigotimes^k V$ mit einer multilinearen Abbildung $\eta: V^k \to \bigotimes^k V$ mit der universellen Eigenschaft:
+    \begin{align*}
+        \forall K-VR U, \xi: V^k \to U \text{ multilinear } \exists! \xi_{\otimes}: \bigotimes^k V \to U \quad \text{ mit } \quad \xi = \xi_{\otimes} \circ \eta
+    \end{align*}
+\end{definition}
+Es gibt einen natürlichen Isomorphismus $\bigotimes^k V \cong V \otimes V \otimes \ldots \otimes V$.
+
+Definiere die folgenden Untervektorräume von $\bigotimes^kV$:
+\begin{align*}
+    S^k(V) &:= \spn(v_1 \otimes \ldots \otimes v_k - v_{\sigma(1)} \otimes \ldots \otimes v_{\sigma(k)}), \sigma \in S_k\\
+    A^k(V) &:= \spn(v_1 \otimes \ldots v_k), \text{ mit } \exists i\neq j: v_i = v_j
+\end{align*}
+
+\begin{definition}{Alternierende Potenz}
+    Sei $k \geq 0$. Die $k$-te \textbf{alternierende Potenz} von $V$ ist ein $K$-Vektorraum $\bigwedge^kV$ zusammen mit einer alternierenden multilinearen Abbildung $\wedge: V^k \to \bigwedge^kV$ welches die folgende Universelle Eigenschaft erfüllt:
+    Für alle $K$-Vektorraum $U$ mit einer alternierenden Abbildung $\xi: V^k \to U$ existiert genau eine lineare Abbildung $\xi_{\wedge}: \bigwedge^kV \to U$ sodass $\xi = \xi_{\wedge} \circ \wedge$.
+
+    Ist $(v_{1}, \ldots, v_{n})$ eine Basis von $V$, so ist eine Basis von $\bigwedge^kV$ gegeben durch die Produkte
+    \begin{align*}
+        v_{i_1} \wedge \ldots \wedge v_{i_k} \quad \text{mit} \quad 1 \leq i_{1} < \ldots < i_k \leq n
+    \end{align*}
+    Und es gilt $\dim \bigwedge^k V = \binom{n}{k}$
+\end{definition}
+
+Die alternierende Potenz ist definiert durch
+\begin{center}
+    \begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
+        V^k \arrow[]{d}{\eta} \arrow[]{dr}{\xi}  \arrow[bend right,swap]{dd}{\wedge}\\
+        \bigotimes^kV \arrow[dotted]{r}{\exists! \xi_{\otimes}} \arrow[]{d}{\pi} & U\\
+        {\bigotimes^kV}_{/ A^k(V)} = \bigwedge^kV  \arrow[dotted,swap]{ur}{\exists \rho = \xi_{\wedge}}
+    \end{tikzcd}
+\end{center}
+
+\begin{definition}{Symmetrische Potenz}
+    Sei $k \geq 0$. Die $k$-te \textbf{symmetrische Potenz} von $V$ ist ein $K$-Vektorraum $\bigvee^kV$ zusammen mit einer symmetrischen multilinearen Abbildung $\vee: V^k \to \bigvee^kV$ welches die folgende Universelle Eigenschaft erfüllt:
+    Für alle $K$-Vektorraum $U$ mit einer symmetrischen Abbildung $\xi: V^k \to U$ existiert genau eine lineare Abbildung $\xi_{\vee}: \bigvee^kV \to U$ sodass $\xi = \xi_{\vee} \circ \vee$.
+
+    Ist $(v_{1}, \ldots, v_{n})$ eine Basis von $V$, so ist eine Basis von $\bigvee^kV$ gegeben durch die Produkte
+    \begin{align*}
+        v_{i_1} \vee \ldots \vee v_{i_k} \quad \text{mit} \quad 1 \leq i_{1} \leq \ldots \leq i_k \leq n
+    \end{align*}
+    Und es gilt $\dim \bigvee^k V = \binom{n+k-1}{k}$
+\end{definition}
+
+\begin{definition}{Tensorprodukt von Abbildungen}
+    Das Tensorprodukt zweier linearen Abbildungen $F: V \to V, G: W \to W'$ ist die Lineare Abbildung gegeben durch
+    \begin{align*}
+        F \otimes G: V \otimes W \to V' \otimes W' \quad (F \otimes G)(v \otimes w) = F(v) \otimes G(w)
+    \end{align*}
+    mit der universellen Eigenschaft 
+    \begin{align*}
+        (F \otimes G)(v,w) = \xi(v,w)
+    \end{align*}
+\end{definition}
+Ist weiterhin $\mathcal{A} = (v_{1}, \ldots, v_{m})$ eine Basis von $V$, $\mathcal{A'} = (v'_{1}, \ldots, v'_{m'})$ eine von $V'$ und $\mathcal{B} = (w_{1}, \ldots, w_{n})$ sowie $\mathcal{B'} = (w'_{1}, \ldots, w'_{n'})$ Basen von $W,W'$ und sind 
+\begin{align*}
+    A = (a_{ij}) = \mathcal{M}_{\mathcal{A'}}^{\mathcal{A}}(F), B = (b_{ij}) = \mathcal{M}_{\mathcal{B'}}^{\mathcal{B}}(G)
+\end{align*}
+die jeweiligen Abbildungsmatrizen, so hat mit folgenden Basen in den zwei verschiedenen Ordnungsmöglichkeiten
+\begin{align*}
+    \mathcal{C} := (v_1 \otimes w_1, v_2 \otimes w_1, \ldots, v_m \otimes w_1, v_1 \otimes w_2, \ldots, v_m \otimes w_n) \text{ von $V \otimes W, \mathcal{C'}$ von $V' \otimes W'$ analog}\\
+    \mathcal{D} := (v_1 \otimes w_1, v_1 \otimes w_2, \ldots, v_1 \otimes w_n, v_2 \otimes w_1, \ldots, v_m \otimes w_n) \text{ von $V \to W$, $\mathcal{D'}$ von $V' \otimes W'$ analog}
+\end{align*}
+die Abbildungsmatrix von $F \otimes W$ die folgende Form
+\begin{align*}
+    C = \mathcal{M}_{\mathcal{C}'}^{\mathcal{C}}(F \otimes G) = \begin{pmatrix}
+        Ab_{11} & Ab_{12} & \dots & Ab_{1n}\\
+        Ab_{21} & Ab_{22} & \dots & ab_{2n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        Ab_{n'1} & Ab_{n'2} & \dots & A_{bn'n}
+    \end{pmatrix}\\
+    D = \mathcal{M}_{\mathcal{D}'}^{\mathcal{D}}(F \otimes G) = \begin{pmatrix}
+        a_{11}B & a_{12}B & \dots & a_{1m}B\\
+        a_{21}B & a_{22}B & \dots & a_{2m}B\\
+        \vdots & \vdots & \ddots & \vdots\\
+        a_{m'1}B & a_{m'2}B & \dots & a_{m'm}B
+    \end{pmatrix}
+\end{align*}
+Unabhängig von der Ordnung der Basen ist dann
+\begin{align*}
+    (F \otimes G)(v_i \otimes w_j) = \sum_{i' = 1}^{m'} \sum_{j' = 1}^{n} a_{i}^{i'} b_{j}^{j'} v'_{i'} \otimes w'_{j'}
+\end{align*}
+Und man könnte den Tensor $F \otimes G \in \Hom(V \otimes W, V' \otimes W') \cong V^* \otimes W^* \otimes V' \otimes W'$ beschreiben durch die Koordinaten $c_{ij}^{i'j'} = a_{i}^{i'}b_{j}^{j'}$
+\textbf{Beispiel:} \quad Folgende $K$-Vektorräume sind isomorph:
+\begin{align*}
+    \Hom(V,V') \otimes \Hom(W,W') \cong \Hom(V \otimes W, V' \otimes W')
+\end{align*}
+
+
+\begin{definition}{Darstellungen}
+    Sei $G$ eine Gruppe, $V$ ein $K$-Vektorraum. Eine \textbf{Darstellung} von $G$ auf $V$ ist ein Gruppenhomomorphismus
+    \begin{align*}
+        \rho: G \to \text{GL}(V)
+    \end{align*}
+    wobei $\text{GL}(V)$ dei Gruppe der Vektorraumisomorphismen von $V$ ist.
+\end{definition}
+
+\textbf{Beispiel:} Die Darstellung $O(3)$ auf $\R^3$ gegeben durch die Inklusion $O(3) \to \text{GL}(3,\R)$ der Orthogonalen Matrizen.
+\textbf{Beispiel:} Sei $V$ ein $K$-Vektorraum und $S_n$ die Permutationsgruppe. Der Gruppenhomomorphismus ist dann gegeben durch
+\begin{align*}
+    \rho: S_n \to GL(\bigotimes^n V) \quad \rho(\sigma)(v_1 \otimes \ldots \otimes v_n) = v_{\sigma^{-1}(1)} \otimes \ldots \otimes v_{\sigma^{-1}(n)} \big[\cdot \text{sign}(\sigma) \big]
+\end{align*}
+wobei der Term $\text{sign}(\sigma)$ optional ist.
+
+\begin{definition}{Invarianzräume von Darstellungen}
+    Zu einer Darstellung $\rho$ von $G$ auf $V$ sind
+    \begin{itemize}
+        \item   Der Raum der $G$\textbf{-Invarianten}. Ist ein Untervektorraum von $V$ als Lösungsraum des linearen Gleichungssytem $\rho(g)(v) = v$.
+        \begin{align*}
+            V^G := \{v \in V \big\vert \rho(g)(v) = v, \forall g \in G\} \subseteq V
+        \end{align*}
+        \item   Der Raum der \textbf{Koinvarianten} als Quotientenraum
+        \begin{align*}
+            V_G := V|_{/ U}, \quad U := \spn\{v - \rho(g)(v) \big\vert v \in V, g \in G\} \subseteq V
+        \end{align*}
+    \end{itemize}
+\end{definition}
+Dies ermöglicht die Alternative Darstellung der symmetrische/alternierenden Produkte:
+\begin{align*}
+    \bigvee^nV = \left(\bigotimes^n V\right)^{S_n} \quad \bigwedge^n V = (\bigotimes^nV)_{S_n}
+\end{align*}
+
+\begin{satz}{Isomorphie von $V^g$ und $V_G$}
+    Sei $G$ eine endliche Gruppe und $\rho$ eine Darstellung von $G$ auf dem $K$-Vektorraum $V$. Nehme an, dass $\abs{G} \neq 0 \in K$. Dann ist die
+\end{satz}
+
+
+\begin{satz}{Courant-Fischer}
+    Sei $V, \dim(V) = n < \infty$ endlich dimensional euklidisch. $F \in \End(V)$ selbstadjungiert mit Eigenwerten $\lambda_1 \leq \ldots \leq \lambda_n$. Dann gilt
+    \begin{align*}
+        \lambda_k &= \underset{\dim U = k}{\underset{U \subseteq V}{\min}} \underset{x \neq 0}{\underset{x \in U}{\max}} \frac{\left<x,F(x)\right>}{\Norm{x}}\\
+        \lambda_k &= \underset{\dim U = n-k+1}{\underset{U \subseteq V}{\max}} \underset{x \neq 0}{\underset{x \in U}{\min}} \frac{\left<x,F(x)\right>}{\Norm{x}}
+    \end{align*} 
+    Insbesondere gilt für die grössten/kleinsten Eigenwerte
+    \begin{align*}
+        \lambda_n &= \underset{x \neq 0}{\underset{x \in V}{\max}} \frac{\left<x,Fx\right>}{\Norm{x}}\\
+        \lambda_1 = \underset{x \neq 0}{\underset{x \in V}{\min}} \frac{\left<x,F(x)\right>}{\Norm{x}}
+    \end{align*}
+\end{satz}
+

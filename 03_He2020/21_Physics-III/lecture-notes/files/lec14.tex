@@ -1,0 +1,81 @@
+We saw that we could associate a particle with its \emph{de Broglie Wavelength}. But how exactly can the behaviour of particles be described as a wave?
+
+Ideally we want to define somthing like a \textbf{wave-packet}, which is a localized collection of a wave that exists in some region in space. 
+To do this we first model a particle travelling in free 1D space with position $x = vt$. As a monochromatic plane wave we could write
+\begin{align*}
+	A(z,t) = A \cos(kx - \omega t) = A \text{Re}[e^{i(kx- \omega)}]
+\end{align*}
+Where the particle would be delocalised, as it exists in a streched region in space.
+To resolve this difference between wave and particle behaviour, we will use superposition of multiple waves to achieve localisation.
+Recall that the intensity profile from the diffraction pattern of light going through some aperture with size $a$ was
+\begin{align*}
+	I \propto \abs{\int_{-a/2}^{a/2}dx \int_{-a/2}^{a/2}e^{-ik(Xx + Yy))}}^2
+\end{align*}
+And if $a \gg 1/k$, then this integral averages out expect when $X=Y=0$, where we recover Ray-optics again.
+
+So if we take the superposition of waves with different $k$ values, then we can get something that behaves how we want a wave packet to behave.
+
+For example if we take $k_0 - \Delta k < k_0 + \Delta k$, then it's associate Frequency willl be
+\begin{align*}
+	\omega(k) = \frac{E}{\hbar}
+\end{align*}
+where $E = \frac{p^2}{2m}$ is the kinetic energy. And since $p = \frac{h}{\lambda} = \hbar k$, and $k = \frac{2 \pi}{\lambda}$ we can write
+\begin{align*}
+	\omega = \frac{\hbar k^2}{2m}
+\end{align*}
+If we assume a small range of $k$ values (and momentum values): $\Delta k \ll k_0$ we can Taylor expand the frequency
+\begin{align*}
+	\omega = \omega(k_0) + \frac{\del \omega}{\del k}\big\vert_{k_0}(k - k_0) + \ldots = \frac{\hbar k_0^2}{2m} + \frac{\hbar k_0}{m}(k - k_0)
+\end{align*}
+And by adding up all the waves (over the continuous variable $k$) we get that the resulting wave will be
+\begin{align*}
+	\psi(x,t) &= \int_{k_0 - \Delta k}^{k_0 + \delta k}A e^{i(kx - \omega(k)t)}	dk\\
+						&\simeq A e^{i\left(\frac{\hbar k_0^2}{m}t - \omega_0 t\right)} \int_{k_0 - \Delta k}^{k_0 + \Delta} e^{ik \left(x - \frac{\hbar k_0}{m}t\right)}dk\\
+						&= 2A e^{i(k_0x - \omega_0 t)} \sinc \left[\Delta k\left(x - \frac{\hbar k_0}{m}t\right)\right]
+\end{align*}
+which reminds us of the diffraction pattern mentioned before.
+Recall that we cound generalize our square aperture using a transmission function $\tau$, if we do the same here, we could write our boundary $k_0 - \Delta k < k < k_0 + \Delta k$ as a function in the $k$-space:
+\begin{align*}
+	\tilde{\psi(k,t)} = \left\{\begin{array}{ll}
+			A e^{-i \omega(k)t} & \text{for } \abs{k - k_0} < \Delta k \\
+			0 & \text{else}
+	\end{array} \right.
+\end{align*}
+Just like with the fourier transform, where we can either describe a function through the values it takes in the ``real space'' or describe it through its fourier transform which describes the frequencies of the function, we can describe wave packets either directly through the function $\psi(x,t)$ or through its frequencies $\tilde{\psi(k,t)}$ in the  $k$-space.
+
+Now let's find out the relationship between the fourier transform and the sinc envelope.
+The sinc envelope has a peak at
+\begin{align*}
+	x = x_{\max} = \frac{\hbar k_0}{m}t
+\end{align*}
+which allows us to define the \textbf{group velocity} $v_0$ as
+\begin{align*}
+	v_0 :=\frac{d x_{\max}}{dt} = \frac{\hbar k_0}{m} = \frac{p_0}{m}
+\end{align*}
+which corresponds to the classical velocity of a moving particle.
+The width of the sinc envelope $\Delta x$ corresponds to one period of $\sin$ in $\sinc$, so
+\begin{align*}
+	\Delta k \Delta x = 2 \pi, \implies \Delta p \Delta x = \hbar \Delta k \Delta x = 2\pi \hbar = h
+\end{align*}
+where $\Delta k$ is the width of $\tilde{\psi(k,t)}$. 
+
+So what does $\psi(x,t)$ tell us about physical measurements? If we see $P(x,t) dx$ as the probability of finding the particle between $x$ and $x + dx$, then
+\begin{align*}
+	P(x,t) dx = \abs{\psi(x,t)}^2 dx \quad \text{where} \quad \abs{\psi(x,t)}^2 = \psi^*(x,t) \psi(x,t)
+\end{align*}
+So since all the probabilities have to add up to $1$ we must have that by Parsevals theorem that
+\begin{align*}
+	\int_{-\infty}^{\infty}\abs{\tilde{\psi}(k,t)}^2 dk = \int_{-\infty}^{\infty} \abs{\psi(x,t)}^2 dx = \int_{-\infty}^{\infty}P(x,t) dx = 1
+\end{align*}
+Therefore we can find out that the constant $A$ must satisfy $\abs{A}^2 = \frac{1}{2 \Delta}$.
+
+And since $\psi(x,t)$ describes a single particle, it means that particles can interfere with themselves. 
+In an experiment, where we shoot single alpha particles through a double slit, we get an interference pattern, where
+\begin{align*}
+	\sin \theta = \frac{\lambda}{\Delta x} = \Delta p \frac{x}{p}	\implies \Delta p \Delta x = \lambda p = h
+\end{align*}
+Using the standard deviation in $x$ and $p$ we see that this is consistent with the Heisenberg uncertainty relation
+\begin{align*}
+	\Delta x^2 = \left<x^2\right> - \left<x\right>^2 \implies \Delta p x \Delta x \geq \frac{\hbar}{2}
+\end{align*}
+

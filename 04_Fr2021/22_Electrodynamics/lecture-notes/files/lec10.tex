@@ -1,0 +1,197 @@
+\section{Magnetostatics}
+
+In magentostatics, we have that the charges do not move and that the $\vec{E}$ and $\vec{B}$ field do not change over time
+\begin{align*}
+  \frac{\del \rho}{\del t} = \frac{\del \vec{J}}{\del t} = \frac{\del E}{\del t} = \frac{\del \vec{B}}{\del t} = 0
+\end{align*}
+so the Maxwell equations
+\begin{align*}
+  \vec{\nabla}\cdot \vec{E} = \frac{\rho}{\epsilon_0}, \quad \vec{\nabla} \times \vec{E} = - \frac{\del \vec{B}}{\del t}, \quad \vec{\nabla} \cdot \vec{B} = 0, \quad \vec{\nabla} \times \vec{B} = \frac{\vec{J}}{\epsilon_0c^{2}} + \frac{1}{c^{2}} \frac{\del \vec{E}}{\del t}
+\end{align*}
+turn into the decoupled form
+\begin{align*}
+  \vec{\nabla} \cdot \vec{B} = 0, \quad \vec{\nabla} \times \vec{B} = \frac{\vec{J}}{\epsilon_0 c^{2}}, \quad \vec{\nabla} \cdot \vec{E} = \frac{\rho}{\epsilon_0}, \quad \vec{\nabla}\times \vec{E} = 0
+\end{align*}
+where the $\vec{E}$ and $\vec{B}$ field do not have an interdependence.
+
+
+The main goals of this chapter will be the following
+\begin{itemize}
+  \item What exactly is the current density $\vec{J}$?
+  \item Look at the integral form of the above equations.
+  \item Introduce the \textbf{vector potential} $\vec{A}$, leading to \textbf{gauge symmetry}
+  \item Study the universality of magnetostatics and its applications
+  \item Understand the duality of $\vec{E}$ and $\vec{B}$. In particular, we will see that magntic fields turn into electric fields when changing the reference frame and vice versa.
+\end{itemize}
+
+
+
+To give a definition of a current density $\vec{J}$, we consider a stream of charges moving in some direction $\vec{v}$.
+We then place a surface $d \vec{S}$ perpendicular to the direction and measure how much charge moves trough the surface
+
+\begin{empheq}[box=\bluebase]{align*}
+  \frac{\dd Q}{\dd t} =: \vec{J} \cdot d\vec{S}
+\end{empheq}
+
+Now assume we have a volume $V$ and we we measure how many charges are escaping the volume.
+Well, that measurement should match what we measure for the current trough its surface $\del V$, which is exactly $\vec{J} \cdot d\vec{S}$.
+Using the divergence theorem, we get
+\begin{align*}
+  \int_V d^{3}x \frac{\del \rho}{\del t } = \int_{\del V} \vec{J} \cdot d\vec{S} = - \int_{V} dV \vec{\nabla} \cdot \vec{J}
+\end{align*}
+therefore, we get the \textbf{continuity equation}
+\begin{empheq}[box=\bluebase]{align*}
+  \frac{\del \rho}{\del t } + \vec{\nabla} \cdot \vec{J} = 0
+\end{empheq}
+This gives us the relation 
+\begin{empheq}[box=\bluebase]{align*}
+  \vec{J} = \rho \vec{v}
+\end{empheq}
+that suffices as an alternate definition of the charge density
+
+The integral form of the maxwell equation
+\begin{align*}
+  c^{2} \vec{\nabla} \times \vec{B} = \frac{\vec{J}}{\epsilon_0}
+\end{align*}
+is the following
+\begin{align*}
+  c^{2} \int_{\del V}d \vec{S} \cdot \left(
+    \vec{\nabla} \times \vec{B}
+  \right)
+  =
+  \int_{\del} ...
+\end{align*}
+
+Since the magnetic field has no divergence
+\begin{align*}
+ \vec{\nabla} \cdot \vec{B} = 0
+\end{align*}
+there exists a \textbf{vector potential} $\vec{A}$ such that
+\begin{align*}
+  \vec{B} = \vec{\nabla} \times \vec{A}
+\end{align*}
+which satisfies
+\begin{align*}
+  \vec{\nabla} \cdot \left(
+    \vec{\nabla} \times \vec{A}
+  \right)
+  =
+  \frac{\del }{\del x_i} (\vec{\nabla} \times \vec{A})_i
+  =
+  \epsilon_{ijk} \frac{\del^{2}}{\del_i \del_j} A_k
+  = 0
+\end{align*}
+where $\epsilon_{ijk}$ is the total antisymmetric \textbf{Levi-Civita} tensor and we have used the fact the the contraction of an antisymmetric with a symmetric tensor is always zero.
+
+Using hte Maxwell equations, we also end up with
+\begin{align*}
+  \vec{\nabla} \times \vec{B} = \frac{\vec{J}}{\epsilon_0 c^{2}} \implies \vec{\nabla}(\vec{\nabla} \cdot \vec{A}) = \frac{\vec{J}}{\epsilon_0 c^{2}}
+\end{align*}
+
+Let's see how the vector potential transforms under
+\begin{align*}
+  \vec{A}(\vec{x}) \to \vec{A}'(\vec{x}') := \vec{A}(\vec{x}) + \vec{\nabla} f(\vec{x})
+\end{align*}
+Since $\vec{F} = q \vec{v} \times \vec{B}$ stays invariant, we have that
+\begin{align*}
+  \vec{B}' := \vec{\nabla} \times \vec{A}' = \vec{\nabla} \times \vec{A} + \underbrace{\vec{\nabla} \times \vec{\nabla}f}_{=0} = \vec{B}
+\end{align*}
+so the vector potential is only unique up to the gradient of a potential.
+This symmetry is called \textbf{gauge symmetry} and is important in the full standard model of particle physics.
+
+This means that if we don't like how our $\vec{A}$ looks we can chose $f$ such that $\vec{A}'$ is nice.
+
+We can for example require $\vec{\nabla} \cdot \vec{A}' = 0$, we we can chose $f$ such that
+\begin{align*}
+  \vec{\nabla}^{2} f = - \vec{\nabla}\cdot \vec{A} = \rho(x) 
+\end{align*}
+which is just a poission equation and is solvable.
+This then gives us the solution for $\vec{A}$:
+\begin{align*}
+  \vec{A}(\vec{x}) = \frac{1}{4 \pi \epsilon_0 c^{2}} \int d^{3}\vec{y} \frac{\vec{J}(\vec{y})}{\abs{\vec{x} - \vec{y}}}
+\end{align*}
+
+The vector potential can be used to describe a magnetic dipole.
+
+\begin{align*}
+  \vec{A}(\vec{r}) = \frac{1}{4 \pi \epsilon_0 c^{2}}  
+  \left[
+    \frac{1}{\abs{\vec{r}}}
+    \int d^{3}\vec{x}\vec{J}(\vec{x}) +
+    \frac{1}{\abs{\vec{r}}^{3}} \int d^{3} \vec{x} \vec{J}(\vec{x}) (\vec{x} \cdot \vec{r}) + \ldots
+  \right]
+\end{align*}
+but in magnetostatics, there is no total current and so the first integral vanishes.
+This is also called \textbf{dipole aproximation}, so we then have
+\begin{align*}
+  \vec{A}(\vec{r}) = \frac{1}{4 \pi \epsilon_0 c^{2}}
+  \left(
+  \int d^{3}\vec{x} \frac{1}{2} \vec{x} \times \vec{J}(\vec{x})
+  \right)
+  \times \frac{\vec{r}}{\abs{\vec{r}}^{3}}
+\end{align*}
+If we define the \textbf{magnetic moment} $\vec{\mu}$ to be
+\begin{empheq}[box=\bluebase]{align*}
+  \vec{\mu} := \frac{1}{2} \int d^{3}\vec{x} \left(
+    \vec{x} \times \vec{J}(\vec{x})
+  \right)
+\end{empheq}
+then we can simply find out the vector potential as
+\begin{empheq}[box=\bluebase]{align*}
+  \vec{A}(\vec{r}) = \frac{1}{4 \pi \epsilon_0}\vec{\mu} \times \frac{\vec{r}}{r^{3}}
+\end{empheq}
+With some calculation, one can also derive the formula
+\begin{align*}
+  \vec{B} = (\vec{\mu} \cdot \vec{\nabla}) \vec{\nabla}\frac{1}{r}
+\end{align*}
+and up to first order, the force acting on an object $\Omega$ with current density $\vec{J}$ can be described as
+\begin{empheq}[box=\bluebase]{align*}
+  \vec{F} = \vec{\nabla}_x (\vec{\mu} \cdot \vec{B})|_{x = 0}
+\end{empheq}
+
+\subsection{Relativity of $\vec{E}$ and $\vec{B}$ fields}
+Consider a wire in which electrons move with velocity $\vec{v}$ and assume that the wire is electrically neutral ($\rho_{-} = -\rho_{+}$).
+
+Then we put an observer with charge $q$ at some distance $r$ from the wire that also moves with the same velocity $\vec{v}$ along the wire.
+
+From the outside, we see current generating a magnetic field
+and an charge $q$ moving inside the magnetic field.
+So we see the Lorentz force
+\begin{align*}
+  F = q v B = \frac{1}{2 \pi \epsilon_0} \frac{qv}{c^{2}} \frac{I}{r} = \frac{qS}{2 \pi \epsilon_0} \frac{\rho_{-}}{r}\frac{v^{2}}{c^{2}}
+\end{align*}
+where $\rho_{-}$ is the charge density of the moving electrons and $S$ is the cross section of the wire.
+
+Now we change the reference frame to that of the observing particle $q$.
+It doesn't see any moving charges so no magnetic fields. 
+But then it would no longer experience the Lorentz force.
+How can this happen?
+
+What happens is that the positive charges, which in the static reference frame cancel out the electrons now are moving in the opposite direction.
+
+So because of the Lorentz contraction from special relativity, the charge density of the electrons $\rho_{-}'$ and the positive ones $\rho_{+}'$ no longer cancel each other out.
+
+This means that the particle $q$ sees that the wire is charged.
+Let's calculate what charge the particle $q$ expects.
+
+Given a section of the wire of volume $\Delta V$ we have that in the resting reference frame:
+\begin{align*}
+ Nq = Q = \rho_{\text{rest}} \Delta V
+\end{align*}
+but in the moving reference frame, we have
+\begin{align*}
+  Q' = \rho_{\text{moving}} \Delta V_{\text{moving}}
+\end{align*}
+Because total charge is invariant under Lorentz transformation, we have $Q = Q'$, so by the Lorentz contraction factor $\gamma$:
+\begin{align*}
+  \rho_{\text{moving}} = \rho_{\text{rest}} \frac{\Delta V_{\text{rest}}}{\Delta V_{\text{moving}}} = \gamma \rho_{\text{rest}}
+\end{align*}
+So because the electrons were resting and are moving in the frame of $q$ and the positive charges were moving and are now resting, we have
+\begin{align*}
+  \rho' = \rho_{+}' + \rho_{-}' = \gamma \rho_{+} + \frac{1}{\gamma} \rho_{-}
+  = \frac{\rho_{-}}{\sqrt{1 - \frac{v^{2}}{c^{2}}}} \frac{v^{2}}{c^{2}}
+\end{align*}
+So the new force that acts on the charge $q$ is now an electric force, instead of a magnetic one. 
+And so we can explain the same physical effect with an electric field or a magnetic field.
+
+This shows how the electric and magnetic field are really dual to each other under Lorentz transformation.

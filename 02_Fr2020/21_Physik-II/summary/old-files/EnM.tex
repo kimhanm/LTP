@@ -1,0 +1,170 @@
+\section{Elektromagnetismus}
+
+\subsection{Elektrostatik}
+Die \textbf{Coulomb-Kraft}, die zwischen geladenen Teilchen mit Ladungen $q_1, q_2$ wirkt ist invers proportional zum Abstand im Quadrat und ist gegeben durch
+\begin{align*}
+    \bm{F}_{21} = \frac{1}{4 \pi \epsilon_0} \frac{q_1 \cdot q_2}{\abs{r_1 - r_2}^2} \cdot \hat{r_{21}}
+\end{align*}
+
+Die \textbf{Lorentz-Kraft} beschreibt die Kraft, die Ladungen in einem Elektro-Magnetfeld spüren und ist gegeben durch
+\begin{align*}
+    \bm{F}_{\text{L}} = \bm{F}_{\text{C}} + \bm{F}_{mag} = q \bm{E} + q \bm{v} \times \bm{B}
+\end{align*}
+
+
+
+
+
+Ein \textbf{Kondensator} besteht aus zwei Leiter entgegengesetzter Ladungen. 
+Kapazität $C$ und gespeicherte Energie $W$ sind gegebend durch
+\begin{empheq}[box=\bluebase]{align*}
+    C = \frac{Q}{V}, \quad W = \int_{0}^{Q} V(q) dq =  \frac{Q^2}{2C} = \frac{QV}{2} = \frac{CV^2}{2}
+\end{empheq}
+
+Für eine Plattenkondensator mit Fläche $A$ und Plattenabstand $d$, Zylinderkondensator mit Höhe $h$ und Radien $a<b$ und einen Kugelkondensator mit Radien $a<b$ gilt:\\
+
+\begin{tabular}{l|l|l}
+    Plattenkond. & Zylinderkond. & Kugelkond.\\
+    $C = \epsilon_0 \frac{A}{d}$ & $C = 2\pi\epsilon_0 \frac{h}{\log \frac{b}{a}}$ & $C = 4\pi \epsilon_0 \frac{ab}{b-a}$\\
+    $E = \frac{Q}{\epsilon_0 A}$ & $E(r) = \frac{Q}{2\pi r h \epsilon_0}$ & $E(r) = \frac{Q}{4\pi r^2 \epsilon_0}$\\
+    $V = \frac{Qd}{\epsilon_0 A}$ & $V = \frac{Q}{2\pi h \epsilon_0}\log \frac{b}{a}$ & $V = 4\pi \epsilon_0 \left(\frac{1}{a} - \frac{1}{b}\right)$\\
+\end{tabular}
+
+\subsection{Elektrodynamik}
+Der \textbf{Strom} ist bewegte Ladung und ist definiert durch $I = \frac{d Q}{dt}$. Die Stromdichte $\bm{J}$ ist der Strom der durch eine Fläche $A$ fliesst und ist gegeben durch 
+\begin{align*}
+    \bm{J} = \frac{\bm{I}}{A} = \rho \bm{v}
+\end{align*}
+
+
+
+
+
+\subsection{Maxwell Gleichungen}
+\begin{center}
+    \begin{tabular}{lL}
+        Coulomb & \bm{\nabla \cdot E} = \frac{\rho}{\epsilon_0}\\ 
+        Mag. Monopol. & \bm{\nabla \cdot \bm{B}} = 0\\ 
+        Ampère & \bm{\nabla} \times \bm{B} = \mu_0 \bm{J} + \mu_0 \epsilon_0 \frac{\del \bm{E}}{\del t}\\
+        Faraday & \bm{\nabla \times E} = - \frac{\del \bm{B}}{\del t}\\ 
+        Ladungserh. & \bm{\nabla \cdot J} = - \frac{\del \rho}{\del t}\\
+    \end{tabular}
+\end{center}
+Und ihre Integral-Formen:
+\begin{center}
+    \begin{tabular}{lL}
+        Coulomb & \int_{A} \bm{E} d \bm{A} = \frac{Q_{\text{innen}}}{\epsilon_0}\\
+        Mag. Monopol. & \int_{A} \bm{B} d \bm{A} = 0\\
+        Ampère & \oint_{\del A} \bm{B} d \bm{l} = \mu_0 I_{\text{eing.}} + \mu_0 \epsilon_0 \int_{A} \frac{\del \bm{E}}{\del t} d \bm{A}\\ 
+        Faraday & \oint_{\del A} \bm{E} d \bm{l} = - \frac{\del}{\del t}\int_{A} \bm{B} \cdot \bm{a} \\
+    \end{tabular}
+\end{center}
+
+Der Energietransport pro Flächeneinheit entlang der Elektromagnetischen Welle ist gegeben durch den \textbf{Poynting-Vektor}
+\begin{empheq}[box=\bluebase]{align*}
+    \bm{S} = \frac{1}{\mu_0} \bm{E} \times \bm{B}
+\end{empheq}
+Mit der mechanischen, bzw. der elektromagnetischen Energiedichten $u_{\text{mech}}$ und $u_{\text{em}}$ gilt 
+\begin{align*}
+    \frac{\del(u_{\text{mech}} + u_{\text{em}})}{\del t} + \bm{\nabla \cdot S} = 0
+\end{align*}
+
+
+
+\subsection{Wechselstromkreise}
+
+\begin{empheq}[box=\bluebase]{align*}
+    \begin{tabular}{lll}
+        Komponente & Admittanz & Impedanz\\
+        Resistor & $\frac{1}{R}$ & $R$\\
+        Kondensator & $i \omega C$ & $\frac{1}{i \omega C} = - \frac{i}{\omega C}$\\
+        Spule & $\frac{1}{i\omega L} = -\frac{i}{\omega L}$ & $i \omega L$\\
+    \end{tabular}
+\end{empheq}
+
+Ist $V(t) = V_0 \cos(\omega t)$ und $Y = Y_{\text{tot}}$ gegeben, so ist
+\begin{align*}
+    \tilde{V}(t) = V_0 e^{i\omega t}, Y = \abs{Y}e^{i\alpha}, \quad \tilde{I}(t) = Y \tilde{V}(t)\\
+        \implies I(t) = \abs{Y}V_0 \cos(\omega t + \alpha)
+\end{align*}
+
+\begin{empheq}[box=\bluebase]{align*}
+    \tan(\alpha) = \frac{\text{Im}(Y)}{\text{Re}(Y)} = - \frac{\text{Im}(Z)}{\text{Re}(Z)}
+\end{empheq}
+
+Die durchschnittliche \textbf{Leistungsaufnahme} ist mit $P = IV$ gegeben durch
+\begin{align*}
+    \left<P\right> = \frac{1}{2} V_0 I_0 \cos(\alpha), \quad V_{\text{eff}} = \sqrt{\left<V^2\right>}, \quad I_{\text{eff}} = \sqrt{\left<I^2\right>}
+\end{align*}
+
+
+In einem stromdurchflossenen Leiter mit Breite $b$, das in einem Magnetfeld der Stärke $B$ liegt, misst man die \textbf{Hall-Spannung}
+\begin{align*}
+    V_{\text{Hall}} = E_{\text{Hall}}b = vBb
+\end{align*}
+
+
+
+
+\subsection{Induktion}
+
+Der \textbf{mangetische Fluss} durch eine Oberfläche $A$ ist definiert durch das Flussintegral
+\begin{align*}
+    \Phi_{\text{mag}} = \int_{A} \bm{B \cdot A}
+\end{align*}
+Ändert sich der Fluss durch eine von einem Leiter umschlossene Fläche, so induziert das eine Spannung $V_{\text{ind}}$ nach dem \textbf{Faraday'schen Gesetz}
+\begin{empheq}[box=\bluebase]{align*}
+    V_{\text{ind}} = - \frac{d \Phi_{\text{mag}}}{dt}
+\end{empheq}
+DIe \textbf{Lenz'sche Regel} besagt, dass die Richtung der induzierten Spannung mit der rechten-Hand regel in die umgekehrte Richtung der Flussänderung wirkt.\\
+Fliesst ein Strom $I$ durch eine Spule der Länge $\ell$ mit $N$ Windungen und Querschnittsfläche $A$, so erzeugt dies ein homogenes Magnetisches Feld im inneren der Spule mit Stärke $B$, 
+\begin{align*}
+    B = \mu_0 \frac{IN}{\ell} \implies \Phi_{\text{mag}} = NBA = \mu_0 \frac{IN^2A}{\ell}
+\end{align*}
+Die \textbf{Selbstinduktivität} $L$ einer Spule ist eine geometrische Eigenschaft und ist definiert durch
+\begin{align*}
+    L = \frac{\Phi_{\text{mag}}}{I} = \left(\frac{U_{\text{ind}}}{\frac{d I}{d t}}\right) = \mu_0 \frac{N^2A}{\ell}
+\end{align*}
+Liegen zwei Spulen nebeneinander, so erzeugt das Magnetfeld von Spule $1$ auch eine induzierte Spannung in der Spule $2$ und umgekehrt. Die gegenseitige Induktivität ist dann defiiniert durch
+\begin{align*}
+    M_{21} = \frac{\Phi_{\text{mag},21}}{I_1} = \frac{\Phi_{\text{mag},12}}{I_2}
+\end{align*}
+Das Faraday'sche Gesetz wird dann zu
+\begin{empheq}[box=\bluebase]{align*}
+    V_{\text{ind}} = -L_1 \frac{dI_1}{dt} \pm L_{21}\frac{d I_2}{dt}
+\end{empheq}
+wobei das Vorzeichen vor $L_{21}$ von der Wickelungsrichtung der zweiten Spule abhängt.
+
+
+
+
+Das \textbf{Vektorpotential} ist ein Hilfsmittel zur Vereinfachung des Magnetischen Feldes und wird durch
+\begin{empheq}[box=\bluebase]{align*}
+    \bm{B} = \nabla \times \bm{A}
+\end{empheq}
+definiert.
+Ist bis auf ein Gradientenfeld eindeutig und kann mit der Bedingung $\bm{\nabla \cdot A} = 0$ geeicht werden. Sie hat die Einheit $\left[\bm{A}\right] = \frac{\text{Vm}}{\text{s}}$.\\
+
+
+Das E-Feld kann damit auch wie folgt beschrieben werden.
+\begin{empheq}[box=\bluebase]{align*}
+    \bm{E} = - \nabla \Phi -  \frac{\del \bm{A}}{\del t}
+\end{empheq}
+
+Für statische Magnetfelder erlaubt das Vektorpotential die Folgende schreibweise:
+\begin{empheq}[box=\bluebase]{align*}
+    \Delta \bm{A} = \left(\bm{\nabla \cdot \nabla}\right)\bm{A} = \left(\frac{\del ^2}{\del x^2} + \frac{\del^2}{\del y^2} + \frac{\del^2}{\del z^2}\right) \bm{A} = - \mu_0 \bm{J}
+\end{empheq}
+
+Bei statischen Ladungen und Strömen kann das Vektorpotential mit
+\begin{empheq}[box=\bluebase]{align*}
+    \Delta \bm{A} = - \mu_0 \bm{J} \quad \implies \quad \bm{A}(\bm{r}) = \frac{\mu_0}{4\pi} \int_{\R^3} \frac{\bm{J}(\vec{r'})}{\abs{\vec{r} - \vec{r}'}} dx dy dz
+\end{empheq}
+berechnet werden. Für zeitlich abhängige Ladungen und Ströme sind die \textbf{retardierte Potentiale} mit $t_{\text{ret}} = t - \frac{\abs{\vec{r} - \vec{r'}}}{c}$ gegeben durch
+\begin{align*}
+    \varphi(\vec{r},t) = \frac{1}{4\pi \epsilon_0} \int_{\R^3} \frac{\rho(\vec{r'},t_{\text{ret}})}{\abs{\vec{r} - \vec{r'}}} dV
+\end{align*}
+\begin{align*}
+    \bm{A}(\vec{r},t) = \frac{\mu_0}{4\pi} \int_{\R^3} \frac{\bm{J}(\vec{r}, t_{\text{ret}})}{\abs{\vec{r} - \vec{r'}}}dV
+\end{align*}
+

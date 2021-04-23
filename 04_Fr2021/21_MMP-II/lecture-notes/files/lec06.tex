@@ -1,0 +1,309 @@
+\begin{lem}[]
+  The following are easy to show
+\begin{enumerate}
+  \item $\chi_{\rho}(1) = \dim V = \dim \rho$
+  \item $\chi_{\rho \oplus \rho'}(g) = \chi_{\rho}(g) + \chi_{\rho'}(g)$
+  \item $\chi_{\rho}(g^{-1}) = \overline{\chi_{\rho}(g)}$
+\end{enumerate}
+\end{lem}
+\begin{proof}
+  The first item is trivial. For (b), we look at the the direct sum as a block matrix
+  \begin{align*}
+    (\rho \oplus \rho)(g) = \begin{pmatrix}
+      \rho(g) & 0\\
+      0 & \rho'(g)
+    \end{pmatrix}
+  \end{align*}
+  For (c) we use the fact that in an orthonormal basis, we can write the inverse matrix as $\rho_{ij}(g^{-1}) = \overline{\rho_{ij}(g)}$.
+\end{proof}
+
+
+\begin{ex}[Character of the regular representation]
+  The regular representation on $V =\C(G)$ with the basis of delta functions $\delta_h$ is given by
+  \begin{align*}
+    \rho_{\text{reg}}(g) \delta_h := \delta_{gh}
+  \end{align*}
+  so to compute the character, need to see when $\rho_{\text{reg}}(g)$ maps a basis vector $\delta_h$ to itself. That is only the case when $gh = h \iff g= 1$, so
+  \begin{align*}
+    \chi_{\text{reg}}(g) = \trace(\rho_{\text{reg}}(g)) = \left\{\begin{array}{cl}
+      \abs{G} & g = 1\\
+      0 & g \neq 1
+    \end{array} \right.
+  \end{align*}
+\end{ex}
+
+\subsection{Orthogonality relations for characters}
+We define the inner product on $V = \C(G)$ given by
+\begin{align*}
+  \scal{f_1,f_2} = \frac{1}{\abs{G}} \sum_{g \in G}\overline{f_1(g)}f_2(g)
+\end{align*}
+\begin{thm}[]
+Let $\rho,\rho'$ be irreducible representations of $G$ with characters $\chi_{\rho}, \chi_{\rho'}$. Then
+\begin{align*}
+  \scal{\chi_{\rho},\chi_{\rho'}} = \left\{\begin{array}{ll}
+    1 & \text{ if $\rho, \rho'$ are equivalent}\\
+    0 & \text{ otherwise}
+  \end{array} \right.
+\end{align*}
+\end{thm}
+\begin{proof}
+If they are not equivalent, then
+\begin{align*}
+  \scal{\chi_{\rho},\chi_{\rho'}} = \sum_{i,j}
+  \underbrace{\scal{\rho_{ii},\rho_{jj}'}}_{=0} = 0
+\end{align*}
+and if they are equivalent, then they have the same character, so by the orthogonality relation for matrix elements, we have
+\begin{align*}
+  \scal{\chi_{\rho},\chi_{\rho'}} = \sum_{i,j} \scal{\rho_{ii},\rho_{jj}'} = \sum_{i,j}\delta_{ij}\delta_{ij} \frac{1}{\dim V} = \sum_{i}\frac{1}{\dim V} = 1
+\end{align*}
+\end{proof}
+\begin{cor}[]
+If $\rho = \rho_1 \oplus \ldots \oplus \rho_n$ is a decomposition into irreducible representation, then the number of $\rho_j$ that are equivalent to the irreducible representation $\sigma$ are given by
+\begin{align*}
+  \# \text{ of $j$, such that $\rho_j = \sigma$} =: n_{\sigma} = \scal{\chi_{\rho},\chi_{\sigma}} = \scal{\chi_{\sigma},\chi_{\rho}}
+\end{align*}
+\end{cor}
+\begin{proof}
+This follows trivially from the fact that
+\begin{align*}
+  \chi_{\rho} = \chi_{\rho_1} + \ldots + \chi_{\rho_n}
+\end{align*}
+so by taking the scalar product with $\chi_{\sigma}$ on both sides,  we can use the previous theorem to immediately get the result.
+\end{proof}
+
+\begin{cor}[]
+  A representation $\rho$ is irreducible if and only if $\scal{\chi_{\rho},\chi_{\rho}} = 1$
+\end{cor}
+\begin{proof}
+This also follows trivially from the theorem. 
+If we had a decomposition $\rho = \rho_1 \oplus \ldots \oplus \rho_n$, then we would have
+\begin{align*}
+  \scal{\chi_{\rho},\chi_{\rho}} = \sum_{i,j}\scal{\chi_{\rho_i},\chi_{\rho_j}} \geq n
+\end{align*}
+\end{proof}
+
+Now if we are given a group $G$, how many irreducible representation are there?
+A trick is to look at the regular representation.
+\subsection{Decomposition of the regular representation}
+The regular representation contains a lot of information about other irreducible representations.
+\begin{thm}[]
+  Every irreducible representation $\sigma$ of $G$ appreas in $\C(G)$ with multiplicity $\dim \sigma$.
+\end{thm}
+\begin{proof}
+  From the first corollary before, we can use the fact that $\chi_{\text{reg}}$ is $\abs{G}$ on the identity, so
+  \begin{align*}
+    n_{\sigma} = \scal{\chi_{\sigma},\chi_{\text{reg}}} = \abs{G} \chi_{\sigma}(1) \frac{1}{\abs{G}} = \chi_{\sigma}(1) = \dim \sigma
+  \end{align*}
+\end{proof}
+\begin{cor}[]
+  A finite group only has finitely many equivalence classes of irreducible representations.
+  Moreover, if $\rho_1, \ldots, \rho_k$ is a list of equivalent irreducible representations,then
+  \begin{align*}
+    \abs{G} = \sum_{j=k}(\dim \rho_j)^{2}
+  \end{align*}
+\end{cor}
+\begin{proof}
+  It follows from $\dim(\C(G))= \abs{G}$ because every time we have a $\dim \sigma$-dimensional representation it occurs exactly $n_{\sigma} = \dim \sigma$ times.
+\end{proof}
+
+\begin{cor}[Peter Weyl theorem for finite groups]
+Let $\rho_{1}, \ldots, \rho_{k}$ be a list of the irreducible inequivalent representations of $G$.
+
+Then the matrix elements $\rho_{\alpha,ij}$ for $1 \leq \alpha \leq k$ with respect to an orthogonoal basis from an orthogonal basis of $\C(G)$
+\end{cor}
+\begin{proof}
+  By the orthogonality relation for matrix elements, we konw that the $\rho_{\alpha,ij}$ already form an orthogonal family. 
+  This family is also a basis, since there are exactly $\sum_{\alpha}(\dim \rho_{\alpha})^{2}= \abs{G}= \dim \C(G)$ many members in the family.
+\end{proof}
+
+\begin{dfn}[]
+A function $f: G \to  \C$ is called a \textbf{class function}, if
+\begin{align*}
+  f(ghg^{-1}) = f(h) \quad \forall h,g \in G
+\end{align*}
+\end{dfn}
+For example the characers of representations are class functions.
+Also, the class functions are a subspace of $\C(G)$ and as such, a Hilbert space.
+
+
+\begin{cor}[]
+The characters $\chi_{1}, \ldots, \chi_{k}$ form an ONB of the Hilbert space of class functions.
+\end{cor}
+\begin{proof}
+We just saw that the $\chi_{1}, \ldots, \chi_{k}$ form an orthogonal family and now we have to show that they also span the space of class functions.
+
+Let $f: G \to \C$ be a class function, then we can write
+\begin{align*}
+  f(g) = \frac{1}{\abs{G}} \sum_{h \in G}f(hgh^{-1})
+\end{align*}
+but the matrix elements also form an orthonormal basis of all functions,so also of the space of class functions, so
+\begin{align*}
+  f = \sum_{\alpha,i,j} \lambda_{\alpha,ij} \rho_{\alpha,ij}
+\end{align*}
+which, when inserted into the formulation above, we get
+\begin{align*}
+  f(g) 
+  &= 
+  \sum_{\alpha,i,j} \lambda_{\alpha,ij} \frac{1}{\abs{G}} \sum_{h \in G}\rho_{\alpha,ij} (hgh^{-1})\\
+  &=
+  \sum_{\alpha,i,j}\lambda_{\alpha,ij}
+\frac{1}{\abs{G}}\sum_{h \in G} \sum_{k,l} \rho_{\alpha,i,k}(h) \rho_{\alpha,k,l}(g) \overline{\rho_{\alpha,j,l}(h)}
+  \\
+  &=
+  \sum_{\alpha,i,j}\lambda_{\alpha,ij} \frac{1}{\dim \rho_{\alpha}} \sum_{k,l} \rho_{\alpha,k,l}(g)  \delta_{ij}\delta_{kl}
+\end{align*}
+but the sum $\sum_{k,l} \delta_{kl}$ is exactly the trace or character $\chi_{\alpha}(g)$, so
+\begin{align*}
+  f(g)
+  &=
+  \sum_{\alpha,i,j}\lambda_{\alpha,ij} \chi_{\alpha}(g)\delta_{ij} \frac{1}{\dim \rho_{\alpha}}
+  \\
+  &=
+  \sum_{\alpha,i}\lambda_{\alpha,ii}\chi_{\alpha}(g) \frac{1}{\dim \rho_{\alpha}}
+\end{align*}
+which is a linear combination of the $\chi_{\alpha}(g)$.
+\end{proof}
+
+
+\begin{cor}[]
+The number of equivalence classes of irreducible representations is equal to the number of conjugacy classes in $G$.
+\end{cor}
+\begin{proof}
+The number of conjugacy classes is the dimension of the space of class functions, which as we just proved is the number of characters $\chi_{\alpha}$ which equals the number of equivalency classes of irreducible representations.
+\end{proof}
+
+\subsection{The character table}
+The character table is a table listing all irreducible representations and their characters on the conjugacy classes.
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{C| C C C}
+  G & [1]&  c & \ldots\\\hline
+  \chi_1 & \ddots & & \ddots\\
+  \chi_j & & \chi_j(c) &\\
+  \chi_k & \ddots & & \ddots
+\end{tabular}
+\caption{The character table has in the left column all irreducible representations and on the top row the conjugacy classes of the group. 
+The entries is the character evaluated at a (representant) of the conjucacy class.}
+\end{table}
+
+\begin{ex}[]
+  The group $G = S_3$ has $6$ elements, which can be written in terms of the cycle $\tau =(123)$ and the permutation $\sigma = (12)$
+\begin{align*}
+  G = \{1,\sigma,\tau,\tau \sigma \tau^{-1}, \tau^{2}st^{-2},sts^{-1}\}
+\end{align*}
+This group has three conjugacy classses:
+\begin{align*}
+  [1], [s] = \{s,tst^{-1},t^{2}st^{-2}\}, [t] = \{t,sts^{-1-1}\}
+\end{align*}
+the irreducible representations are
+\begin{align*}
+  \rho_{1} \text{ trivial}, \rho_2 \text{ on }\C^{2}, \quad \rho_{\epsilon} \text{ on } V = \C, \rho_{\epsilon}(\sigma) = \sgn(\sigma)
+\end{align*}
+the character table is then
+\begin{table}[h]
+\centering
+\begin{tabular}{C|CCC}
+  6 S_3 & [1] & 3[s] & 2[t]\\\hline
+  \chi_1 &  1 & 1 & 1\\
+  \chi_2 & 2 & a & b \\
+  \chi_{\epsilon} & 1 & -1 & +1
+\end{tabular}
+\caption{The character table of $S_3$. The numbers show the number of elements in the conjugacy class. Non-trivial entries can be found using the orthogonalit condition}
+\end{table}
+To fill out the character table, we can use weighted orthogonality of the caracter. 
+\begin{align*}
+  \scal{\chi_1,\chi_2} = \frac{1}{\abs{G}} \sum_{g \in G}\overline{\chi_1(g)}\chi_2(g) \stackrel{!}{=} 0
+\end{align*}
+which means that we need
+\begin{align*}
+  \scal{\chi_1,\chi_2} = 0 \implies 2 + 3a + 2b = 0, \quad \text{and} \quad \scal{\chi_2,\chi_{\epsilon}} = 0 \implies 2 - 3 a + 2 b = 0
+\end{align*}
+which has the solution $a = 0, b = -1$.
+
+Note that if a matrix has orthonormal rows, then its transpose also has orthonormal rows, which are exactly the columns of the matrix.
+\begin{align*}
+  \left(
+    \sqrt{\frac{\abs{C_j}}{\abs{G}}}
+    \chi_i(C_j)
+  \right)_{ij} \in O(n)
+\end{align*}
+This shows that the orthonormality of the characters (with respect to the weighted inner product) corresponds to the orthonormality (with respect to the ``unweighted'' inner product) of the conjugacy classes, so
+\begin{align*}
+  \sum_{j=1}^{k} \overline{\chi_j(C_{\alpha})} \chi_j(C_{\beta}) = \frac{\abs{G}}{\abs{C_{\alpha}}} \delta_{\alpha,\beta}
+\end{align*}
+\end{ex}
+
+The orthonormality gives us many tricks to compute the character table.
+\begin{itemize}
+  \item  $\abs{G} = \sum_{j=1}^{k} \left(\dim \rho_j\right)^{2}$
+    so if the order of $G$ is rather small, then this gives us some restrictions on the dimensions of the representation.
+  \item Orthogonality of rows and columns (with weights) can be used to find missing entries
+  \item The existence of trivial representations (and if possible, the signum representation) lets us fill out the initial rows.
+    Also note that the first column contains the dimension of the representations.
+\end{itemize}
+
+\subsection{The canonical decomposition of a representation}
+Let $\rho_i: G \to \GL(V_i)$ be a list of inequivalent irreducible representations of $G$.
+
+Now let $\rho$ be some other representation of $G$ on $V$.
+If we decompose $V = U_{1}\oplus \ldots \oplus U_{n}$ into irreducible representations, then define $W_i$ as the direct sum of all $U_j$ that are equivalent to $\rho_i$ (which means that $\rho|U_j$ is equivalent to $\rho_i$).
+
+Then we write $V = W_{1}\oplus + \ldots \oplus W_{k}$.
+\begin{thm}[]
+The decomposition $V = W_{1}\oplus \ldots \oplus W_{k}$ is invariant under the choice of the decomposition $V = U_{1}\oplus \ldots \oplus U_{n}$ and the projection
+\begin{align*}
+  p_i: V \to  W_i, \quad w_1 \oplus  \ldots \oplus w_k \mapsto  w_i
+\end{align*}
+is given by
+\begin{align*}
+  p_i(v) = \frac{\dim V_i}{\abs{G}} \sum_{g \in G}\overline{\chi_i(g)} \rho(g) v
+\end{align*}
+\end{thm}
+\begin{proof}
+Since $W_i = \Image p_i$ and the $p_i$are independent of the decomposition into the $U_i$, we only need to show the second statement.
+We can show that $p_i \in \Hom_G(V,V)$ commutes with the group action, because
+\begin{align*}
+  p_i(\rho(h)v) 
+  &= \frac{\dim V_i}{\abs{G}} \sum_{g \in G}\overline{\chi_i(g)}\rho(gh) v\\
+  &=
+  \frac{\dim V_i}{\abs{G}} \sum_{g \in G}\overline{\chi_i(g)} \rho(hg)v\\
+  &= \rho(h) (p_i(v))
+\end{align*}
+For$v \in U_j$ we have $\rho(g)v \in U_j$, so $p_iv \in U_j$.
+Now we can use Schur's Lemma for $p_i|_{U_j}: U_j \to  U_j$. 
+The lemma then says that
+\begin{align*}
+  p_i|_{U_j} = c_{ij}1_{U_j}
+  \implies
+  \trace(p_i|_{U_j}) = c_{ij} \dim U_j
+\end{align*}
+and so
+\begin{align*}
+  \frac{\dim V_i}{\abs{G}} \sum_{g \in G} \overline{\chi_{i}(g)} \underbrace{\trace((\rho(g)|_{U_j})}_{= \chi_{\rho|_{U_j}}(g) =: \chi(g)} = \dim V_i \scal{\chi_i,\chi} = \left\{\begin{array}{ll}
+    1 & \text{ if } \rho|_{U_j}, \rho_i \text{ are equivalent}\\
+    0 &  \text{ otherwise}
+  \end{array} \right.
+\end{align*}
+and so, we can find the coefficient
+\begin{align*}
+  c_{ij} = \left\{\begin{array}{ll}
+    1 & \text{ if } \rho|_{U_j}, \rho_i \text{ are equivalent}\\
+     0&  \text{ otherwise}
+  \end{array} \right.
+\end{align*}
+so the mapping
+\begin{align*}
+  p_i(v) = \left\{\begin{array}{ll}
+    v & \text{ if }v\in W_i\\
+     0 & v \in W_j, j \neq i
+  \end{array} \right.
+\end{align*}
+does indeed define the projector.
+
+\end{proof}
+
+
+
+

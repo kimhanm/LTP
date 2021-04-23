@@ -1,0 +1,57 @@
+\section{Limit theorems}
+Let $(X_i)_{i \in I}$ be a sequence of independent random variables. If we set $S_n = \sum_{i=1}^{n}X_i$, then we expect that for large $n$, the average value $\frac{S_n}{n}$ approaches the arithmetic mean of the $\E[X_{i}]$.
+But how fast would it converge to the mean and what happens if the $X_i$ are not independent
+
+
+\subsection{Weak law of big numbers}
+Assume all $X_i$ have the same expectationvalue $\E[X_i] = m$.
+We say that the \textbf{weak law of big numbers} holds in some P-space, if for all $\epsilon > 0$
+\begin{align*}
+  \IP\left[\abs{\frac{S_n}{n} - m} > \epsilon\right] \to 0 \quad \text{ for } n \to \infty
+\end{align*}
+Using the Chebyshev Inequality we get with $\E[S_n] = nm$ 
+\begin{align*}
+  \IP\left[
+  \abs{\frac{S_n}{n}- m} > \epsilon\right] \leq \frac{\text{Var}[S_n/n]}{\epsilon^{2}} = \frac{\text{Var}[S_n]}{n^{2}\epsilon^{2}}
+\end{align*}
+
+The reason why we cannot always use the law of weak numbers is that the variance $\variance[S_n/n]$ might not exist.
+If $\E[X_i^{2}] < \infty$ then it does exist and the law of weak numbers holds.
+
+\begin{ex}[]
+A counter example can be given by the \textbf{Cauchy-distribution}
+\begin{align*}
+  f(x) = \frac{1}{\pi} \frac{1}{1+x^{2}}
+\end{align*}
+Then the $\E[\abs{X_i}] = \infty$ and we can show that $\tfrac{S_n}{n}$ again has a Cauchy-distribution.
+This means that $\tfrac{S_n}{n}$ has increasing variance for larger and larger $n$.
+\end{ex}
+
+
+We can use the weak law of big numbers to prove Weierstrass's theorem, which states that the polynomials are dense in the set of continuous functions on a compact interval (with the $\|\|_{\infty}$ norm)
+
+We start by defining the \textbf{Bernstein-Polynomials} of degree $n$ on $[0,1]$ as
+\begin{align*}
+  B_{n,k}(x) = \binom{n}{k}x^{k}(1-x)^{n-k} \quad \text{for} \quad k = 0, \ldots n
+\end{align*}
+A function $f \in C([0,1])$ now can be approximated to $n$-th degree by the linear combination
+\begin{align*}
+  B_n^{f}(x) = \sum_{k=0}^{n}f(\tfrac{k}{n})B_{n,k}(x)(x)
+\end{align*}
+This really does approximate $f$, because we know that 
+\begin{align*}
+  B_{n,k}(x) = \IP_X[S_n = k] \quad \text{for} \quad S_n = \text{ number of successes after $n$ throws with parameter $x$}
+\end{align*}
+From this, we see that $B_n^{f}(x) = \E_x[f(\tfrac{S_n}{n})]$.
+But by the weak law of big numbers $\tfrac{S_n}{n}$ converges to the success parameter $x$.
+
+This shows that probabilistic arguments can prove useful results from Analysis.
+
+\subsection{Strong law of big numbers}
+Instead of taking the arithmetic mean of all $S_n$, we can instead only look at the arithmetic mean of the $S_k$ after some point $n$. 
+So we would like to prove for all $\epsilon > 0$
+\begin{align*}
+  \lim_{n \to \infty}\IP \left[\bigcap_{k \geq n} \left\{\abs{\frac{S_k}{k} - m} \leq \epsilon\right\}\right] = 1
+\end{align*}
+i.e. that after some time $n$, the aritmetic mean stas close to the expectation value $m$.
+

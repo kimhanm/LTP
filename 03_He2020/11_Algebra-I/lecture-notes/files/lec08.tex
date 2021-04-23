@@ -1,0 +1,94 @@
+We will now prove that $\Z[i]$ is in fact a euclidean ring. Recall that $N(a + ib) = \abs{a + ib}^2$. Which has the nice property of being multiplicative:
+\begin{align*}
+	N(z \cdot w) = N(z) N(w), \quad \text{for } z,w \in \Q[i] \text{ or } \Z[i]
+\end{align*}
+The degree inequality immediately follows from the multiplicativity, as for $z \neq 0$ we have $N(z) \geq 1$.\\
+Division with rest is as follows. Let $f,g \in \Z[i], f \neq 0$. We define $z := \frac{g}{f} \in \Q[i]$ for $z = a + ib, a,b \in \Q[i]$ and consider its best approximation in $\Z[i]$. Using the rounding operation $[\cdot]: \Q \to \Z$, we chose $q$ and $r$ to be
+\begin{align*}
+	q := [a] + i [b] \in \Z[i], \quad r := g - fq 
+\end{align*}
+Which because $(x - [x]) \leq \frac{1}{2}$ satisfy
+\begin{align*}
+	\abs{z-q} \leq \sqrt{(a - [a])^2 + (b + [b])^2} \leq \frac{1}{\sqrt{2}} \implies N(z-q) < 1
+\end{align*}
+From the definition of $r$, we have $g = fq + r$. Therefore
+\begin{align*}
+	N(r) = \abs{r}^2 = \abs{g-fq}^2 = \abs{f^2} \underbrace{\abs{z-q}^2}_{< 1} < N(f)
+\end{align*}
+
+
+We can also show that $R = \Z[\sqrt{2}]$ is also a euclidean Ring and the proof is similar to the previous example. We define
+\begin{align*}
+	\Phi: \Q[\sqrt{2}] \to \Mat_{22}(\Q), \quad a + \sqrt{2}b \mapsto \begin{pmatrix}
+	a & 2b\\
+	b & a
+	\end{pmatrix}
+\end{align*}
+which is a Ring homomorphism (and is also $\Q$-linear), since $\Phi(1) = I_2$ and $\Phi(\sqrt{2})^2 = \Phi(2)$.\\
+We define the Norm function using this homomorphism:
+\begin{align*}
+	N(a + \sqrt{2}b) = \abs{\det \Phi(f)} = \abs{a^2 - 2b^2}
+\end{align*}
+The division with rest is similar as with $\Z[i]$. This works because $\Q[\sqrt{2}]$ is a field, which means that $z = \frac{g}{f} a + \sqrt{2}b \in \Q[\sqrt{2}]$ so we can round to the nearest integer again
+\begin{align*}
+	q = [a] + \sqrt{2}[b] \in \Z[\sqrt{2}] \implies N(z-q) = \abs{(a-[a])^2 - 2(b-[b])^2} < 1
+\end{align*}
+
+
+\begin{theorem}[]
+	In a euclidean Ring, every Ideal is a principal ideal.
+\end{theorem}
+Proof: Let $I \subseteq R$ be an ideal. If $I = \{0\}$, then $I = (0)$. Now assume that $I \neq \{0\}$. Now define $f \in I$ as an element such that
+\begin{align*}
+	N(f) = \min\{N(g) \big\vert g \in I \setminus \{0\}\} \subseteq \N
+\end{align*}
+We then show that $I = (f)$. Since $f \in I$ we obviously have $(f) \subseteq I$. Now assume $g \in I$. After division with rest there exist $q,r \in R$ such that $g = q \cdot f + r$ with $r = 0$ or $N(r) < N(f)$. If $r = 0$, then $g = qf \in (f)$, but if $r \neq 0$, then we have
+\begin{align*}
+	r = g - qf \in I \implies N(r) < N(f) = \min\{N(x) \big\vert x \in I \setminus \{0\}\} \lightning
+\end{align*}
+
+
+
+\subsection{Principal Ideal Domain}
+\begin{definition}[Principal Ideal Domain]
+	Let $R$ be an integral domain. We call $R$ a \textbf{Principal Ideal Domain}, if every Ideal in $R$ is a principal ideal.
+\end{definition}
+Every euclidean Ring is Principal Ideal Domain.
+
+
+\begin{proposition}[]
+	Let $R$ be a Principal Ideal Domain. For every two elements $f,g \in \R \setminus\{0\}$ there exists a greatest common denominator $d$ such that $(d) = (f) + (g)$
+\end{proposition}
+
+Proof: Since $I = (f) + (g)$ is an Ideal and $R$ is a principal ideal domain, there exists a $d \in R$ such that $I = (d)$. Therefore, because $(f), (g) \subseteq (d)$ we have $d|f$ and $d|g$. If $d'$ is another gcd, of $f$ and $g$, then $(d) \subseteq (d') \implies d'|d$.
+
+\begin{definition}[gcd]
+	Let $f,g d \in \R \setminus \left\{0\right\}$. We say $d$ is a largest common denominator of $f$ and $g$, if $d|f$ and $d|g$ and if every other common denominator also divides $d$.
+\end{definition}
+Note that if $d,d'$ are two gcd's have $d = ad'$ for $a \in R^{\times}
+$.\\
+
+
+In a euclidean Ring we can obtain a gcd of $f,g \in R \setminus \left\{0\right\}$ using the \emph{euclidean algorithm}.\\
+Without loss of generality we can assume $N(f) \leq N(g)$.
+Divide with rest and obtain $g = qf + r$. If $r = 0$, then $\gcd(f,g) = f$. If $r \neq 0$ then $\gcd(f,g) = \gcd(r,f)$. Because $N(r) < N(f) \leq N(g)$, this algorithm will end.
+This algorithm works, since
+\begin{align*}
+	r = g - qf \in I \implies f \in (r) + (f), g = qf + r \in (r) + (f) \implies (f) + (g) = (r) + (f)
+\end{align*}
+
+
+
+\begin{theorem}[Prime elements]
+	Let $R$ be a principal ideal domain. Then 
+	\begin{enumerate}
+	\item $p \in R \setminus \left\{0\right\}$ is prime if and only if $p$ is irreducible.
+	\item Every $f \in R \setminus \left\{0\right\}$ can be written as a product of a unit and finitely many prime elements.
+	\end{enumerate}
+\end{theorem}
+Proof: We already know that prime $\implies$ irreducible. Let $p \in R \setminus \left\{0\right\}$ be irreducible and assume that $p |ab$. If $p|a$ there is nothing to show.\\
+If $p \not|\ a$, we use the fact that there exists a gcd $d$ of $p$ and $a$. Since $d|p$ we have $p = de$, but because $p$ is irreducible, either $d \in R^{\times}$ or $e \in R^{\times}$. If the latter were true, we would have $d= pe^{-1}$, but then we would have $p|d, d|a \implies p|a \lightning$. Therefore $d \in R^{\times}$. Therefore
+\begin{align*}
+	d = xp + ya \implies b = xbd^{-1}p + \underbrace{yd^{-1}ab}_{p|ab} \implies p|b
+\end{align*}
+Which shows that $p$ is prime.

@@ -1,0 +1,115 @@
+Now that we have got the angular part down, 
+we now want to solve for the radial part $R(r)$.
+Using the Ansatz
+\begin{align*}
+  \Psi(r,\theta,\phi) 
+  = 
+  \sum_{l,m}
+  \frac{R_{lm}(r)}{r} Y_{lm}(\theta,\phi)
+\end{align*}
+And checking the differential equation $\nabla^{2} \Psi = \lambda \Psi$, we get that $R_{lm}$ has to satisfy
+\begin{align*}
+  \frac{\dd^{2}}{\dd{}r^{2}} \frac{R_{lm}(r)}{r} - \frac{l(l+1)}{r^{3}}
+  =
+  \lambda \frac{R_{lm}(r)}{r}
+\end{align*}
+
+In the special case of a zero eigenvalue $\lambda = 0$, the differential equation becomes
+\begin{align*}
+  \frac{1}{R}\frac{\dd^{2} R}{\dd r^{2}} = \frac{l(l+1)}{r^{2}}
+\end{align*}
+and with the ansatz $R(r) = r^{\alpha}$, we obtain two solutions
+\begin{align*}
+  R_l(r) = A_l r^{-l} + B_l r^{l+1}
+\end{align*}
+which means the the general solution of the \textbf{Laplace} differential equation 
+\begin{align*}
+  \nabla^{2} \Psi(r,\theta,\phi) = 0
+\end{align*}
+is given by
+\begin{empheq}[box=\bluebase]{align*}
+  \Psi(r,\theta,\phi) 
+  = 
+  \sum_{l=0}^{\infty} \sum_{m= -l}^{l} 
+    \left(
+      a_{l,m}r^{-l - 1} + b_{lm}r^{l}
+    \right)
+    Y_{lm}(\theta,\phi)
+\end{empheq}
+
+where we can solve for the coefficients $a_{lm}, b_{lm}$ with boundary conditions. (See MMP-I).
+
+\subsection{Multipole expansion}
+When we're given a charge distribution $\rho(\vec{x})$ contained to a small volume $V$, we want to find out the potential outside of the region $V'$.
+
+Inutitively, the charge distribution approximately ``looks like'' a point-charge from a point $\vec{r}$ far away from $V'$.
+
+Starting with the potential
+\begin{align*}
+  \Phi(\vec{r}) = \frac{1}{4 \pi \epsilon_0} \int_{V'} d^{3} \vec{x} \frac{\rho(\vec{x})}{\abs{\vec{x} - \vec{r}}}
+\end{align*}
+we expand the inverse distance $\tfrac{1}{\abs{\vec{x} - \vec{r}}}$ in terms of the angle $\gamma$ and distance $\frac{x}{r}$ to get
+\begin{align*}
+  \Phi(\vec{r}) = \frac{1}{4 \pi \epsilon_0} \sum_{l=0}^{\infty}\frac{1}{r^{l+1}} \int_{V'} d^{3} \vec{x}\rho(\vec{x}) x^{l} P_l(\cos \gamma)
+\end{align*}
+Writing the vectors $\vec{r},\vec{x}$ in spherical coordinates
+\begin{align*}
+  \vec{r} =: (r, \theta,\phi), \quad \vec{x} =: (x, \theta_x,\phi_x)
+\end{align*}
+we can show that
+\begin{align*}
+  \cos \gamma = \frac{\vec{x} \cdot \vec{r}}{xr} = \cos \theta \cos \theta_x + \sin \theta \sin \theta_x \cos(\phi - \phi_x)
+\end{align*}
+to do the integration, we use the identity
+\begin{align*}
+  P_l(\cos \gamma) = \frac{4 \pi}{1 + 2l} \sum_{m=-l}^{l} Y_{lm}^{\ast}(\theta_x,\phi_x) Y_{lm}(\theta,\phi)
+\end{align*}
+so the Potential can be expressed as
+\begin{align*}
+  \Phi(\vec{r}) = \frac{1}{\epsilon_0} \sum_{l=0}^{\infty} \frac{1}{1 + 2l} \frac{1}{r^{l+1}} \sum_{m=-l}^{l} q_{lm}Y_{lm}(\theta,\phi) 
+\end{align*}
+, where we define the \textbf{multipole moments} $q_{lm}$ as
+\begin{empheq}[box=\bluebase]{align*}
+  q_{lm} := \int_{V'} d^{3}\vec{x} Y_{lm}^{\ast}(\theta_x, \phi_x) \rho(\vec{x}) x^{l}
+\end{empheq}
+which characterisze the geometry of the charge distribution. For example
+\begin{align*}
+  q_{00} = \int_{V'} d^{3} \vec{x} \rho(\vec{x}) Y_{00}(\theta,\phi) = \frac{1}{\sqrt{4 \pi}}\int_{V'}d^{3}\vec{x}\rho(\vec{x})
+  =
+  \frac{Q}{\sqrt{4 \pi}}
+\end{align*}
+is proportional to the total charge. 
+For $l = 1$, we have 
+\begin{align*}
+  q_{11} 
+  = - \sqrt{\frac{3}{8 \pi}}(p_1 - ip_2)
+  , \quad q_{10} 
+  = \sqrt{\frac{3}{4 \pi}}p_3, \quad 
+  q_{1-1} 
+  = \sqrt{\frac{3}{8 \pi}}(p_1 + ip_2)
+\end{align*}
+where
+\begin{align*}
+  \vec{p} = (p_1,p_2,p_3) = \int d^{3}\vec{x} \vec{x} \rho(\vec{x})
+\end{align*}
+is the \textbf{dipole moment}.
+
+So the third order aproximation of the Potential is then given by
+\begin{align*}
+  \Phi(\vec{x}) = \frac{1}{4 \pi \epsilon_0} \left[
+    \frac{Q}{r} + \frac{\vec{p} \cdot \vec{x}}{r^{3}} + \ldots
+  \right]
+\end{align*}
+
+For $l = 2$ we will see the \textbf{quadrupole tensor}
+\begin{align*}
+  Q_{ij} = \int d^{3} \vec{x} (x_ix_j - x^{2}\delta_{ij})\rho(\vec{x})
+\end{align*}
+to express $q_{20},q_{21},q_{22}$.
+For higher $l$ the $q_{lm}$ have higher powers of $1/r$ in them and therefore contribute less and less to the potential.
+
+
+
+
+
+

@@ -1,0 +1,206 @@
+\section{Field Theory}
+\subsection{Field Extensions}
+Note: A ring homomorphism between two fields is always injective because it's kernel is always an ideal and there are only two ideals of a field $K$.
+$K$ itself and $(0) = \{0\}$
+
+\begin{definition}[]
+	Let $L$ be a field an $K \subseteq L$ a subring that is also a field. We then say $K$ is a \textbf{subfield} of $L$ and we call $L$ a \textbf{field-extension} of $K$.
+
+	We also write $L/K$ if $L$ is a field-extension of $K$, since $L$ can be thought of as a vector space over $K$. We call the dimension of the vector space $L/K$ the \textbf{degree} and denote it with $[L:K]$. 
+	If $[L:K] < \infty$, we say $L$ is a \textbf{finite} field-extension of $K$.
+\end{definition}
+
+
+Examples
+\begin{enumerate}
+	\item $\Q(\sqrt{2})/\Q$
+	\item $\C/\R$
+	\item $\Q(\sqrt[3]{2})/\Q \iso \faktor{\Q[T]}{(T^3 - 2)}/\Q$
+\end{enumerate}
+
+
+\begin{lemma}[Multiplicity of degree]
+Let $F/L$ and $L/K$ be finite field extensions. Then
+\begin{align*}
+	[F:K] = [F:L] \cdot [L:k]
+\end{align*}
+\end{lemma}
+Proof: Let $m = [F:L]$ and assume $x_{1}, \ldots, x_{m} \in F$ are a basis of $F$ over $L$. 
+Also let $n = [L:K]$ and $y_{1}, \ldots, y_{n} \in L$ are a basis of $L$ over $K$.
+Then we can show that the products
+\begin{align*}
+	x_iy_j \in F, \quad \text{for} \quad i = 1, \ldots m, j = 1, \ldots n
+\end{align*}
+are a basis of $F$ over $K$.
+
+To show linear independence, let $\alpha_{ij} \in K$ and $\sum_{i,j}\alpha_{ij}x_iy_j = 0$. But because $x_{1}, \ldots, x_{m}$ are linearly independent over $L$
+\begin{align*}
+	\sum_{i=1}^{m}\underbrace{\sum_{j=1}^{n}\alpha_{ij}y_i}_{\in L}x_i = 0 \implies \sum_{j=1}^{n}\alpha_{ij}y_j = 0 \implies \alpha_{ij} = 0, \forall i,j
+\end{align*}
+which shows that $x_iy_j$ are linearly independent.
+
+To show that they span $F$, let $z \in F$. Then there exist $\beta_{1}, \ldots, \beta_{m} \in L$ such that $z = \sum_{i = 1}^{m}\beta_{i}x_i$. And because $y_i$ are a basis of $L$, for each $\beta_i \in L$ there exist $\alpha_{i1}, \ldots, \alpha_{in} \in K$ such that
+\begin{align*}
+	\beta_i = \sum_{j=1}^{n}\alpha_{ij}y_j \implies z = \sum_{i,j}\alpha_{ij} x_iy_j
+\end{align*}
+
+
+
+\begin{definition}[]
+	Let $L/K$ be a field extension and $x \in L$ and 
+	\begin{align*}
+		\phi_x: K[T] \to L, \quad f \mapsto f(x)
+	\end{align*}
+	the evaluation mapping. 
+	\begin{itemize}
+		\item If $\phi_x$ is injective, we say $x$ is \textbf{transcendent} over $K$
+		\item If $\phi_x$ is not injective, we say that $x$ is \textbf{algebraic}. In this case $\Ker \phi_x = (m_x(T))$ is an ideal and we call $m_x(T)$ the \textbf{Minimal polynomial} of $x$ and the degree of $m_x(T)$ also the degree of $x$.
+	\end{itemize}
+\end{definition}
+Note that the definition for algebraic is equivalent to saying that $x \in L$ is a root of a polynoial with coefficients in $K$.
+
+Examples
+\begin{enumerate}
+	\item $e, \pi \in \R$ are transcendent over $\Q$
+\item $\sqrt[3]{2} \in \R$ is algebraic over $\Q$ with minimal polynomial $T^3 - 2$
+\item $\cos(20^{\circ}) \in \R$ is algebraic because
+	\begin{align*}
+		\cos(3 \phi) = \cos^3(\phi) - 3 \cos \phi \sin^2 \phi = \cos^3 \phi - 3 \cos \phi + 3 \cos^3 \phi
+	\end{align*}
+	so for $\phi = 20^{\circ}$ we know that
+	\begin{align*}
+	\cos(60^{\circ}) \frac{1}{2} = 4 \cos^3 \phi - 3 \cos \phi
+ 	\end{align*}
+	with minimal polynomial $4T^3 - 3T - \frac{1}{2} \in \Q[T]$
+\end{enumerate}
+
+
+
+\begin{proposition}[]
+	Let $L/K$ and $x \in L$. If $x$ is transcendent, then
+	\begin{align*}
+		K[X] = \Image \phi_x \iso L[T]
+	\end{align*}
+	and the smallest subfield $K(x)$ of $L$ tht contains $K$ and $x$ satisfies
+	\begin{align*}
+		K(x) \iso K(T)
+	\end{align*}
+	If $x$ is algebraic, then
+	\begin{align*}
+		K[X] = \Image \phi_x \iso \faktor{L[T]}{(m_x(T))}
+	\end{align*}
+	is already the smallest subring $K(x)$ that contains $K$ aswell as $x$. Then also
+	\begin{align*}
+		[K(x): K] = \deg m_x(T)
+	\end{align*}
+\end{proposition}
+
+Proof: The isomorphsm follows directly from the first isomorphism theorem.
+
+If $x$ is transcendent, then 
+\begin{align*}
+	K(x) = \left\{\frac{f(x)}{g(x)} \big\vert f(T),g(T) \in K[T], g \neq 0\right\} \iso \left\{\frac{f(T)}{g(T)} \big\vert f,g \in K[T], g \neq 0\right\}
+\end{align*}
+if $x$ is transcendent, then $\Ker \phi_x = (m_x(T))$ is a prime ideal. Because in a PID, every prime ideal $\neq (0)$ is a maximal ideal, we know that the faktor-ring with the maximal idea $\faktor{K[T]}{(m_x(T))}$ is a field, so $K[X]$ is a subfield of $L$.
+
+Furthermore, in $\faktor{K[T]}{(m_x(T))}$ we can use division with rest to show that 
+\begin{align*}
+	1 + (m_x(T)), T + (m_x(T)), \ldots, \ldots T^{\deg m_x - 1} + (m_x(T)) \in \faktor{K[T]}{(m_x(T))}
+\end{align*}
+form a basis.
+
+
+
+\begin{definition}[]
+	Let $L/K$ and $x_{1}, \ldots, x_{n} \in L$. We write the smallest subfield of $L$ that contains $K$ aswell as $x_{1}, \ldots, x_{n}$ as
+	\begin{align*}
+		K(x_1,\ldots,x_n) = \left\{\frac{f(x_1,\ldots,x_n)}{g(x_{1}, \ldots, x_{n})} \big\vert f,g \in K[T_1,\ldots,T_n], g(x_1,\ldots,x_n) \neq 0\right\}
+	\end{align*}
+\end{definition}
+
+
+
+\begin{corollary}[(Wantzel, 1837)]
+With ruler and compass, neither the third root of $2$ nor an angle of $20^{\circ}$ can be constructed.\\
+Furthermore, if $p \in \N, p > 2$ is prime, and the regular $p$-gon is constructable with ruler and compass, then $p$ is a Farmat-prime: $p = 2^{2^{n}} + 1$.
+\end{corollary}
+Sketch of the proof: Assume that after finitely many constructions step starting from a unit length by intersecting straight lines with circleswe end up with a straight line of length $x = \sqrt[3]{2}$ or $x = \cos(20^{\circ})$. Then define $L_0 = \Q$, and then
+\begin{align*}
+	L_{n+1} = \left\{\begin{array}{ll}
+		L_{n} & \text{if in the $n$-th construction step two lines are interected.} \\
+		\text{ or }
+	\end{array} \right.
+\end{align*}
+a quadratic field extension of $L_n$ which contains the coordinates of the intersection betwen a cricle with a line or circle with a circle.
+
+Then we have
+\begin{align*}
+	(x - x_0)^2 + (y - y_0)^2 = A^2 \quad \text{and} \quad ax + by = c
+\end{align*}
+If it has roots in $L_n$, then set $L_{n+1} = L_n$ and if it has roots, then set $L_{n+1} = L_n(x,y)$. Then
+\begin{align*}
+	x \in L_N / \Q \implies [L_N:  \Q] = 2^l
+\end{align*}
+for some $l \in \N$, but $K = \Q[X] /\Q$ has degree $3$.
+So since
+\begin{align*}
+	[L_N:L_0] = [L_N:L_{N-1}] \dots [L_1:L_0]
+\end{align*}
+it would also have to be divisible by three, which is a contradiction.
+
+
+\begin{definition}[]
+	A field extensions $L/K$ is called \textbf{algebraic}, if every $x \in L$ is algebraic over $K$
+\end{definition}
+\begin{lemma}[]
+	Every finite field extension is algebraic.
+\end{lemma}
+Proof: For $[L:K] < \infty$ and $x \in L$ the mapping 
+\begin{align*}
+	\phi_x: K[T] \to L, \quad f \mapsto f(x)
+\end{align*}
+cannot be injective because $K[T]$ has infinite dimension over $K$, whereas $L$ by assumption only has finite dimension over $K$.
+
+
+\begin{corollary}[]
+Let $L/K$ and $x,y \in L$ be algebraic over $K$. Then so are $x+y, x \cdot y$ and for $x \neq 0, \frac{1}{x}$.
+\end{corollary}
+Proof: By supposition we know that $[K(x):K] < \infty$. We can write the minimal polynomial $m_y(T) \in K[T]$ also as a polynomial in $K(x)[T]$. 
+
+This implies that $y$ is also algebraic over $K(x)$ and so $[K(x)(y):K(x)] < \infty$.
+
+From the lemma on the multiplicity we know that 
+\begin{align*}
+	[K(x,y):K] = [K(x)(y):K] = [K(x)(y):K(x)]\cdot [K(x):K] < \infty	
+\end{align*}
+so $K(x,y)$, which contains all the elements $x + y, x \cdot y, \ldots \in K(x,y)$, is a finite field extension of $K$, and using the previous lemma, it is algebraic over $K$.
+
+
+\begin{corollary}[]
+Let $F/L$ and $L/K$. Then $F/K$ is algebraic if and only if $F/L$ and $L/K$ are algebraic.
+\end{corollary}
+Proof: $\implies$ is an exercise.
+For the reverse, assume $F/L$ and $L/K$ are algebraic field extensions each. Let $x \in L$. Then there exists a minimal polynomial
+$m_x^{L}(t) \in L[T]$. Now assume $y_{1}, \ldots, y_{n} \in L$ are the coefficients of $m_x^{L}(T)$. Just like in the prevous corollary, we can show that
+\begin{align*}
+	[K(y_{1}, \ldots, y_{n}):K] < \infty
+\end{align*}
+so since $m_x^{L}(T)$ has coefficients in $K(y_{1}, \ldots, y_{n})$, we know that
+\begin{align*}
+	[K(y_{1}, \ldots, y_{n},x): K(y_{1}, \ldots, y_{n})] \leq \deg m_x^{L} < \infty
+\end{align*}
+using multiplicativity of the degrees, it also follows that $[K(y_{1}, \ldots, y_{n},x):K] < \infty$.
+
+And since $x \in K(y_{1}, \ldots, y_{n},x)$ and $K(y_{1}, \ldots, y_{n},x) /K$ is a finite field extensions, it must be algebraic.
+
+
+Example: We trivially know that $\sqrt{2}$ and $\sqrt{3} \in \R$ are algebraic over $\Q$. Then
+\begin{align*}
+	x = (\sqrt{2} + \sqrt{3}) \implies x^2 = 5 + 2 \sqrt{6}\\
+	(x^2 - 5)^2 = (2 \sqrt{6})^2 = 24 \implies m_x = x^4 - 10x^2 + 1
+\end{align*}
+
+
+
+
+

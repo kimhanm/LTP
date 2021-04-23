@@ -1,0 +1,159 @@
+\section{Special Relativity}
+One motivation for special relativity was Galileo's observation that the law's of physics (such as $\vec{F} = m \vec{a}$) stayed the same when transforming between intertial reference frames, viewed as vectors in $\R^{3}$.
+Even though the individual components tranform in some complex manner under galileian transformation, the transformation preserves the strucuture of the vectors in $\R^{3}$.
+
+The invariants under Galilean transformations were the spatial distance $\abs{\vec{x} - \vec{y}}$ and temporal distance $t -t'$.
+
+What we will be doing is to combine the space and time components in a $4$-vector and use the \textbf{spacetime distance}
+\begin{empheq}[box=\bluebase]{align*}
+  \Delta s^{2} := c^{2}(t-t') - \abs{\vec{x} - \vec{x}'}^{2}
+\end{empheq}
+as our invariant of Lorentz Transformations to derive all other equations.
+
+Defining the \textbf{metric tensor} $g_{\mu\nu}$ as
+\begin{align*}
+  g_{\mu\nu} = \begin{pmatrix}
+    1 &  &  & \\
+      & -1 &  & \\
+      &  & -1 & \\
+      &  &  & -1
+  \end{pmatrix}
+\end{align*}
+then we define Lorentz Transformations as any (affine linear) transformation of the form 
+\begin{align*}
+  x^{\mu} \mapsto \tilde{x}^{\mu} = \Lambda_{\nu}^{\mu}x^{\nu} + \rho^{\mu}
+  \quad \text{for some} \quad 
+  x^{\mu} = (x_0 := ct,x_1,x_2,x_3)^{T}, \quad \rho^{\mu} = \text{const}
+\end{align*}
+such that 
+\begin{empheq}[box=\bluebase]{align*}
+  \Lambda_{\rho}^{\mu} \Lambda_{\sigma}^{\nu} g_{\mu\nu} = g_{\rho\sigma}
+\end{empheq}
+
+\subsection{Proper time}
+The differential form of the spacetime interval is known as the \textbf{proper time interval}
+\begin{empheq}[box=\bluebase]{align*}
+  ds^{2} := c^{2} dt^{2} - d \vec{x}^{2} = g_{\mu \nu}dx^{\mu}dx^{\nu}
+\end{empheq}
+
+Then under a Lorentz transformation
+\begin{align*}
+  x^{\mu} \mapsto \tilde{x}^{\mu} = \Lambda_{\nu}^{\mu}x^{\nu} + \rho^{\mu} \implies d \tilde{x}^{\mu} = \Lambda_{\nu}^{\mu}dx^{\nu}
+\end{align*}
+we can show that the proper time interval is preserved.
+\begin{align*}
+  d \tilde{s}^{2} 
+  &= g_{\mu\nu}d \tilde{x}^{\mu}d \tilde{x}^{\nu}\\
+  &= g_{\mu\nu}\left(
+    \Lambda_{\rho}^{\mu}dx^{\rho}
+  \right)\left(
+    \Lambda_{\sigma}^{\nu}dx^{\sigma}
+  \right)\\
+  &= \left(
+    g_{\mu\nu} \Lambda_{\rho}^{\mu}\Lambda_{\sigma}^{\nu}
+  \right)
+  dx^{\rho}dx^{\sigma}\\
+  &= g_{\rho \sigma}dx^{\rho}dx^{\sigma} = ds^{2}
+\end{align*}
+As a consequence, it follows that the speed of light is the same in all inertial reference frames because if something is moving at the speed of light, then
+\begin{align*}
+  \abs{\frac{d \vec{x}}{d t}} = c \implies d s^{2} = c^{2} dt^{2} - d \vec{x}^{2} = 0
+\end{align*}
+and so under a Lorentz transformation, it follows formthe perservation of the proper time interval that 
+\begin{align*}
+d \tilde{s}^{2} = ds^{2} = 0 \implies \abs{\frac{d \vec{\tilde{x}}}{d \tilde{t}}} = c
+\end{align*}
+Moreover, we can also show that the Lorentz transformations are the only non-singluar transformations that preserve the proper time intervals.
+Assume that there exists change of reference $x^{\mu} \mapsto \tilde{x}^{\mu}$ such that $ds^{2} = d \tilde{s}^{2}$.
+Then we get
+\begin{align*}
+  g_{\rho \sigma}dx^{\rho}dx^{\sigma} 
+  &= 
+  g_{\mu\nu} d \tilde{x}^{\mu}d \tilde{x}^{\nu}\\
+  \implies g_{\rho \sigma}dx^{\rho}dx^{\sigma} 
+  &=
+  g_{\mu\nu} \frac{\del x^{\mu}}{\del x_{\rho}}\frac{\del x^{\nu}}{\del x_{\sigma}}dx^{\rho}dx^{\sigma}\\
+  \implies
+  g_{\rho \sigma} 
+  &= g_{\mu\nu}\frac{\del x^{\mu}}{\del x_{\rho}}\frac{\del x^{\nu}}{\del x_{\sigma}}
+\end{align*}
+If we differentiate it with respect to $dx^{\epsilon}$, we get
+\begin{align*}
+  0 = g_{\mu\nu} \left[\frac{\del^{2}\tilde{x}^{\mu}}{\del x^{\epsilon}\del x^{\rho}} \frac{\del \tilde{x}^{\nu}}{\del x^{\sigma}} + \frac{\del^{2}\tilde{x}^{\mu}}{\del x^{\epsilon}\del x^{\sigma}} \frac{\del \tilde{x}^{\nu}}{\del x^{\rho}}\right]
+\end{align*}
+To this we add the same equation with $\epsilon$ and $\rho$ reversed and subtract the equation with $\epsilon$ and $\sigma$ reversed, we get
+\begin{align*}
+  0 = 2 g_{\mu\nu} \frac{\del^{2} \tilde{x}^{\mu}}{\del x^{\epsilon}\del x^{\rho}} \frac{\del \tilde{x}^{\nu}}{\del x^{\sigma}}
+\end{align*}
+
+
+Given a transformation $\tilde{x}^{\mu} = \Lambda_{\nu}^{\mu} x^{\nu} + \rho^{\mu}$ we the \textbf{velocity vector}
+\begin{empheq}[box=\bluebase]{align*}
+  \vec{v} = v^{i} := \frac{d \tilde{x}^{i}}{d \tilde{t}} = c \frac{d \tilde{x}^{i}}{d \tilde{x}^{0}}
+\end{empheq}
+
+\subsection{The Poincare group}
+The set of all Lorentz transformations
+\begin{align*}
+  x^{\mu} \mapsto  {x'}^{\mu} = \Lambda_{\nu}^{\mu}x^{\nu} + \rho^{\mu} \quad \text{with} \quad g_{\mu\nu}\Lambda_{\nu}^{\mu} \Lambda_{\sigma}^{\nu} = g_{\rho \sigma}
+\end{align*}
+forms a group, known as the inhomogeneous Lorentz group under composition.
+
+This group has some non-trivial subgroups. For example, the subset of transformations 
+\begin{align*}
+  x^{\mu} \mapsto \tilde{x}^{\mu} = \Lambda_{\nu}^{\mu}x^{\nu} + \rho^{\mu}
+\end{align*}
+with $\rho^{\mu} = 0$ is a subgroup.
+
+Or the set of transformations with 
+\begin{align*}
+  \det \Lambda = 1, \quad\Lambda_{0}^{0} \geq 1
+\end{align*}
+is a subgroup known as the \textbf{proper Lorentz transformations} as they are the ones which are physical.
+
+The condition $\Lambda_{0}^{0} \geq 1$ means that the transformation preserves the flow of time, since $d \tilde{t} = \Lambda_{0}^{0} dt \geq d t$
+
+Another important subgroup is the \textbf{subgroup of rotations}. They are the ones of the Form
+\begin{align*}
+  \Lambda = \begin{pmatrix}
+  1 & 0\\
+  0 & R
+  \end{pmatrix}
+  \quad \text{for some} \quad R \in O(3)
+\end{align*}
+
+For the proper Lorentz transformations it follows from $g_{\mu\nu}\Lambda_{\rho}^{\mu}\Lambda_{\sigma}^{\nu} = g_{\rho \sigma}$ that for $\rho = \sigma = 0$ we have
+\begin{align*}
+  &(\Lambda_{0}^{0})^{2} - (\Lambda_{0}^{i})^{2} = 1\\
+  \implies &\Lambda_{0}^{0} = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}} =: \gamma
+\end{align*}
+and thus we also find
+\begin{align*}
+  \Lambda_{0}^{i} = \gamma \frac{v^{i}}{c}
+\end{align*}
+
+
+\subsection{Time dilation}
+Consider a clock which is at rest for an observer in reference frame $O$.
+Between two clock ticks, the clock will have moved in the space-timeinterval 
+\begin{align*}
+  d \vec{x} = 0, \quad dt = \Delta t
+\end{align*}
+and its proper time interval is
+\begin{align*}
+  ds^{2} = (c^{2} dt^{2} - d \vec{x}^{2}) = c^{2} (\Delta t)^{2}
+\end{align*}
+A second observer sees the clock moving with velocity $\vec{v}$. Then two ticks of the clock will be separated by a space-time interval
+\begin{align*}
+  d \vec{\tilde{x}} = \vec{v} d \tilde{t}, \quad d \tilde{t} = \Delta \tilde{t}
+\end{align*}
+the proper-time interval in the new reference frame is then
+\begin{align*}
+  d \tilde{s}^{2} = c^{2} d \tilde{t}^{2} - d \vec{x}^{2} = c^{2} (\Delta \tilde{t})^{2} \left(
+    1 - \frac{v^{2}}{c^{2}}
+  \right)
+\end{align*}
+and since the proper time is the same in both reference frames, we get
+\begin{empheq}[box=\bluebase]{align*}
+  \Delta \tilde{t} = \frac{1}{\sqrt{1 - \frac{v^{2}}{c^{2}}}} = \gamma \Delta t
+\end{empheq}

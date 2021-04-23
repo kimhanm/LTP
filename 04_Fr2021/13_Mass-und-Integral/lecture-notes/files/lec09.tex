@@ -1,0 +1,31 @@
+\subsection{Special-Examples of sets}
+Although (or rather, because) the Lebesgue measure has all these nice properties, not all sets are measurable.
+
+To construct such a non-measurable set, we will use the Axiom of Choice, which states that for any family of non-empty disjoint sets $(A_i)_{i \in I}$, there exists a choice-function $f: I \to \bigcup_{i \in I} A_i$ such that $f(i) \in A_i$.
+
+With this, we can construct the set $\{f(i) \big\vert i \in I\}$ that contains exactly one element from each set $A_i$.
+
+For $x,y \in [0,1)$ we define $\oplus := \mod 1 \circ +$
+\begin{align*}
+  x \oplus y = \left\{\begin{array}{ll}
+    x+y & \text{ if } x + 1 < 1\\
+    x + y - 1 & \text{ if } x + y \geq 1
+  \end{array} \right.
+\end{align*}
+
+
+\begin{ex}[]
+  For every $A \subseteq \R$ with $\LL(A) > 0$, there exists a $B \subseteq A$ such that $B$ is not $\LL$-measurable.
+\end{ex}
+
+\subsubsection*{The Cantor tridadic set}
+
+The real numbers can be defined as the set of Cauchy-sequences in $\Q$ up to limits.
+
+The cantor set is the set of numbers whose triadic digits don't contain a $1$.
+\begin{align*}
+  C = \{x \in [0,1] \big\vert d_i(x) \in \{0,2\} \forall i\}
+\end{align*}
+Then $C$ is uncountable and $\LL(C) = 0$.
+
+

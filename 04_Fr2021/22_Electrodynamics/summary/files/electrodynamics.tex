@@ -1,0 +1,59 @@
+
+\section{Time dependent electromagnetic fields}
+If the $\vec{E}$ and $\vec{B}$ are time dependent, then the Maxwell equations are as follows
+\begin{align*}
+  \vec{\nabla}\cdot \vec{E} = \frac{\rho}{\epsilon_0}&, \quad \vec{\nabla}\cdot \vec{B} = 0\\
+  \vec{\nabla} \times \vec{E} = {\color{blue}- \frac{\del \vec{B}}{\del t}}&, \quad c^{2} \vec{\nabla} \times \vec{B} = \frac{\vec{J}}{\epsilon_0} + {\color{blue}\frac{\del \vec{E}}{\del t}}
+\end{align*}
+From the scalar and vector potential $\Phi, \vec{A}$ we can find the $\vec{E}, \vec{B}$ fields with.
+\begin{align*}
+  \vec{B} = \vec{\nabla} \times \vec{A} \quad \text{and} \quad  \vec{E} = - \vec{\nabla} \Phi - \frac{\del \vec{A}}{\del t}
+\end{align*}
+Since the elecric and magnetic field remain invariant under \textbf{gauge transformations}
+
+\begin{align*}
+  \Phi \mapsto \tilde{\Phi} &= \frac{\del }{\del t}f(\vec{x},t)\\
+  \vec{A} \mapsto \vec{\tilde{A}} &= \vec{A} - \nabla f(\vec{x},t)
+\end{align*}
+for some $f: \R^{4} \to \R$, the potentials are not uniquely determined.
+
+By introducing the \textbf{d'Alembert Operator}
+\begin{empheq}[box=\bluebase]{align*}
+  \square := \frac{1}{c^{2}} \frac{\del^{2}}{\del t^{2}} - \nabla^{2}
+\end{empheq}
+we get the equations
+\begin{align*}
+  \square \vec{A} = \frac{\vec{J}}{\epsilon_0 c^{2}}, \quad \square \Phi = \frac{\rho}{\epsilon_0}
+\end{align*}
+
+To solve them, we can instead search for the Green's function (or more generally, the Fundamental solution) $G(\vec{x},t,\vec{y},t')$ that satisfies
+\begin{align*}
+  \square_{x,t}G(\vec{x},t,\vec{y},t') = \delta(\vec{x} - \vec{y})\delta(t - t')
+\end{align*}
+After some Fourier transformation and Complex Analysis shenanigans, we obtain the solution
+\begin{align*}
+  G(\vec{x},t,\vec{y},t') = \frac{1}{4 \pi \abs{\vec{x} - \vec{y}}}
+  \delta\left(
+    t - t' - \frac{\vec{x} - \vec{y}}{c}
+  \right) \Theta(t - t')
+\end{align*}
+or equivalently, we can write
+\begin{empheq}[box=\bluebase]{align*}
+  G(\Delta \vec{x}, \Delta t) = \frac{1}{2 \pi} \delta \left(
+    (t - t')^{2} - \frac{\abs{\vec{x} - \vec{y}}^{2}}{c^{2}}
+  \right)
+  \Theta(t - t')
+\end{empheq}
+By defining the \textbf{time retardation}
+\begin{align*}
+  t_{\text{ret}} := t' - \frac{\abs{\vec{x}-\vec{y}}}{c}
+\end{align*}
+
+we obtain the \textbf{retarded scalar potential}
+\begin{empheq}[box=\bluebase]{align*}
+  \Phi(\vec{x},t) &= \frac{1}{4 \pi \epsilon_0} \int d^{3} \vec{y} \frac{\rho(\vec{y},t_{\text{ret}})}{\abs{\vec{x} - \vec{y}}}
+\end{empheq}
+aswell as the \textbf{retarded vector potential}
+\begin{empheq}[box=\bluebase]{align*}
+  \vec{A}(\vec{x},t) &= \frac{1}{4 \pi \epsilon_0c^{2}} \int d^{3} \vec{y} \frac{\vec{J}(\vec{y},t_{\text{ret}})}{\abs{\vec{x} - \vec{y}}}
+\end{empheq}

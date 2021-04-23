@@ -1,0 +1,66 @@
+\section{Introduction}
+
+Let's say we have some points $x_{1}, \ldots, x_{n} \in \R^{d}$. We ask what we can do with this data.
+In a statistics course, we might try to model the data, but that is not of interest here.
+\begin{itemize}
+  \item One thing we can try is to reduce the dimension $d$ to, say $d'$. 
+    And if you chose the right projection we might be able to find some structure in it.
+    It turns out that this approach is mathematically rich.
+  \item Another approach is to do \textbf{clustering} to find out about the geometry of the data.
+  \item If the data consists of a graph with these nodes $x_{1}, \ldots, x_{n}$, then \textbf{Spectral Graph Theory} concerns itself with trying to cluster the nodes of the network.
+\end{itemize}
+
+One example we can look at is the so called \textbf{Netflix Problem}. Consider a matrix of ratings, where every uses has a row and the columns correspond to different movies.
+Since any given user only looks at a very small subset of all movies, the matrix will have a very low rank.
+What the company wants to know is what movies to suggest to a user. 
+Can we ``complete'' the matrix if we know if it is low rank? 
+How many entries do we know at least to meaningfully fill in the rest?
+
+More generally, the problem of matrix completion is related to the problem of exploiting \textbf{sparsity} and \textbf{compresed sensing}.
+
+The idea of data completion is apparent of supervised learning.
+Say we have some data set $x_i$ which we know how to classify. Our goal is to obtain an agent that can correctly classify from new data.
+What differentiates ``good'' agents from ``bad'' agents is their ability to \emph{generalize}.
+One might be more accurate when tested on the training data, but the other might do better when given \emph{new} data.
+
+Another topic of interest is that of \textbf{online learning}, where we want to learn from a continuous stream of data.
+
+This has many applications in environments, which can change very fast. For example the stock market or Advertising.
+
+There we want to continually optimize our agent. Some key concepts are gradient descent and backpropagation.
+
+
+Say we have a set of points $S = \{x_{1}, \ldots, x_{n}\} \subseteq \R^{d}$ and we want to create $k$ clusters.
+
+What we want to minize is to find $k$ means $a_{1}, \ldots, a_{k}$ and partition $S$ into $S_{1}, \ldots, S_{k}$ to minimize the sum
+\begin{align*}
+  \sum_{l=1}^{k}\sum_{i \in S_l}\|x_i - a_l\|^{2}
+\end{align*}
+The problem is that this is a NP-hard problem, which means that we (currently) haven't found a fast algorithm to solve this problem.
+
+There is however \textbf{LLoyd}'s Algorithm for $k$-means which is a popular approach, where we start with some initial data and then try to optimize the rest of the data to optimize the sum.
+\begin{prop}[]
+  \begin{itemize}
+    \item Given a choice for the centers $a_{1}, \ldots, a_{n}$, the partition that minimizes the $k$-means objective is simply to assign $x_k$ to the closest centers.
+    \item Given a choice for the partition $S_1\sqcup \ldots \sqcup S_n$,the centers that minimize the above sum are given by
+      \begin{align*}
+        a_k = \frac{1}{\abs{S_k}} \sum_{i \in S_k}x_i
+      \end{align*}
+  \end{itemize}
+\end{prop}
+
+LLoyd's Algorithm goes a follows: We start with a partition at random and compute the best centers. Then we use these centers to create the best partitions. 
+We then use these partitions to find the best centers etc.
+We can ask whether this proces terminates, or calculates the best outcome.
+Sadly, we don't always get the global minimum.
+There are also algorithmical problems as it is an NP-hard problem.
+
+Also notice that the $k$-means problem is not the universal best solution to find a good clustering:
+\begin{itemize}
+  \item 
+    One needs to know $k$ beforehand and the points need to lie in $\R^{d}$, which is also not a sure given.
+  \item There are also algorithmical problems as it is an NP-hard problem.
+  \item 
+    One other problem is that our data needs to convex. If our data forms multiple rings around some point, we can intuitively cluster the data by these rings. But the $k$-means problem will never find this out.
+    We can kind of solve this by re-mapping the points by convuluting them with a good kernel.
+\end{itemize}

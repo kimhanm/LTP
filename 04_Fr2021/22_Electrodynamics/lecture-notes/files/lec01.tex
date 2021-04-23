@@ -1,0 +1,98 @@
+\section{Introduction}
+
+Starting from the \textbf{Maxwell Equations}, we can derive that the electric and magnetic field in vacuum propagate at a constant speed $c = \frac{1}{ \sqrt{\epsilon_0 \mu_0}}$ which we know as the speed of light.
+
+Why are we expecting that a ray of light travelling billions of years will conform to the same equations that we use to describe light travelling today?
+
+In mathematics, we define vectors to be an element of a vector space, but that definition doesn't give us much insight.
+Physically, it is nice to think of vectors as something that have a \textbf{direction} and a \textbf{magnitude}.
+What we can do is to add another component to this definition, ascribing to a vector a \textbf{position} that might change with time.
+
+Suppose now, that we take our space and rotate it by some angle $\theta$. 
+What happens is that as each position changes, the orientation of each vector also changes by the same amount as we observe the same physics before and after the rotation.
+
+This gives us a nice definition of a vector. A vector is something that \emph{transforms} in exactly the same way as the space transforms.
+
+Mathematically we can define it as follows.
+
+Given a rotation $R$, the position will change as follows:
+\begin{align*}
+  \vec{r} \to \vec{r}' = R(\theta' s) \vec{r}\\
+  \vec{v} \to  \vec{v}' = R(\theta' s) \vec{v}
+\end{align*}
+where we assert that both $\vec{v}$ and $\vec{r}$ use the same roation matrix $R$.
+
+What makes Electrodynamics powerful is that it appliesto a large range of phenomena.
+When studying still, moving or accelerating systems, we will discover a Portal to relativistic phenomena and inevitably to quantum physics.
+
+A tough part of the lecture is that in order to describe more and more complicated phenomena, we will need more and more mathematics, so it is important to strenghten those.
+
+Luckily, we can sometimes substitute in computational strengh over analytical methods. Using computers, complicated systems can be solved numerically to give us insight.
+
+To give a quick outline of the topics:
+In a first phase we will study steady currents and steady charge densities and solve the maxwell equations.
+
+We will look at Green's functions to solve PDEs with boundary conditions. Inevitably, we will make use of symmetries to solve them.
+
+In the second phase, we want to think about the structure of the Maxwell equations and adopt different points of views, which will lead us to Special Relativity.
+
+Once we have done that we will study the physics at hight velocities. In particular we will study the radiation that is emitted.
+
+Important references are \textbf{Jackson} Electrodynamics and the Feynman lectures Volume II.
+
+
+To give a little teaser: We can start from electrodynamics and obtain special relativity.
+
+We first write down the maxwell equations
+
+\begin{align*}
+  \vec{\nabla} \cdot \vec{E} = \frac{\rho}{\epsilon}, \quad \vec{\nabla}\times \vec{E} = - \frac{\del \vec{B}}{\del t}\\
+  \vec{\nabla} \cdot \vec{B} = 0, \quad \vec{\nabla}\times \vec{E} = \frac{\vec{J}}{\epsilon c^2} + \frac{1}{c^2}\frac{\del \vec{E}}{\del t}
+\end{align*}
+How do they change when then looked at from different frames of references. 
+In particular, we look at at translation and rotation and movement
+\begin{enumerate}
+  \item $\vec{r} \to \vec{r}' = \vec{r} + \vec{a}$
+  \item $\vec{r} \to  \vec{r}' = R \vec{r}$
+  \item $\vec{r} = \to \vec{r}' = \vec{r} + \vec{r_0} + \vec{v}t$
+\end{enumerate}
+It turns out that using gallileian transformation, the maxwell equations stay the same under fixed translation and rotation. But for a moving reference frame, the maxwell equations don't hold.
+
+We can resolve this by either changing the equation or changing how we defined our coordinate transform.
+
+We will discard the Gallileian transform in favour of the Lorentz transform which preserve the maxwell equations.
+
+
+\begin{enumerate}
+  \item \textbf{Translation}
+Under the translation $\vec{r} \to  \vec{r}' = \vec{r} + \vec{a}$, we notice that the direction and magnitude of vectors are preserved. In particular, we have
+\begin{align*}
+  \vec{E}'(\vec{r}') = \vec{E}(\vec{r}), \quad \vec{B'}(\vec{r}') = \vec{B}(\vec{r})\\
+  \vec{J}'(\vec{r}') = \vec{J}(\vec{r}), \quad \vec{\rho'}(\vec{r}') = \vec{\rho}(\vec{r})
+\end{align*}
+and since derivatives stay the same, the nabla operator is preserved.
+\begin{align*}
+  \vec{\nabla}' = (\frac{\del }{\del x'}, \frac{\del }{\del y'},\frac{\del }{\del z'}) = \vec{\nabla}
+\end{align*}
+It follows immediately that the Maxwell equations are invariant under translations.
+  \item \textbf{Rotation} We can describe rotation $\vec{r} \to  \vec{r}' = R(\theta'(s) \vec{r}$ in terms of a rotation matrix $R$.
+    In components, we can write this as $r_i = r_i' = \sum_{k=1}^{3} R_{ik}r_k$.
+
+    However, this notation is very tedious and it is easier to write the summation in an \emph{implicit} way.
+    The \textbf{Einstein summation covention} is shorthand notation, where: if two indices that are on ``opposite sides'' (one subscript, one superscript) we will write
+    \begin{align*}
+      R_{i}^{k}r_k := \sum_{k=1}^{3}R_{ik}r_k 
+    \end{align*}
+    Now we note that rotations \emph{preserve length}. This can be stated as follows:
+    \begin{align*}
+      \|\vec{r}\| = \sum_{i=1}^{3}r_i \cdot r_i = r^{i}r_i = {r^{i}}'r_i' = \|\vec{r}'\|
+    \end{align*}
+    We know from linear algebra that such matrices $R$ are called \textbf{orthogonal} and they satisfy $R^{T}R = 1$, which means
+    \begin{align*}
+      \|\vec{r}'\| = {r^{i}}'r_i' = (R_i^{k}R_{i}^{l})r^{k}r_l = (R_k^{i}R_{i}^{l})r^{k}r_l = (R^{T}R)_k^{l}r^{k}r_l = r^{i}r_i
+    \end{align*}
+    Using the fact that $\det(A^T) = \det(A)$ it follows that $\det(R)$ must either of $\pm 1$.
+    An additional requirement is that we want $\det(R) = 1$
+
+\end{enumerate}
+

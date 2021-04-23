@@ -1,0 +1,42 @@
+\section{Introduction}
+Topology is the study of topological spaces and continous maps between them.
+
+We will introduce topology through three aspects:
+\begin{itemize}
+  \item Topology as the part of Analysis which concerns itself about general properties of continuous functions.
+    More concretely, we know that for a continuous function $f: \R \to \R$, that on a compact interval, $f$ attains its maximum and minimum. 
+    We also know that the intermediate value theorem holds.
+
+    In the language of topology, these theorems say that the image of \emph{compact} subsets is again \emph{compact}.
+    It also says that the image of \emph{connected} subsets is again \emph{connected}.
+
+    One generalisation of the intermediate theorem is Jordan's curve theorem: Let $\gamma$ be a closed simple curve in $\R^2$. Then $\R^2 \setminus \gamma$ has two connected components.
+  \item Topology as the study, construction and classification of topological spaces.
+    We can look at topology as the generalisation of metric spaces by replacing the notion of \emph{distance} with the notion of \emph{neighborhoods}.
+    For example, we can try to use the square $Q = [0,1]^2 \subseteq \R$ to generate a new object by introduction an equivalence relation $\sim$, where $(1,y) \sim (0,y) \forall y \in [0,1]$. The \emph{quotient space} is obtained by \emph{glueing} two edges of the square which generates a cylindrical shape as a subset of $\R^3$. Using different kinds of equivalence relations, we can get the Moebius strip, a Torus or the Klein bottle.
+    Another nice example is when we start with $\C^\ast = \C \setminus \{0\}$. Consider the quotient space
+    \begin{align*}
+      \faktor{\C^\ast}{\R_{>0}}: \quad \text{where} \quad z \sim w, \text{ if } \frac{z}{w} \in \R_{> 0}
+    \end{align*}
+    Which identifies two points, if they have the same argument. This space is \emph{homeomorphic} to the unit circle $\mathbb{S}^1 \subseteq \C$.
+    Note that $(\C^\ast, \cdot)$ is a group, with $(\R_{>0}, \cdot)$ as  a normal divisor and $(\mathbb{S}^1,\cdot)$ is another subgroup of $(\C^\ast,\cdot)$.
+    Another result is the classification of surfaces: Every \emph{orientable} compact surface without a boundary is homeomorphic to exactly one of the following surfaces:
+  \begin{align*}
+    \text{the unit ball} \mathbb{S}^2, \quad \text{higher tori of genus } n
+  \end{align*}
+  Other algebraic invariations that are used to classify topological spaces can be Numbers (\emph{euler characateristic}), Groups (\emph{Fundamental Groups}), fields, rings, vectorspaces etc.
+  
+  \item Construction and criteria for existence of continous maps.
+    For example, let $U \subseteq \C^\ast$ be open and connected. Consider the exponential map $\exp: \C \to \C^\ast$, and the inclusion $\iota:U \to \C^\ast$ with the diagram
+    \begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
+      & \C \arrow[]{d}{\exp}\\
+      U \arrow[dashed]{r}{\iota} \arrow[]{ur}{\log}& \C^\ast
+    \end{tikzcd}
+    Such a map $\log: U \to \C$ exists if $U$ is simply connected.
+\end{itemize}
+
+
+
+
+
+

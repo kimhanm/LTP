@@ -1,0 +1,194 @@
+\subsection{Schur's Lemma}
+How can we use the result from the previous section in our everyday use?
+
+Let $(\rho_1,V_1)$ and $(\rho_2,V_2)$ be complex finite dimensional representations of a group $G$ and we want to study
+\begin{align*}
+  \Hom_G(V_1,V_2) = \{\phi: V_1 \to V_2 \text{ linear}\big\vert \phi \rho_1(g) = \rho_2(g) \rho, \forall g \in G\}
+\end{align*}
+\begin{thm}[Schur's Lemma]
+  Let $(\rho_1,V_1)$ and $(\rho_2,V_2)$ be finite dimensional irreducible representations of a group $G$. Then
+  \begin{enumerate}
+    \item $\phi \in \Hom_G(V_1,V_2) \implies \phi = 0$ or $\phi$ is an isomorphism.
+    \item $\phi \in \Hom_G(V_1,V_1) \implies \phi = \lambda \id_V$ for some $\lambda \in \C$
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+\begin{enumerate}
+  \item We can show that $\Ker \phi \subseteq V_1$ and $\Image \phi \subseteq V_2$ are invariant subspaces since
+    \begin{align*}
+      v \in \Ker \phi \implies \phi(\rho_1(g)v) = \rho_2(g)\phi(v) = 0(v) = 0 \implies \rho_1(g)v \in \Ker \phi\\
+      \rho_2(g) \phi(v')= \phi(\rho_1(g)v') \implies \rho_2(g) \phi(v') \in \Image \phi
+    \end{align*}
+    But since they are both invariant subspaces and $V_1,V_2$ are irreducible it must that either
+    \begin{align*}
+      \Ker \phi = \{0\} \quad \text{or} \quad \Ker \phi = V_1\\
+      \Image \phi = \{0\} \quad \text{or} \quad \Image \phi = V_2
+    \end{align*}
+    so either $\phi = 0$ or bijective. 
+    (Notice how we didn't use that $V_i$ is complex.
+  \item Let $\lambda \in \C$ be an eigenvalue of $\phi$\footnote{
+      By the fundamental theorem of algebra, such an eigenvalue always exists, as it is the root of a polynomial with complex coefficients)
+    }
+    Consider $\phi - \lambda \id_{V} \in \Hom_G(V,V)$. It cannot have full rank, so using (a), it follows that $\phi = \lambda \id_{V}$.
+\end{enumerate}
+\end{proof}
+
+\begin{cor}[]
+  Every irreducible finite dimensional complex representation of an abelian group is one-dimensional.
+\end{cor}
+\begin{proof}
+  Let $(\rho,V)$ irreducible. Since $G$ is abelian, $\rho(g) \in \Hom_G(V,V)$ for all $g \in G$. By Schur's lemma, it follows that $\rho(g) = \lambda(g) \id_V$, so every subspace is invariant. 
+  But $V$ is irreducible, so that is only possible, if $V$ itself is one-dimensional.
+\end{proof}
+
+
+
+\section{Representation theory of finite groups}
+In the following, let $G$ be a finite group and let all representations be finite dimensional.
+
+\subsection{Orthogonality relation for matrix elements}
+
+\begin{thm}[]
+  Let $\rho: G \to \GL(V)$, $\rho': G \to \GL(V')$ irreducible and unitary representations of $G$ and let
+  \begin{align*}
+    (\rho_{ij}(g))_{ij} \quad \text{and} \quad (\rho_{ij}'g)_{ij}
+  \end{align*}
+  be the matrices of $\rho(g)$ and $\rho'(g)$ with respect to any orthonormal basis of $V,V'$.
+
+  \begin{enumerate}
+    \item If $\rho,\rho'$ are inequivalent, then
+      \begin{align*}
+        \frac{1}{\abs{G}} \sum_{g \in G}\overline{\rho_{ij}(g)}\rho_{kl}'(g) = 0 \quad \forall i,j,k,l
+      \end{align*}
+    \item If they are equivalent, then
+      \begin{align*}
+        \frac{1}{\abs{G}} \sum_{g \in G}\overline{\rho_{ij}(g)}\rho_{kl}(g) = \frac{1}{\dim V} \delta_{ik}\delta_{jl}
+      \end{align*}
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+Let $\Phi: V \to  V'$ be some linear map. Define
+\begin{align*}
+  \Psi_G = \frac{1}{\abs{G}} \sum_{g \in G} \rho'(g^{-1})\Phi \rho(g)
+\end{align*}
+Then we get with a change of variables $(g \mapsto  gh)$
+\begin{align*}
+  \rho'(h)\Phi_G 
+  &= 
+  \frac{1}{\abs{G}} \sum_{g \in G}\rho'((gh^{-1})^{-1}) \Phi \rho(g)\\
+  &=
+  \frac{1}{\abs{G}} \sum_{g \in G}\rho'(g^{-1})\Phi \rho(gh)\\
+  &=
+  \Phi_G \rho(h)
+\end{align*}
+which shows that $\Phi_G \in \Hom_G(V,V')$. 
+By Schur's lemma, if $\rho,\rho'$ are inequivalent, then $\Phi_G =0$ and so
+\begin{align*}
+  (\Phi_G)_{jl}
+  &=
+  \frac{1}{\abs{G}} \sum_{g \in G} \sum_{i,k}
+  \overline{\rho_{ij}'(g)} \Phi_{ik} \rho_{kl}(g)\\
+  &=
+  \sum_{i,k} \Phi_{ik} \left(
+    \frac{1}{\abs{G}} \sum_{g \in G} \overline{\rho_{ij}'(g)} \rho_{kl}(g)
+  \right)
+  = 0
+\end{align*}
+since this holds for all $\Phi$, (a) follows.
+
+On the other hand, if $\rho \sim\rho'$ are equivalent, then by Schur's Lemma $\Phi_G = c \id_V$ for some $c \in \C$. Then
+\begin{align*}
+  c 
+  &= 
+  \frac{1}{\dim V} A \trace \Phi_G\\
+  \trace \Phi_G
+  &=
+  \frac{1}{\abs{G}}\sum_{g \in G}\trace \left(
+    \rho(g^{-1})\Phi \rho(g)
+  \right)
+  \\
+  &= \trace \Phi \cdot \frac{\abs{G}}{\abs{G}} = \sum_{i}\Phi_{ii}
+\end{align*}
+By comparing the coefficients of the expressions
+\begin{align*}
+  \sum_{i,k} \Phi_{ik} \left(
+    \frac{1}{\abs{G}} \sum_{g \in G}\overline{\rho_{ij}(g)}\rho_{kl}(g)
+  \right)
+  =
+  \delta_{jl} \frac{1}{\dim V} \sum_{i} \Phi_{ii}
+\end{align*}
+it follows that
+\begin{align*}
+  \frac{1}{\abs{G}} \sum_{g \in G}\overline{\rho_{ij}(g)} \rho_{kl}(g) = \delta_{jl}\delta_{kl} \frac{1}{\dim V\dim V}
+\end{align*}
+\end{proof}
+
+
+\subsection{Characters}
+\begin{dfn}[]
+  The \textbf{character} of a representation $\rho: G \to \GL(V)$ is a function $\chi: G \to \C$ given by
+  \begin{align*}
+    \chi_{\rho}(g) = \trace (\rho(g)) = \sum_{i =1}^{\dim V}\rho_{ii}(g)
+  \end{align*}
+\end{dfn}
+
+
+\begin{thm}[]
+\begin{enumerate}
+  \item $\chi_{\rho}(hgh^{-1}) = \chi_{\rho}(g)$ for all $g,h \in G$.
+  \item If $\rho, \rho'$ are equivalent, then $\chi_{\rho} = \chi_{\rho'}$
+\end{enumerate}
+\end{thm}
+\begin{proof}
+  This follows directly from the fact that the trace is cyclic: $\trace(ABC) = \trace(C) = \trace(BCA)$.
+\end{proof}
+
+
+\begin{dfn}[]
+The conjugation classes of $G$ are the sets of the form $\{hgh^{-1}\big\vert h \in G\}$, 
+or equivalently, the orbits of the group action of $G$ on itself by conjugation
+\begin{align*}
+  G \to \text{Bij}(G), \quad h \mapsto ( g \mapsto  hgh^{-1})
+\end{align*}
+or equivalently, they are the equivalence classes of the equivalence relation $\sim$ given by
+\begin{align*}
+  g \sim g' \iff \exists h \in G: g' = hgh^{-1}
+\end{align*}
+\end{dfn}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

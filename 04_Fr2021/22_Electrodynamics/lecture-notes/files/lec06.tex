@@ -1,0 +1,107 @@
+So it seems like we can exchange boundary conditions for a modified charge distribution.
+\begin{align*}
+  \rho(\vec{x}), \rho^{\ast}(\vec{x}^{\ast}) \longleftrightarrow \text{ Boundary Conditions } + \rho(\vec{x})
+\end{align*}
+The question is, can we get the Green's function? 
+We would have to find $G(\vec{r},\vec{r'})$ such that
+\begin{align*}
+  \Phi(\vec{r}) = \frac{1}{4 \pi \epsilon}
+  \int_{V}d^{3}\vec{r}' \rho(\vec{r}') G(\vec{r}' - \vec{r})
+  -
+  \frac{1}{4 \pi} \int_{\del V}d \vec{S} \cdot \Phi(\vec{r}') \vec{\nabla}_{\vec{r}'} G(\vec{r}'-\vec{r})
+\end{align*}
+that agrees with the result for the potential we found earlier.
+
+By setting the potential to zero at the boundary (because it is a conductor), we can instead write
+\begin{align*}
+  \Phi(\vec{r}) &= 
+  \frac{1}{4 \pi \epsilon_0} \int_{V}d^{3}\vec{r}' q \delta(\vec{r}' - \vec{r})G(\vec{r}',\vec{r})\\
+                &\stackrel{!}{=} \frac{q}{4 \pi \epsilon_0} \left(
+                \frac{1}{\vec{r} - \vec{d}} - \frac{\frac{R}{d}}{\abs{\vec{r} - \frac{R^{2}}{d^{2}}\vec{r}'}}
+                \right)
+\end{align*}
+so we can read off the solution for $G$:
+\begin{align*}
+  G(\vec{x},\vec{r}) 
+  = 
+  \frac{1}{\vec{r} - \vec{x}} - \frac{\frac{R}{\abs{\vec{x}}}}{\abs{\vec{r} - \frac{R^{2}}{\abs{\vec{x}}} \vec{x}}}
+\end{align*}
+
+
+\subsection{Complete basis of Hilbert spaces}
+
+Recall from Quantum Mechanics that we represented momentum in terms of the derivative. 
+In particular, this meant that the kinetic energy could be written in terms of the laplacian
+\begin{align*}
+  \hat{p} = - i \hbar \vec{\nabla}, \quad \frac{\hat{p}^{2}}{2m} = -\frac{\hbar^{2}}{2m} \nabla^{2}
+\end{align*}
+Since the eigenfunctions of hermitian operators form a basis of the solution space, we could always decompose a quantum state $\ket{\Psi}$ into Energy Eigenstates
+\begin{align*}
+  \ket{\Psi} = \sum_{n} c_n \ket{\Psi_n}
+\end{align*}
+The fact that this was possible was because the $\ket{\Psi_n}$ formed a complete basis of a Hilbert space.
+
+If we can understand the Eigenstates of the Laplacian, then we can try to represent the Green's functions using these eigenstates 
+\begin{align*}
+  G(\vec{x},\vec{y}) = \sum_{n} c_n(\vec{y}) \Psi_n(\vec{x})
+  \quad \text{for} \quad 
+  \nabla^{2} \Psi_n(x) = \lambda_n \Psi_n(\vec{x})
+\end{align*}
+The fact that the eigenvalues of hermitian operators are real corresponds to the fact that Energy measurments are real.
+
+To see this, let's construct the vector $\vec{F}_{nm}$ given by
+\begin{align*}
+  \vec{F}_{nm} 
+  &= 
+  \Psi_m^{\ast}\vec{\nabla}\Psi_n - \Psi_n \vec{\nabla}\Psi_m^{\ast}\\
+  \implies
+  \vec{\nabla}\cdot \vec{F}_{nm}
+  &=
+  \Psi_m^{\ast} \nabla^{2}\Psi_n - \Psi_n \nabla^{2}\Psi_m^{\ast}\\
+  &=
+  (\lambda_n - \lambda_m^{\ast})\Psi_m^{\ast}\Psi_n
+\end{align*}
+Integrating this over a Volume, we can use Gauss's theorem and see that
+\begin{align*}
+  \int_V d^{3} \vec{x}\vec{\nabla} \cdot \vec{F}_{nm} = \int_{\del V} d \vec{S} \cdot \vec{F}_{nm} 
+\end{align*}
+where we want to calculate $\Psi_n(\vec{x})$ such that it vanishes on the boundary making the right hand side go to zero.
+
+For $n = m$ we would find that
+\begin{align*}
+  (\lambda_n - \lambda_m^{\ast}) \int_V d^{3}\vec{x}\abs{\Psi_n(\vec{x})}^{2} = 0
+\end{align*}
+but since the integrand is positive definite, it follows that the Eigenvalues are real (surprise surprise \ldots)
+
+But for $n \neq m$ let's assume that there is no degeneracy. 
+That is, we assume that the eigenvalues for different eigenstates are different.
+
+If that is the case, then $(\lambda_m - \lambda_n) \neq 0$ so it requires now that the integral vanishes.
+\begin{align*}
+  \int_V d^{3} \vec{x} \Psi_m^{\ast}(\vec{x})\Psi_n(\vec{x}) = 0
+\end{align*}
+By linearity of the integral, we can see this relation as an inner product on the space of functions.
+\begin{align*}
+  \braket{f|g} := \int_V d^{3}\vec{x} f^{\ast}(x) g(x)
+\end{align*}
+The equation before then says that the eigenfunctions to different eigenvalues are \textbf{orthogonal}. 
+\begin{empheq}[box=\bluebase]{align*}
+  \braket{\Psi_n|\Psi_m} = \int_Vd^{3}\vec{x}\Psi_n^{\ast}(\vec{x})\Psi_m(\vec{x}) = \delta_{nm}
+\end{empheq}
+where by rescaling, they are also ortho\textbf{normal}.
+
+For the expansion of a function $f$ in terms of the eigenfunctions, we can obtain the coefficients of $f$ using the integral
+\begin{align*}
+  f = \sum_{n}c_n \Psi_n(x),\quad \text{for} \quad c_n = \int_Vd^{3}\vec{x}\Psi_m^{\ast}(\vec{x}) f(\vec{x})
+\end{align*}
+But plugging this expansion of the coefficients in, we get
+\begin{align*}
+  f(\vec{x}) = \int_V d^{3}\vec{y} \left[
+    \sum_{n}\Psi_n^{\ast}(\vec{y})\Psi_n(\vec{x})
+  \right]f(\vec{y})
+\end{align*}
+which is only possible if the \textbf{completenes property} is satisfied
+\begin{empheq}[box=\bluebase]{align*}
+  \sum_{n}\Psi_n^{\ast}(\vec{x}) \Psi_n(\vec{y}) = \delta(\vec{x} - \vec{y})
+\end{empheq}
+

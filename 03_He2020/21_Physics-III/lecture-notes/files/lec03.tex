@@ -1,0 +1,120 @@
+
+
+
+\subsection{Wave Optics}
+When we were talking about Light as Rays, we made quite a few appproximations and in certain cases, these approximations can lead to minor errors. The next step in accuracy comes, when we look at light as a wave\\
+
+The starting point for this section is the wave equation, which can be derived from the Maxwell equations. In vacuum, they are
+
+\begin{enumerate}
+				\item $\nabla \cdot \vec{E} = 0$
+				\item $\nabla \cdot \vec{B} = 0$
+				\item $\nabla \times \vec{E} = - \frac{\del \vec{B}}{\del t}$
+				\item $\nabla \times \vec{B} = \mu_0 \epsilon_0 \frac{\del \vec{E}}{\del t}$
+\end{enumerate}
+After taking the curl we get
+\begin{align*}
+				\nabla \times (\nabla \times \vec{E}) &= \nabla(\nabla \cdot \vec{E}) - \nabla^2 \vec{E}\\
+				&= \nabla \times \left(- \frac{\del \vec{B}}{\del t}\right) = - \frac{\del}{\del t}(\nabla \times \vec{B}) = \mu_0 \epsilon_0 \frac{\del^2 \vec{E}}{\del t^2}
+\end{align*}
+And we end end up with the wave equation
+\begin{align*}
+				\nabla^2 \vec{E} = \mu_0 \epsilon_0 \frac{\del^2 \vec{E}}{\del t^2} = \frac{1}{c^2} \frac{\del^2 \vec{E}}{\del t}
+\end{align*}
+where $c = \frac{1}{\sqrt{\mu_0\epsilon_0}}$ is the speed of light in vacuum.\\
+
+The wave equation has he \textbf{superposition principle}, where if we have two solution, $\vec{E}_1$ and $\vec{E}_2$, then any linear combination $a \vec{E_1} + b \vec{E_2}$ is also a solution.\\
+
+Next, consider solutions of the form
+\begin{align*}
+				\vec{E}(\vec{r},t) = U(\vec{r}) e^{i\omega t}
+\end{align*}
+where the physical field is given be its real part $\text{Re}(\vec{E})$.\\
+Here there are two possible solutionn. The plane wave equation
+\begin{align*}
+				\vec{E}(\vec{r},t) = E_0 e^{i(\vec{k} \cdot \vec{r} - \omega t)}
+\end{align*}
+and the spherical wave equation
+\begin{align*}
+				\vec{E}(\vec{r},t) = \frac{A}{r}e^{i(kr - \omega t)A} 
+\end{align*}
+, where the wave vector $\vec{k}$ is in relation with the wavelength $\lambda$ in its absolute value: $\abs{\vec{k}} = \frac{2 \pi}{\lambda}$\\
+
+\subsubsection{Huygen's Principle}
+After Fermat's Principle, where light is treated as travelling in straight lines, we will introduce \textbf{Huygen's Principle} , from which Fermat's Principle can be derived under some assumptions.
+\begin{center}
+	\emph{Every Point on the wavefront of a wave acts as a secondary source of hemispherical waves that progate in the forward direction}
+\end{center}
+Now let's test this: We imagine two points $A(x_A,y_A),B(x_B,y_B)$ in space and a light ray travelling from $A$ to $B$.
+We then add an aperture centered at $C$ inbetween the points $A$ and $B$. Using Fermat's principle, we would expect the aperture to ``see'' the light as it should pass through it and then emit another wave towards $B$
+The spatial part of the electromagnetic wave will be
+\begin{align*}
+				U_{AC}(\vec{r}) &\propto \frac{1}{\abs{\vec{r}_C - \vec{r}_A}} e^{ik \abs{\vec{r}_C - \vec{r}_A}}\\
+				U_{CB}(\vec{r}) & \propto \frac{1}{\abs{\vec{r}_B - \vec{r}_C}} e^{ik \abs{\vec{r}_B - \vec{r}_C}}
+\end{align*}
+Now at $B$, we should see the sum of the two waves, so we should have
+\begin{align*}
+U_B \propto \int_{-a/2}^{a/2}dx \int_{-a/2}^{a/2} \frac{1}{\abs{\vec{r}_C - \vec{r}_A} \cdot \abs{\vec{r}_B - \vec{r}_C}}e^{ik(\abs{\vec{r}_C - \vec{r}_A} + \abs{\vec{r}_B - \vec{r}_C})}
+\end{align*}
+Since we can assume that the aperture is very small, we have $a \ll r_A,r_B$ and we get
+\begin{align*}
+\abs{\vec{r}_C - \vec{r}_A} = r_A - \frac{x x_A + yy_A}{r_A} + \frac{x^2 + y^2}{2r_A}
+\end{align*}
+
+Our next approximation is called the \textbf{Fraunhofer approximation}, where we drop the last term $\frac{x^2 + y^2}{2r_A}$. We can think of this as saying that the (hemi-)spherical wave will appear flat in a small region. We then get
+
+\begin{align*}
+	U_B \propto \int_{-a/2}^{a/2} dx \int_{-a/2}^{a/2}dy \frac{e^{ik(r_A + r_B)}e^{-ik(Xx + Yy)}}{ \left(r_A - \frac{xx_a + yy_A}{r_A}\right) \left(r_B - \frac{xx_B - yy_B}{r_A}\right)}
+\end{align*}
+, for $X = \frac{x_A}{r_A} + \frac{x_B}{r_B}$ and $Y = \frac{y_A}{r_A} + \frac{y_B}{r_B}$\\
+In our third approximation, we will drop the term $\frac{xx_a + yy_A}{r_A}$ and $\frac{xx_B - yy_B}{r_A}$ and we get\\
+
+
+\begin{align*}
+				U_B \propto \frac{e^{-k(r_A + r_B)}}{r_Ar_B}\int_{-a/2}^{a/2} e^{ik(Xx + Yy)}dxdy = \frac{4 e^{ik(r_A + r_B)}}{r_Ar_B} \cdot \text{sinc} \left(\frac{kXa}{2}\right) \cdot \text{sinc} \left(\frac{kYa}{2}\right)
+\end{align*}
+where $\text{sinc}(x) = \frac{\sin(x)}{x}$. Further, we get
+\begin{align*}
+				U_B \propto \frac{a^2 e^{ik(r_A + r_B)}}{r_Ar_B}\text{sinc} \left(\frac{kXa}{2}\right) \text{sinc} \left(\frac{kYa}{2}\right)
+\end{align*}
+The intensity will then be $I = \abs{E(\vec{r},t)}^2 = \abs{U(\vec{r})}^2$ and we have
+\begin{align*}
+				I_B = I_0 \text{sinc}^2 \left(\frac{kXa}{2}\right) \text{sinc} \left(\frac{kYa}{2}\right)
+\end{align*}
+so we end up with the characteristic distribution with a large peak at the center and smaller peaks periodically in the distance to the center.\\
+If we take the limit as $X = 0$ (which implies $\frac{x_A}{r_A} = - \frac{x_b}{r_B}$, then we get the delta-distribution, which mimics ray-optics!\\
+
+If we look at the equation again
+\begin{align*}
+				U_B \propto \int_{-a/2}^{a/2}dx \int_{-a/2}^{a/2}dy e^{ik(\abs{\vec{r}_C - \vec{r}_A} + \abs{\vec{r}_B - \vec{r}_C})}
+\end{align*}
+we can see the optical path length $D \simeq r_A + r_B - Xx - Yy$\\
+
+If we try to restate Fermat's principle $\frac{d D(\eta)}{d\eta}|_{\eta = 0} = 0$ we get the condition in two variables
+\begin{align*}
+				\frac{\del D(x)}{\del x} = -X = 0, \quad \frac{\del D(y)}{\del y} = -Y = 0
+\end{align*}
+
+
+We see that the intensity is proportional to $a^4$, which we wouldn't expect with ray-optics as the size of the aperture shouldn't matter.\\
+The conditions to recover ray optics from this is that we have large $\gamma := \frac{a}{\sqrt{\lambda s}}$, for $s = r_A = r_B$ or equivalently $a \gg \lambda$\\
+We also must have, that the distance to the source and the detecter is $\geq \lambda$\\
+
+To generelize, we will define our square aperture in terms of a transmission function $\tau(x,y)$, which in our case was
+\begin{align*}
+				\tau(x,y) = \left\{\begin{array}{rcl}
+												1, &\text{if}& x \in (-a/2,a/2) \text{ and } y \in (-a/2,a/2), \\
+												0, &\text{elsewhere}&  
+				\end{array} \right.
+\end{align*}
+In general for any transmission function we will have
+\begin{align*}
+				U_B \propto e^{ik(r_A + r_B)} \int_{-\infty}^{\infty}dx \int_{-\infty}^{\infty}dy \tau(x,y) e^{-ik(Xx - Yy)}
+\end{align*}
+
+
+We saw that if we the intensity is proportional to $a^4$, so the wider our slit is, the weaker the peak intensity is.\\
+The width of the diffration pattern is also proportional to the wavelength.\\
+
+
+So, the \textbf{ray-optics limit} occurs when the aperture size is much bigger than the wavelength, which implies that the width of the diffraction pattern becomes very small and we recover Ray optics.

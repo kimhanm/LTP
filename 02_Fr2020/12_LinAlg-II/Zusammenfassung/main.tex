@@ -1,0 +1,43 @@
+\documentclass[9 pt]{article}
+\usepackage[utf8]{inputenc}
+
+\include{header}
+\include{macros}
+\include{environments}
+
+% ==== Header ====
+
+% ==== Colors ====
+\definecolor{ocean}{HTML}{07575B}
+\definecolor{wave}{HTML}{66A5AD}
+\definecolor{sun}{HTML}{D9B44A}
+\definecolor{ash}{HTML}{6B7478}
+\definecolor{beige}{HTML}{E7C4A8}
+\definecolor{spring}{HTML}{559364}
+\definecolor{adobe}{HTML}{A7462D}
+
+
+% ==== Counters ====
+\setcounter{section}{0}
+\renewcommand{\labelenumi}{(\textbf{\alph{enumi}})}
+\newcommand\arrowonline[1]{node
+[pos=#1,sloped,anchor=center,draw=none,fill=none,shape=rectangle,inner
+   sep=0pt,outer sep=0pt] {\tikz\draw[->,dash pattern=on 0pt off 2pt]
+(-1pt,0pt) -- (0pt,0pt);}}
+% ==== Document ====
+
+\begin{document}
+
+% \tableofcontents
+
+
+\input{files/01}
+\input{files/02}
+\input{files/03}
+\input{files/04}
+\input{files/05}
+\input{files/Appendix}
+
+% \printbibliography[title={Bibliography},heading=bibintoc]
+
+\end{document}

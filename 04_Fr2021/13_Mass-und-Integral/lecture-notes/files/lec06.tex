@@ -1,0 +1,61 @@
+\subsection{Lebesgue Measure}
+The Lebesgue measure is the Carethéodory-Hahn extension of the pre-measure of ``volumes'', that assigns products of intervals to their products of lengths.
+
+We want to give a definition of what these ``volumes'' and what their measure is going to be.
+\begin{dfn}[]
+  For $a = (a_{1}, \ldots, a_{d}), b = (b_{1}, \ldots, b_{d}) \in \R^{d}$ we define the $d$-dimensional \textbf{interval}
+  \begin{align*}
+    (a,b)
+    =
+    \left\{\begin{array}{ll}
+        \prod_{i=1}^{d}(a_i,b_i) & \text{ if } a_i < b_i \quad \forall i\\
+       \emptyset & \text{ otherwise}
+    \end{array} \right.
+  \end{align*}
+  in an analogous way, we define the closed and half-open boxes $[a,b], [a,b)$ or $(a,b]$.
+  Like on the real line, we also allow the open ends to be $\pm \infty$.
+
+  To each $d$-dimensional interval $I$ (whether open, closed or half-open) to be
+  \begin{align*}
+    \vol(I) :=
+    \left\{\begin{array}{ll}
+    \prod_{i=1}^{d}(b_i - a_i) \in [0,+\infty] 
+       &
+    \text{ if } a_i < b_i, \quad \forall i
+       \\
+      0 & \text{ otherwise}
+    \end{array} \right.
+  \end{align*}
+  An \textbf{elementary set} is the finite disjiont union of intervals and we define its volume to be
+  \begin{align*}
+    \vol\left(
+      \bigsqcup_{k=1}^{d}I_k 
+    \right)
+      :=
+      \sum_{k=1}^{d}\vol(I_k)
+  \end{align*}
+\end{dfn}
+\begin{rem}[]
+  We can check easily that the volume function is well defined.
+  For example, the decomposition $[0,2] = [0,1) \sqcup [1,2] = [0,1) \sqcup [1,1.5) \sqcup [1.5,2]$ should all give the same volume.
+
+  More generally, if $I= \bigsqcup_{k=1}^{n}I_k = \bigsqcup_{j=1}^m J_j$ where $I_k,J_j$ are Intervals, then
+  \begin{align*}
+    \sum_{k=1}^{n}\vol(I_k) = \sum_{j=1}^{m} \vol(J_j)
+  \end{align*}
+  We of course have to show that our attempt to use the Carathéodory-Hahn Extension of $\vol$ on the elementary sets is well defined. 
+  But it should be easy to see how the class of elmentary sets forms an algebra and that the $\vol$ function is a pre-measure on it.
+\end{rem}
+In our example above, we used half-open intervals of length $2^{-k}$ to decompose an interval.
+A direct generalisation is to introduce the dyadic cubes to obtain a basic decomposition of sets in $\R^{d}$.
+For every $k \in \N$, let $\mathcal{D}_k$ the collection of half open cubes
+\begin{align*}
+  \mathcal{D}_k := \left\{
+    \prod_{i=1}^{d}\big[\frac{a_i}{2^{k}}, \frac{a_{i+1}}{2^{k}}\big) \big\vert a_i \in \Z
+  \right\}
+\end{align*}  
+In particular, $\mathcal{D}_0$ is the collection of hpyercubes of edge length $1$ and vertices in $\Z^d$.
+
+
+
+

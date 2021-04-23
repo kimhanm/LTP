@@ -1,0 +1,325 @@
+\section{Vektorräume}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $K$ ein Körper. Eine Menge $V$ zusammen mit einer inneren Verknüpfung $+: V \times V \rightarrow V$ und einer äusseren Verknüfung $\cdot : K \times V \rightarrow V$ heisst $\mathbf{K}$\textbf{-Vektorraum}, wenn gilt
+\begin{itemize}
+    \item[V1)] $(V,+,0)$ ist eine abelsche Gruppe.
+    \item[V2)] $\forall \lambda, \mu \in K, v, w \in V$ gilt:
+    \begin{align*}
+        (\lambda + \mu) \cdot v  = \lambda \cdot v + \mu \cdot v \quad \lambda \cdot (v + w) = \lambda \cdot v + \lambda \cdot w \quad
+        \lambda \cdot (\mu \cdot v) = (\lambda \mu) \cdot v \quad 1 \cdot v = v
+    \end{align*}
+\end{itemize}
+\end{mdframed}
+\textbf{Rechenregeln}
+\begin{enumerate}[{(}a{)}]
+    \item $0 \cdot v = 0_V$
+    
+    \item $\lambda \cdot 0_V = 0_V$
+    
+    \item $\lambda \cdot v = 0 \Leftrightarrow \lambda = 0 \lor v = 0$
+    
+    \item $(-1) \cdot v = -v$ (Additives Inverse)
+\end{enumerate}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $V$ ein $K$-Vektorraum, Eine Teilmenge $W \subseteq V$ heisst Untervektorraum, falls gilt
+\begin{itemize}
+    \item[UV1)] $W$ ist nicht-leer
+    
+    \item[UV2)] $\forall u, v \in W: u + v \in W$
+    
+    \item[UV3)] $\forall v \in W, \forall \lambda \in K: \lambda \cdot v \in W$
+\end{itemize}
+, wobei $+$ und $\cdot$ von $V$ auf $W$ induziert werden.
+\end{mdframed}
+\textbf{Satz}: Ein Untervektorraum ist wieder ein Vektorraum mit $+$ und $\cdot$\\
+\textbf{Lemma} Seien $W_i \subseteq V, i \in I$ Untervektorräume. Dann ist der Durchschnitt $W  = \underset{i \in I}{\bigcap} W_i$ wieder ein Untervektorraum. (Dasselbe gilt nicht für Vereinigungen)\\
+Seien, $v_1, \ldots, v_n \in V$. Ein Vektor $v \in V$ heisst \textbf{Linearkombination} von $v_1, \ldots, v_n$, falls Skalare $\lambda_1, \ldots, \lambda_n \in K$ exisiteren, sodass $v = \lambda_{1} v_{1} + \ldots + \lambda_{n} v_{n}$\\
+\mdfsetup{backgroundcolor=black!10}
+\begin{mdframed}
+Sei $V$ ein $K$-Vektorraum, $(v_i)$ eine Familie von Vektoren. 
+Der \textbf{span} der Familie $(v_i)$ ist definiert durch
+\begin{align*}
+   \text{span}_K(v_i)_{i \in I} := \{v \in V \big\vert \exists \text{ endliche Teilfamilie } J \subseteq I, \lambda_j \in K, j \in J, \quad \text{ sodass } v = \summe{j \in J}{} \lambda_j v_j\} 
+\end{align*}
+\end{mdframed}
+Ist $I =$ \o, so ist $\text{span}_K(v_i) = \{0\}$\\
+\mdfsetup{backgroundcolor=black!10}
+\begin{mdframed}
+Eine endliche Familie von Vektoren $v_1, \ldots, v_n \in V$ heisst \textbf{linear unabhängig} wenn, falls es $\lambda_1, \ldots, \lambda_n \in K$ gibt, sodass $\lambda_{1} v_{1} + \ldots + \lambda_{n} v_{n} = 0$ es folgen muss, dass $\lambda_1 = \ldots = \lambda_n = 0$ 
+\end{mdframed}
+\textbf{Lemma} Für $(v_i)_{i\in I}$ sind äquivalent:
+\begin{enumerate}[{(}i{)}]
+    \item $(v_i)$ ist linear unabhängig.
+    
+    \item $\forall v \in \text{span}(v_i)$ gibt es eine eindeutige Linearkombination, welche $v$ darstellt.
+\end{enumerate}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $V$ ein $K$-Vektorraum. Eine Familie $\mathcal{B} = (v_i)_{i \in I}$ heisst \textbf{Erzeugendensystem} von $V$, wenn $V = \text{span}_K(\mathcal{B})$\\
+Sie heisst \textbf{Basis} von $V$, falls sie ein linear unabhängiges Erzeugendensystem ist.\\
+$V$ heisst \textbf{endlich erzeugt}, falls es ein endliches Erzeugendensystem gibt.
+\end{mdframed}
+Sei $V \neq \{0\}$ und $\mathcal{B} = (v_1, \ldots, v_n) \subseteq V$. So sind äquivalent:
+\begin{enumerate}[{(}i{)}]
+    \item $\mathcal{B}$ ist eine Basis
+    
+    \item $\mathcal{B}$ ist ein \emph{unverkürzbares} Erzeugendensystem. d.h. $\forall i \in \{1, \ldots, n\}$ ist $(v_1, \ldots, v_{i-1}, v_{i+1}, \ldots, v_n)$ kein Erzeugendensystem mehr.
+    
+    \item $\forall v \in V$ gibt es eine eindeutige Linearkombination $v = \lambda_{1} v_{1} + \ldots + \lambda_{n} v_{n}$
+    
+    \item $\mathcal{B}$ ist ein \emph{unverlängerbares} Erzeugendensystem. $\forall v \in V$ ist $\tilde{\mathcal{B}} = (v_1, \ldots, v_n,v)$ nicht mehr linear unabhängig.
+\end{enumerate}
+\mdfsetup{backgroundcolor=black!10}
+\begin{mdframed}
+\begin{itemize}
+    \item \boldline{Basisauswahlsatz} Aus jedem endlichem Erzeugendensystem ist eine Basis auswählbar. Insbesondere hat jeder endlich erzeugte Vektorraum eine Basis.
+    
+    \item \boldline{Austauschlemma} Sei $V$ ein $K$-Vektorraum, $\mathcal{B} = (v_1, \ldots, v_n)$ eine Basis von $V$ und $w = \lambda_{1} v_{1} + \ldots + \lambda_{n} v_{n} \in V$. Ist $k \in \{1,\ldots,r\}$ mit $\lambda_k \neq 0$, so ist
+    $\tilde{\mathcal{B}} = (v_1, \ldots, v_{k-1}, w, v_{k+1}, v_n)$ wieder eine Basis von $V$.
+    
+    \item \boldline{Austauschsatz} Sei $V$ ein $K$-Vektorraum, $\mathcal{B} = (v_1, \ldots, v_n)$ eine Basis. Ist $(w_1, \ldots, w_r)$ linear unabhängig, so ist $r \leq n$ und nach umnummerieren der Vektoren ist dann
+    $(w_1, \ldots, w_r, v_{r+1}, \ldots v_n)$ eine Basis von $V$
+    
+    \item Hat $V$ eine endliche Basis, so ist jede andere Basis endlich. Und alle Basen sind gleich lang.
+\end{itemize}
+\end{mdframed}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $V$ ein $K$-Vektorraum, dann ist die \textbf{Dimension}:
+\begin{align*}
+    \dim_K(V) := \begin{cases}
+        n, \text{ \quad falls $V$ eine Basis mit Länge $n$ besitzt}\\
+        \infty, \quad \text{ falls $V$ keine endliche Basis besitzt}
+    \end{cases}
+\end{align*}
+\end{mdframed}
+Ist $W \subseteq V$ ein Untervektorraum und ist $V$ endlich erzeugt, so ist $W$ auch endlich erzeugt und es gilt $\dim W \leq \dim V$. Falls $\dim W = \dim V \implies W = V$\\
+\mdfsetup{backgroundcolor=black!10}
+\begin{mdframed}
+\boldline{Basisergänzungssatz:} Sei $V$ endlich Erzeugt und seien $w_1, \ldots, w_r \in V$ linear unabhängig. Dann können wir $w_{r+1}, \ldots, w_n \in V$ finden, sodass $\mathcal{B} = (w_1, \ldots, w_r, \ldots, w_n)$ eine Basis von $V$ ist. 
+\end{mdframed}
+\mdfsetup{backgroundcolor=blue!08}
+\begin{mdframed}
+Sind $v_1, \ldots, v_n$ linear unabhängig? \quad Löse $\lambda_{1} v_{1} + \ldots + \lambda_{n} v_{n} = 0$, bzw. finde $\text{Lös}(A,0)$ mit 
+\begin{align*}
+    A = \begin{pmatrix}
+    | & & |\\
+    v_1 & \ldots & v_n\\
+    | & & |
+    \end{pmatrix}
+\end{align*}
+Fall es nur die Lösung $\lambda = 0$, dann sind sie linear unabhängig.
+\end{mdframed}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $A \in M(m\times n,K)$ mit Zeilenvektoren $\begin{pmatrix}
+--a_{1}-- \\ \vdots \\	 --a_{m}--
+\end{pmatrix}$. \quad Der \textbf{Zeilenraum} von $A$ ist 
+\begin{align*}
+    \text{ZR}(A) &:= \text{span}(a_1, \ldots, a_m) \subseteq \R^n\\
+    \text{\textbf{Zeilenrang}}(A) &:= \dim \text{ZR}(A)
+\end{align*}
+Analog: \quad Sind $a_1, \ldots, a_n$ die Spalten von $A$, so ist der \textbf{Spaltenraum} $\text{SR}(A) = \text{ZR}(A^T) \subseteq K^m$ mit Spaltenrang $:= \dim \text{SR}(A)$\\
+Es gilt Zeilenrang $=$ Spaltenrang
+\end{mdframed}
+\textbf{Lemma} Ist $B$ aus $A$ durch elementare Zeilenumformungen entstanden, so ist $\text{ZR}(A) = \text{ZR}(B)$\\
+\textbf{Satz} Jede Matrix $A \in M(m\times n,K)$ kann durch elementare Zeilenumformgen auf Zeilen-Stufen-Form gebracht werden. Sind $b_1, \ldots, b_m$ die Zeilen von $B$, so bilden die nicht-Null Zeilen von $B$ eine Basis von $W \subseteq K^m$.\\
+\textbf{Satz} $\text{Zeilenrang}(A) = \text{Spaltenrang}(A) =: \text{rang}(A)$\\
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $A  = (a_{ij}) \in M(m\times n,K)  = 
+\begin{pmatrix}
+a_{11} & \ldots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \ldots & a_{mn}
+\end{pmatrix}$. \\
+Dann ist die zu $A$ transponierte Matrix $A^T \in M(n\times m,K)$ die Matrix mit Einträgen $a_{ij}^T = a_{ji} = \begin{pmatrix}
+a_{11} & \ldots & a_{1m} \\
+\vdots & \ddots & \vdots \\
+a_{n1} & \ldots & a_{nm}
+\end{pmatrix}$\\
+\textbf{Rechenregeln:} \quad Seien $A, B \in M(m\times n,K), \lambda \in K$, dann gilt
+\begin{itemize}
+    \item $(A + B)^T = A^T + B^T$
+    
+    \item $(\lambda \cdot A)^T = \lambda \cdot A^T$
+    
+    \item $(A^T)^T = A$
+\end{itemize}
+\end{mdframed}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $V$ ein $K$-Vektorraum, $W_1, \ldots, W_n$ Untervektorräume von $V$. Die \textbf{Summe} der Untervektorraume ist
+\begin{align*}
+    W_{1} + \ldots + W_{n}:= \{v \in V \big\vert \exists w_i \in W_i \text{ mit } v = w_{1} + \ldots + w_{n}\}
+\end{align*}
+\end{mdframed}
+\textbf{Bemerkung} Die Summe ist wieder ein Untervektorraum von $V$. \\$W_{1} + \ldots + W_{n} = \text{span}(W_1 \cup \ldots, \cup W_n)$\\
+\mdfsetup{backgroundcolor=red!10}
+\begin{mdframed}
+    Falls $\dim W_1, \dim W_2 < \infty$ gilt die \textbf{Dimensionsformel} 
+    \begin{align*}
+        \dim(W_1 + W_2) = \dim(W_1) + \dim(W_2) - \dim(W_1 \cap W_2)
+    \end{align*}
+\end{mdframed}
+\newpage
+\textbf{Lemma} Ist $V = W_1 + W_2$, so sind äquivalent
+\begin{enumerate}[{(}a{)}]
+    \item   $W_1 \cap W_2  = \{0\}$ 
+    
+    \item   Jedes $v \in V$ ist eindeutig darstellbar als Linearkombination von $w_1 + w_2$
+    
+    \item   Zwei von Null verschiedene Vektoren $w_1, w_2$ sind linear unabhängig.
+\end{enumerate}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Ein Vektorraum $V$ heisst \textbf{direkte Summe} von zwei Untervektorräumen $W_1, W_2$ geschreiben $W_1 \oplus W_2$, falls $V = W_1 + W_2$ und $W_1 \cap W_2 = \{0\}$
+\end{mdframed}
+
+\textbf{Satz} Sei $V$ endlich dimensional und mit Untervektorräume $W_1, W_2$. So sind äquivalent:
+\begin{enumerate}[{(}a{)}]
+\item $V = W_1 \oplus W_2$
+
+\item   Es gibt Basen $(w_1, \ldots, w_k)$ von $W_1$ und $(w'_1, \ldots, w'_l)$ von $W_2$, sodass $(w_1, \ldots, w_k, w_1', \ldots , w_l')$ eine Basis von $V$ ist
+
+\item  $V = W_1 + W_2$ und $\dim V = \dim W_1 + \dim W_2$
+\end{enumerate}
+Ist $V$ endlich dimensionsional, $W$ ein Untervektorraum von $V$, so gibt es zu $W$ einen (im allgemeinen nicht eindeutig bestimmten) Untervektorraum $W' \subseteq V$, sodass $V = W \oplus W'$\\
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Ein Vektorraum $V$ heisst \textbf{direkte Summe} von Untervektorräumen $W_1, \ldots, W_n \subseteq V$, geschrieben $ V = W_1 \oplus \ldots \oplus W_n$ wenn gilt 
+\begin{itemize}
+    \item[DS1)] $V = W_1 + \ldots + W_n$
+    
+    \item[DS2)] Sind $w_1 \in W_1, \ldots, w_n \in W_n$ mit $w_{1} + \ldots + w_{n} = 0$ so folgt $w_1 = \ldots = w_n = 0$
+\end{itemize}
+\end{mdframed}
+Achtung: DS2) ist nicht äquivalent zu: $w_i \cap w_j = \{0\}, i\neq j$\\
+\textbf{Satz} Sind $W_1, \ldots, W_n$ Untervektorräume eines endlich dimensionalen Vektorraumes $V$, so sind äquivalent:
+\begin{enumerate}[{(}i{)}]
+    \item   $V = W_1 \oplus \ldots \oplus W_n$
+    
+    \item   Sind für alle Untervektorräume $W_i$ eine Basis $(w_1^{(i)}, \ldots w_{r_i}^{(i)})$ gegeben, so ist\\
+    $B = (w_1^{(1)}, \ldots w_{r_1}^{(1)}, w_1^{(2)} \ldots, w_{r_2}^{(2)}, \ldots, w_1^{(n)}, \ldots w_{r_n}^{(n)})$ eine Basis von $V$.
+    
+    \item $V = W_1 + \ldots W_k$ und $\dim V = \dim W_1 + \ldots + \dim W_k = r_{1} + \ldots + r_{n}$
+\end{enumerate}
+\section{Lineare Abbildungen}
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Eine Abbildung $F: V \rightarrow W$ zwischen zwei $K$-Vektorräumen $V$ und $W$ heisst $\mathbf{K}$\textbf{-linear} oder \emph{Vektorraumhomomorphismus}, falls $\forall u, v \in V, \lambda, \mu \in K$ gilt:
+\begin{itemize}
+    \item[L1)] $F(u + v) = F(u) + F(v)$
+    \item[L2)] $F(\lambda \cdot v) = \lambda F(v)$
+\end{itemize}
+Die Abbildung heisst auch:
+\begin{itemize}
+    \item \textbf{Isomorphismus}, falls sie bijektiv ist.
+    
+    \item \textbf{Endomorphismus}, falls $F: V \rightarrow V$ 
+    
+    \item \textbf{Automorphismus}, falls sie ein Isomorphismus und ein Endomorphismus ist.
+\end{itemize}
+\end{mdframed}
+\newpage
+\textbf{Bemerkung} Ist $F: V \rightarrow W$ linear, so gilt
+\begin{enumerate}[{(}a{)}]
+    \item $F(0) = 0$ und $F(-v) = -F(v)$ 
+    
+    \item Sind $(v_i)$ in $V$ linear abhängig, so sind $F(v_i)$ auch linear unabhängig in $W$.
+    
+    \item Sind $V' \subseteq V, W' \subseteq W$ Untervektorräume, dann sind
+    \begin{align*}
+        F(V') := \{F(v)\big\vert v \in V\} \subseteq W \quad \text{ und }  \quad F^{-1}(W') := \{v \in V \big\vert F(v) \in W'\} \subseteq V
+    \end{align*}
+    auch Untervektorräume.
+
+    \item $\dim F(V) \leq \dim V$
+    
+    \item Ist $F$ ein Isomorophismus, so ist auch $F^{-1}: W \rightarrow V$ linear.
+    
+    \item Die Komposition von linearen Abbildungen ist linear.
+\end{enumerate}
+\textbf{Satz} $\text{End}(V)$ ist ein Ring. (Genannt Endomorphismenring)
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $F: V \rightarrow W$ linear, so sind:
+\begin{itemize}
+    \item $\text{Im}(F) := F(V)$ das \textbf{Bild} von $F$
+    
+    \item $F^{-1}(w) := \{v \in V \big\vert F(v) = w\}$ die \textbf{Faser} von $F$ über $w$.
+    
+    \item $\Kernel(F) := \{v \in V \big\vert F(v) = 0\}$ der \textbf{Kern} von $F$
+    
+    \item rang $F := \dim$ Im $F$ der \textbf{Rang}
+    
+    \item nullity $F := \dim \Kernel F$ \textbf{Nullity}
+\end{itemize}
+\end{mdframed}
+\begin{enumerate}[{(}a{)}]
+    \item $\text{Im}F \subseteq W$ und $\Kernel(F) \subseteq V$ sind Untervektorräume
+    
+    \item $F$ surjektiv $\Leftrightarrow$ Im$F = W$
+    
+    \item $F$ injektiv $\Leftrightarrow \Kernel F = \{0\}$
+    
+    \item Ist $F$ injektiv und sind $v_1, \ldots, v_n$ linear unabhängig, so sind $F(v_1), F(v_n)$ linear unabhängig.
+\end{enumerate}
+Sei $w \in \Image F$, und $u \in F^{-1}(w)$ belieig, so ist $F^{-1}(u) = u + \Kernel F:= \{u + v \big\vert v \in \Kernel F\}$
+\mdfsetup{backgroundcolor=red!10}
+\begin{mdframed}
+\textbf{Dimensionsformel}\quad Sei $F: V \rightarrow W$ linear und $V$ endlich dimensional. Ist $(v_1, \ldots, v_k)$ eine Basis von $\Kernel F$ und $(w_,1 \ldots, w_r)$ eine Basis von $\Image F$ seien weiterhin $u_1 \in F^{-1}(w_1), \ldots, u_r \in F^{-1}(w_r)$ beliebig, so ist $A = (u_1, \ldots, u_r, v_1, \ldots, v_k)$ eine Basis von $V$ und es gilt 
+\begin{align*}
+    \dim V = \dim \Image F + \dim \Kernel F = \rang F + \text{nullity }F
+\end{align*}
+
+\end{mdframed}
+\textbf{Korollar} 
+\begin{enumerate}[{(}a{)}]
+    \item Ist $v$ endlich dimensional, $F: V \rightarrow W$ linear, so gilt für alle \underline{nicht-leeren} Fasern $\dim F^{-1}(w) = \dim V - \rang F$
+    
+    \item Zwischen zwei endlich dimensionalen Vektorräumen $V$ und $W$ gibt es genau dann einen Isomorphismus, wenn $\dim V = \dim W$
+    
+    \item Seien $\dim V = \dim W < \infty$, $F: V \rightarrow V$ linear. Dann sind äquivalent:
+    \begin{enumerate}[{(}i{)}]
+        \item $F$ ist injektiv
+        
+        \item $F$ ist surjektiv
+        
+        \item $F$ ist bijektiv
+    \end{enumerate}
+\end{enumerate}
+
+\mdfsetup{backgroundcolor=orange!20}
+\begin{mdframed}
+Sei $V$ ein $K$-Vektorraum. Eine Teilmenge $X \subseteq V$ heisst \textbf{affiner Raum} falls es ein $u \in V$
+und ein Untervektorraum $W \subseteq V$ gibt, sodass $X = u + W := \{v \in V \big\vert \exists w \in W: v = u + w\}$.\\
+Die Dimensionen eines Affinen Raumes $X = v + W$ ist gegeben durch $\dim X := \dim W$
+\end{mdframed}
+Ist $v + W = v' + W'$, so ist $W = W'$ und $v - v' \in W$
+\mdfsetup{backgroundcolor=black!10}
+\begin{mdframed}
+\textbf{Faktorisiserungssatz:}\quad Sei $F: V \rightarrow W$ linear und $A = (u_1, \ldots, u_r, v_1, \ldots, v_k)$ eine Basis von $V$ mit $\Kernel F = \spn(v_1, \ldots, v_k)$ und definiere $U:= \spn(u_1, \ldots, u_r)$, dann gilt
+\begin{enumerate}[{(}1{.)}]
+    \item	$V = U \oplus \Kernel F$
+    
+    \item $F |_{u} : U \rightarrow \Image F$ ist ein Isomorphismus
+    
+    \item Sei $\rho: V = U \oplus \Kernel F \rightarrow U, v = u + v' \mapsto u$ die Projektion auf $U$. So ist $F = (F |_{u}) \circ \rho$
+\end{enumerate}
+\begin{center}
+    \begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
+        V \arrow[swap]{r}{F}  \arrow[]{d}{\rho}& \text{Im}(F) \subseteq W\\
+        U \arrow[swap]{ur}{F|_{U}}
+    \end{tikzcd}
+\end{center}
+\end{mdframed}
+Insbesondere hat jede nicht-leere Faser $F^{-1}(w)$ mit $U$ genau einen Schnittpunkt $P(v) = F^{-1}(F(v)) \cap U$. Man kann also $F: V \rightarrow W$ in drei Teile zerlegen.\\
+Eine Projektion, einen Isomorphismus und eine Inklusion des Bildes. Die Umkehrung $(F|_{u})^{-1}: \Image F \rightarrow U$ heisst \textbf{Schnitt}. Sie schneidet aus jeder Faser genau einen Punkt $u \in v + \Kernel F \subseteq V$
+
+
+
+
+

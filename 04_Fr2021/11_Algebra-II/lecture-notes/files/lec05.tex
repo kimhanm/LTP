@@ -1,0 +1,145 @@
+Let $K = k(\alpha)$ be a field extension of $k$ for some $\alpha \neq0$. 
+Then the set
+\begin{align*}
+  \{n \in \Z: \alpha^{n} \in k\}
+\end{align*}
+is a subgroup of $\Z$ and therefore of the form $m\Z$ for some $m \in \N$.
+But it could be that no powers of $\alpha$ are in $k$. 
+(For example $\Q(\pi)$).
+Then $m\Z = 0$.
+
+\begin{dfn}[]
+  The field extension $k(\alpha)/k$ is said to be a \textbf{pure extension} of \textbf{type} $m \geq 1$ if
+  \begin{align*}
+    \{
+    m\Z = n \in \Z: \alpha^{k} \in k
+    \} \neq 0
+  \end{align*}
+  We say that a field extension $K/k$ is \textbf{radical} if there exists a tower of pure field extensions
+  \begin{align*}
+    k = K_0 \subseteq K_1 \subseteq \ldots \subseteq K_t = K,
+    \quad K_{i+1}/K_i \text{ pure}
+  \end{align*}
+  A polynomial $f \in k[X]$ is said to be \textbf{solvable by radicals}, if there exists a splitting field of $f$ contained in a radical extension of $k$.
+\end{dfn}
+
+We see that this defintion of radically solvable polynomials matches with our intuition that the $m$-th root of a number in $k$ has a power that is in $k$ again.
+\begin{ex}[]
+  Let $f(x) =X^{2}+ b X + c \in k[X]$ and $E$ be a splitting field of $f$ containing its roots $R(f) = \{\alpha_1,\alpha_2\}$.
+
+  Plugging in a root and expanding binomially, we get
+  \begin{align*}
+    0 = \alpha^{2} + b \alpha + c = \left(
+      \alpha + \tfrac{b}{2}
+    \right)^{2} + c - \tfrac{b^{2}}{4}
+  \end{align*}
+so if $u := \alpha_1 + \tfrac{b}{2} \in E/k(u)$, then $u^{2} = \tfrac{b^{2}}{4}- c \in k$.
+But since $E = k(\alpha_1,\alpha_2)$ and
+\begin{align*}
+  \alpha_1 = u - \tfrac{b}{2}, \quad \alpha_2 + \alpha_1 = -b \implies \alpha_2 = -b - \alpha_1 = -u - \tfrac{b}{2}
+\end{align*}
+so $E = k(u)$.
+\end{ex}
+
+
+Let $k(\alpha)/k$ be a pure extension of type $m$. 
+If we consider the prime factorisation $m = p_1 \ldots p_r$, then we can look at the towers
+\begin{align*}
+  k(\alpha) \supset k(\alpha^{p_1}) \supset k(\alpha^{p_1p_2} \supset \ldots \supset k(\alpha^{m}) = k
+\end{align*}
+where every extension is of type $p_i$.
+This leads us to study $X^{p} - c \in k[x]$.
+
+\begin{lem}[]\label{lem:prime-polynomial}
+  Let $p$ be prime and $f = X^{p} - c \in k[X]$. Then
+  \begin{enumerate}
+    \item There are two cases: $f$ is irreducible, or $c$ is the $p$-th power of an element in $k$.
+    \item Let $E/k$ be the splitting field of $f$ and assume $k$ contains all $p$-th roots of $1$.
+      Let $\alpha \in E, \alpha \in R(f)$, then $E = k(\alpha)$ and
+      \begin{enumerate}
+        \item If $f$ is irreducible and $\charac(k) \neq p$, then $\Gal(E/k) \iso \Z/p\Z$
+        \item If $f$ is irreducible and $\charac(k) = p$, then $\Gal(E/k) = \{e\}$.
+        \item If $f$ is reducible, then $E = k$ (and $\Gal(E/k) \iso (e)$)
+      \end{enumerate}
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+\begin{enumerate}
+  \item If $f$ is reducible, then $f = gh$ for some $g = X^{d} + b_{d-1}X^{d-1} + \ldots + b_0, 1 \leq d < p$.
+    Let $E/k$ be a splitting field of $f = X^{p} - c$ and $\alpha \in R(f)$.
+    If $\beta \in R(f)$ is another root, then $\alpha^{p} = \beta^{p}=c \implies \tfrac{\alpha^{p}}{\beta^{p}} = 1$.
+    Therefore we can write
+    \begin{align*}
+      R(f) = \{\alpha \cdot \xi \big\vert \xi^{p} = 1\}
+    \end{align*}
+    and since $R(g) \subseteq R(f)$ and $b_0$ is the product of all roots of $g$, we have $b_0 = \alpha^{d} \cdot \eta$ for some $\eta^{p} = 1$.
+  \begin{align*}
+  \implies b_0^{p}= \alpha^{dp} = c^{d}
+  \end{align*}
+  but since $p$ is prime and $1 \leq d < p$, $p$ and $d$ have no common divisors, so there exist $r,s \in \Z$ such that $rp + sd = 1$.
+  This gives us
+  \begin{align*}
+    c = c^{rp + sd} = c^{rp}c^{ds} = c^{rp}b_0^{ps} = \left(
+      c^{r}b_0^{s}
+    \right)^{p}
+  \end{align*}
+\item By assumption, $k$ contains all the roots of $1$. By our trick $\tfrac{\alpha^{p}}{\beta^{p}} = 1$, the roots of $f$ must be of the form  
+  \begin{align*}
+    R(f) = \{\alpha \zeta: \zeta^{p} = 1\} \implies E = k(\alpha) 
+  \end{align*}
+  \begin{enumerate}
+    \item Because $\charac(k) \neq p$ and $f$ is irreducible we have that the derivative is $f' = pX^{p-1} \neq 0$.
+      Since $\gcd(f,f') = 1$, $f$ is also separable by the $\gcd(f,f')$ lemma.
+      By Theorem \ref{thm:rot3-7}, we have
+      \begin{align*}
+        \abs{\Gal(E/k)} = \abs{[E:k]} = \abs{[k(\alpha):k]} = p
+      \end{align*}
+      and since the only groups of order $p$ are cyclic, $\Gal(E/k) \iso \Z/p\Z$.
+  \end{enumerate}
+\end{enumerate}
+Other parts of lemma ???
+\end{proof}
+
+Now that polynomials that can be solved by radicals have a splitting field contained in a radical extension, we can ask
+when are radical extensions contained in a normal extension?
+We want to get a tower $k \subseteq E \subseteq K \subseteq F$, where $E$ is normal and $F$ is normal and radical.
+
+Looking at the tower $k \subseteq E \subseteq F$ of normal extensions $E/k,F/k$ and applying theorem \ref{thm:surhom} we get a surjective homomorphism
+\begin{align*}
+  \Gal(F/k) \to  \Gal(E/k), \quad \sigma \mapsto \sigma|_E
+\end{align*}
+If we can show that $\Gal(F/k)$ is resolvable, then it follows that $\Gal(E/k)$ is also resolvable.
+Resulting in the theorem stating that every subgroup and anevery quotient of a resolvable group are again resolvable.
+
+For the next two lemmata, we set the context as follows:
+
+\begin{itemize}
+  \item Let $B = k(u_1,\ldots,u_t)$ be a finite extension. 
+    This in particular means that $u_1,\ldots,u_t$ are algebraic (or else it wouldn't be a finite extension)
+  \item Let $p_i = \text{irr}(u_i,k) \in k[X]$ be the minimal polynomial of $u_i$ over $k$ and let $E$ be the splitting field of $f = p_1 \dots p_t \in k[x]$ and write $G = \Gal(E/k)$.
+\end{itemize}
+The following lemma tells us how to construct $E$ given the $u_i$.
+\begin{lem}[]
+  $E$ can be obtained by adjoining $\sigma(u_i)$ for all $\sigma \in \Gal(E/k)$, and all $i$
+  \begin{align*}
+    E = k\left(\sigma(u_1), \ldots, \sigma(u_t), \sigma \in \Gal(E/k)
+    \right)
+  \end{align*}
+\end{lem}
+\begin{proof}
+  Since $E$ is the splitting field of $f = p_1 \dots p_t$, $E$ contains all the roots of the $p_i$.
+  Then for any $u,u' \in R(p_i)$ we can use Lemma \ref{lem:rot3-130} to find an isomorphism $\hat{\phi}: k(u) \to k(u')$ extending the identity $\id_k: k \to k$.
+
+  Since $f \in k[x]$ can also be viewed as a polynomial $f \in k(u)[X]$, and the extension to the polynomial ring fixes $f$: $\hat{\phi}_{\ast}(f) = f$,
+  we can use the fact that $E$ is a splitting field together with Proposition \ref{prop:2-16} to extend $\hat{\phi}$ to an isomorphism
+$\Phi: E \to E$.
+In particular, we have $\Phi \in \Gal(E/k)$ and $\Phi(u) = u'$.
+
+Therefore, for all $i$, any root $u' \in R(p_i)$, there exists a $\sigma \in \Gal(E/k)$ such that $\sigma(u_i) = u'$.
+
+So by writing
+\begin{align*}
+  R(f) = \bigcup_{i=1}^{t}R(p_i) \subseteq \{\sigma(u_i) \big\vert 1 \leq i \leq t, \sigma \in \Gal(E/k)\}
+\end{align*}
+any root of $f$ can be obtained by adjoining $\sigma(u_i)$ for the right $\sigma \in \Gal(E/k)$.
+\end{proof} 

@@ -1,0 +1,53 @@
+\begin{definition}[Taylor-Series]
+	Let $f: \C \to \C$ be a holomorphic function. Its \textbf{Taylor-Series} around the point $z_0 \in \C$ is the power series
+	\begin{align*}
+		\sum_{n=0}^{\infty} a_n(z - z_0)^n, \quad a_n \in \C
+	\end{align*}
+	which converges on the disk $D_{z_0}(R)$, where $R$ is the radius of convergence and is given by
+	\begin{align*}
+		\frac{1}{R} = \limsup_{n \to \infty} \sqrt[n]{\abs{a_n}}
+	\end{align*}
+\end{definition}
+
+\subsection{Convergence theorems}
+
+\begin{definition}[]
+	We say that $f_n$ converges locally uniform to a function $f$ in $U$, if
+	\begin{align*}
+		\forall z \in U \exists r > 0 \text{ s.t. } D_{z_0}(r) \subseteq U \text{ and } f_n \to f \text{ uniformly}
+	\end{align*}
+\end{definition}
+For $U \subseteq \C$ open and $f: U \to \C$ holomorphic, $z_0 \in U$ with some $D_{z_0}(r) \subseteq U$ we say that $f$ admits a Taylor expansion, if 
+\begin{align} \label{eq:tayconv}
+	f(z) = \sum_{n=0}^{\infty} a_n(z - z_0)^n \quad \forall z \in D_{z_0}(r)
+\end{align}
+If $f$ is smooth and we chose
+\begin{align*}
+	a_n = \frac{f^{(n)(z)}}{n!}
+\end{align*}
+, then it converges aboslutely and locally uniform on $D_{z_0}(r)$.
+These coefficients are also unique, so if $b_n$ satisfy \ref{eq:taycov}, then $b_n = a_n$.\\
+
+
+\begin{definition}[Möbius Transformation]
+	Let $a,b,c,d,f \in \C$, such that $ad - bc \neq 0$ and $c \neq 0$. The \textbf{Möbius Transformation} is the function
+	\begin{align*}
+		f: \Omega = \C \setminus \{-\frac{d}{c}\} \to \C, \quad z \mapsto \frac{az + b}{cz + d}
+	\end{align*}
+	We can extend $f$ to the one-point compactification $\hat{\C} = \C \cup \{\infty\}$ of $\C$ with
+	\begin{align*}
+		f(-\frac{d}{c}) = \infty, f(\infty) = \frac{a}{c}, c \neq 0, f(\infty) = \infty, c = 0
+	\end{align*}
+	Consider the matrix $A$ and the map $\phi$
+	\begin{align*}
+		A = \begin{pmatrix}
+		a & b\\
+		c & d
+	\end{pmatrix} \in \GL_2(\C), \quad \phi_A = A
+	\end{align*}
+	$f$ is ijective and holomorphic form the Riemann-sphere into itself and the function
+	\begin{align*}
+		g = \frac{dz - b}{-cz + a}
+	\end{align*}
+\end{definition}
+Geometrically, this is the stereographic projection of $\hat{\C}$

@@ -1,0 +1,269 @@
+\section{LinAlg I}
+
+\begin{definition}{Charakteristische Polynom}
+    Sei $A \in M(n\times n,K)$. Das \textbf{charakteristische Polynom} von $\mathbf{A}$ ist
+    \begin{align*}
+        P_A(t) = \det(A - t \cdot E_n)
+    \end{align*}
+    Für $F$ in $\End(V)$ mit $\dim V = n < \infty$ mit einer Basis $\mathcal{B} = (v_{1}, \ldots, v_{n})$ ist das charakteristische Polynom (unabhängig von der Wahl der Basis)
+    $P_F(t) = p_{\mathcal{M}_{\mathcal{B}}(F)}(t)$
+\end{definition}
+
+\begin{itemize}
+    \item   Die Eigenwerte von $F$ sind genau die Nullstellen von $P_F(t)$.
+    \item   Die \textbf{algebraische Vielfachheit} eines Eigenwertes $\lambda$ von $F \in \End(V)$ ist die Vielfachheit der Nullstelle $\lambda$ von $P_F(T)$
+    \item   Die \textbf{geometrische Vielfachheit} von $\lambda$ ist 
+    \begin{align*}
+        \dim \Eig(F;\lambda) = \dim \Ker(F - \lambda \id_V)
+    \end{align*}
+    und es gilt $1 \leq \text{ geometrische Vielfachheit } \leq \text{ algebraische Vielfachheit}$
+\end{itemize}
+
+\begin{proposition}{Diagonalsierbarkeit }
+    Sei $F \in \End(V)$, $\mathcal{B}$ eine Basis, $\dim(V) = n < \infty$. Dann gilt
+    \begin{align*}
+        \mathcal{M}_{\mathbf{B}}(F) \text{ ist diagonalmatrix } \Leftrightarrow \mathcal{B} \text{ besteht aus Eigenvektoren von $F$}
+    \end{align*}
+    Gibt es so eine $\mathcal{B}$, so heisst $F$ \textbf{diagonalsierbar}. 
+\end{proposition}
+Es sind äquivalent:
+
+\begin{enumerate}[{(}i{)}]
+    \item   $F$ ist diagonalisierbar
+    \item   $P_F(t)$ zerfällt in Linearfaktoren und für alle Eigenwerte gilt: geometrische Vielfacheit $=$ algebraische Vielfachheit.
+    \item   $V = \Eig(F;\lambda_1) \oplus \ldots \oplus \Eig(F;\lambda_k)$
+\end{enumerate}
+
+
+\begin{definition}{Simultan Diagonaliserbar}
+    Zwei Endomorphismen $F,G \in \End(V)$ heissen \textbf{simultan} diagonalisierbar, wenn es eine Basis $\mathcal{B}$ von $V$ gibt, sodass beide $\mathcal{M}_{\mathcal{B}}(F)$ und $\mathcal{M}_{\mathcal{B}}(G)$ diagonal sind.\\
+    Das ist genau dann der Fall, wenn $F \circ G = G \circ F$
+\end{definition}
+
+
+\begin{definition}{Trigonalisierbare Endomorphismen}
+    Eine Abbildung $F \in \End(V)$ heisst \textbf{trigonalisierbar}, falls eine Basis $\mathcal{B}$ von $V$ gibt, sodass $\mathcal{M}_{\mathcal{B}}(F)$ eine obere Dreiecksmatrix ist.
+\end{definition}
+Äquivalent dazu sind
+\begin{enumerate}
+    \item	Es gibt eine $F$-invariante \textbf{Fahne} in $V$: eine Kette von Untervektorräumen $\{0\} = V_0 \subseteq V_1 \subseteq \ldots \subseteq V_n = V$, sodass $F(V_i) \subseteq V_i, \forall i = \{1, \ldots, n\}$
+    \item   Das charakteristische Polynom $P_F(t)$ zerfällt in Linearfaktoren.
+\end{enumerate}
+
+
+\begin{rezept}{Triagonalisierung}
+    \begin{enumerate}[{(}i{)}]
+        \item	Charakteristisches Polynom $P_F(t)$ berechnen und Eigenwerte von $F$ bestimmen. Zerfällt es nicht in Linearfaktoren, so ist $F$ nicht trigonalisierbar. 
+        \item Einen Eigenvektor $v_1$ zu einem $\lambda$ bestimmen. 
+        \item   Ersetze in der Kanonischen Basis $\mathcal{K} = (e_1, e_2, e_3)$ einen Vektor mit $v_1$, sodass immer noch alle linear unabhängig sind. $\mathcal{K} \to \mathcal{B}_1$
+        \item   Setze $S_1 = T_{\mathcal{K}}^{\mathcal{B}_1}$
+        \item   Setze $A_2 = S_1^{-1} A S_1$ und wiederhole $(i) - (iv)$ mit der unteren Teilmatrix $A_2'$ (d.h. ohne die Eigenspalte)
+        \begin{align*}
+            \begin{pmatrix}
+                & &\\
+                & A &\\
+                & & 
+            \end{pmatrix}
+            \to S_1^{-1}AS_1 = A_2 = \begin{pmatrix}
+                \lambda_1 & * \\
+                0 & \begin{matrix}
+                    A_2'
+                \end{matrix}
+            \end{pmatrix}
+        \end{align*}
+        \item   ''Verlängere'' die Vektoren $v_2' \in \R^{n-1}, v_3'' \in \R^{n-2}$ usw. durch hinzufügen von $0$ in den verlorengegangenen Koordinaten.
+    \end{enumerate}
+\end{rezept}
+
+
+\begin{satz}{Cayley-Hamilton}
+    Sei $V$ ein endlich dimensionaler $K$-Vektorraum, $F \in \End(V)$ und $P_F$ das charakteristische Polynom von $F$. Dann gilt $P_F(F) = 0 \in \End(V)$ 
+\end{satz}
+
+
+\begin{definition}{Minimalpolynom}
+    Das Minimalpolynom von einem $F \in \End(V), \dim V = n < \infty$ ist das eindeutig bestimmte (kleinste) Polynom $M_F \in K[t]$ sodass $M_F(F) = 0 \in \End(V)$ und gilt
+    \begin{align*}
+        \forall g \in K[t] \text{ mit } g(F) = 0 \implies \deg(M_F) \leq \deg(g)
+    \end{align*}
+    Es gilt 
+    \begin{enumerate}[{(}i{)}]
+        \item   $M_F | P_F$
+        \item   $P_F  | M_F^n$
+    \end{enumerate}
+\end{definition}
+
+Ist das charakteristische/minimale Polyom $P_A(t) = \sum_{i = 0}^{n}a_i t^i$, so ist für ein invertierbares $A \in GL(n,K)$
+\begin{align*}
+    0 = \sum_{i = 0}^{n}a_i A^{i} =  a_0 A^{-1} + \sum_{i = 1}^{n} a_i A^{i-1}
+\end{align*}
+Da $a_0 = \det(A) \neq 0$ gilt
+\begin{align*}
+    A^{-1} = - \sum_{i = 1}^{n} \frac{a_i}{a_0}A^{i-1} \quad \text{qund} \quad  A^n = -\sum_{i = 0}^{n-1} a_i A^i
+\end{align*}
+
+\begin{definition}{Ideal}
+    Sei $R$ ein Ring. Ein \textbf{Ideal} $I \subseteq R$ ist eine Teilmenge, sodass
+    \begin{enumerate}
+        \item   $p,q \in I \implies p+q, -p \in I$
+        \item   $\forall p \in I, r \in R: r \cdot p \in I$     
+    \end{enumerate}
+    Die Menge $I_F = \{p \in K[t] \big\vert p(F) = 0 \in \End(V)\}$ ist ein Ideal und es wird erzeugt von $M_F$, d.h. $I_F = \{q \cdot M_F \big\vert q \in K[t]\}$
+\end{definition}
+
+\section{Jordan-Normalform}
+
+\begin{definition}{Nilpotente Endmorphismen}
+    Man nennt $F \in \End(V)$ \textbf{nilpotent}, falls es ein $1 \leq d \leq n$ gibt, sodass $F^d = 0$
+\end{definition}
+Äquivalent dazu sind
+\begin{enumerate}
+    \item	Das charakteristische Polynom ist $P_F(t) = (-t)^n$
+    \item   Es gibt eine Basis $\mathcal{B}$ von $V$, sodass $\mathcal{M}_{\mathcal{B}}(F)$ eine \underline{strikte} obere Dreiecksmatrix ist.
+\end{enumerate}
+
+\begin{definition}{Hauptraum}
+    Sei $F \in \End(V), \dim V = n < \infty$ sodass das charakteristische Polynom in Linearfaktoren zerfällt: $P_F(t) = \pm(t- \lambda_1)^{r_1} \dots (t- \lambda_k)^{r_k}$
+    Der \textbf{Hauptraum} zum Eigenwert $\lambda$ von $F$ ist
+    \begin{align*}
+        V_i = \Hau(F;\lambda_i) := \Ker\ (F - \lambda_i \cdot \id_V)^r_i
+    \end{align*}
+\end{definition}
+
+
+\begin{lemma}{Fitting}
+    Sei $G \in \End(V), \dim V = n < \infty$ und 
+    \begin{align*}
+        d: = \min\{l \in \N \big\vert \Ker G^l = \Ker G^{l+1} = \}
+    \end{align*}
+    Dann gilt
+    \begin{enumerate}
+        \item   $d = \min \{l \in \N \big\vert \Image G^l = \Image G^{l+1}\}$
+        \item   $\Ker G^{d+i} = \Ker G^d$ und $\Image G^{d+i} = \Image G^d, \forall i \in \N$
+        \item   $U := \Ker G^d$ und $W := \Image G^d$ sind $G$-invariante Untervektorräume.
+        \item   $(G|_{U})^d = 0$. und $G_W$ ist ein Isomorphismus.
+        \item   $M_{G|_{U}} = t^d$
+        \item   $V = U \oplus W$ und $\dim U = r \geq d, \dim W = n - r$ mit $r = \mu(P_G,0)$
+    \end{enumerate}
+    Insbesondere gibt es eine Basis $\mathcal{B}$ von $V$, sodass
+    \begin{align*}
+        \mathcal{M}_{\mathcal{G}} = \begin{pmatrix}
+            N & 0\\
+            0 & C
+        \end{pmatrix} \quad \text{mit} \quad N^d = 0 \quad \text{und} \quad C \in GL(n-r,K)
+    \end{align*}
+\end{lemma}
+
+
+\begin{nosatz}{Satz über die Hauptraumzerlegung}
+    Sei $F \in \End(V)$ und $P_F(t) = \pm (t - \lambda_1)^{r_1} (t - \lambda_2)^{r_2} \dots (t - \lambda_k)^{r_k}$ mit den $\lambda_{1}, \ldots, \lambda_{k}$ paarweise verschiedenen Eigenwerten von $F$. Sei $V_i = \Hau(F;\lambda_i)$. Dann gilt
+    \begin{enumerate}
+        \item   $V_i$ ist $F$-invariant, $\dim V_i = r_i$ und $F|_{V_i}$ hat char. Polynom $(t - \lambda_i)^{r_i}$
+        \item   $V = V_1 \oplus \ldots \oplus V_k$
+        \item   $F$ lässt sich eindeutig zerlegen: $F = F_D + F_N$ mit 
+        \begin{itemize}
+            \item   $F_D$ ist diagonalisierbar
+            \item   $F_N$ ist nilpotent
+            \item   $F_D \circ F_N = F_N \circ F_D$        
+            \item   $F_D$ und $F_n$ sind Linearkombinationen von $\id, F, F^2, \ldots$ 
+        \end{itemize}
+    \end{enumerate}
+\end{nosatz}
+
+
+Jede nilpotente Matrix $A$ kann in eine strikte obere Dreiecksmatrix transformiert werden. Wir definieren die \textbf{Jordan-Matrizen} der grösse $k$
+\begin{align*}
+    J_k = \begin{pmatrix}
+        0 & 1 & 0 & \dots & 0\\
+        0 & 0 & 1 & \dots & \vdots\\
+        \vdots & & \ddots & \ddots & 0\\
+        \vdots & & & \ddots & 1\\
+        0 & \dots & & & 0
+    \end{pmatrix}
+\end{align*}
+Und den Jordanblock zum Eigenwert $\lambda$ definiert durch $J_{\lambda,k} := J_k + \lambda \cdot E_k$.
+
+\begin{satz}{}
+    Sei $G$ ein nilpotenter Endomorphismus. Setze
+    \begin{align*}
+        d = \min \{l \in \N \big\vert G^l = 0\}
+    \end{align*}
+    Dann gibt es genau ein $s_d \in \N$ und eine Basis $\mathcal{B}$ sodass
+    \begin{align*}
+        \mathcal{M}_{\mathcal{B}}(g) = \begin{pmatrix}
+            {J_d}_{\ddots_{ J_d}}\\
+            & {J_{d-1}}_{\ddots_{J_{d-1}}}\\
+            & & \ddots \\
+            & & & {J_1}_{\ddots_{J_1}}
+        \end{pmatrix}
+    \end{align*}
+\end{satz}
+
+Es gilt $\dim V = n = \sum_{i = 1}^{d} d \cdot s_d$ und
+\begin{align*}
+    \underbrace{s_l(\lambda)}_{\text{\# J-Blöcke d. Grösse $l$ zum EW $\lambda$}} &= \underbrace{(\dim\Ker(A - \lambda E_n)^l - \dim \Ker(A - \lambda E_n)^{l-1})}_{\text{\# J-Blöcke d. Grösse mind. $l$}} - \underbrace{(\dim \Ker (A - \lambda E_n)^{l+1} - \dim \Ker(A - \lambda E_n)^l)}_{\text{\# J-Blöcke d. Grösse mind. $l+1$}}\\
+    &=  2 \dim \Ker (A - \lambda E_n)^l - \dim \Ker (A - \lambda E_n)^{l-1} - \dim \Ker (A - \lambda E_n)^{l+1}
+\end{align*}
+
+Sei $d_{i}$ die grösse des grösste Jordan-Blockes.  Dann ist das Minimalpolynom gegeben durch
+\begin{align*}
+    M_F(t) = (t - \lambda_1)^{d_1} \dots (t - \lambda_k)^{d_k}
+\end{align*}
+\begin{align*}
+    A \& B \text{ sind ähnlich } \Leftrightarrow J_A = J_B \text{ bis auf Vertauschen}
+\end{align*}
+
+\section{Relle Jordan-Normalform}
+In $\R$ zerfällt jedes Polynom in Lineare und Quadratische Faktoren
+\begin{align*}
+    P_F(t) = (t-\lambda_1)^{r_1} \dots (t - \lambda_k)^{r_k} g_1^{q_1} \dots g_m^{q_m}
+\end{align*}
+wobei $g_j = (t - a_j)^2 + b_j^2$ mit $z_j = a_j + i b_j$ und $\overline{z_j}$ den komplexen Nullstellen von $g_j$
+
+\begin{align*}
+    A_j = \begin{pmatrix}
+        a_j & b_j\\
+        -b_j & a_j
+    \end{pmatrix}, \quad J_r(A) = \begin{pmatrix}
+        A & E_2 & 0\\
+        & \ddots & \ddots & \\
+        & & & E_2\\
+        0 & & & A
+    \end{pmatrix}
+\end{align*}
+\begin{align*}
+    \Hau(F;g_j) = \Ker(g_j(F)^{q_j})
+\end{align*}
+
+\begin{satz}{Reelle Jordan-Normalform}
+    Sei $F \in \End(V)$ und $P_F(t) = (t-\lambda_1)^{r_1} \dots (t - \lambda_k)^{r_k} g_1^{q_1} \dots g_m^{q_m}$
+    Dann gibt es eine Basis $\mathcal{B}$ von $V$ sodass
+    die Abbildungsmatrix folgende Form hat:
+    Für die Anzahl Jordanblöcke für Eigenwerte gilt die gleiche Formel
+    \begin{align*}
+        s_{l} = 2a_l - a_{l-1} - a_{l+1}, \quad 
+        s_{jr}' = \dim \Ker(g_j(F)^{r} - \frac{1}{2} \left(
+            \dim \Ker (g_j(F)^{r-1}) + \dim \Ker (g_j(F)^{r+1})
+        \right)
+    \end{align*}
+\end{satz}
+
+\textbf{Beispiel}: \quad $B$, sodass $P_B(t) = (t^2 + 1)^2 =: g(t)^2$. Dann ist mit $A = \begin{pmatrix}
+    0 & 1\\
+    -1 & 0
+\end{pmatrix}$ die Jordanform entweder
+\begin{align*}
+    J_B = \begin{pmatrix}
+        A & 0\\
+        0 & A
+    \end{pmatrix} \quad \text{oder} \quad J_B = \begin{pmatrix}
+        A & E_2\\
+        0 & A
+    \end{pmatrix}
+\end{align*}
+berechne mit $g(A) = A^2 + E_2$ dann $\dim \Ker (g(A)), \dim \Ker(g(A)^2)$ um $s_{1,1}$ bzw. $s_{1,2}$ zu finden.
+
+\textbf{Beispiel}: \quad $P_B(t) = -(t-3)(t^2 - 2t + 2) \implies g(t) = (t-1)^2 + 1$ mit Eigenwerten $3, 1+i, 1-i$. Finde ein $w \in \Eig(B;1+i)$. Und setze $v_1 = Re(w), v_2 = Im(w)$ für die Basis bzw. in die Transformationsmatrix.
+
+
+

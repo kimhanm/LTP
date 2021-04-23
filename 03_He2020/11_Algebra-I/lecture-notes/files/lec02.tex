@@ -1,0 +1,206 @@
+\section{Commutative Rings}
+\subsection{Rings}
+
+\begin{definition}[]
+	A \textbf{Ring} ist a set $R$ endowmed with elements $0 \in R, 1 \in R$ and three maps
+	\begin{align*}
+		+: R \times R \to R, \quad -: R \to R, \quad \cdot: R \to R
+	\end{align*}
+	such that the following axioms hold:
+	\begin{itemize}
+					\item (R,+) is an \textbf{abelian Group} with neutral element $0 \in R$ and inverse operation $-$, i.e such that for all $a,b,c \in R$:
+					\begin{itemize}
+									\item $(a + b) + c) = a + (b + c),$ 
+									\item $0 + a = a$
+									\item $(-a) + a = 0$
+									\item $a + b = b + a$
+					\end{itemize}
+	\item Distributivity $(a + b) \cdot c = a \cdot  c + b \cdot c$, and $a \cdot (b + c) = a \cdot b + a \cdot c$	
+	\item Associativity : $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+\end{itemize}
+Additionally, if the multiplication is commutative, we call $(R,+, \cdot, 0,1)$ a \textbf{commutative Ring}.
+
+\end{definition}
+
+Note the following:
+\begin{itemize}
+				\item Note that $0$ is uniquely determined by the axioms ad that the additive inverse operation $-$ is well defined.
+				\item $0 \neq 1$ is \emph{not} part of the definition. 
+				\item $0 \cdot  a = 0, \forall a \in R$. Proof: $0 \cdot a = (0 + 0) \cdot  a = 0 \cdot a + 0 \cdot  a \implies 0 = 0 \cdot  a$
+\end{itemize}
+
+
+We will use the convention, where we omit parenthesis for addition and multiplication in series and we will do (``Punkt vor Strich''). \\
+
+
+Notation: For any Ring we will write for $n \in \N$ and $a \in R$ recursively:
+\begin{align*}
+				0_{\Z} \cdot a := 0, \quad 1_{\Z} \cdot a := a, (n+1) \cdot a := n \cdot a + a, (-n) \cdot a = -(n \cdot a) 
+\end{align*}
+In essence, we just contructed a mapping
+\begin{align*}
+				\Z \times R \to R, \quad (n,a) \mapsto n \cdot a
+\end{align*}
+This mapping is also distributive.
+
+Further, we will also define the natural powers for elements $a$ in the ring as:
+\begin{align*}
+	a^0 := 1, a^1 := a, a^{n+1} := a^n \cdot a
+\end{align*}
+For commutative rings we then have the properties
+\begin{align*}
+				a^{m+n} = a^m \cdot a^n, {(a^m)}^n = a^{m \cdot n}
+\end{align*}
+
+
+\begin{definition}[]
+	Let $R,S$ be Rings and let $f: R \to S$ a map.\\
+	We say that $f$ is a \textbf{Ring homomorphism}, if
+	\begin{itemize}
+					\item $f(1_R) = 1_S$
+					\item $f(a+b) = f(a) + f(b)$
+					\item $f(a \cdot b) = f(a) \cdot f(b)$
+	\end{itemize}
+Further, if $f$ is invertible, we call $f$ a \textbf{Ring isomorphism}
+\end{definition}
+
+\begin{itemize}
+				\item Note that $f(0_R) = 0_S$, since $f(0) = f(0) + f(0) \implies 0 = f(0)$
+				\item $f(-a) = -f(a)$ for all $a \in R$
+\end{itemize}
+
+
+
+\begin{definition}[]
+	Let $R$ be a Ring and $S \subseteq R$ a Ring aswell. We say that $S$ is a \textbf{Subring} of $R$ if the inclusion mapping $\iota: S \to R$ is a Ring homomorphism.
+\end{definition}
+
+
+Examples:
+\begin{itemize}
+				\item Since we didn't use the axiom that $0 \neq 1$, we can construct the trivial Ring $R = \{0\}$, where $0 = 1$.
+				\item $\Z \subseteq \Q \subseteq \R \subseteq \Q$ are subrings each.
+				\item	Let $V$ be a vector space. Then the \textbf{Endomorphism ring} 
+				\begin{align*}
+								\text{End}(V) := \{f: V \to V \text{linear}\}
+				\end{align*}
+				is a Ring, where addition and is defined element wise and multiplication is composition.
+\item $\text{Mat}_{m,n}(\Q)$, or $\R, \C, \Z$ is a Ring with matrix addition and matrix multiplication.
+\item Let $m \geq 1$. Then $\Z_m = \Z_{/\Z m}$ is a Ring. We wil usually denote the equivalence clases $[a]$ with underlines $\underline{a}$. The addition and multiplication is indeed well defined:
+				\begin{align*}
+					\underline{a} + \underline{b}  := \underline{a + b}, \underline{a}  \cdot  \underline{b} := \underline{a \cdot  b} 
+				\end{align*}
+\item The adjoint Rings $\Z[i] = \{a + bi: a,b \in \Z\} \subseteq \C$ or $\Z[\sqrt{2}] = \{a + b \sqrt{2}: a,b \in \Z\} \subseteq \R$ are rings.
+				\item Let $X$ be a set and define	$\Z^X := \{f: X \to \Z\}$
+					with element wise operations. This is a commutative Ring.
+	\item The function space $C([0,1]) = \{f: [0,1] \to \C \text{continuous}\}$ is a commutative Ring. 
+\end{itemize}
+
+
+Some examples of Ring homomorphisms:
+\begin{itemize}
+				\item The following is \emph{not} a Ring homomorphism $f: \{0\} \to \Z, f(0) = 0$, since $0_R = 1_R$, but $f(1_R) \neq 1$
+				\item On the other hand, $R \to \{0\}, a \mapsto 0$ is a Ring homomorphism and is uniquely determined.
+				\item The mapping $\Z \to R, n \mapsto n \cdot 1_R$ is also a Ring homomorphism and is uniquely determined.
+				\item $\Z \to  \Q \to \R \to \C$ as described earlier are Ring homomorphisms, as the are Subrings of eachother.
+				\item $\R \to \text{Mat}_{n,n}(\R) t \mapsto t \cdot E_n$ is a Ring homomorphism.
+				\item The mapping $C([0,1]) \to \C, f \mapsto f(x)$, some $x_0 \in \C$, is a ring homomorphism.
+				\item $\Z \to \Z_m, a \mapsto \underline{a}$ is again a ring homomorphism.
+				\item $\text{mat}_{m,n}(\C) \to \text{End}(\C^n), A \mapsto \left(x \in \C^n \mapsto Ax\right)$ is a Ring isomorphism.
+\end{itemize}
+
+
+
+\begin{lemma}[]
+	Let $R$ be a ring and $a,b \in R$ such that $a \cdot  b = b \cdot  a$.. Then for any $n \in \N$ we have the well known Binomial formula
+	\begin{align*}
+					(a + b)^n = \sum{k = 0}^{n} \binom{n}{k} a^k b^{n-k}
+	\end{align*}
+\end{lemma}
+Further, for $n = 2$. If the binomial formula holds, this also implies that $ab = ba$
+
+
+
+
+\subsection{Unit, Divisibility, Quotientfield}
+This corresponds to pages 34ff.\\
+
+In $\Z_{15}$ we have $\underline{3} \cdot \underline{5}  = \underline{15}  = \underline{0}$ but $ \underline{3}  \neq 0 \neq \underline{5}$\\
+
+\begin{definition}[]
+	Let $R$ be a Ring, An element $a \in R\setminus \{0\}$ is called a \textbf{zero divisor} if there exists a $b \in R \{0\}$ such that $ab = 0$.
+\end{definition}
+
+
+
+
+\begin{definition}[]
+	A commutative Ring is called an \textbf{integral domain}, if $0 \neq 1$ and the following holds
+	\begin{align*}
+		ab = ac \land a \neq 0 \implies b = c
+	\end{align*}
+\end{definition}
+
+The Ring $C([0,1])$ is not an integral domain.\\
+When is $\Z_m$ an integral domain? It is one if and only if $m$ is prime.
+
+\begin{lemma}[]
+	Let R be a commutative Ring with $0 \neq 1$. Then $R$ is an integral domain if and only if $R$ has no zero divisors.
+\end{lemma}
+Proof: If $R$ is an integral domain and $a \in \R \setminus \{0\}$ and there exists a $b \in R$ such that $ab = 0$. Then $ab = a \cdot 0 \implies b = 0$. So a is not a zero divisor.\\
+If on the converse $R$ has no zero divisor, and $a,b,c \in R, a \neq 0$ such that $ab = ac \neq 0$. which implies $a(b-c) = 0 \implies b-c = 0 \implies b = c$.
+
+
+
+\begin{definition}[]
+				Let $R$ be a commutative Ring and $a,b \in R$, we say $a$ \textbf{divides} $b$ and we write $a | b$ (in R), if there exists a $c \in R$ such that $b = ac$.
+\end{definition}
+
+\begin{definition}[]
+	We  call $a \in R$ a unit if $a|1$ and we write 
+	\begin{align*}
+		\R^\times := \{a \in R: a|1\}
+	\end{align*}
+\end{definition}
+Note that $\R^\times$ is a group under multiplication. 
+
+
+
+Examples:
+\begin{itemize}
+				\item $\C^\times = \C \setminus\{0\}$
+	\item $\Z^\times = \{\pm 1\}$
+	\item ${\Z[i]}^\times = \{1,-1,i,-i\}$
+	\item $\Z[\sqrt{2}]^\times = ?$
+\end{itemize}
+
+
+
+\begin{definition}[Field]
+	A \textbf{Field} is a commuative Ring $K$ with $0 \neq 1$ and such that any element $a \neq 0 \in K$ has a multiplicative inverse
+\end{definition}
+
+
+\begin{lemma}[]
+	A field is an integral domain
+\end{lemma}
+Let $a \neq 0$ and $b,c \in K$. Then $ab = ac \implies a^{-1}ab = a^{-1}ac \implies b = c$
+
+
+\begin{proposition}[]
+	Let $m \geq 1 \in \N$. Then $\Z_m$ is a field if and only if $m$ is prime.
+\end{proposition}
+Proof: If $m = 1$, then $\Z_1 = \{ \underline{0} \}$ is not a field.\\
+If $m = ab$, then $ \underline{0}  = \underline{a}  \cdot  \underline{b} $. So $\Z_m$ is not a field.\\
+
+Not if $m$ is prime and $ \underline{a}  \neq \underline{0}$. Set $d = \text{lcd}(m,a)$. Per definition, $d$ divides $m$, but since $m$ is prime, either $d = 1$ or $d = m$. 
+If $d = m$, we would have $m | a$ which would imply $ \underline{a}  = \underline{0} \lightning$. 
+So since $d = 1$, we can use the previous lemma to show that there exist $k,l \in \Z$ such that
+\begin{align*}
+	1 = km + la \implies \underline{1}  = \underline{l}  \cdot  \underline{a} 
+\end{align*}
+Which means that $ \underline{a} \neq \underline{0} $ has a multiplicative inverse $ \underline{l} $.
+
+
+
+

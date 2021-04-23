@@ -1,0 +1,346 @@
+\subsubsection{The step potential}
+In this example, we wil look at a heaviside stepfunction
+\begin{align*}
+	V(x) = \left\{\begin{array}{ll}
+		V_0 & x \geq 0 \\
+		0 & x < 0
+	\end{array} \right.
+\end{align*}
+We again seperate space into two regions: Region I on the left and Region II on the right. And we consider a particle coming form th left.
+
+The general solution in Region $I$ will be of the form
+\begin{align*}
+	\Psi_E(x) = A_I e^{ikx} + B_Ie^{-ikx}
+\end{align*}
+which corresponds to two waves that are travelling from left to right ($A_Ie^{ikx}$) and one from travelling from right to left ($B_Ie^{-ikx}$).
+
+For Region II, the general solution is
+\begin{align*}
+	\Psi_E(x) = A_{II}e^{\sqrt{k_0^2 - k^{2}}x} + B_{II}e^{-\sqrt{k_0^{2} - k^{2}}x}
+\end{align*}
+, for 
+$k = \sqrt{\frac{2mE}{\hbar^{2}}}, k_0 = \sqrt{\frac{2mV_0}{\hbar^{2}}}$.
+
+\begin{itemize}
+	\item[$E > V_0$] In the case where the Energy is higher than the potential $V_0$, the exponent is complex, so region II can be described as
+	\begin{align*}
+		\Psi_E(x) = A_{II}e^{iqx} + B_{II}e^{-iqx}
+	\end{align*}
+	where $q = \sqrt{k^{2}-k_0^{2}}$ is real. Since the particale is coming from the left, we can set $B_{\text{II}}$ to be zero. The same cannot be said for $B_{\text{I}}$ as it might reflect off of the potential. 
+	
+	From the continuity of $\psi$ at $x = 0$ and its derivative, we obtain
+	\begin{align*}
+		A_{\text{I}} + B_{\text{I}} &= A_{\text{II}}\\
+		ik A_{\text{I}} - ik B_{\text{I}} & iq A_{\text{II}}
+	\end{align*}
+	which we can combine to get
+	\begin{align*}
+		A_{\text{II}} = \frac{2k}{k+q}A_{\text{I}} \quad \text{and} \quad B_{\text{I}} = \frac{k-q}{k+q} A_{\text{I}}
+	\end{align*}
+	Then we define reflection coefficients $r$ and $t$ as the ratios
+	\begin{align*}
+		\abs{r}^{2} &:= \abs{\frac{B_{\text{I}}}{A_{\text{I}}}}^{2} = \abs{\frac{k-q}{k+q}}^{2}\\
+		\abs{t}^{2} &:= \abs{\frac{A_{\text{II}}}{A_{\text{I}}}}^{2} = \abs{\frac{2k}{k+q}}^{2}
+	\end{align*}
+	Notice that $\abs{r}^{2} + \abs{t}^{2} = 1$. And even if the energy of the particle is higher than the step height, there is always going to be some reflection.
+
+\item[$E < V_0$] Since the exponent $K = \sqrt{k_0^{2} - k^{2}}$ is real, $A_{\text{II}}$ must be zero, or else our function is not normalizable.
+	The boundary conditions give
+	\begin{align*}
+		A_{\text{I}} + B_{\text{I}} &= B_{\text{II}}\\
+		ikA_{\text{i}} - ikB_{\text{I}} = -K B_{\text{II}}
+	\end{align*}
+	which give us the relations
+	\begin{align*}
+		B_{\text{I}} = -\frac{K + ik}{K - ik}A_{\text{I}} \quad \text{and} \quad B_{\text{II}} = - \frac{2ik}{K - ik}A
+	\end{align*}
+	notice that despite our particle having less energy than the potential, there is a non-zero probability of finding the particle at $x > 0$.
+\end{itemize}
+
+
+
+\subsection{Harmonic oscillator}
+
+One of the most important examples is when the potential is that of a harmonic oscillator.
+\begin{align*}
+	V(x) = \frac{1}{2}kx^{2} = \frac{1}{2}m \omega^{2} x^{2}
+\end{align*}
+for some \emph{resonance frequency} $\omega = \sqrt{\frac{k}{m}}$
+
+Notice that in this case, the Hamiltonian is quadratic in both position and momentum
+\begin{align*}
+	\hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2}m \omega^{2} \hat{x}^{2}
+\end{align*}
+What makes the harmonic oscillator nice is that in many other problems, the energy of the system can be described as a sum of two quadratic terms. For example in an electromagnetic field, we have
+\begin{align*}
+	\upvarepsilon = \frac{1}{2} \epsilon_0 \abs{\vec{E}}^{2} + \frac{1}{2 \mu_0}\abs{\vec{B}}^{2}
+\end{align*}
+
+Now we will introduce the dimensionless variables
+\begin{align*}
+	\hat{X} := \sqrt{\frac{m \omega}{\hbar}}\hat{x} \quad \text{and} \quad \hat{P} := \sqrt{\frac{1}{\hbar m \omega}} \hat{p}
+\end{align*}
+so we can re-write the Hamiltonian as
+\begin{align*}
+	\hat{H} = \frac{\hbar \omega}{2} \left(\hat{X}^{2} + \hat{P}^{2}\right)
+\end{align*}
+From this representation, it becomes clear that the Hamiltonian is just a sum of two quadratic terms.
+Also, the factor $\hbar \omega$ characterizes the energy scale, which we also have seen to be the energy of a photon with frequency $\omega$.
+
+We solve this by factoring the Hamiltonian. Since $\hat{X}$ and $\hat{P}$ we have to remember the extra terms colored in {\color{orange}orange}.
+
+\begin{align*}
+	\hat{H} &= \frac{\hbar \omega}{2}(\hat{X}^{2} + \hat{P}^{2})\\
+					&= \frac{\hbar \omega}{2}\left[
+						\left(\hat{X} - i \hat{P}\right) \left(\hat{X} + i \hat{P}\right) {\color{orange}-i (\hat{X} \hat{P} - \hat{P} \hat{X})}
+					\right]\\
+					&= \frac{\hbar \omega}{2}\left[
+						\hat{X}^{2} + i \hat{X}\hat{P} - i \hat{P} \hat{X} + \hat{P}^{2} {\color{orange}-i (\hat{X} \hat{P} - \hat{P} \hat{X})}
+					\right]
+\end{align*}
+
+If we think about the extra terms, we can show that
+\begin{align*}
+{\color{orange}-i (\hat{X} \hat{P} - \hat{P} \hat{X})} = -i [\hat{X}, \hat{P}] = - \underbrace{\frac{i}{\hbar}[\hat{x},\hat{p}]}_{i \hbar} = 1
+\end{align*}
+
+
+Using this we can define two new operators. $\hat{a}$ and $\hat{a}^{\dagger}$, where $\cdot^{\dagger}$ defines the hermition conjugate.
+\begin{empheq}[box=\bluebase]{align*}
+	\hat{a} := \frac{1}{\sqrt{2}}(\hat{X} + i \hat{P}) \quad \text{and} \quad \hat{a}^{\dagger} := \frac{1}{\sqrt{2}}(\hat{X} - i \hat{P})
+\end{empheq}
+
+From 
+$
+	[\hat{X}, \hat{P}] = i
+$
+we also find
+\begin{align*}
+	[\hat{a}, \hat{a}^{\dagger}] 
+=
+	\frac{1}{2} \left(
+			[\hat{X}, -i \hat{P}] 	
+		+
+			[i \hat{P}, \hat{X}]
+	\right)
+= 
+	1
+\end{align*} 
+Which allows us to write the hamiltonian in the following way
+\begin{empheq}[box=\bluebase]{align*}
+		\hat{H}
+	=
+	\hbar \omega \left(
+		\hat{a}^{\dagger} \hat{a} + \frac{1}{2}
+	\right)
+\end{empheq} 
+
+Suppose we had an Eigenstate $\ket{n}$ of the operator 
+$
+	\hat{a}^{\dagger}\hat{a}
+$
+, then $\ket{n}$ is also an eigenstate of the hamiltonian, since
+\begin{align*}
+		\hat{a}^{\dagger}\hat{a} \ket{n}
+	=
+		n \ket{n}
+\implies 
+		\hat{H} \ket{n}
+	=
+	\hbar \omega \left(
+		n + \frac{1}{2}
+	\right)
+	\ket{n} 	
+\end{align*}
+Using $[\hat{a}, \hat{a}^{\dagger}] = 1$ and applying the operator $\hat{a}$ to both sides we get
+\begin{align*}
+			\hat{a}\hat{a}^{\dagger}\hat{a} \ket{n}
+		=
+		(\hat{a}^{\dagger}\hat{a} + 1) \hat{a} \ket{n}	
+		&=
+		n \hat{a}  \ket{n}
+	\implies
+	\hat{a}^{\dagger}\hat{a} (\hat{a} \ket{n})
+		=
+		(n-1) \hat{a} \ket{n} 	 
+\end{align*}
+There are two was to satisfy this equation. Either trivially 
+\begin{align*}
+	\hat{a} \ket{n} = 0 \implies n = 0
+\end{align*}
+or $\hat{a} \ket{n}$ is up to a constant a normalized eigenstate of $\hat{a}^{\dagger} \hat{a}$ with eigenvalue $n-1$.
+We call this eigenstate $\ket{n-1}$ so we can write
+\begin{align*}
+	\ket{n-1} = C_{n-}\hat{a}\ket{n}
+\end{align*}
+And similarly, we can show that $\hat{a}^{\dagger} \ket{n}$ is another eigenstate of the operator $\hat{a}\hat{a}^{\dagger}$ with eigenvalue $n+1$. So we can write
+\begin{align*}
+	\ket{n+1} = C_{n+} \hat{a}^{\dagger} \ket{n}
+\end{align*}
+such that $\braket{n-1|n-1} = \braket{n+1|n+1} = 1$.
+
+This is really nice. If we were able to find an eigenstate of $\hat{a}^{\dagger}\hat{a}$, we are able to generate new eigenstates by applying the $\hat{a}$ and $\hat{a}^{\dagger}$ operators.
+And each time we do this, we get an eigenstate with energy higher/lower by $\hbar \omega$.
+
+But what happens if we keep appplying $\hat{a}$ to get lower and lower energies? The only way this can be stopped if we get the case where $n = 0$.And we can no longer get a new eigensate since $\hat{a} \ket{0} = \ket{0}$.
+
+This means that the allowed energy eigenvalues of the Hamiltonian can be quantized. Since the possible $n$ we found were the natural numbers, the energies of the Eigenstates $\ket{n}$ are
+\begin{align*}
+	E_n = \hbar \omega \left(
+		n + \frac{1}{2}
+	\right)
+	\quad \text{for} \quad n = 0, 1, 2, \ldots	
+\end{align*}
+We see that the energies are a set of discrete values, evenly spaced by $\hbar \omega$. 
+
+Now that we know the energies, we want to find out the spatial distribution $\psi_n(x) = \braket{x|0}$ of the eigenstates $\ket{n}$.
+
+Starting with $n = 0$, we call $\psi_0(x) = \braket{x|0}$ the \textbf{ground state}, since it has the lowest energy.
+Recall that $\hat{a} \ket{0} = 0$, which we can write in the position representation as
+\begin{align*}
+	\hat{a} = \frac{1}{\sqrt{2}}(\hat{X} + i \hat{P}) = \frac{1}{\sqrt{2 \hbar m \omega}} \left(
+		\hbar \frac{\del }{\del x} + m \omega x
+	\right)
+\end{align*}
+which gives the following condition for $\psi_0(x)$
+\begin{align*}
+	\frac{\del \psi_0(x)}{\del x} &= - \frac{m \omega}{\hbar} x \psi_0(x)\\
+	\int \frac{1}{\psi_0(x)}d \psi_0(x) &= - \frac{m \omega}{\hbar} \int x dx\\
+	\implies \psi_0(x) = A e^{- \frac{m \omega}{2 \hbar}x^2}
+\end{align*}
+for some normalisation constant $A$, which can be found using the normalisation condition
+\begin{align*}
+	\abs{A}^{2} \int_{-\infty}^{\infty} e^{-\frac{m \omega}{\hbar}x^{2}}dx = \abs{A}^2 \sqrt{\frac{\pi \hbar}{m \omega}} \stackrel{!}{=} 1
+\end{align*}
+so the ground state is given by
+\begin{align*}
+	\psi_0(x) = \left(
+		\frac{
+			\pi \hbar
+		}{
+			m \omega
+		} 
+	\right)^{\frac{1}{4}}
+	e^{
+		-\frac{m \omega}{2 \hbar}x^{2}
+	}
+\end{align*}
+And we can find the other wavefunctions with higher energy states by repeatedly applying the $\hat{a}^{\dagger}$ operator. 
+To do this, we first need to find the normalisazion constant $C_{n+}$ such that $\braket{n+1|n+1} = 1$.
+
+We use that an operator $\hat{Q}$ and its hermitian conjugate $\hat{Q}^{\dagger}$ are adjoint pairs that satisfy $\braket{f|\hat{Q}g} = \braket{\hat{Q}^{\dagger}f|g}$:
+
+\begin{align*}
+	1 = \braket{n+1|n+1} &= \braket{C_{n+}\hat{a}^{\dagger}n|C_{n+}\hat{a}^{\dagger}|n}\\
+											 &= \braket{n|\overline{C_{n+}}C_{n+}\hat{a}\hat{a}^{\dagger} |n}\\
+											 &= \abs{C_{n+}}^{2} \braket{n|\hat{a}\hat{a}^{\dagger}|n}\\
+											 &= \abs{C_{n+}}^{2} \braket{n|(\hat{a}^{\dagger}\hat{a}+1)|n}\\
+											 &= \abs{C_{n+}}^{2}(n+1) \braket{n|n} = \abs{C_{n+}}^{2} (n+1)
+\end{align*}
+Which gives us the following:
+\begin{align*}
+	C_{n+} = \frac{1}{\sqrt{(n+1)}}, \quad \ket{n+1} = \frac{\hat{a}^{\dagger} }{\sqrt{n+1}} \ket{n}
+\end{align*}
+or similarly for $\hat{a}$:
+\begin{align*}
+	C_{n-} = \frac{1}{\sqrt{n}}, \quad \ket{n-1} = \frac{\hat{a} }{\sqrt{n}}\ket{n}
+\end{align*}
+
+So if we have $\ket{0}$, we can find the other eigenstates with
+\begin{align*}
+	\ket{n} = \frac{\left(
+			\hat{a}^{\dagger}
+	\right)
+	}{\sqrt{n!}} \ket{0}
+\end{align*}
+Which in our case gives us the result
+\begin{align*}
+	\psi_n(X) = \left(
+		\frac{m \omega}{\pi \hbar}
+	\right)^{\frac{1}{4}}
+	\frac{1}{\sqrt{2^{n}n!}}H_n(x) e^{-\frac{1}{2}X^2}
+\end{align*}
+where $X = \sqrt{\frac{m \omega}{\hbar}}x$ and $H_n$ is the $n$-th \textbf{Hermite polynomial}.
+
+\subsection{Expectation values of the harmonic oscillator}
+
+We saw that we can write the Hamiltonian in terms of the ``ladder operators'' $\hat{a}$ and $\hat{a}^{\dagger}$. 
+From this, we can also write the position and momentum operators $\hat{x}$ and $\hat{p}$ as follows
+
+\begin{empheq}[box=\bluebase]{align*}
+	\hat{x} = \sqrt{\frac{\hbar}{2 m \omega}} (\hat{a}^{\dagger} + \hat{a}) \quad \text{and} \quad \hat{p} = i \sqrt{\frac{\hbar m \omega}{2}}(\hat{a}^{\dagger} - \hat{a})
+\end{empheq}
+
+whose expectation values are
+\begin{align*}
+		\braket{n|\hat{x}|n}
+	&=
+	\sqrt{\frac{\hbar}{2m \omega}} \left(
+		\braket{n|\hat{a}^{\dagger}|n} + \braket{n|\hat{a}|n}
+	\right)
+	&=
+	\sqrt{\frac{\hbar}{2m \omega}} \left(
+		\sqrt{n+1}\braket{n|n+1} + \sqrt{n} \braket{n|n-1}
+	\right)
+	&= 0
+\end{align*}
+where we used the fact that the eigenstates of hermitian matrices are orthogonal. Similarly, we can show that
+\begin{align*}
+	\braket{n|\hat{p}|n} = 0	
+\end{align*}
+
+Now that we know the expectation value, what about the uncertainty in $x$ and $p$? We have
+\begin{align*}
+		\hat{x}^2 
+	&= 
+	\frac{\hbar}{2m \omega} \left(
+			\hat{a}^{\dagger} 
+		+ 
+			\hat{a}^{d}\hat{a} 
+		+ 
+			\underbrace{
+				\hat{a}\hat{a}^{\dagger}
+			}_{2 \hat{a}^{\dagger}\hat{a} + 1} 
+		+ 
+			\hat{a}\hat{a}
+	\right)
+	\\
+		\implies \braket{h|\hat{x}^2|n} 
+	&= 
+	\frac{\hbar}{2 m \omega}(2n +1)
+\end{align*}
+and similarly we can show that
+\begin{align*}
+	\braket{n|\hat{p}^{2}|n} = \frac{\hbar m \omega}{2} (2n + 1)
+\end{align*}
+From this we can characterize the standard deviation, or spread of the wavefunction in both position and momentum space:
+\begin{align*}
+	\Delta x = \sqrt{\braket{\hat{x}^2} - \braket{\hat{x}}^2} &= \sqrt{\frac{\hbar}{2m \omega}}\sqrt{2n + 1}\\
+	\Delta p = \sqrt{\braket{\hat{p}^2} - \braket{\hat{p}}^2}
+	&= \sqrt{\frac{\hbar m \omega}{2}}\sqrt{2n + 1}
+\end{align*}
+Notice that the ground state $\ket{0}$ has non-zero energy and non-zero uncertainty in position and momentum. We call them \textbf{zero-point energy} and \textbf{zero-point position/momentum}.
+
+Interpreting this in the context of photons, this says that vacuum always has fluctuations on the field. We also see that the Heisenberg uncertainty is an equality for the ground state and an inequality for the excited states, since 
+\begin{align*}
+	\Delta x \Delta p = \frac{\hbar}{2}	(2n + 1)	
+\end{align*}
+
+\subsection{Coherent states}
+
+In classical mechanics, the classical harmonic oscillator oscilllates harmonically, as expected. But how can we reconcile our findings with the classical expectation?
+
+If we have quantum states that exhibits a classical behaviour, we call them \textbf{coherent states}, which are superpositions of energy eigenstates.
+\begin{align*}
+	\ket{\alpha} = e^{-\frac{\abs{\alpha}^2}{2}} \sum_{n=0}^{\infty} \frac{\alpha^{n}}{\sqrt{n!}} \ket{n}
+\end{align*}
+, where $\alpha = \abs{\alpha}e^{i \phi}$ is a complex number containing the amplitude and phase of the different oscillations. We can show that the expectation value for the position oscillates over time:
+\begin{align*}
+	\braket{\alpha|\hat{x}|\alpha} &= \sqrt{\frac{\hbar}{2 m \omega}} \left(
+		\alpha e^{i \omega t} + \alpha^*e^{-i \omega t}
+	\right)
+																 &= \sqrt{\frac{2 \hbar}{m \omega}} \abs{\alpha} \cos(\omega t + \phi)		
+\end{align*}
+which also minimizes the Heisenberg uncertainty relation $(\Delta x \Delta p = \frac{\hbar}{2})$. 
+
+Another example is the light that a laser outputs, which can be well described by a coherent state.

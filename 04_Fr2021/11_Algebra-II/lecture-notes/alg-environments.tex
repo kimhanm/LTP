@@ -1,0 +1,97 @@
+% ==== Default Environments ====
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+% ==== Theorem ====
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}{Corollary}[thm]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}{Proposition}[thm]
+\newtheorem*{thm*}{Theorem}
+
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{note}[thm]{Note}
+\newtheorem{ex}[thm]{Example}
+
+% ==== Custom Environments ====
+
+\mdfsetup{
+  innertopmargin=0pt,
+  linewidth=2pt,
+  topline=true,
+  frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+%   == Counters ==
+
+\newenvironment{definition}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=orange!50]{\strut Definition #1};
+    },
+    linecolor=orange!50,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+\newenvironment{lemma}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=blue!30]{\strut Lemma #1};
+    },
+    linecolor=blue!30,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+\newenvironment{orangebox}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=orange!50]{\strut #1};
+    },
+    linecolor=orange!50,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+
+\newenvironment{lbluebox}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=blue!35]{\strut #1};
+    },
+    linecolor=blue!35,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+
+\newenvironment{bluebox}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=blue!50]{\strut #1};
+    },
+    linecolor=blue!50,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+
+
+\newenvironment{redbox}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=red!50]{\strut #1};
+    },
+    linecolor=red!50,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+

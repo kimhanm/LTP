@@ -1,0 +1,81 @@
+In the integral form over the closed surface $S$ of a cylinder with area $A$ and height $d$ we have
+\begin{align*}
+\int_S \vec{B} \cdot\hat{n}dA = 0
+\end{align*}
+As we reduce the height of the surcace: we get that
+\begin{align*}
+	d \to 0: \quad AB_{\bot1} - AB_{\bot 2} = 0 \implies B_{\bot 1} = B_{\bot 2}
+\end{align*}
+Similarly, we have $D_{\bot1} = D_{\bot2}$. In the Integral version of the fourth macroscopic maxwell equation, we have
+\begin{align*}
+\int_C \vec{H} \cdot d \vec{l} = \int_S \frac{\del D}{\del t} \cdot \hat{n} dA
+\end{align*}
+, where $C$ is the boundary of the surface and $S$ is its area with height $d$ and Length $L$. So as the height goes to zero, only the parallel components remain and we get
+\begin{align*}
+d \to 0: L H_{\parallel 1} - LH_{\parallel2} \implies H_{\parallel1} = H_{\parallel2} 
+\end{align*}
+And similarly, $E_{\parallel1} = E_{\parallel2}$.\\
+(Figure 1.40, 1.41) Steve
+
+\subsubsection{Fresnel equations}
+
+So now we can find out the amplitudes of the transmitting and reflecting waves bouncing off an interface. In the case of the p-polariszed light ($E$-ield is pointing in the plane of incidence) we have
+\begin{align*}
+E_i \cos \theta_i - E_r \theta_i = E_t \cos \theta_t
+\end{align*}
+where $E_i$ is the ampluditde of the \emph{incoming}, $E_r$ of the \emph{reflected} and $E_t$ of the \emph{transmitted} field.\\
+From the relation
+\begin{align*}
+	\vec{H} = \frac{\vec{B}}{\mu_0} = \frac{n}{\mu_0 \omega} \vec{k} \times \vec{E}_0
+\end{align*} 
+and the boundary condition,  we obtain 
+\begin{align*}
+n_1E_i + n_1E_r = n_2E_t
+\end{align*}
+Combining the newly found equations, we obtain the \textbf{Fresnel equations for $p$-polarisation}:
+\begin{empheq}[box=\bluebase]{align*}
+	t_p := \frac{E_t}{E_i} = \frac{2n_1 \cos \theta_i}{n_2 \cos \theta_i + n_1 \cos \theta_t}\\[1em]
+r_p := \frac{E_r}{E_i} = \frac{n_2 \cos \theta_i - n_1 \cos \theta_t}{n_2 \cos \theta_i + n_1 \cos \theta_t}
+\end{empheq}
+From Figure 1.37 Steve, we see that the $x$ component of the reflecting $E$ field gets a inus sign,
+For the $s$-polarisation, where the Electric field is pointing parallel to the surface (which we will derive as homework exercise) we have
+\begin{empheq}[box=\bluebase]{align*}
+	t_s := \frac{E_t}{E_i} = \frac{2n_1 \cos \theta_i}{n_1 \cos \theta_i + n_2 \cos \theta_t}\\[1em]
+r_s := \frac{E_r}{E_i} = \frac{n_1 \cos \theta_i - n_2 \cos \theta_t}{n_1 \cos \theta_i + n_2 \cos \theta_t}
+\end{empheq}
+where the indices of $n_1$ and $n_2$ are switched compared to the p-polarisation. Similar as in the $p$-polarisation case, we see that the $x$-component of the reflected $B$-field gets the minus sign.\\
+
+From writing
+\begin{align*}
+	A_i e^{i(\vec{k}_i \cdot \vec{r} - \omega_i t)} + A_R e^{i(\vec{k}_r \cdot \vec{r} - \omega_r t)} = A_t e^{i(\vec{k}_t \cdot \vec{r} - \omega_t t)}
+\end{align*}
+we obtain Snell's law:
+\begin{align*}
+	n_1 k_0 \sin \theta_i = n_1 k_0 \sin \theta_r = n_2 k_0 \sin \theta_t \\
+	\implies \theta_i = \theta_r \quad \text{and} \quad n_q \sin \theta_1 = n_2 \sin \theta_t
+\end{align*}
+If we want to actually solve some problems, we can use the following:
+If we have any arbitrary polarisation, it can be written as a superposition of $p$ and $s$ polarizations. 
+And in order to relate $\theta_i$ and $\theta_t$, we can apply Snell's law.\\
+
+\subsubsection{Brewster's Angle}
+Starting from the Fresnel we can use some ``trigonometric tricks'' to get
+\begin{align*}
+	r_p &= \frac{n_2 \cos \theta_i - n_1 \cos \theta_t}{n_2 \cos \theta_i + n_1 \cos \theta_t}\\
+			&= \frac{\sin \theta_1 \cos \theta_i - \sin \theta_t \cos \theta_t}{\sin \theta_i + \sin \theta_t \cos \theta_t}\\
+			&= \frac{\sin(2 \theta_i) - \sin(2 \theta_t)}{\sin(2 \theta_i) + \sin(2 \theta_t)}\\
+			&= \frac{\tan(\theta_i -  \theta_t)}{\tan(\theta_i + \theta_t)}
+\end{align*}
+Notice that the denominator diverges for $\theta_1 + \theta_t = \frac{\pi}{2}$. In that case we have $r_p = 0$. The special angle $\theta_i$ that causes this is called \textbf{Brewster's angle} $\theta_B$. Using Snells law again we have
+\begin{align*}
+	\theta_B = \frac{\pi}{2} - \theta_t \implies \cos\theta_B = \sin(\theta_t) = \frac{n_1}{n_2} \sin \theta_B\\
+	\implies \theta_B = \arctan(n_2/n_1)
+\end{align*}
+From Figure 1.42 Steve, we can see that for $n_2:$ index of refractin of Water, the Brewster angle is at abou $55^{\circ}$, where $p$-polarised Light is not reflected. We also see that the reflected amplitude is always higher for $s$ polarisation than for $p$-polarisation.
+
+\begin{demo}[]
+We have a laser going through two linear polarizers we can rotate to change the relative angles of the polarizers. The light is then pointed to a photodetecter and the intensity is plotted on a screen.\\
+If both are aligned in the same angle, we see that the intensity is high. As we rotate one polarizer, the intensity decreases until we hit the 90 dgree angle, at which we measure no light.\\
+We also see that for angles bigger than 90 degrees, we obtain a periodic pattern, with peak intensity reached every 180 degrees.
+\end{demo}
+

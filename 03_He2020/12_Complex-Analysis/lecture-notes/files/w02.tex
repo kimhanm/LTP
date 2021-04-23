@@ -1,0 +1,188 @@
+From the other calculation rules of the complex conjugate, we will also have that $ \overline{ \left(\frac{a}{b}\right)} = \frac{\overline{a}}{\overline{b}}$. Further, if we have $x = \frac{a}{b}$ it is clear that $\overline{a} = \overline{x} \overline{b}$.\\
+Moreover, we can generalize this for any rational function $p = \frac{p_1}{p_2}$ for $p_1, p_2$ polynomial.\\
+
+If we consider a complex polynomial
+\begin{align*}
+				p(z) = C_0 z^n + C_1z^{n-1} + \ldots + C_n 
+\end{align*}
+if $a$ is a root of $p$, then $\overline{a}$ is a root of
+\begin{align*}
+				\overline{p}(z) = \overline{C_0}z^n + \overline{C_1}z^{n-1} + \ldots + \overline{C_n}
+\end{align*}
+And if we only look at polynomials, with real coefficients, it means that the complex roots come in conjugate pairs.\\
+Next we will define \textbf{modulus} of a complex number $z$. For $z = \alpha + i \beta$ we have that
+\begin{align*}
+				z \overline{z} = \alpha^{2} + \beta^2 \in \R = \abs{z}^2
+\end{align*}
+The complex modulus has the following properties
+\begin{itemize}
+				\item $\abs{ab} = \abs{a}\abs{b}$
+				\item If $b \neq 0$, then $\abs{\frac{a}{b}} = \frac{\abs{a}}{\abs{b}}$
+				\item $\abs{a + b}^2 = \abs{a}^2 + \abs{b}^2 + 2 \text{Re}(a \overline{b})$
+\end{itemize}
+The proof follows from the commutativity of $a$ and $b$\\
+
+The properties above also give rise to the inequalities for the real and imaginary part
+\begin{align*}
+				- \abs{a} & \leq \text{Re}(a) &\leq \abs{a}\\
+				-\abs{a} &\leq \text{Im}(a) &\leq \abs{a}
+\end{align*}
+Aswell as the triangle inequality
+\begin{align*}
+				\abs{a + b}^2 \leq \abs{a}^2 + \abs{b}^2 + 2\abs{a \overline{b}} = \left(\abs{a} + \abs{b}\right)^{2} \implies \abs{a + b} \leq \abs{a} + \abs{b}
+\end{align*}
+Following some of the steps taken in Linear Algebra, we will get the \emph{Cauchy-Schwarz} inequality:
+\begin{align*}
+				\abs{\sum_{i = 1}^{n}a_ib_i}^2 \leq \left(\sum_{i = 1}^{n}\abs{a_i}^2\right) \left(\sum_{i = 1}^{n}\abs{b_i}^2\right)\\
+				\abs{\sum_{i = 1}^{n}a_i \overline{b_i}}^2 \leq \left(\sum_{i = 1}^{n}\abs{a_i}^2\right) \left(\sum_{i = 1}^{n}\abs{b_i}^2\right)
+\end{align*}
+Where the proof is more or less the same as for the real case.\\
+
+
+\subsection{Polar Representation}
+For many of the things we previously defined, we have some nice geometric intuition. If we visualize the complex numbers $\C$ as the complex plane, then addition will look like vector addition, the complex modulus will be the ``length'' of the vector. Conjugation is nothing but flipping the vector along the real axis etc.\\
+
+But one of our operations we defined doesn't have a straightfordward interpretation. If we look at the definition $(\alpha + i \beta) \cdot (\gamma + i \delta) := (\alpha \gamma - \beta \delta) + i(\alpha \delta + \beta \gamma)$ it is not necessarily clear what happens.\\
+
+If we take a look at the multiplicativity of the complex modulus, it is suggesting that instead of looking at the real and imaginary parts of the complex numbers, we should look at its complex modulus. Of course, that isn't enough to uniquely determine a complex number.\\
+When looking at all numbers with the same modulus, they form a circle. And in order to seperate them, we will look at their \emph{angle} along the real axis.\\
+
+From this we get another representation of the complex plane, namely the \textbf{Polar coordinates} of the complex numbers.\\
+If we know the modulus and the angle of $a$, we can get the real and imaginary parts by taking the cosine and sine of the angle to get
+\begin{align*}
+				a = r(\cos\phi + i \sin\phi), \quad \text{for} \quad r := \abs{a}, \phi := \arg(a)
+\end{align*}
+, we call $\phi(a)$ the \textbf{argument} of $a$. It should be noted that the argument is not unique. If we want to define a single-valued function $\arg: \C \to I \subseteq \R$, then have to restrict the argument inside for example the interval $(-\pi, \pi]$.\\
+
+Now with the new representation of the complex numbers, let's take a look at what muliplication does from this new angle.\\
+For $a_1 = r_1(\cos \phi_1 + i \sin \phi_1)$ and $a_2 = r_2(\cos \phi_2 + i \sin \phi_2)$, their product will be
+\begin{align*}
+				a_1a_2 = r_1 r_2 \left( \bigg(\underbrace{\cos\phi_1 \cos\phi_2 - \sin\phi_1 \sin \phi_2}_{= \cos(\phi_1 + \phi_2)} \bigg) + i \bigg(\underbrace{\cos\phi_1 \sin\phi_2 + \cos\phi_2 \sin\phi_1}_{= \sin(\phi_1 + \phi_2)}\bigg)\right)
+\end{align*}
+Where we used the trigonometric addition formulas. Here we can see that multiplication adds the arguments of the numbers and mutiplies their moduli. (i.e. $\arg(a_1a_2) = \arg(a_1) + \arg(a_2)$)\\
+One should be careful, that for $a = 0$, the modulus isn't well defined and that the argument will always work $\mod 2\pi$\\
+Next let's look at powers of $a$. We will see that for any $n \in \N$ we have
+\begin{align*}
+				a^n = r^n( \cos(n\phi) + i \sin(n\phi)), \quad a^{-1} = r^{-1} (\cos(-\phi) + i \sin(-\phi))
+\end{align*}
+The case for $n = -1$ allows the above to be true for $n \in \Z$. So what for $n \in \Q$? For $n = \frac{1}{m}$, this is the same as solving the equation $z^m = a$, which will have multiple solutions:
+\begin{align*}
+				z = \sqrt[m]{r} \left(\cos \left(\frac{\phi}{m} + \frac{2\pi k}{m}\right) + i \sin \left(\frac{\phi}{m} + \frac{2\pi k}{m}\right)\right), \quad k = 0, \ldots, n-1
+\end{align*}
+
+In the case where $a = 1$, we call these solutions the \textbf{$n$ roots of unity}:
+\begin{align*}
+				z = \cos \left(\frac{2 \pi k}{m}\right) + i \sin \left(\frac{2 \pi k}{m}\right), \quad k = 0, \ldots, n-1
+\end{align*}
+If we were to plot these points on the complex plane, we would see that form the regular $n$-sided polygon centered around the origin with a vertex at $1$.\\
+
+
+
+\subsection{Riemann Sphere}
+The Idea is to add a point called $\infty$ to $\C$. It turns out that we can identify the new space with the two-dimensional unit sphere $S^2 \subset \R^3$.\\
+Indeed, there exists a one-to-one mapping $\Phi: S^2 \to \C$ given by
+\begin{align*}
+				\Phi(x) = \left\{\begin{array}{rcl}
+												\frac{x_1 + i x_2}{1 - x_3}, &\text{for}& x \neq (0,0,1), \\
+												\infty, &\text{for} & x = (0,0,1)
+				\end{array} \right.	 
+\end{align*}
+The mental image for this is that you place the unit sphere around the origin of the complex plane and for any point on the sphere, you take a line from the northpole to the point and see where the line intersects the complex plane.\\
+
+
+
+
+
+\section{Functions}
+Now let's study functions $f: \C \to \C$. A key part in real analysis was the \textbf{limit}. We define the complex limit similar to the real limit, i.e. we write $\lim_{x \to a}f(x) = A$, if
+\begin{align*}
+				\forall \epsilon > 0\ \exists \delta > 0:\ 0 < \abs{x-a} < \delta \implies \abs{f(x) - A} < \epsilon
+\end{align*}
+We then get the following properties
+\begin{itemize}
+\item $\lim_{x \to a} \overline{f(x)} = \overline{A}$
+\item $\lim_{x \to a} \text{Re} f(x) = \text{Re}(A)$
+\item $\lim_{x \to a} \text{Im}f(x) = \text{Im}(A)$
+\item $f$ is continuous at $a$ if $\lim_{x \to a} f(x) = f(a)$
+\end{itemize}
+
+Now, the derivative will behave differently than in the real case. We define the derivative as usual:
+\begin{align*}
+				f'(a) := \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}
+\end{align*}
+but they key difference is when this limit exists. In the real case, $h$ can approach $0$ in only two ways, from the left and from the right.\\
+However, in the complex case, $h$ can approach $0$ from any direction!\\
+
+One scenario where this difference is noticable is a function, where $f(a) \in \R, \forall a \in \C$. In the real case, we are dividing real numbers $f(a+h) - f(a)$ with a real number $h$ and get a real number. But in the complex case, $h$ might be complex so we can get a purely imaginary result.\\
+So for the two ways to approach $0$ to be equal, we must have in this case, that the derivate $f'(a)$ be equal to $0$
+
+
+\subsection{Cauchy-Riemann Equations}
+Now, more generally for functions that also have an imaginary component, we can rephrase the condition for the existence of the derivtive in terms of the derivatives of its components to recover some partial differential equations, namely the Cauchy-Riemann Equations.
+
+
+\begin{definition}[Holomorphic function]
+Let $f: D \to \C$, be a function, $D$ open. If $f$ has a derivative in every point $x \in D$, we say that $f$ is \textbf{holmorphic} or \textbf{analytic}.
+\end{definition}
+Moreover, if $f,g$ are holmorphic, then $f+g, f \cdot g$ and $f/g$, for $g(x) \neq 0$ holomorphic.\\
+And if $f'(a)$ exists, then
+\begin{align*}
+				f'(z) = \lim_{h \to 0} \frac{f(z+h) - f(z)}{h} \Leftrightarrow \lim_{h \to 0}f(z+h) - f(z) = \lim_{h \to 0}hf'(z) = 0
+\end{align*}
+
+We consider two special ways in which $h$ can go to $0$. Once from the ``right side'' and once from the ``left side''.\\
+
+We will write $f$ as a sum of its real and complex components as
+\begin{align*}
+				f(z) = u(z) + iv(z), \quad \text{for} \quad u(z),v(z) \in \R
+\end{align*}
+And we will also look at the functions $u$ and $v$ as multivariable functions $\R^2 \to \R$:
+\begin{align*}
+				z = x + iy, \quad u(x + iy) = u(x,y), \quad v(x+iy) = u(x,y)
+\end{align*}
+So when approaching from left or right, we get
+\begin{align*}
+				f'(z) = \lim_{t \to 0} \frac{f(z+t) - f(z)}{t} = \frac{\del f}{\del x} = \frac{\del u}{\del x} + i \frac{\del v}{\del x}
+\end{align*}
+And when approaching from above or below we get
+\begin{align*}
+				f'(z) = \lim_{t \to 0} \frac{f(z + it) - f(z)}{it} = \frac{1}{i} \frac{\del f}{\del y} = \frac{1}{i} \left(\frac{\del u}{\del y} + i\frac{\del v}{\del y}\right)
+\end{align*}
+For those two to be equal we must thus have
+
+\begin{empheq}[box=\bluebase]{align*}
+\frac{\del u}{\del x} = \frac{\del v}{\del y} \quad \text{and} \quad \frac{\del v}{\del x} = - \frac{\del u}{\del y}
+\end{empheq}
+which are called the \textbf{Cauchy-Riemann equations}, which will explain quite a few phenomena of holmorphic function and the behaviour of certain integrals and the connections between them.\\
+
+If $f$ is differentiable at $z$, we can write $f'(z) = \frac{\del u}{\del x} + i \frac{\del v}{\del x}$. Further if we look at $\abs{f'(z)}^2$ we have
+\begin{align*}
+\abs{f'(z)}^2 = \left(\frac{\del u}{\del x}\right)^2 + \left(\frac{\del v}{\del x}\right)^2 = \frac{\del u}{\del x} \frac{\del v}{\del y} - \frac{\del v}{\del x} \frac{\del u}{\del y} =
+				\det \begin{pmatrix}
+								\frac{\del u}{\del x} & \frac{\del u}{\del y}\\
+								\frac{\del v}{\del x} & \frac{\del v}{\del y}
+				\end{pmatrix}
+\end{align*}
+And we recovered the Jacobian determinant\\
+
+If we look at the Laplacian of a function $f \in C^2$, then we have
+\begin{align*}
+				\Delta u = \frac{\del^2 u}{\del x^2} + \frac{\del^2 u}{\del y^2} = \frac{\del \frac{\del v}{\del y}}{\del x} + \frac{\del \frac{- \del v}{\del x}}{\del y} = \frac{\del^2 v}{\del x \del y} - \frac{\del^2 v}{\del y \del x} = 0
+\end{align*}
+where we used Schwartz's theorem that indentifies the second derivaties.
+
+So if $f = u + iv$ is holomorphic, then $u$ and $v$ are harmonic, i.e. their Laplacian is zero: $\Delta u = \Delta v = 0$.
+
+
+\begin{definition}[]
+Let $u$ be a harmonic function. A harmonic function $v$ harmonic that satisfies the Cauchy-Riemann equations with $u$
+\begin{align*}
+\frac{\del u}{\del x} = \frac{\del v}{\del y} \quad \text{and} \quad  \frac{\del v}{\del x} = - \frac{\del u}{\del y}
+\end{align*}
+is called a \textbf{harmonic conjugate} of $u$.
+\end{definition}
+Exercise: Show that if $u$ and $v$ harmonic conjugates, then $f(x + iy) := u(x,y) + iv(x,w)$ is holomorphic.\\
+Exercise: Take $u(x,y) = x^2 - y^2$. Find it's harmonic conjugate.
+
+
+

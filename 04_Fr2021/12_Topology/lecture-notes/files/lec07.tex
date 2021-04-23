@@ -1,0 +1,80 @@
+\section{The Quotient Topology}
+\subsection{Definitions}
+Given an equivalence relation $\sim$ on a set $X$, we define the the set of equivalence classes with
+\begin{align*}
+  \faktor{X}{\sim} := \{[x] \big\vert x \in X\} = \left\{\{y \in X \big\vert y \sim x\}\big\vert x \in X\right\}
+\end{align*}
+and the canonical projection $\pi$ given by
+\begin{align*}
+  \pi: X \to \faktor{X}{\sim}, \quad x \mapsto [x]
+\end{align*}
+
+When $X$ is a topological space, how can we define a reasonable topology on $X/\sim$?
+
+We know for vector spaces that in order for an equivalence class to give rise to another vector space, we must require that
+\begin{align*}
+  u \sim v \iff u - v \in W \text{ for some vector space } W
+\end{align*}
+For topological spaces, we don't need that.
+
+\begin{dfn}[]
+Let $X$ be a topological space and $\sigma$ an equivalence relation on $X$. 
+We call a subset $U \subseteq X/\sim$ open in the \textbf{quotient topology}, if $\pi^{-1}(U)$ is open in $X$.
+\end{dfn}
+
+
+\begin{ex}[]
+\begin{enumerate}
+  \item For $X = [0,1]$ let $x \sim y \iff (x<1,y<1)$ or $x=y=1$.
+      This consists of only two equivalence classes. 
+      That of $[0]$ and $[1]$. The induced topology is then the \textbf{Sierpinsky topology}
+      \begin{align*}
+        \tau_{X/\sim} = \left\{
+          \emptyset, \{[0],[1]\}, \{[0]\}
+      \right\}
+      \end{align*}
+    \item For $X = [0,1]$ we \emph{glue} together the endpoints with the equivalence class
+      \begin{align*}
+        x \sim y \iff x = y \text{ or } (x,y) = (0,1)
+      \end{align*}
+      We will later see that the resulting space is homeomorphic to the circle space $\mathbb{S}^{1}$
+\end{enumerate}
+\end{ex}
+How does this compare to other possible topologies on $X/\sim$?
+We will show in exercise sheet 4 that the quotient topology is the \emph{finest} topology on $X/\sim$ such that the projection maping $\pi$ is continuous.
+
+We know that compactness and connectedness are preserved under continous maps, so it follows that the quotient space of a compact/connected space is again compact/connected.
+
+A more ``topological'' way to define the quotient topology is not to think of equivalence classes of an equivalence relation, but rather look at it as the \emph{image of a surjective map} $f: X \to Y$.
+
+\subsection{Quotients and Maps}
+\begin{lem}[]\label{lem:unipropquot}
+Let $X,Y$ be topological spaces and $\sim$ and equivalence relation on $X$ and $f: X/\sim \to Y$ a map.
+Then $f$ is continuous if and only if $f \circ \pi$ is continous.
+
+This can be visualized in the following diagram
+\begin{center}
+\begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
+  X \arrow[]{d}{\pi} \arrow[]{dr}{f \circ \pi}\\
+  \faktor{X}{\sim} \arrow[]{r}{f} & Y
+\end{tikzcd}
+\end{center}
+\end{lem}
+\begin{proof}
+Well, if $f$ is continous, then $f \circ \pi$ is the composition of continuous maps.
+
+On the other hand if $f \circ \pi$ is continous, then let $V \subseteq Y$ be open. Then
+\begin{align*}
+  (f \circ \pi)^{-1}(V) = \pi^{-1}(w^{-1}(V))\subseteq X \text{ is open }
+\end{align*}
+but by definition of the quotient topology this just says that $f^{-1}(V)$ is open.
+\end{proof}
+
+In the previous example (b), we know that for
+\begin{align*}
+  f: \faktor{[0,1]}{\sim}: \to  \mathbb{S}^{1}, \quad [t] \mapsto e^{2 \pi i t}
+\end{align*}
+the continuity of $f \circ \pi: [0,1] \to \mathbb{S}^{1}$ implies continuity of $f$.
+Furthermore, since $f$ is continous and bijective, $[0,1]/\sim$ is compact and $\mathbb{S}^{1}$ is Hausdorff, $f$ is a homeomorphism.
+
+

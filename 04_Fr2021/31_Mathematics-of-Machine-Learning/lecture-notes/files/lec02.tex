@@ -1,0 +1,157 @@
+\section{SVD}
+
+Often, data is represented by a matrix, say $X \in \R^{m \times n}$
+
+We can think of $X$ as a collection of $n$ datapoints represented by a columns.
+
+What is also possible is to think of each row and column as entities and the entry $x_{ij}$ corresponds to the relationship by entity $i$ and $j$.
+
+A good way to better understand a matrix is through its \textbf{singular value decomposition}
+\begin{align*}
+  X = U \Sigma V^{T}, \quad U \in O(m) V \in O(n), \quad \Sigma = \begin{pmatrix}
+  {\sigma_1}_{\ddots} &  & 0\\
+   0&  \sigma_k &0  \\
+  \end{pmatrix}
+  \in \R^{m\times n} 
+\end{align*}
+where $\sigma_1 \geq \ldots \geq \sigma_{k}$ and $k = \min\{m,n\}$.
+Recall that the columns $u_{1}, \ldots, u_{m}$ of $U$ and the columns $v_{1}, \ldots, v_{n}$ of $V$ are called the \textbf{left/right singular vectors}.
+
+If $r = \text{rank}(X)$, we can also write the SVD using slightly modified matrices
+\begin{align*}
+  X = \tilde{U} \tilde{\Sigma} \tilde{V}^{T}, \quad \tilde{U} \in \R^{m \times r} \tilde{\Sigma} \in \R^{r \times r}, \tilde{V} \in \R^{n \times r}
+\end{align*}
+where $U^{T}U = V^{T}V = 1_{r \times r}$
+And to calculate this, we would for example do the following
+\begin{enumerate}
+  \item $\sigma_1^{2} \geq \ldots \sigma_r^{2}$ are the eigenvalues of $X^{T}X$ (or $XX^{T}$)
+  \item $\tilde{U} = (u_1|\ldots|u_r)$ consisting of an ONB of $\R^{m}$ of Eigenvectors of $AA^{H}$
+  \item $\tilde{V} = (v_1|\ldots|v_r)$ consisting of an ONB of $\R^{m}$ of Eigenvectors of $A^{H}A$
+\end{enumerate}
+then we can write
+\begin{align*}
+  X = \sum_{k = 1}^{r} \sigma_k u_k v_k^{T}
+\end{align*}
+what makes the alternative definition of the SVD a little bit nicer is that for $r < \min \{m,n\}$, the matrices are smaller.
+
+
+A key idea and observation is that the data is often very well aproximated by a low rank matrix.
+If we were to plot the singular values $\sigma_i$ with respect to $i$, then we very often see that their magnitude decreases quickly as $i$ kets bigger.
+
+We can make use of this by picking some $l < k$ and setting all $\sigma_i$ to zero for $i > l$ and obtain a rank $l$ matrix that \emph{approximates} $X$.
+
+
+
+\begin{ex}[See jupyter Notebook]
+Let's take a look at an example, where we have an $m \times n$ pixel image and use the brightness to get the matrix entries.
+Then take a low rank approximation and plot the image of the low rank matrix aproximation.
+We were able to copmress an image to be only about $5\%$ of its original size and get a pretty nice image back. It is of course missing some details, but it is nonetheless surprising that alot of the key features are still present.
+\end{ex}
+
+It turns out that this particular way of approximating the data $X$ by a low-rank matrix is \emph{the ``best''} way of doing it.
+But in order to properly define that the ``best'' is, we need a way to define distances between the data $X$ and an approximation $B$.
+
+For this, must introduce norms for  matrices. 
+A very natural norm is the \textbf{spectral-norm} defined by
+\begin{align*}
+  \|A\|_2 := \max_{\underset{\|x\| = 1}{x \in \R^{n}}} \|Ax\|_2 = \sigma_1
+\end{align*}
+The other very common norm is the \textbf{Frobenius norm}
+\begin{align*}
+  \|A\|_F := \sqrt{
+    \sum_{i = 1}^{m}\sum_{j=1}^{n} \abs{a_{ij}}^{2}
+  }
+  =
+  \sqrt{\text{tr}(A^{T}A)}
+\end{align*}
+which are invariant under orthogonal transformations, i.e for $U,V \in U(n), U(m)$ we have
+\begin{align*}
+  \|UAV\|_2 = \|A\|_2, \quad \|UAV\|_F = \|A\|_F= \sqrt{\sigma_1^{2} + \ldots + \sigma_r^{2}}
+\end{align*}
+and they are subadditive.
+
+There is also a natural generalisation of these norms:
+\begin{dfn}[Schatten $p$-Norm]
+  For $p \in [1,\infty]$ let
+\begin{align*}
+  \|X\|_{s,p} = \sqrt[p]{
+    \sum_{i=1}^{k} \sigma_i^{p}(x)
+  }
+  = \|\sigma(X)\|_p
+\end{align*}
+where we see $\sigma(X)$ as a vector of the eigenvalues.
+\end{dfn}
+
+So now let 
+\begin{align*}
+  X_r := U_r \Sigma_r V_r, \quad U_r \in \R^{m \times r}, V_r \in \R^{n \times r}, \Sigma_r \in \R^{r \times r}
+\end{align*}
+consist of the first $r$ columns of their counterparts. It should be clear that
+\begin{align*}
+  \text{rank}(X_r) = r, \quad \sigma_1(X - X_r) = \sigma_{r+1}(X)
+\end{align*}
+
+\begin{lem}[Eckart Young Mirsky for spectral norm]
+Let $X = UDV^{H}$ with singular values $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_k \geq 0$.
+And $X_r$ defined as above.
+For any rank $r$ matrix $B \in \R^{n \times m}$
+\begin{align*}
+  \|X - B\| \geq \|X - X_r\|
+\end{align*}
+\end{lem}
+\begin{proof}
+  Let $X = U \Sigma V^{T}$ be the SVD of $X$. Since $\text{rank}(B) = r$. thre exists a non-zero vector in the span of $v_1, \ldots, v_{r+1}$ such that $Bw = 0$.
+  Without loss of generality, we can scale $w$ to get $\|w\| = 1$ and we can assume that $v_1, \ldots v_{r+1}$ are orthonormal. Then
+  \begin{align*}
+    w = \sum_{i=1}^{r+1}\alpha_i v_i \quad \text{for} \quad \alpha_i = v_i^{T} \omega, \quad \text{and} \quad 
+    \sum_{i=1}^{r+1}\alpha_i^{2} = \|w\|^{2} = 1
+  \end{align*}
+  so using the fact that $V^{T} \omega$ consists of rows $v_i^{T} \omega = \alpha_i$ and that the $v_i$ are orthonormal, we get
+  \begin{align*}
+    \|X - B\| &= \max_{\|v\|=1} \|(X - B)v\| \geq \|(X - B)\omega\| = \|X \omega\| = \|U \Sigma V^{T} \omega\|\\
+              &= \|\Sigma V^{T} \omega\| = \sqrt{\sum_{i=1}^{r+1} \sigma_i^{2}(X) \alpha_i^{2}} \geq \sigma_{r+1}(X) = \sigma_1(X - X_r) = \|X - X_r\|
+  \end{align*}
+\end{proof}
+
+
+\begin{thm}[Weyl inequalities for singular values]
+  \begin{align*}
+    \sigma_{i+j -1}(X + Y) \leq \sigma_i(X) + \sigma_j(Y)
+  \end{align*}
+  for all $1 \leq i,j \leq \min\{m,n\}$ satisfying $i+j-1 \leq \min\{m,n\}$
+\end{thm}
+\begin{proof}
+Let $X_{i-1}$and $Y_{j-1}$ be the rank $i-1$, $j-1$ approximations of $X$ and $Y$. By the triangle inequality of the spectral norm, we have
+\begin{align*}
+  \sigma_1((X - X_{i-1}) + (Y - Y_{j-1})) \leq \sigma_1(X - X_{i-1}) + \sigma_1(Y - Y_{j-1}) = \sigma_i(X) + \sigma_j(Y)
+\end{align*}
+and since $X_{i-1} + Y_{j-1}$ has at most rank $i+j-2$, the Eckart Young Mirsky theorem gives us
+\begin{align*}
+  \sigma_{i+j+1}(X+Y) = \sigma(X + Y - (X+Y)_{i+j-2}) \leq \sigma_1(X + Y - (X_{i-1} + Y_{j-1})) 
+\end{align*}
+Putting both inequalities together, the proof follows.
+\end{proof}
+There is also another proof using the Courant-Fischer minimax carachterisation of singular values.
+
+\begin{thm}[Eckart Young Mirsky]
+  The truncated SVD gives the best low-rank approximation in any Schatten $p$-norm. So for $X \in \R^{m \times n}$, $r < \min\{m,n\}$, $p \in [1,\infty]$, let $X_r$ as above. Then for any rank $r$ matrix $B$
+  \begin{align*}
+    \|X - B\|_{s,p} \leq \|X - X_r\|_{s,p}
+  \end{align*}
+\end{thm}
+\begin{proof}
+  We already have proven this for $p = \infty$, so let $1 \leq p < \infty$.
+  Using the Weyl inequality for $X - B$ and $B$ we get
+  \begin{align*}
+    \sigma_{i+j-1}(X) \leq \sigma_i(X - B) + \sigma_j(B)
+  \end{align*}
+  For $j = r+1$, we know that since $B$ is rank $r$, $\sigma_{r+1}(B) = 0$, so for all $i > 1$ such that $i + (r+1) - 1 \leq \min \{m,n\}$ we have
+  \begin{align*}
+    \sigma_{i+r}(X) \leq \sigma_i(X - B) + 0
+  \end{align*}
+  thus
+  \begin{align*}
+    \|X - B\|_{s,p}^{p} = \sum_{k=1}^{\min \{m,n\}} \sigma_k^{p}(X - B) \geq \sum_{k=1}^{\min \{m,n\} - r} \sigma_k^{p}(X-B) \geq \sum_{k=1}^{\min \{m,n\}-r} \sigma_{k+r}^{p} = \sum_{l=r+1}^{\min \{m,n\}} \sigma_{l+r}^{p}(X) = \|X-X_r\|_{s,p}^{p}
+  \end{align*}
+
+\end{proof}

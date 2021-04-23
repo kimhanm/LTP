@@ -1,0 +1,269 @@
+\subsection{Schrödinger equation}
+Since the wavefunction is also dependent on time, we want to know how the wave function evolves over time. 
+The \textbf{Schrödinger Equation} does just that $\Psi(x,t)$.
+In the 1D case, the Schrödinger equation can be written in its \textbf{position representation}\footnote{as opposed to its \textbf{momentum representation}$\Psi(k,t)$}:
+\begin{empheq}[box=\bluebase]{align*}
+i \hbar \frac{\del \Psi}{\del t} = - \frac{\hbar^2}{2m}\frac{\del^2 \Psi}{\del x^2} + V \Psi
+\end{empheq}
+where $V(x)$ is the potential energy function. Here we only consider conservative forces $F = - \frac{\del V(x)}{\del x}$.
+
+Notice that the right hand side of the Schrödinger Equation is also linear Operator acting on $\Psi$. We call this the the \textbf{Hamiltonian operator} $\hat{H}$, which is given by
+\begin{empheq}[box=\bluebase]{align*}
+	\hat{H} = - \frac{\hbar^2}{2m} \frac{\del^2}{\del x^2} + \hat{V}(x) = \frac{\hat{p}^2}{2m} + \hat{V}
+\end{empheq}
+which allows us to rewrite the Schrödinger equation as
+\begin{align*}
+i \hbar \frac{\del \Psi}{\del t} = \hat{H} \Psi
+\end{align*}
+Note that the Hamiltonian measures the sum of kinetic and potential Energy. It is also a hermitian operator, whose real Eigenvalues represent observables that are the definite Energies of the corresponding Eigenstates.
+
+We write $\Psi_n = \psi_n(x) \tau_n(t)$ for the Eigenstates of $\hat{H}$. As we've seen, these Eigenstates form a basis and they satisfy the Eigenvektor equation, which we call the \textbf{time-independent Schrödinger Equation} (TISE):
+\begin{align*}
+	\hat{H}\Psi_n = E_n \Psi_n 
+\end{align*}
+We can solve the Eigenvektors of the Hamiltonian, which is just a first order linear PDE, to get the solution
+\begin{align*}
+	E_n \Psi_n &= \hat{H} \Psi_n = i \hbar \frac{\del }{\del t}\Psi_n\\
+	\implies
+	\Psi_n(x,t) &= e^{-iE_n t/\hbar}\psi_n(x)
+\end{align*}
+in terms of the initial state $\psi_n(x) := \Psi_n(x, t = 0)$.
+
+Notice that the exponential part has asbsolute value $1$, which means that the probability densitiy does not change in time:
+\begin{align*}
+	\abs{\Psi_n(x,t)}^{2} = \psi_n^*\psi_n e^{iE_n \frac{t}{\hbar}}e^{-i E_n \frac{t}{\hbar}} = \abs{\psi_x(n)}^{2} = \abs{\Psi_n(x,t=0)}
+\end{align*}
+Since these energy Eigenstates form a basis, we can solve the Schrödinger Equation using this recipe:
+\begin{ntheorem}[Solving the Schrödinger Equation]
+\begin{enumerate}
+	\item You are given a potential $V(x)$ and an initial state $\ket{\Psi_0}$
+	\item Solve the time-independent Schrödinger Equationn
+	\begin{align*}
+		\hat{H} \Psi_n = E_n \Psi_n
+	\end{align*}
+	for the Eigenstates $\ket{\psi_n}$, and their Eigenenergies $E_n$.
+\item Write the initial state of of the wave function $\ket{\Psi_0}$ in terms of the basis of initial Eigenstates $\ket{\psi_n}$. When the Eigenvalues are discrete, we need to find the coefficients $C_n$ such that
+	 \begin{align*}
+		 \ket{\Psi_0} = \sum_{n} C_n\ket{\psi_n}
+	 \end{align*}
+	If the Eigenvalues are continuous, take the integral:
+	\begin{align*}
+		\text{missing} \#\#\#
+	\end{align*}
+\item The solution to the Schrödinger Equation can is then the linear combination of the time-developed Eigenstates $\psi_n$:
+	\begin{align*}
+		\ket{\Psi(t)} = \sum_{n}C_n \ket{\Psi_n} = \sum_{n} C_n e^{-iE_nt/\hbar} \ket{\psi_n}
+	\end{align*}
+\end{enumerate}
+Note that this works because the wave equation is linear, so a linear combination of solutions gives us another solution.
+
+Also note that dirac notation is used, which means that we can chose to any basis we want to find the solutions.
+
+In the position representation, this would give us
+\begin{align*}
+	\braket{x| \Psi(t)} &= \sum_{n}C_n e^{-iE_n \frac{t}{\hbar}}\braket{x|\psi_n}\\
+	\implies \Psi(x,t) &= \sum_{n}C_n e^{-iE_n \frac{t}{\hbar}}\psi_n(x)
+\end{align*}
+, where we used that the position operator is linear.
+\end{ntheorem}
+
+Now let's solve some Schrödinger Equations using this method:
+
+\subsubsection{Free particle}
+In our first example, we consider the simplest scenario: that of a free particle. 
+Here, the potential is set to zero so the Hamiltonian only consists of the kinetic energy part:
+\begin{align*}
+	\hat{H} = \frac{\hat{p}^2}{2m} = - \frac{\hbar^2}{2m} \frac{\del^2}{\del x^2}
+\end{align*}
+In this case, the energy Eigenstates are just the momentum Eigenstates
+\begin{align*}
+	\hat{H} \ket{p} = \frac{p^2}{2m}\ket{p}	
+\end{align*}
+Note that in this case, both $\ket{p}$ and $\ket{-p}$ have the same energy, so if we were to make a precise measurement we would observe the energy $\frac{p^2}{2m}$, the state collapses to a superposition of both such states:
+\begin{align*}
+	\ket{\Psi} = A\ket{p} + B \ket{-p}
+\end{align*}
+Or, since $p = \hbar k$, in the position representation:
+\begin{align*}
+	\Psi(x,t) = A e^{ik\left(x - \frac{\hbar k}{2m}t\right)} + B e^{-ik\left(x + \frac{\hbar k}{2m}t\right)}
+\end{align*}
+Because we have that multiple eigenstates can have the same eigenvalue, we say that the operator $\hat{H}$ is \textbf{degenerate} here.
+It has the consequence where a measurement of an observable does not collapse the wave function into a single eigenstate.\\
+
+
+Usually we would associate the \textbf{velocity} of a wave with $v = \frac{\omega}{k}$, which in this case would be $v = \frac{\hbar k}{2m}$.
+However, in the classical sense of velocity we should be $v' = \frac{p}{m} = \frac{\hbar k}{m} = 2v$.
+
+We can resolve this issue by saying that $v$ is the \textbf{phase velocity}, the velocity at which the phase front moves. But since the wave function is not localized, the wave is not going anywhere so the concept of movement doesn't really apply here as our particle is very un-physical.
+
+In more physical settings, we write $v_{\text{group}} = \frac{\del \omega}{\del k}$ for the \textbf{group velocity} of a particle, which matches with the classical notion of velocity.
+
+
+\subsubsection{The infinite square well}
+Here we consider a particle that is ``trapped'' inside a well of infinite potential $V(x)$, which is given by 
+\begin{align*}
+	V(x) = \left\{\begin{array}{ll}
+		0 & 0 \leq x \leq a\\
+		\infty & \text{elsewhere}
+	\end{array} \right.
+\end{align*}
+Since the potential outside of the well is infinite, the wave function must be zero or else its energy would be infinite.
+Inside the well, we have the same scenario as in the free particle, so we can write
+\begin{align*}
+	\Psi(x) &= C_+ e^{ikx} + C_- e^{-ikx}\\
+					&= A \cos(kx) + B \sin(kx)
+\end{align*}
+In order to fix the constants $A,B$, we need more conditions for the wave function. 
+
+We do this by imposing \textbf{boundary conditions} to our problem, which are motivated by our physical observations. In particular, we want
+\begin{enumerate}
+	\item Continuity of the wave function $\Psi(x)$ in $x$.
+	\item Continuity of the derivative $\frac{\del \Psi(x)}{\del x}$, except where $V(X) \to \infty$. 
+		We can motivate this by integrating the Schrödinger Equation over a region from $-\epsilon$ to $\epsilon$ and taking the limit
+		\begin{align*}
+			\lim_{\epsilon \to 0} \frac{\del \psi}{\del x}|_{+\epsilon} - \frac{\del \psi}{\del x}|_{-\epsilon} &= \lim_{\epsilon \to 0} -\frac{\hbar^{2}}{2m} \int_{-\epsilon}^{\epsilon} \frac{\del^2 \psi}{\del x^2}dx + \lim_{\epsilon \to 0} \int_{-\epsilon}^{\epsilon}V(x) \psi(x) dx\\
+																																																					&= \lim_{\epsilon \to 0} E \int_{-\epsilon}^{\epsilon} \psi(x) dx
+		\end{align*}
+	which is zero if $E$ is finite and $\psi$ is continuous.
+\end{enumerate}
+By applying the first continuity condition, we must have that at the first wall, ($x = 0$) we have that $\psi$ must satisfy
+\begin{align*}
+	\psi(0) = A \sin(0) + B \cos(0) = B = 0
+\end{align*}
+and for the second Wall ($x = a$):
+\begin{align*}
+	\psi(a) = A \sin(ka) = 0 \implies ka = n\pi, \text{ for } n \in \Z
+\end{align*}
+For $n = 0$ this gives us the trivial solution $\psi = 0$, also since the sine is an odd function, it suffices to look at positive $n$, which we will label the discrete eigenfunctions
+\begin{align*}
+	\psi_n(x) = A\sin(k_n x) \text{ for } k_n = \frac{n \pi}{a}	
+\end{align*}
+Now in order to find the the factor $A$, we must test that the integral over the probability distribution must equal $1$,so
+\begin{align*}
+	\int_0^{a}\abs{\psi_n(x)}^2 dx = \int_{0}^{a}\abs{A})^2 \sin^2(k_nx)dx = \abs{A}^2 \frac{a}{2} = 1 \implies A = \sqrt{\frac{2}{a}}
+\end{align*}
+so we can write the eigenstate as
+\begin{align*}
+	\psi_n(x) = \sqrt{\frac{2}{a}}\sin(k_n x) \text{ for } k_n = \frac{n \pi}{a}	
+\end{align*}
+Next we need to find out the energy $E_n$ of the eigenstate $\ket{\psi_n}$. It is given by
+\begin{align*}
+E_n = \frac{\hbar^2 k_n^2}{2m} = \frac{n^2 \pi^2 \hbar^2}{2ma^2}
+\end{align*}
+Before we move on to write the initial state $\Psi_0$ in terms of these eigenstates, we note the following:
+\begin{itemize}
+	\item The energies are \textbf{quantized}, as $n$ can only take integer values.
+	\item The eigenstates are just the basis function for the fourier sine series expansion.
+	\item If we graph these eigenfunctions, we see that they have $n$ peaks/valleys. As $n$ increases, the second derivative increases and therefore the kinetic energy increases.
+	\item The eigenfunctions alternate between even and odd functions relative to the center of the well.
+
+				If we use shifted coordinates $y = x - \frac{a}{2}$, such that the well is centered at the origin we have
+\begin{align*}
+	\psi_n(y) &= \sqrt{\frac{2}{a}} \sin \left(\frac{n \pi}{a}(y + \frac{a}{2})\right)\\
+	&= \sqrt{\frac{2}{a}} \left\{\begin{array}{ll}
+			\cos(\frac{n \pi}{a}y & \text{for $n$ odd} \\
+		-\sin(\frac{n \pi}{a}y & \text{for $n$ even}
+	\end{array} \right.
+\end{align*}
+\end{itemize}
+The last point brings us the concept of \textbf{symmetry}, which can be used to simplify our problem:
+
+Since the potential $V$ is symmetrical, we can introduce the \textbf{parity operator} $\hat{\Pi}$ given by
+\begin{align*}
+	\hat{\Pi}\psi(y) = \psi(-y)
+\end{align*}
+which commutes with the Hamiltonian $\hat{H}$, since
+\begin{align*}
+	(\hat{\Pi} \circ \hat{H}) \psi(y) = \hat{H}\psi(-y) = (\hat{H} \circ \hat{\Pi} \psi(y) \implies [\hat{H}, \hat{\Pi}] = 0
+\end{align*}
+Which means that both $\hat{H}$ and $\hat{\Pi}$ share the same eigenfunctions $\phi_\pi$. 
+Now if we were to act the parity operator twice, we obtain the identity operator $\hat{I}$. Therefore, the Eigenvalues have to be $\pm 1$, where the positive Eigenvalue $+1$ corresponds to an even function and $-1$ corresponds to odd functions.\\
+
+This means that before solving the equation, we could have found out that the solution is a superposition of even and odd functions.
+
+More generally, the symmetries can give us great insight into the solutions space before attempting to solve the Schrödinger equation.
+
+\subsubsection{The finite square well}
+In our third example, we have that our well only has a finite potential, which is given by
+\begin{align*}
+	V(x) = \left\{\begin{array}{ll}
+		0 & \abs{x} \leq \frac{a}{2} \\
+		V_0 & \text{elsewhere}
+	\end{array} \right.
+\end{align*}
+We divide the space into three regions. We call the region on the left region I, the one in the well region II and the one on the right region III.
+
+For region I, the Schrödinger equation is
+\begin{align*}
+	\hat{H} \Psi_E = - \frac{\hbar^2}{2m} \frac{\del^2}{\del x^2} \Psi_E + V_0 \Psi_E = E \Psi_E	
+\end{align*}
+which has solutions of the form
+\begin{align*}
+	\Psi_E(x) = A_{\text{I}} e^{-\sqrt{k_0^2 - k^2}x} + B_I e^{\sqrt{k_0^2 - k^2}x}
+\end{align*}
+where we introduced the constants $k_0, k$ through
+\begin{align*}
+	k_0 = \sqrt{\frac{2mv_0}{\hbar^2}} \text{ and } k = \sqrt{\frac{2m E}{\hbar^2}}
+\end{align*}
+For region $II$, the Schrödinger equation is that of a free particle:
+\begin{align*}
+	\hat{H}\Psi_E = - \frac{\hbar^{2}}{2m}\frac{\del^2}{\del x^2}\Psi_E = E \Psi_E
+\end{align*}
+We could solve this using the general solution like in region I, but we can also argue that the potential is symmetric, so the solutions must consist of even and odd functions:
+\begin{align*}
+	\Psi_E = A_{\text{II}} \cos(kx) + B_{\text{II}}\sin(kx)
+\end{align*}
+For Region III, we use the same general solution as in region I:
+\begin{align*}
+	\Psi_E(x) = A_{\text{III}} e^{-\sqrt{k_0^2 - k^2}x} + B_{\text{III}} e^{\sqrt{k_0^2 - k^2}x}
+\end{align*}
+Now we will seperately consider the two cases, where the Energy of the particle can either be bigger or smaller than the potential of the well:
+\begin{itemize}
+	\item[$E < V_0$] In this case, we know that $k < k_0$, so $\sqrt{k_0^2 - k^2}$ is real.
+	For the even solutions we have
+	\begin{align*}
+		B_{\text{II}} = 0, \quad A_{\text{I}} = B_{\text{III}}, \quad B_I = A_{\text{III}}
+	\end{align*}
+	further, we have to normalize the function. Since $\sqrt{k_0^2 - k^2}$ is real, the exponential terms would diverge, so $B_{\text{III}} = A_{\text{I}} = 0$.
+
+	By continuity of $\Psi_E$ at the endpoints we must have that
+	\begin{align*}
+		B_I e^{\sqrt{k_0^2 - k^2}(-a/2)} = A_{\text{II}} \cos(-ka/2)
+	\end{align*}
+	and by continuity of the derivative, at $x = -\frac{a}{2}$ we have
+	\begin{align*}
+		B_I \sqrt{k_0^2 - k^2} e^{\sqrt{k_0^2 - k^2}(-a/2)} = - A_{\text{II}}k \sin(-ka/2)
+	\end{align*}
+	and by dividing the equations we get
+	\begin{align*}
+		\frac{k_0^2 - k^2}{k} = \tan\left(\frac{ka}{2}\right)
+	\end{align*}
+
+	For the odd solutions we can again argue from symmetry that
+	\begin{align*}
+		A_{\text{II}} = 0, \quad A_{\text{I}} = -B_{\text{III}}
+	\end{align*}
+	and if we go through the same equations as above we get the solutions
+	\begin{align*}
+		\frac{\sqrt{k_0^2 - k^2}}{k} = - \cot\left(\frac{ka}{2}\right)
+	\end{align*}
+	which concludes all cases for $E < V_0$.
+
+	
+	\item[$E> V_0$] In the case where the energy of the well is bigger than the Potential off the well, the particle can reach unbound states, that extend to infinity. 
+		Here, $\sqrt{k_0^{2}-k^{2}}$ is imaginary so instead of exponential decay, the wavefunction will be periodic in the outside regions.
+		The boundary contditions for the even solutions at $x = -\frac{a}{2}$ are
+		\begin{align*}
+			A_{\text{I}} e^{i \frac{a}{2} \sqrt{k^{2}-k_0^{2}}} 
+			+ 
+			B_{\text{I}} e^{-i \frac{a}{2}\sqrt{k^{2}-k_0^{2}}} &= A_{\text{II}} \cos(ka/2)\\
+				-iA_{\text{I}}\sqrt{k^{2}-k_0^{2}}e^{i \frac{a}{2}\sqrt{k^{2}-k_0^{2}}} + B_{\text{I}}e^{-i \frac{a}{2}\sqrt{k^{2}- k_0^{2}}} &= A_{\text{II}}k \sin\left(\frac{ka}{2}\right)
+		\end{align*}
+		The solutions for these wavefunctions are not normalizable.
+\end{itemize}
+In general, where we have any potential, we will have that if the energy is smaller than the highest potential, the wave function will be in a \textbf{bound state}. 
+And if the Energy exceeds that, the particle will have continuous Eigenvalues and be delocalized.
+
+
+
+

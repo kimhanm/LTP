@@ -1,0 +1,111 @@
+Next we want to compare the prime numbers of $\Z$ with the prime numbers of $\Z[i]$.\\
+
+Some of the prime numbers of $\Z$ are still prime in $\Z[i]$, but some of them can be factored out. For example we have
+\begin{align*}
+	5 = (2 + i)(2-1) \quad \text{and} \quad 13 = (3 + 2i)(3 - 2i)
+\end{align*}
+
+
+\subsection{Polynomialrings}
+
+\begin{theorem}[Gauss]
+	If $R$ is a UFD, then $R[X]$ is again a UFD. Further, $R[X]$ has exactly two types of prime elements. Those with $f = p \in R$ prime and $f \in R[X]$ primitive, such that $f$ is irreducible as Element of $K[X]$.
+\end{theorem}
+From iteration, we immediately get the corollary 
+\begin{corollary}[]
+	The ring $\Z[X_1, \ldots, X_n]$ and for any field $K$, the ring $K[X_1, \ldots, X_n]$ are UFDs.
+\end{corollary}
+To prove the theorem, we need the following definition
+\begin{definition}[]
+	Let $R$ are be a UFD and $f \in R[X] \setminus \{0\}$. We call the $\gcd$ of the coefficients of $f$ the \textbf{content} $I(f)$ of $f$. We say $f$ is \textbf{primitive}, if $I(f) \in R^{\times}$.
+\end{definition}
+Examples: For $R = \Z$, we have $I(2X + 2) \sim 2$ and $3X + 2$ is primitive.
+
+Note the following:
+\begin{itemize}
+\item Every normed or monic polynomial is primitive.
+\item If $a \in R \setminus \{0\}, f \in R[X] \setminus \{0\}$ then $I(af) \sim a I(f)$
+\item If $f \in R[X]$ is irreducible, then either $f \in R$ or $f$ is primitive.\\
+	This is true since if the degree is positive, then $f = a f^*$, so either $a$ or $f*$ is a unit. But since the degree of $f^*$ is equal to the degree of $f$ and thus positive, it is not possible that $f^*$ that $f$ is a unit.
+\end{itemize}
+
+\begin{lemma}[]
+	Let $R$ be a UFD and $K = \text{Quot}(R)$. Then every $f \in K[X]$ has a Representation $f = d f^*$, where $d \neq 0 \in K$ and $f^* \in R[X]$ is primitive.\\
+	This representation is unique up to associates in $R$
+	\begin{align*}
+		f = d_1f_1^* = d_2f_2^* \implies d_1 \sim_R d_2  \land f_1^* \sim_R f_2^*
+	\end{align*}
+\end{lemma}
+Proof: Let $f = \sum_{i= 0}^n a_i X^i \in K[X] \setminus \{0\}$. We can write out the $a_i$ as fractions $a_i = \frac{b_i}{c_i}$ for $b_i, c_i \in R, c_i \neq 0$. After multiplying $f$ by all $c_i$, we can obtain a polynomial with coefficients in $R$:
+\begin{align*}
+	g := f\prod_{i = 0}^n c_i \in R[X]
+\end{align*}
+Let $d' \sim I(g)$ an $\gcd$ of the coefficients of $g$. Then $g = d' g^*$ for some $g^* \in R[X]$ primitive. By dividing $g^*$ by the coefficients $c_i$ again, we get that the existence of the representation:
+\begin{align*}
+	f := \underbrace{\frac{d'}{\prod_{i=0}^{n}c_i}}_{:= d} \underbrace{g^*}_{:= f^*}
+\end{align*}
+To show uniqueness assume that $d_1 f_1^* = d_2f_2^* = f$. 
+We can interpret $d_1$ and $d_2$ in $R$ by writing $\frac{d_1}{d_2} = \frac{a_1}{a_2}$ with $a_1, a_2 \in R$ coprime, which gives us
+\begin{align*}
+	f_2^* = \frac{d_1}{d_2}f_1^* = \frac{a_1}{a_2}f_1^* \implies a_1f_1^* = a_2f_2^*	\implies a_1 \sim I(a_1f_1^*) \sim I(a_2f_2^*) \sim a_2
+\end{align*}
+This shows that $\frac{d_1}{d_2} \in R^{\times}$, which means $d_1 \sim_R d_2$ and $f_1^* \sim_R f_2^*$.\\
+
+
+This lemma allows us to broaden the definition of content
+\begin{definition}[]
+	For $f \in K[X] \setminus \{0\}$, we call $d \in K \setminus \{0\}$ such that $f = df^*$ for $f^* \in R[X]$ primitve, the \textbf{content} of $f$.
+\end{definition}
+
+
+\begin{proposition}[]
+	Let $R$ be a UFD. For $f,g \in R[X]$ we have $I(fg) \sim I(f) I(g)$. In particular, the product of primitive elements of $R[X]$ is again primitive.
+\end{proposition}
+In the following, we will use reduction of the coefficients:\\
+
+For an element $p \in R$ there exists a Ringhomomorphism
+\begin{align*}
+	f \in R[X] \mapsto f_{\mod p} \in R/(p)[X]\\
+	\sum_{i=0}^{n}a_iX^i \mapsto \sum_{i=0}^{n}(a_i + (p))X^i
+\end{align*}
+It follows from section 1.3 that \#\#\# missing 2 lines
+
+
+Proof: Let $f,g \in R[X]$ be primitive polynomials and let $p \in R$ be prime. Since they are primitive, $f_{\mod p}, g_{\mod p} \neq 0$. Further, since $R/(p)$ is an integral Domain, we have that $R/(p)[X]$ is also an integral domain (because the degrees add up). Then since the projection $\mod p$ is a Ring homomorphism, we have
+\begin{align*}
+	(fg)_{\mod p} = f_{\mod p} g_{\mod p} \neq 0
+\end{align*}
+In other words, not all coefficients of $fg$ are divisible by $p$. So since $p$ could be any prime element, we see that $fg$ is primitive.
+
+Now let $f,g \in K[X] \setminus \{0\}$. The previous lemma says that we can write $f = a f^*, g = b g^*$ for $a \sim I(f), b \in I(g)$ and $f^*, g^*$ primitive. Then their product $fg = ab f^*g^*$ will be such that $f^*g^*$ is also primitive. Since this representation is unique up to association we have $I(fg) \sim_R ab \sim I(f) I(g)$\\
+
+
+And as a corollary of Gauss's Theorem we get the following co
+\begin{corollary}[]
+	Let $f \in R[X]$ be primitive. Then $f$ is irreducible in $R[X]$ if and only if it is irreducible in $K[X]$
+\end{corollary}
+Proof (Gauss's Theorem): We first show that the two types of prime elements are indeed prime elements of $R[X]$.\\
+Let $p \in R$ be prime. Then using the fact that $\Phi: R[X] \to R/(p)_R[X]$ is a ring homomorphism and that $\Ker \Phi$ is just all polynomials $f \in R[X]$ that whose coefficients are divisible by $p$, so $\Ker \Phi = (p)_{R[X]}$ we have the Isomorphism
+\begin{align*}
+	R[X]/(p)_{R[X]} \simeq R/(p)_R[X]
+\end{align*}
+using the first isomorphism theorem.\\
+
+Now let $f \in R[X]$ be primitive and be irreducible in $K[X]$. We show that $f$ is prime in $R[X]$. Assume that $f|gh$ in $R[X]$. Observe that this relation also holds in $K[X]$, since $f$ is irreducible in $K[X]$ and because $K[X]$ is a PID, it is also prime in $K[X]$, so there either $f|g$ or $f|h$ in $K[X]$. So without loss of generalit, we can assume that $f|g$, i.e $g = q \cdot f$.\\
+Because $I(f)$ is a unit, (because $f = a f^*$) we have
+\begin{align*}
+I(q) \sim_R I(q) I(f) \sim_R I(qf) \sim_R \underbrace{I(g)}_{\in R[X]} \in R
+\end{align*}
+so also $I(q) \in R$ and because $q \sim I(q)q^*$, and therefore $q \in R[X]$. Therefore $f|g$ in $R[X]$ aswell, so $f$ is indeed prime in $R[X]$.
+Now we only need to show that all irredcble elements are of these two types.\\
+Since $R[X]$ is a UFD, the prime elements are exactly the irreducible ones in $R[X]$.\\
+So let $f \in R[X]$ be irreducible. If $N(f) = 0$, then $f \in R$ is irreducible and also Prime, because $R$ is assumed to be a UFD. \\
+If $N(f) > 0$, then since $f$ is irreducible, $f$ must also be primitive, or else we would have a factorisation $f = I(f) f^*$, for $I(f) \not\in R^{\times} \lightning$. So $f$ is of the second type.\\
+Now assume that $f = gh$ for some $g,h \in K[X]$ and we show that $f$ can be written as a product of elements in $R[X]$ aswell. From the Lemma we know that $g = cg^*$ and $h = dh^*$, with $c,d \in K$ and $g^*,h^* \in R[X]$ primitve. From the corollary, the product of primitives is again primitve, so $f = (cd)g^*h^*$ is the decomposition of $f$ into primitives and $I(f)$, which means $cd \in R^\times$. Therefore, we can factor $f = (cdg^*) h^*$. And since $f$ is irreducible in $R[X]$, either $g^*$ or $h^*$ must be a unit. So $f$ is irreducible in $K[X]$ aswell.\\
+
+Now we only need to show that every $f \in R[X] \setminus \{0\}$ is a finite product of prime elements of $R[X]$. Because we can write $f = d f^*$ for $d \in R \setminus \{0\}$ and $f^* \in R[X]$ primitive. Since $R$ is a UFD, $d$ is a finite product of prime elements in $R$.\\
+To show that $f^*$ can also be written as a finite product of prime elements in $R[X]$, we can use induction on the degree $\deg(f^*)$.\\
+If the degree is zero, then $f^* \in R^\times$ and if $\deg(f^*) = 1$, then it is irreducible, since $f^*$ is primitive.\\
+For the induction step if $f^* = gh$ for $g,h \in R[X]$, and $f^*$ is irreducible, then it automatically follows, since one of them is a unit. If $f^*$ is not irreducible, then both $g,h$ are automatically primitive, (or else $f^*$ wouldn't be), and since $\deg(g), \deg(h) < \deg(f)$it follows by induction that they can be written as a finite product of prime elements.
+
+
