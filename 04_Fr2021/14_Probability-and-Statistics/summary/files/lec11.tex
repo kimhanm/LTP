@@ -1,0 +1,97 @@
+
+\subsection{Expectation value}
+
+\begin{dfn}[]
+  Let $X\geq 0$ be a random variable on a continuous P-space $(\Omega,\mathcal{A},\IP)$ with distribution $\mu$.
+
+  Its \textbf{expectation value} is defined as
+  \begin{align*}
+    \E[X] := \int_{\Omega}X(\omega)d \IP(\omega) = \int_\R x \mu_X(dx) \in [0,\infty]
+  \end{align*}
+\end{dfn}
+For random variables with negative values, we again do the same construction as in the discrete case.
+The expectation value is again linear, monotonous and continous.
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|C|C|}
+  \hline
+  Distribution & \E[X] & \text{Var}[X]
+  \\\hline
+  Binomial$(n,p)$ & np & np(1-p)
+  \\\hline
+  Hypergeometric(n,N,K) & n \frac{K}{N} & n \frac{K}{N}(1 -\frac{K}{N}) \frac{N-n}{N-1}
+  \\\hline
+  Poisson$(\lambda)$ & \lambda & \lambda
+  \\\hline
+  Geometric$(p)$ & \frac{1}{p} & \frac{1-p}{p^{2}}
+  \\\hline
+  Uniform$(a,b)$ & \frac{a+b}{2} & \frac{(b-a)^{2}}{12}
+  \\\hline
+  Exponential$(\alpha)$ & \frac{1}{\alpha} & \frac{1}{\alpha^{2}}
+  \\\hline
+  Normal$(\mu,\sigma^{2})$ & \mu & \sigma^{2}\\\hline
+\end{tabular}
+\caption{Expectation value and variance of important distributions}
+\end{table}
+
+In many optimisation problems, convexity is an important feature that assures the existence of solutions.
+We say that a function $g: \R \to  \R$ is \textbf{convex}, if for every $x_0 \in \R$ there exists a linear supporting function $l(x) =  ax + b$ such that
+\begin{align*}
+  l(x) = g(x) \quad \forall x \in \R, \quad \text{and} \quad l(x_0) = g(x_0)
+\end{align*}
+if $-g$ is convex, we say $g$ is \textbf{concave}
+
+
+\begin{prop}[Jensen inequality]
+  For any random variable $X$ with finite expectation value and $g: \R \to  \R$ convex, we have
+  \begin{align*}
+    \E[g(X)] \geq g(\E[X])
+  \end{align*}
+\end{prop}
+\begin{proof}
+  Let $l$ be the supporting function on $x_0 = \E[X]$. By linearity and monotoneity:
+  \begin{align*}
+    g(E[X]) = l(\E[X]) = \E[l(X)] \leq \E[g(X)] 
+  \end{align*}
+\end{proof}
+The Jensen inequality gives us the assurance that our definition of standard deviation $\sigma(X) = \sqrt{\text{Var}[X]} := \sqrt{\E[X^{2}] - \E[X]^{2}}$ is indeed well-defined
+
+\begin{prop}[Markov inequality]
+  Let $g$ be a non-netagive, monotonously increasing function on $\R$. The for every $c$ with $g(c) >0$:
+  \begin{align*}
+    \IP[X \geq c] \leq \frac{\E[g(X)]}{g(c)}
+  \end{align*}
+\end{prop}
+\begin{proof}
+We just use the characteristic function and the properites of $g$ to get
+\begin{align*}
+  \mathds{1}_{[X \geq c]} \leq \frac{g(X)}{g(c)}
+\end{align*}
+and take the expectation value of the above.
+\end{proof}
+
+
+
+The most notable use of the Markov inequality is the \textbf{Chebychev inequality}
+\begin{align*}
+  \IP\left[\abs{X - \E[X]} > c\right] \leq \frac{\text{Var}[X]}{c^{2}}
+\end{align*}
+which follows by application on the random variable $Y = \abs{X - \E[X]}$ and the function $g(x) = \left(
+  \max(x,0)
+\right)^{2}$
+
+\subsection{Multiple random variables}
+If we have multiple random variables $X_{1}, \ldots, X_{n}$ then we can view it as a single random variable $\bm{X}$ with values in $\R^{n}$.
+
+With the Borel $\sigma$-Algebra on $\R^{n}$, we can write
+\begin{align*}
+  \bm{X}^{-1}(A_1 \times \ldots \times A_n) = \bigcup_{i=1}^{n}X_i^{-1}(A_i)
+\end{align*}
+which allows us to define the distriubtion $\mu_{\bm{X}}$ under $\IP$ as the \textbf{collective distribution} of $X_{1}, \ldots, X_{n}$ given by
+\begin{align*}
+  \mu_{\bm{X}}(A) = \IP[\bm{X}^{-1}(A)] = \IP[\{\omega \big\vert \bm{X}(\omega) \in A\}] = \IP[\bm{X} \in A] \quad \text{for} \quad A \in \mathcal{B}^{n} \subseteq \R^{n}
+\end{align*}
+
+

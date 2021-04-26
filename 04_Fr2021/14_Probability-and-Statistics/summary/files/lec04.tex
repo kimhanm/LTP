@@ -1,0 +1,131 @@
+If we are given a random variable, we can of course talk about the \emph{conditional} expectation value.
+\begin{dfn}[]
+  Let $(\Omega,\mathcal{A},\IP)$ be a discrete P-space. For an event $B \in \mathcal{A}$ with non-zero probabilty we define the \textbf{conditional expectation value} to be
+  \begin{align*}
+    \E[X|B] = \frac{\E[\mathds{1}_B X]}{\IP[B]} = \sum_{\omega \in \Omega}X(\omega) \IP[\{\omega\}|B] = \sum_{x \in X(\Omega)} x\IP[X = x|B]
+  \end{align*} 
+  where $\mathds{1}_{B}$ is the characteristic function.
+
+
+  Given a partition $\mathcal{G} = (B_i)_{i \in I}$ of $\Omega$ into pariwse disjoint non-empty subsets, where $I$ is at most countable, we can define a random variable by
+  \begin{align*}
+    \E[X|\mathcal{G}](\omega) := \sum_{i \in I}\E[X|B_i]\mathds{1}_{B_i}(\omega)
+  \end{align*}
+  which is the conditional expectation value of $X$ given the partition $\mathcal{G}$.
+\end{dfn}
+We can assert that this definition is useful in the sense that it does what it is supposed to do. 
+We can show that the conditional expectation value \emph{is} the best approximation of $X$ on the subset $X$.
+
+\begin{thm}[]
+  Let $X$ be a random variable on $(\Omega,\mathcal{A},\IP)$,  such that $\E[X^{2}] < \infty$ and $\mathcal{G} = (B_i)_{i \in I}$ a partition of $\Omega$. Then
+  \begin{align*}
+    \E \left[
+      \left(
+        X - \sum_{i \in I}c_i \mathds{1}_{B_i}
+      \right)^2
+    \right]
+  \end{align*}
+  is minimal for $c_i = \E[X|B_i]$\footnote{
+    Implicitly, the sum doesn't go over all $i$, but only over those where $B_i$ has non-zero probability.
+}
+\end{thm}
+\begin{proof}
+  First note that since the $B_i$ are disjoint, we have $\mathds{1}_{B_i}\mathds{1}_{B_j} = \delta_{ij} I_{B_i}$.
+  By linearity of the expectation value we get for any $c_i$
+  \begin{align*}
+    \E \left[
+      X \sum_{i\in I}c_i \mathds{1}_{B_i}
+    \right]
+    &=
+    \E \left[
+      \sum_{i \in I}c_i X \mathds{1}_{B_i}
+    \right] 
+    =
+    \E \left[
+      \sum_{i \in I}c_i \frac{\E[X \mathds{1}_{B_{i}}}{\IP[B_i]} \mathds{1}_{B_i}
+    \right]
+    \\
+    &=
+    \E \left[
+      \sum_{{\color{orange}i},j \in I}c_i {\color{orange}\E[X|B_i] \mathds{1}_{B_i}} \mathds{1}_{B_j}
+    \right]
+    =
+    \E \left[
+      {\color{orange}
+      \E[X|\mathcal{G}]}\sum_{i \in I}c_i \mathds{1}_{B_i}
+    \right]
+  \end{align*}
+  \#\#\# missing 5 mins
+
+\end{proof}
+
+
+The conditional probability can also be seen as the orthogonal projection with respect to the dot product on random variables
+\begin{align*}
+  \left<X,Y\right> := \sum_{\omega \in \Omega}X(\omega)Y(\omega) p(\omega)
+\end{align*}
+
+
+
+\begin{dfn}[]
+  A collection of subsets $(A_i)_{i \in I}$, $A_i \subseteq \Omega$ is said to be (stochastically) \textbf{independent} (with respect to $\IP$), if for \emph{all} finite subsets $J \subseteq I$
+  \begin{align*}
+    \IP\left[
+      \bigcap_{j \in J}A_j  
+    \right]
+    =
+    \prod_{j \in J} \IP[A_j]
+  \end{align*}
+\end{dfn}
+\begin{rem}
+\begin{itemize}
+  \item For two events $A,B$ with positive probability we have
+    \begin{align*}
+      A,B \text{ independent } \iff \IP[A|B] = \IP[A] \iff \IP[B|A] = \IP[B]
+    \end{align*}
+  \item Pairwise independence is \emph{not} enough to show that a collection is independent as a whole. The condition must hold for \emph{all} finite subsets $J$.
+    As a counter example, consider the two coin throws where
+    \begin{align*}
+      A &= \text{``first throw is Head''}\\
+      B &= \text{``second throw is Head''}\\
+      C &= \text{``The outcomes of both throws are different''}
+    \end{align*}
+    these all have non-zero probability individually and are pairwise disjoint, but $A \cap B \cap C = \emptyset$.
+\end{itemize}
+\end{rem}
+
+\begin{lem}[]
+  If $(A_i)_{i \in I}$ are independent, then for $B_i = A_i$ or $B_i = A_i^{c}$, the collection $(B_i)_{i \in I}$ is also independent.
+\end{lem}
+
+\begin{proof}
+We let $J \subseteq I$ be the indices, where $B_i = A_i$ and $K \subseteq I$ the ones where $B_i = A_i^{c}$ and use induction on $\abs{K} = k$:
+
+Since the condition holds for all $\abs{J}$, we can let $\tilde{K} = K \cup \{l\}$. Then
+\begin{align*}
+  \IP\left[
+    \bigcap_{j \in J}A_j \cap \bigcap_{k \in K} A_k^{c} \cap A_l^{c}
+  \right]
+    &=
+    \IP\left[
+      \bigcap_{j \in J}A_j \cap \bigcap_{k \in K}A_k^{c}
+    \right]
+    -
+    \IP\left[
+      \bigcap_{j \in J}A_j \cap A_l \cap\bigcap_{k \in K}A_k^{c}
+    \right]
+    \\
+    &= \prod_{j \in J}\IP[A_j]\prod_{k \in K} \IP[A_k^{c}](1 - \IP[A_l])
+\end{align*}
+\end{proof}
+
+Just like we could pull the probability measure onto a random variable to obtain the expectation value, we can pull the independence of events to define independence of random variables.
+
+\begin{dfn}\label{dfn:rvind}
+  A collection of discrete random variables $(X_i)_{i \in I}$ is said to be \textbf{independent}, if the set of all possible events $\left(\{X_i = y\}\right)_{i \in I}$ are independent for any selection of $y \in \R$. 
+  An equivalent categorisation is that for any finite subset $J \subseteq I$
+  \begin{align*}
+    \E\left[\prod_{j \in J}X_j\right] = \prod_{j \in J}\E[X_j] \iff \IP[X_j = x_j, \forall j \in J] = \prod_{j \in J}\IP[X_j = x_j]
+  \end{align*}
+\end{dfn}
+

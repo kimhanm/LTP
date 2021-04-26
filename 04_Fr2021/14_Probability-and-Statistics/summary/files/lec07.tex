@@ -1,0 +1,179 @@
+Now let's consider random walks, where the random variables $X_i$ takevalue in $\{0,1\}$ instead of $\{+1,-1\}$.
+$\Omega$ is then the set of $0-1$ sequences of length $n$.
+
+Recall that in the Laplace model, $\IP$ is the equal distribution on $\Omega$.
+
+This had the ``consequence'' that the random variables $X_i$ for the random walk were independent and had probability
+\begin{align*}
+  \IP[X_i = 1] = \frac{1}{2}, (i = 1, \ldots, n)
+\end{align*}
+on the other hand, we can set $\IP[X_i = 1]$ to $\frac{1}{2}$ and then recover our probability distribution $\IP$ on $\Omega$ by requiring that the random variables were independent.
+
+This allows us to consider a varied system in which the probability above is given by
+\begin{align*}
+  \IP[X_i = 1] := p, \quad \text{for} \quad p \in [0,1]
+\end{align*}
+which uniquely determines a probability distribution $\IP$ on $\Omega$, which associates to an outcome $\omega = (x_{1}, \ldots, x_{n})$ the probability
+\begin{align*}
+  \IP[\{\omega\}] = \IP\left[
+    \bigcap_{i=1}^{n}\{X_i = x_i\}
+  \right]
+  =
+  \prod_{i=1}^{n}\IP[X_i = x_i]
+  = p^{k}(1-p)^{n-k}
+\end{align*}
+where $k$ depends on $\omega$ and measures the number of $x_i$ such that $x_i = 1$.
+
+This gives us the distribution of the random variable $S_n$, which is given by
+\begin{align*}
+  \IP[S_n = k] = \binom{n}{k}p^{k}(1-p)^{n-k}
+\end{align*}
+a more analytical way to prove this is to decompose $S_n = X_1 + \ldots + X_n$ and use the property of the exponential function to get
+\begin{align*}
+  \E[e^{i \lambda S_n}] 
+  &=
+  \E[e^{i \lambda(X_{1}+ \ldots + X_{n}}]\\
+  &=
+  \E[e^{i \lambda X_1}] \dots \E[e^{i \lambda X_n}]\\
+  &=
+  \left(
+    (1-p) + e^{i \lambda}p
+  \right)^{n}\\
+  &=
+  \sum_{k=0}^{n}\binom{n}{k}p^{k}(1-p)^{n-k}e^{i \lambda k}
+\end{align*}
+but by doing comparison of coefficients with the expression
+\begin{align*}
+  \E[e^{i \lambda S_n}] = \sum_{k=0}^{n}\P[S_n = k]e^{i \lambda k}
+\end{align*}
+we recover the binomial distribution.
+
+For
+\begin{align*}
+  p_n(k) = \binom{n}{k}p^{k}q^{n-k} \quad \text{with} \quad q = 1-p
+\end{align*}
+the binomial distribution allows for a recursive formulation:
+\begin{align*}
+  p_n(k+1) = \frac{n-k}{k+1}\frac{p}{q}p_n(k) = \frac{np - kp}{k - kp + 1 - p}p_n(k)
+\end{align*}
+, or at least when $q \neq 0$. 
+In that case, we get a delta distribution where the only singleton event with positive probability is $S_n = n$.
+
+We can ask whether there exists an analytic function describing $p_n(k)$ as a function of $k$?
+\begin{thm}[de Moivre-Laplace]
+  For $q = 1-p$ we have the analytic expression
+  \begin{empheq}[box=\bluebase]{align*}
+    p_n(k) = \binom{n}{k}p^{k}q^{n-k}
+    =  \frac{1}{\sqrt{2 \pi n p q}} \exp \left(
+      - \frac{(k-np)^{2}}{2npq}
+    \right)
+    (1 - r_n(k))
+    =:
+    \phi_{n,p}(k)\big(1 + r_n(k)\big)
+\end{empheq}
+  where the remainder term $r_n(k)$ converges such that
+  \begin{align*}
+    \sup \{\abs{r_n(k)} \big\vert \abs{k - np} \leq A \sqrt{n}\} \to  0 \quad \text{for all} \quad A > 0 \quad \text{for} \quad n \to \infty
+  \end{align*}
+\end{thm}
+\begin{proof}
+  Because we have the factorial in the expression $p_n$, we can use the Stirling Formula $m! \sim \sqrt{2 \pi m}(\frac{m}{e})^{m}$ to get
+  \begin{align*}
+    p_n(k)
+    &\simeq 
+    \frac{
+      \sqrt{2 \pi n}n^{n}p^{k}q^{n-k}
+      }{
+      \sqrt{(2 \pi)^{2}k(n-k)}k^{k}(n-k)^{n-k} 
+    }\\
+    &=
+    [...]\\
+    &= \frac{1}{\sqrt{
+        2 \pi n \frac{k}{n}(1 - \frac{k}{n})
+    }}
+    \exp(n g_p(k/n))
+  \end{align*}
+  where $g_p(x)$ is given by
+  \begin{align*}
+    g_p(x) = x(\log p - \log x) + (1-x) \big(\log(1 -p) - \log(1-x)\big)
+  \end{align*}
+  Then, by expanding $g_p$ in a taylor expansion at $x=p$ we first get
+  \begin{align*}
+    g_p(p) = 0 = g_p'(p), \quad \text{and} \quad g_p''(p) = \frac{-1}{p(1-p)}
+  \end{align*}
+  [missing 5 mins]
+\end{proof}
+Although the proof is quite obtuse, the formula itself is rather intuitive.
+Notice that since the expectation value for $X_i = p$, we get that $\E[S_n] = n p$. So the term $(k - np)^2$ measure the deviatin from the expected value.
+
+Moreover, the variance of $S_n$ is given by
+\begin{align*}
+  \variance[S_n]
+  &=
+  \E\left[
+    \left(
+      S_n - \E[S_n]
+    \right)^{2}
+  \right]
+  \\
+  &=
+  \E\left[
+    \left(
+      \sum_{i=1}^{n}(X_i - p)
+    \right)^{2}
+  \right]
+  \\
+  &=
+  \sum_{i,j\leq n}^{k}\E[(X_i - p)(X_j - p)]
+  \\
+  &=
+  \sum_{i=1}^n [\text{missing 1 min}]%\E[X_i - p]^2
+  \\
+  &=
+\end{align*}
+so the term $npq$ is the variance.
+
+
+
+
+\begin{thm}[Poisson approximation]
+  For $k$ fix and $n \to \infty, p \to \infty$ such that $np \to  \lambda$ we have
+  \begin{empheq}[box=\bluebase]{align*}
+    \binom{n}{k}p^{k}(1-p)^{n-k} \to  \frac{\lambda^{k}}{k!}e^{-\lambda}
+  \end{empheq}
+\end{thm}
+
+
+\begin{prop}[]
+Let $X_1,X_2$ be independent random variables such that
+\begin{align*}
+  \IP[X_1 = k \big\vert X_1 + X_2 = n] = \binom{n}{k}2^{-n} \quad \text{for all} \quad n \in \N, 0 \leq k \leq n
+\end{align*}
+then, $X_1,X_2$ follow the Poisson distribution with the same parameter $\lambda$.
+\end{prop}
+\begin{proof}
+By assumption, we can write
+\begin{align*}
+  \frac{1}{n}
+  &=
+  \frac{\binom{n}{n}2^{-n}}{\binom{n}{n-1}2^{-n}}
+  =
+  \frac{\IP[X_1 = n \big\vert X_1 + X_2 = n]}{\IP[X_1 = n-1 \big\vert X_1 + X_2 = n}
+  \\
+  &=
+  \frac{\IP[X_1 = n, X_2 = 0]}{\IP[X_1 = n-1, X_2 = 1]}
+  \\
+  &= 
+  \frac{\IP[X_1 = n]\IP[X_2=0]}{\IP[X_1 = n-1] \IP[X_2=1]}
+\end{align*}
+By setting $\lambda:= \frac{\IP[X_2=1]}{\IP[X_2=0]}$ we get
+\begin{align*}
+  \IP[X_1=n] = \frac{\lambda}{n}\IP[X_1=n-1] = \frac{\lambda^{n}}{n!}\IP[X_1=0]
+\end{align*}
+since the probabilities have to add up to $1$, it follows that $\IP[X_1=0] = e^{- \lambda}$.
+\end{proof}
+
+As a result, we can show that the sum of Poisson distributions is again a Poisson distribution.
+\begin{prop}[]
+If $X_1,X_2$ are independent and have Poission distributions for parameters $\lambda_1,\lambda_2$, then their sum $X = X_1+X_2$ has Poission distribution with paramter $\lambda = \lambda_1 + \lambda_2$.
+\end{prop}

@@ -1,0 +1,87 @@
+\subsection{Types of distributions}
+\begin{dfn}[]
+  A random variable $X$ is \textbf{discrete} if there exists a countable set $A \subseteq \R$ such that $\IP[X \in A] = 1$.
+  The distribution function 
+\begin{align*}
+  F(b) = \sum_{x \in A, x \leq b}\IP[X = x]
+\end{align*}
+is a step function with discontinuities at points in $A$.
+
+$X$ is called \textbf{absolutely continuous} if there exists a measurable function $f:(\R,\mathcal{B}) \to (\R,\mathcal{B})$ with $f(x) \geq 0$ and $\int_{-\infty}^{\infty}f(x) dx = 1$. such that
+\begin{align*}
+  F(b) = \int_{-\infty}^{b}f(x) dx \quad \text{for all} \quad b \in \R
+\end{align*}
+we call $f$ the \textbf{density} of $X$ (and is written $f_X$).
+\end{dfn}
+Note that such a function $f$ is unique up to $\mathcal{L}$-measure zero differences.
+
+\begin{ex}[]
+  For the uniform distribution of $X$ on $[a,b]$, the density is 
+  \begin{align*}
+    f(x) = \left\{\begin{array}{ll}
+        \frac{1}{b-a} & x \in [a,b]\\
+      0 & \text{ otherwise}
+    \end{array} \right.
+  \end{align*}
+  The exponential distribution with parameter $\alpha > 0$ (called $\text{Exp}(\alpha)$ has density
+  \begin{align*}
+    f(x) = \left\{\begin{array}{ll}
+      \alpha e^{- \alpha x} & x \geq 0\\
+      0 & x < 0
+    \end{array} \right.
+  \end{align*}
+  and the distribution function has the form
+  \begin{align*}
+    F(b) = \left\{\begin{array}{ll}
+      1 - e^{- \alpha x} & x \geq 0\\
+      0 & x < 0
+    \end{array} \right.
+  \end{align*}
+\end{ex}
+
+Another important distribution is the \textbf{Normal distribution}. 
+It has parameters $\mu$ and $\sigma^{2}$ for the center and the variance and we write $\mathcal{N}(\mu,\sigma^{2})$.
+It's density is given by
+\begin{empheq}[box=\bluebase]{align*}
+  f(x) 
+  = 
+  \frac{1}{\sigma \sqrt{2 \pi}} \exp \left(
+    - \frac{(x - \mu)^{2}}{2 \sigma^{2}}
+  \right)
+\end{empheq}
+the distribution function $F$ doesn't have a closed form but has a quite distinct look.
+
+Not all continuous random variables are absolutely continous.
+Take for example the P-space of $0-1$ experiments with parameter $p \in [0,1]$.
+
+If we define the random variable
+\begin{align*}
+  X: \Omega \to [0,1], \quad  X(\omega) := \sum_{k=1}^{\infty} x_k 2^{-k}
+\end{align*}
+Writing a number $b \in (0,1)$ in terms of its binary representation $b = \sum_{k=1}^{\infty}b_k 2^{-k}$ with $b_k \in \{0,1\}$ and writing $s_n$ for the partial sums $s_n = \sum_{k=1}^{n}b_k$, we can see that the distribution function is given by
+\begin{align*}
+  F(b) = \sum_{n=1}^{\infty}b_n p^{s_{n-1}}q^{n - s_{n-1}} 
+\end{align*}
+where $q = 1-p$. 
+In particular, for  $p = \tfrac{1}{2}$ we get that
+\begin{align*}
+  F(b) = \IP_{\tfrac{1}{2}}[X \leq b] = \sum_{n=1}^{\infty}b_n 2^{-1} = b
+\end{align*}
+which is just the identity on $[0,1]$.
+
+However, for $p \neq \tfrac{1}{2}$ we see something interesting emerge -auDn.
+The distribution function for $X$ is continuous, but not absolutely continuous: If there would exist some density $f_p$, then we would have
+\begin{align*}
+  \IP_p[X \in A] = \int_A f_p(x) dx
+\end{align*}
+in particular, if $\IP_{\tfrac{1}{2}}[X \in A] = \int_A dx = 0$, then we automatically have $\IP_p[X \in A] = 0$.
+But by the the law of big numbers there must exist some $A$ such that
+\begin{align*}
+  \IP_p[X \in A] = 1, \quad \IP_{\tfrac{1}{2}}[X \in A] = 0
+\end{align*}
+
+What is interesting is that it took very long until mathematicians found pathological continuous functions. (See Weierstrass's nowhere differentiable function).
+But such functions come up quite naturally in probability theory.
+
+
+
