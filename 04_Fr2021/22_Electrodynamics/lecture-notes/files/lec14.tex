@@ -33,7 +33,7 @@ such that
 \subsection{Proper time}
 The differential form of the spacetime interval is known as the \textbf{proper time interval}
 \begin{empheq}[box=\bluebase]{align*}
-  ds^{2} := c^{2} dt^{2} - d \vec{x}^{2} = g_{\mu \nu}dx^{\mu}dx^{\nu}
+  d \tau^{2} = d\tau^{2} := c^{2} dt^{2} - d \vec{x}^{2} = g_{\mu \nu}dx^{\mu}dx^{\nu} 
 \end{empheq}
 
 Then under a Lorentz transformation
@@ -53,18 +53,18 @@ we can show that the proper time interval is preserved.
     g_{\mu\nu} \Lambda_{\rho}^{\mu}\Lambda_{\sigma}^{\nu}
   \right)
   dx^{\rho}dx^{\sigma}\\
-  &= g_{\rho \sigma}dx^{\rho}dx^{\sigma} = ds^{2}
+  &= g_{\rho \sigma}dx^{\rho}dx^{\sigma} = d\tau^{2}
 \end{align*}
 As a consequence, it follows that the speed of light is the same in all inertial reference frames because if something is moving at the speed of light, then
 \begin{align*}
-  \abs{\frac{d \vec{x}}{d t}} = c \implies d s^{2} = c^{2} dt^{2} - d \vec{x}^{2} = 0
+  \abs{\frac{d \vec{x}}{d t}} = c \implies d\tau^{2} = c^{2} dt^{2} - d \vec{x}^{2} = 0
 \end{align*}
 and so under a Lorentz transformation, it follows formthe perservation of the proper time interval that 
 \begin{align*}
-d \tilde{s}^{2} = ds^{2} = 0 \implies \abs{\frac{d \vec{\tilde{x}}}{d \tilde{t}}} = c
+d \tilde{s}^{2} = d\tau^{2} = 0 \implies \abs{\frac{d \vec{\tilde{x}}}{d \tilde{t}}} = c
 \end{align*}
 Moreover, we can also show that the Lorentz transformations are the only non-singluar transformations that preserve the proper time intervals.
-Assume that there exists change of reference $x^{\mu} \mapsto \tilde{x}^{\mu}$ such that $ds^{2} = d \tilde{s}^{2}$.
+Assume that there exists change of reference $x^{\mu} \mapsto \tilde{x}^{\mu}$ such that $d\tau^{2} = d \tilde{s}^{2}$.
 Then we get
 \begin{align*}
   g_{\rho \sigma}dx^{\rho}dx^{\sigma} 
@@ -85,6 +85,11 @@ To this we add the same equation with $\epsilon$ and $\rho$ reversed and subtrac
 \begin{align*}
   0 = 2 g_{\mu\nu} \frac{\del^{2} \tilde{x}^{\mu}}{\del x^{\epsilon}\del x^{\rho}} \frac{\del \tilde{x}^{\nu}}{\del x^{\sigma}}
 \end{align*}
+So from the relations
+\begin{align*}
+  \frac{\del \tilde{x}^{\mu}}{\del x^{\sigma}} \frac{\del x^{\sigma}}{\del \tilde{x}^{\nu}} = \delta_{\mu \nu} \implies \frac{\del^{2}\tilde{x}^{\mu}}{\del x^{\epsilon}\del x^{\rho}} = 0
+\end{align*}
+the transformation must be of linear kind.
 
 
 Given a transformation $\tilde{x}^{\mu} = \Lambda_{\nu}^{\mu} x^{\nu} + \rho^{\mu}$ we the \textbf{velocity vector}
@@ -131,29 +136,9 @@ and thus we also find
 \begin{align*}
   \Lambda_{0}^{i} = \gamma \frac{v^{i}}{c}
 \end{align*}
+So an example of a proper Lorentz transformation is given by
+\begin{align*}
+  \Lambda_{\nu}^{\mu}: \Lambda_{0}^{0} = \gamma, \quad \Lambda_{0}^{i} = \Lambda_{i}^{0} = \gamma \frac{v^{i}}{c}, \quad \Lambda_{j}^{i} = \delta_{j}^{i} + (\gamma - 1) \frac{v^{i}v^{j}}{v^{2}}
+\end{align*}
 
 
-\subsection{Time dilation}
-Consider a clock which is at rest for an observer in reference frame $O$.
-Between two clock ticks, the clock will have moved in the space-timeinterval 
-\begin{align*}
-  d \vec{x} = 0, \quad dt = \Delta t
-\end{align*}
-and its proper time interval is
-\begin{align*}
-  ds^{2} = (c^{2} dt^{2} - d \vec{x}^{2}) = c^{2} (\Delta t)^{2}
-\end{align*}
-A second observer sees the clock moving with velocity $\vec{v}$. Then two ticks of the clock will be separated by a space-time interval
-\begin{align*}
-  d \vec{\tilde{x}} = \vec{v} d \tilde{t}, \quad d \tilde{t} = \Delta \tilde{t}
-\end{align*}
-the proper-time interval in the new reference frame is then
-\begin{align*}
-  d \tilde{s}^{2} = c^{2} d \tilde{t}^{2} - d \vec{x}^{2} = c^{2} (\Delta \tilde{t})^{2} \left(
-    1 - \frac{v^{2}}{c^{2}}
-  \right)
-\end{align*}
-and since the proper time is the same in both reference frames, we get
-\begin{empheq}[box=\bluebase]{align*}
-  \Delta \tilde{t} = \frac{1}{\sqrt{1 - \frac{v^{2}}{c^{2}}}} = \gamma \Delta t
-\end{empheq}

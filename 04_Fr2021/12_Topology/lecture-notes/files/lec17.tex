@@ -1,0 +1,102 @@
+One quickly verifies that this does indeed form a group and has the universal property, where the inclusion mappings are given by
+\begin{align*}
+  \iota_H: H \hookrightarrow H \ast K, 
+  \quad h \mapsto  \left\{\begin{array}{ll}
+    h & \text{ if } h \neq e_H\\
+    1 & \text{ if } h = e_h
+  \end{array} \right.
+\end{align*}
+The universal property says that for any group $G$ with morphisms $H \stackrel{f}{\to} G, K \stackrel{g}{\to}G$, there exists a unique homomorphism $\phi: H \ast K \to G$ such that the following diagram commutes
+\begin{center}
+  \begin{tikzcd}[column sep=0.8em] %\arrow[bend right,swap]{dr}{F}
+  & H \ast K
+  \arrow[dotted]{dd}{\phi}
+  \\
+  H 
+  \arrow[]{ur}{\iota_H}
+  \arrow[]{dr}{f}
+  & & 
+  K
+  \arrow[swap]{ul}{\iota_K}
+  \arrow[swap]{dl}{g}
+  \\
+  & G
+\end{tikzcd}
+\end{center}
+this morphism is given by
+\begin{align*}
+  \phi: H \ast K \to G, \quad h_1 k_1h_2k_2 \ldots \mapsto f(h_1)g(k_1)f(h_2)g(k_2)\ldots
+\end{align*}
+
+
+\begin{itemize}
+  \item $H \ast K = K \ast H$
+  \item If $H = \{e\}$, then $H \ast K \iso K$.
+  \item If $H,K$ are non-trivial groups, then $H \ast K$ is anabelian, because for $h \neq 1 \in H, k \neq 1 \in K$ the words $hk, kh$ are different words.
+\end{itemize}
+
+\begin{ex}[]
+  Let $\scal{a}, \scal{b}$ be cyclical groups. 
+
+  \begin{itemize}
+    \item Then $\scal{a} \ast \scal{b}$ is the free group with two generators. 
+    \item If $\scal{a}$ is finite of order $2$ and $\scal{b}$ of order $3$, then 
+      \begin{align*}
+        \scal{a} \ast \scal{b} = \{1,a,b,b^{2},ab,ba,ab^{2},ba^{2}, \ldots\}
+      \end{align*}
+      This group is isomorphic to the projective special linear group $\text{PSL}_2(\Z) = \text{SL}_2(\Z)/\{\pm 1\}$
+  \end{itemize}
+\end{ex}
+
+
+Let $X$ be a topological space, $A,B \subseteq X$ and $x_0 \in A \cap B$.
+Let
+\begin{align*}
+  j_A: \pi_1(A) &\to \pi_1(X)\\
+  j_B: \pi_1(B) &\to \pi_1(X)\\
+  i_A: \pi_1(A\cap B) &\to \pi_1(A)\\
+  i_B: \pi_1(A\cap B) &\to \pi_1(B)
+\end{align*}
+be the group homomorphisms induced by the functor $\pi_1$ acting on the inclusion mappings.
+This universal property of the coproduct induces a group homomorphism
+$\phi: \pi_1(A) \ast \pi_1(B) \to \pi_(X)$ such that the following diagram commutes
+\begin{center}
+\begin{tikzcd}[column sep=2em] %\arrow[bend right,swap]{dr}{F}
+  & \pi_1(A \cap B)
+  \arrow[swap]{dl}{i_A}
+  \arrow[]{dr}{i_B}
+  \\
+  \pi_1(A) 
+  \arrow[]{r}{\iota_{A}}
+  \arrow[swap]{dr}{j_A}
+  & \pi_1(A) \ast \pi_1(B)
+  \arrow[dotted]{d}{\phi}
+  & 
+  \pi_1(B)
+  \arrow[swap]{l}{\iota_K}
+  \arrow[]{dl}{j_B}
+  \\
+  & 
+  \pi_1(X)
+\end{tikzcd}
+\end{center}
+\begin{thm}[Seifert - van Kampen]
+
+If $A,B,A \cap B$ are path connected and open such that $A \cup B = X$, let
+\begin{align*}
+  \phi: \pi_1(A) \ast \pi_1(B) \to \pi_1(X)
+\end{align*}
+be the unique group homomorhpism induced by the coproduct. Then
+\begin{enumerate}
+  \item $\phi$ is surjective
+  \item $\Ker \phi \scal{\scal{\{i_A(c)\left(
+            i_B(c)
+    \right)^{-1} \big\vert
+    c \in \pi_1(A \cap B) 
+    \}}}$
+\end{enumerate}
+In particuar
+\begin{align*}
+  \faktor{\pi_1(A) \ast \pi_a(B)}{\Ker \phi} \iso \pi_1(X)
+\end{align*}
+\end{thm}
