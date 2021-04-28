@@ -15,11 +15,12 @@ This gives rise to the definition of a functor.
         \item $F (\id_X) = \id_{F X}$
         \item $F (g \circ f) = Fg \circ Ff$
       \end{enumerate}
-      the second condition is equivalent to saying that for any morphism $f: X \to  Y$ in $\textsf{C}$, the following diagram commutes
+      the second condition is equivalent to saying that for any morphism $f: X \to  Y$ in $\textsf{C}$, the following ``diagram commutes'' \footnote{This is technically not a diagram in the sense that we are drawing two categories ($\textsf{C}$ and $\textsf{D}$) next to eachother, but that is ignored here.}.
 \begin{center}
 \begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
   X \arrow[]{rr}{F} \arrow[]{d}{f} & & F X \arrow[]{d}{Ff}\\
-  Y \arrow[]{rr}{F} & & F Y 
+  Y \arrow[]{rr}{F} \arrow[]{d}{g} & & F Y \arrow[]{d}{Fg}\\
+  Z \arrow[]{rr}{F} & & F Z 
 \end{tikzcd}
 \end{center}
   \end{itemize}
@@ -33,13 +34,13 @@ This gives rise to the definition of a functor.
     \item If we have a group $(G,\cdot,e)$, we can forget the group structure and only look at the underlying set $G$.
       Group homomorphisms turn into functions.
       We call this the \textbf{forgetful functor}.
-      The same construction works for topological groups, where we forget the topology of a topological space.
-    \item We can turn every field into a group, by removing the $0$. Group homomorphisms then become field homomorphisms.
-    \item There is a functor $\Top \to \Htpy$ that preserves the objects (topolgocial spaces), but maps continuous maps to their homotopy equivalence classes.
+      The same construction works for topological spaces, where we forget the topology of a topological space.
+    \item We can turn every field into a group, by removing the $0$. Field homomorphisms then become grougroup.
+    \item There is a functor $\Top \to \Htpy$ that preserves the objects (topological spaces), but maps continuous maps to their homotopy equivalence classes.
     \item Consider the \textbf{endofunctor} $\textsf{F}: \textsf{Vect}_k \to  \textsf{Vect}_k$ which maps vector spaces to their dual and linear maps to their dual maps.
       So for vector spaces $V,W$ and a linear map $f \in \Hom(V,W)$ we define
       \begin{align*}
-        F V = V^{\ast}, \quad \text{and} \quad Ff =: f^{\ast}: W^{\ast} \to  V^{\ast}, f^{\ast} \beta = \beta \circ f : V \to k
+        F V = V^{\ast}, \quad \text{and} \quad Ff =: f^{\ast}: W^{\ast} \to  V^{\ast}, \quad f^{\ast} \beta = \beta \circ f \in V^{\ast}
       \end{align*}
       This is an example of a \textbf{contravariant functor}, as the directon of $Ff$ is opposite to that of $f$.
   \end{enumerate}
