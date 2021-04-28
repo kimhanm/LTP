@@ -1,3 +1,171 @@
 \section{Special Relativity}
 
+Whereas classical mechanics played in three dimensional space $\R^{3}$ with the time dimension $t \in \R$ separated, special relativity plays in the \textbf{Minkowsky Space}.
+
+Elements of the Minkowsky space are four-vectors $x^{\mu} = (ct, \vec{x})$.
+
+The \textbf{metric tensor} is the matrix
+\begin{align*}
+  g_{\mu\nu} = \text{diag}(1,-1,-1,-1)
+\end{align*}
+which lets us define the (quasi)\textbf{inner product} on the minkowski space as
+\begin{align*}
+  \scal{x,y} = g_{\mu\nu}x^{\mu}y^{\nu} \implies \scal{x,x} = c^{2}t^{2} - \vec{x}^{2}
+\end{align*}
+
+\subsection{Lorentz Transformations}
+
+A \textbf{Lorentz transformation} is any affine linear transformation of the form
+\begin{align*}
+  x^{\mu} \mapsto \tilde{x}^{\mu} = \tensor{\Lambda}{^\mu_\nu}x^{\nu} + \rho^{\mu}
+\end{align*}
+such that it satisfies the relation
+\begin{empheq}[box=\bluebase]{align*}
+  \tensor{\Lambda}{^\mu_\nu} \tensor{\Lambda}{^{\nu}_{\sigma}}g_{\mu\nu} = g_{\rho \sigma}
+\end{empheq}
+such transformation has the inner product as an invariant since
+\begin{align*}
+  \scal{\tilde{x},\tilde{x}} 
+  &= g_{\rho \nu} \left(
+    \tensor{\Lambda}{^{\mu}_{\sigma}} x^{\sigma}
+  \right)
+  \left(
+  \tensor{\Lambda}{^{\nu}_{\rho}}x^{\rho}
+  \right)\\
+  &= g_{\mu\nu}
+    \tensor{\Lambda}{^{\mu}_{\sigma}}
+    \tensor{\Lambda}{^{\nu}_{\rho}}
+    x^{\sigma} x^{\rho}
+  &= g_{\sigma \rho} x^{\sigma}x^{\rho} = \scal{x,x}
+\end{align*}
+The set of all Lorentz transformations forms a group, called the \textbf{Poincare group}.
+
+We are especially interesed in the subgroup known as the \textbf{proper Lorentz transformations}, which are all such transformations that satisfy
+\begin{align*}
+  \det \Lambda = 1, \quad \tensor{\Lambda}{^0_0} \geq 1
+\end{align*}
+
+Another invariant is the \textbf{proper time} 
+\begin{empheq}[box=\bluebase]{align*}
+  d \tau^{2} = dx^{2} = c^{2} dt^{2} - d \vec{x}^{2}
+\end{empheq}
+Given a velocity $\vec{v}$, and $dt$ we get
+\begin{align*}
+  d \tau = c dt \sqrt{1 - \frac{v^{2}}{c^{2}}} = \frac{c}{\gamma} dt
+\end{align*}
+
+When a stationary observer $O$ sees a reference frame $\tilde{O}$ passing by with velocity $\vec{v} = \vec{\beta}c$ along the $x$-axis, 
+then the corresponding boost.
+\begin{align*}
+\tensor{{\Lambda_x}}{^\mu_\nu}(\vec{\beta}) = \begin{pmatrix}
+  \gamma & -\beta \gamma & 0 & 0\\
+  -\beta \gamma & \gamma & 0 & 0\\
+  0 & 0 & 1 & 0\\
+  0 & 0 & 0 & 1
+  \end{pmatrix}
+\end{align*}
+
+If the velocity is at an angle $\theta$ with the $x$-axis in the $xy$-plane, then we break the boost into three steps
+\begin{align*}
+  x \mapsto \tilde{x} = R(\theta)x \mapsto \tilde{\tilde{x}} = \Lambda(\beta) \tilde{x} \mapsto  {x'}^{\mu} = \tensor{R}{^{\mu}_{\rho}}(-\theta) \tensor{{\Lambda_x}}{^{\rho}_{\sigma}} \tensor{R}{^{\sigma}_{\nu}}(\theta) x^{\nu}
+\end{align*}
+
+The inverse of a Lorentz transformation $\tensor{\Lambda}{^\mu_\nu}$ is given by
+\begin{empheq}[box=\bluebase]{align*}
+  \tensor{\Lambda}{_{\mu}^{\nu}} =  g_{\mu\nu} g^{\nu \sigma}\tensor{\Lambda}{^{\rho}_{\sigma}}
+\end{empheq}
+
+\begin{ex}[Relativistic effects]
+Consider a moving particle that has a life span of $t_0$.
+By defining the events for the Start $A$ and End $B$, we get
+\begin{align*}
+  A = (0,\vec{0}) \quad \text{and} \quad B =(ct_0,\vec{0})
+\end{align*}
+we see that after the Lorentz transformation we measure its lifespan to be at 
+\begin{align*}
+  \tilde{A} = \Lambda A = (0,\vec{0}), \quad \text{and} \quad \tilde{B} = \Lambda B = (\gamma c t_0, \beta \gamma c t_0)
+\end{align*}
+so the outside observes sees a \textbf{time dilation} in its lifespan $\tilde{t}_0 = \gamma t_0$.
+
+On the contrary, the outside observer notices a \textbf{length contraction}
+\begin{align*}
+  s = v t_0 = \frac{1}{\gamma}\tilde{s}
+\end{align*}
+\end{ex}
+
+\subsection{Tensors}
+In a change of reference under a Lorentz Transformation
+\begin{align*}
+ x^{\mu} \mapsto \tilde{x}^{\mu} = \tensor{\Lambda}{^\mu_\nu}x^{\nu} + \rho^{\mu}
+\end{align*}
+a \textbf{contra-variant tensor} is any object $U$ that transforms as follows
+\begin{align*}
+  T^{\mu} \mapsto \tilde{T}^{\mu} = \tensor{\Lambda}{^\mu_\nu}T^{\nu}
+\end{align*}
+examples are the momentum $p^{\mu}$, the force $f^{\mu}$ or the differential form $d x^{\mu}$.
+Contra-variant tensors are denoted with upstairs indices.
+
+A \textbf{covariant tensor} is any object that transforms like
+\begin{align*}
+  T_{\mu} \mapsto \tilde{T}_{\mu} = \tensor{\Lambda}{_{\mu}^{\nu}} T_{\nu}
+\end{align*}
+examples are the covariant derivative $\frac{\del }{\del x^{\mu}}$.
+Such tensors are denoted with downstairs indices.
+
+There are also \textbf{mixed tensors}, which have both up- and downstairs indices. They transform according to the rules
+\begin{align*}
+  \tilde{T}_{\nu_1 \nu_2 \ldots \nu_n}^{\mu_1 \mu_2 \ldots \mu_m} 
+  =
+  \tensor{\Lambda}{^{\mu_1}_{\sigma_1}} \ldots \tensor{\Lambda}{^{\mu_m}_{\sigma_m}}
+  \tensor{\Lambda}{_{\nu_1}^{\rho_1}}
+  \ldots
+  \tensor{\Lambda}{_{\nu_n}^{\rho_n}}
+  T_{\nu_1 \nu_2 \ldots \nu_n}^{\mu_1 \mu_2 \ldots \mu_m} 
+\end{align*}
+
+We can "raise/lower indices" with the metric tensor
+\begin{empheq}[box=\bluebase]{align*}
+  T^{\mu} \mapsto 
+  T_{\mu} = g_{\mu\nu}T^{\nu} 
+  \quad \text{and} \quad 
+  T_{\mu} \mapsto 
+  T^{\mu} = g^{\mu \nu}T_{\nu}
+\end{empheq}
+what actally means is that the metric tensor transforms contravariant tensors to covariant ones and vice versa.
+
+A \textbf{Lorentz-Scalar} is any object that stays invariant under Lorentz transformations.
+
+
+Useful Tensor relations are
+\begin{align*}
+  \tensor{\Lambda}{^\mu_\sigma} \tensor{\Lambda}{_{\mu}^{\rho}} = \tensor{\delta}{^{\rho}_{\sigma}}
+\end{align*}
+
+
+
+\subsection{Energy and Momentum}
+We define the four-momentum as
+\begin{empheq}[box=\bluebase]{align*}
+  p^{\mu}:= mc \frac{d x^{\mu}}{d \tau}
+\end{empheq}
+whose components can be given by
+\begin{align*}
+  p^{0} = m \gamma c = mc + \frac{1}{2c}mv^{2} + \mathcal{O}(\frac{v^{4}}{c^{3}}), \quad p^{i} = m \gamma v^{i}
+\end{align*}
+this gives us the definition for \textbf{relativistic energy} as
+\begin{empheq}[box=\bluebase]{align*}
+  E := cp^{0} = m \gamma c^{2} = mc^{2} + \frac{1}{2}mv^{2} + \mathcal{O}(\frac{v^{4}}{c^{2}})
+\end{empheq}
+
+From the relation
+\begin{align*}
+  \vec{p}^{2} = m^{2} \gamma^{2} \vec{v}^{2}
+\end{align*}
+we obtain the very useful \textbf{energy-momentum relation}
+\begin{empheq}[box=\bluebase]{align*}
+  E^{2} = c^{2} \vec{p}^{2} + m^{2} c^{4}
+\end{empheq}
+
+
+
 
