@@ -131,33 +131,32 @@ many of the quantities we defined such as $f^{\mu},p^{\mu},dx^{\mu}$ etc. transf
   p^{\mu} &\mapsto  \tilde{p}^{\mu} = \tensor{\Lambda}{^{\mu}_{\nu}} p^{\nu}\\
   dx^{\mu} &\mapsto d \tilde{x}^{\mu} = \tensor{\Lambda}{^{\mu}_{\nu}} dx^{\nu}
 \end{align*}
-We will use this as our definition of what a vector is.
+We will use this as our definition of what a tensor is.
 
-A \textbf{contra-variant 4-vector} is any set of four components that transforms according to the rule
+A \textbf{contra-variant tensor} is any set of four components that transforms according to the rule
 \begin{align*}
-  V^{\mu} \mapsto  \tilde{V}^{\mu} = \tensor{\Lambda}{^{\mu}_{\nu}} V^{\nu}
+  T^{\mu} \mapsto  \tilde{T}^{\mu} = \tensor{\Lambda}{^{\mu}_{\nu}} T^{\nu}
 \end{align*}
-Not everything is such a contavariant vector, since for example $x^{\mu}$ transforms differently.
+Not everything is such a contavariant tensor, as some things, (called scalars) don't transform at all!
 
-There is another important class of objects that transform not with $\tensor{\Lambda}{^{\mu}_{\nu}}$, but rather with $\left(\Lambda^{-1}\right)_{\nu}^{\mu}$.
+There is another important class of objects that transform not with $\tensor{\Lambda}{^{\mu}_{\nu}}$, but rather with the inverse $\tensor{\Lambda}{_{\mu}^{\nu}}$.
 
 One example is the (covariant) derivative $\frac{\del }{\del x^{\mu}}$ which transforms as
 \begin{align*}
   \frac{\del }{\del x^{\mu}} \mapsto  \frac{\del }{\del \tilde{x}^{\mu}} = \frac{\del x^{\rho}}{\del \tilde{x}^{\mu}}\frac{\del }{\del x^{\rho}} = \Lambda_{\mu}^{\rho} \frac{\del }{\del x^{\rho}}
 \end{align*}
 
-so, a \textbf{covariant 4-vector} is any set four components that transform to the rule
+so, a \textbf{covariant tensor} is any set four components that transform to the rule
 \begin{align*}
-  U_{\mu} = \Lambda_{\mu}^{\nu} U_{\nu} = g_{\mu \rho}g^{\nu \sigma} \Lambda_{\sigma}^{\rho} U_{\nu}
+  T_{\mu} = \Lambda_{\mu}^{\nu} T_{\nu} = g_{\mu \rho}g^{\nu \sigma} \Lambda_{\sigma}^{\rho} T_{\nu}
 \end{align*}
 and we will use lower indices to denote covariant objects.
+The contra- and covariant tensors play the role of a vector space and the dual space from linear algebra. 
 
-The contra- and covariant vectors play the role of a vector space and the dual space from linear algebra. 
-Notably, for every contravariant vector $U^{\mu}$, there exists a dual vector $U_{\mu}$ and vice versa.
-
-We can obtain one from another by \textbf{raising/lowering} indices:
+Using the metric tensor, we can transform a contravariant tensor into a covariant one and vice versa.
+We do this by \textbf{raising/lowering} indices:
 \begin{empheq}[box=\bluebase]{align*}
-  U_{\mu} = g_{\mu\nu}U^{\nu} \quad \text{and} \quad U^{\mu} = g^{\mu \nu}U_{\nu}
+  T^{\mu} \mapsto T_{\mu} = g_{\mu\nu}T^{\nu} \quad \text{and} \quad T_{\mu} \mapsto T^{\mu} = g^{\mu \nu}T_{\nu}
 \end{empheq}
 the above transformation is an isomorphism for finite dimensional vector spaces, where we naturally identify the double dual with the vector space itself:
 \begin{center}
@@ -167,8 +166,22 @@ the above transformation is an isomorphism for finite dimensional vector spaces,
 \end{tikzcd}
 \end{center}
 
-and one can verify that the dual of a covariant vector is a contra-variant one and vice versa.
+Indeed,the dual of a contravariant tensor $T^{\mu}$ is contravariant as under a Lorentz transformation, we have
+\begin{align*}
+  T_{\mu}\mapsto  \tilde{T}_{\mu} = g_{\mu \nu} \tilde{T}^{\nu} = g_{\mu\nu} \tensor{\Lambda}{^{\nu}_{\rho}} T^{\rho} = g_{\mu\nu} \tensor{\Lambda}{^{\nu}_{\rho}}g^{\rho \sigma} \tensor{T}{_{\sigma}} = \tensor{\Lambda}{_{\mu}^{\sigma}}T_{\sigma}
+\end{align*}
 
-Similar to how a dual vector is a linear map from the vector space to the field $k$, we define the 
 
+More generally, we can define \textbf{higher rank} tensors, where we can have multiple ``upstairs/downstairs'' indices depending on how the tensor transforms.
+
+\begin{align*}
+  T_{\nu_1 \nu_2 \ldots \nu_n}^{\mu_1 \mu_2 \ldots \mu_m} \mapsto 
+  \tilde{T}_{\nu_1 \nu_2 \ldots \nu_n}^{\mu_1 \mu_2 \ldots \mu_m} 
+  =
+  \tensor{\Lambda}{^{\mu_1}_{\sigma_1}} \ldots \tensor{\Lambda}{^{\mu_m}_{\sigma_m}}
+  \tensor{\Lambda}{_{\nu_1}^{\rho_1}}
+  \ldots
+  \tensor{\Lambda}{_{\nu_n}^{\rho_n}}
+  T_{\nu_1 \nu_2 \ldots \nu_n}^{\mu_1 \mu_2 \ldots \mu_m} 
+\end{align*}
 
