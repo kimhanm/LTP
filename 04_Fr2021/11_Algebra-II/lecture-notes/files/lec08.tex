@@ -1,4 +1,28 @@
-\begin{center}
-Lecture 8 missing
-\end{center}
+\section{The Galois Correspondence}
 
+One might ask if the inverse of Theorem \ref{thm:3-14} is true, that is: 
+If $E/k$ is a normal extension for a polynomial $f \in k[X]$ and $\Gal(E/k)$ is resolvable, does that mean that $f$ is solvable by radicals?
+
+More generally one might ask if there is a correspondence between subgroups of $\Gal(E/k)$ and sandwiched fields $k \subseteq B \subseteq E$.
+
+It turns out that such a correspondence exists if we impose the property that $f$ be separable.
+We wish to better understand this correspondence in this chapter.
+
+\begin{dfn}[]
+  Let $E$ be a field and $H \subseteq \Aut E$ a subset. The set
+  \begin{align*}
+    E^{h} := \{a \in E \big\vert \sigma(a) = a \forall \sigma \in H\}
+  \end{align*}
+  is a subfield of $E$ called the \textbf{fixing field} of $H$.
+\end{dfn}
+Note that the map $H \mapsto E^{H}$ is contravariant monotonous with respect to inclusion
+\begin{align*}
+  H_1 \subseteq H_2 \implies E^{H_2} \subseteq E^{H_1}
+\end{align*}
+
+If $H$ is the galois group of a field extension $E/k$, then trivially $k \subseteq E^{\Gal(E/k)}$.
+
+\begin{ex}[]
+  Take for example $k = \F_p(t), f(X) = X^{p}-t$ and $E$ a splitting field of $f$.
+  From the $X^{p}-c$ Lemma, we know that $\Gal(E/k) = \{e\}$, which shows $k \subsetneq E^{\Gal(E/k)} = E$.
+\end{ex}
