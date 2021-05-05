@@ -1,0 +1,172 @@
+\section{Relativistic Electrodynamics}
+
+From now on, we use the convetion $c = \epsilon_0 = 1$.
+
+We combine current and charge density into a contravariant four-vector
+\begin{empheq}[box=\bluebase]{align*}j
+  j^{\mu} := (\rho, \vec{j})
+\end{empheq}
+
+The antisymmetric \textbf{electrodynamic field tensor} $F^{\mu \nu}$ is defined using the $\vec{E}$ and $\vec{B}$ fields
+\begin{empheq}[box=\bluebase]{align*}
+  F^{\mu \nu} = \begin{pmatrix}
+  0 & -E^{1} & -E^{2} & -E^{3}\\
+  E^{1} & 0 & -B^{3} & B^{2}\\
+  E^{2} & B^{3} & 0 & -B^{1}\\
+  E^{3} & -B^{2}  & B^{1} & 0
+  \end{pmatrix}
+  = \begin{pmatrix}
+  0 & -\vec{E}^{T}\\
+  \vec{E} & B^{\times}
+  \end{pmatrix}
+\end{empheq}
+where $B^{\times}$ is the dual tensor defined as
+\begin{align*}
+  (B^{\times})_{ij} = - \epsilon_{ijk} B^{k} \implies B^{\times} = \begin{pmatrix}
+  0 & -B^{3} & B^{2}\\
+  B^{3} & 0 & -B^{1}\\
+  -B^{2} & B^{1} & 0
+  \end{pmatrix}
+\end{align*}
+from which the electric and magnetic field can be obtained using the relations
+\begin{empheq}[box=\bluebase]{align*}
+  E^{i} = F^{i0}, \quad B^{i} = - \frac{1}{2} \epsilon_{ijk}F^{jk}, \quad \text{or} \quad F^{ij} = -\epsilon_{ijk}B^{k}
+\end{empheq}
+and the Maxwell equations become
+\begin{empheq}[box=\bluebase]{align*}
+  \del_{\mu}  F^{\mu \nu} = j^{\nu}
+\end{empheq}
+In covariant Form, we get
+\begin{align*}
+  F_{\mu \nu} = \begin{pmatrix}
+  0 & \vec{E}^{T}\\
+  -\vec{E} & B^{\times}
+  \end{pmatrix}
+\end{align*}
+
+
+\begin{ex}[Transformation of EM tensor]
+  In a change of reference along the $x$-axis with boost $\beta$, the EM tensor transforms doubly contravariant, i.e
+  \begin{align*}
+    F^{\mu \nu} \mapsto  \tilde{F}^{\mu \nu} = \tensor{\Lambda}{^{\mu}_{\sigma}} \tensor{\Lambda}{^\nu_\rho} F^{\sigma \rho}
+  \end{align*}
+  The summation over $\rho$ corresponds to the matrix multiplication 
+  \begin{align*}
+    \tensor{\Lambda}{^{\nu}_{\rho}} F^{\sigma \rho}
+    &=
+    \begin{pmatrix}
+    0 & -\vec{E}\\
+    \vec{E} & B^{\times}
+    \end{pmatrix}
+    \begin{pmatrix}
+    \gamma & \beta \gamma & 0 & 0\\
+    \beta \gamma & \gamma & 0 & 0\\
+    0 & 0 & 1 & 0\\
+    0 & 0 & 0 & 1
+    \end{pmatrix}\\
+    &=
+    \begin{pmatrix}
+     -E^{1} \beta \gamma & - E^{1} \gamma &  -E^{2} & -E^{3} \\
+     E^{1} \gamma & E^{1} \beta \gamma & -B^{3} & B^{2}\\
+     \gamma(E^{2} + B^{3} \beta) & \gamma(E^{2} \beta + B^{3}) & 0 & -B^{1} \\
+     \gamma(E^{3} - B^{2} \beta) & \gamma(E ^{3} \beta - B^{2}) & B^{1} & 0 
+    \end{pmatrix}
+  \end{align*}
+  and in the end, we get
+  \begin{align*}
+    \tilde{F}^{\mu \nu} 
+    =
+    \begin{pmatrix}
+      0 & - E^{1} & -\gamma(E^{2} + \beta B^{3}) & -\gamma(E^{3} - \beta B^{2})\\
+      E^{1} & 0 & - \gamma (B^{3} + \frac{v}{c^{2}} E^{2}) & \gamma(B^{2} - \frac{v}{c^{2}} E^{3}\\
+     &  & 0 & -B^{1} \\
+     &  & B^{1} & 0 
+    \end{pmatrix}
+  \end{align*}
+\end{ex}
+
+This result generalizes to arbitrary boosts, and we get
+
+\begin{empheq}[box=\bluebase]{align*}
+  \vec{E}_{\parallel} \mapsto \vec{\tilde{E}}_{\parallel} = \vec{E}_{\parallel}, \quad \vec{E}_{\bot} \mapsto \vec{\tilde{E}}_{\bot} = \gamma(\vec{E}_{\bot} - \vec{v} \times \vec{B})\\
+  \vec{B}_{\parallel} \mapsto \vec{\tilde{B}}_{\parallel} = \vec{B}_{\parallel}, \quad \vec{B}_{\bot} \mapsto \vec{\tilde{B}}_{\bot} = \gamma(\vec{B}_{\bot} + \frac{1}{c^{2}}\vec{v} \times \vec{B})
+\end{empheq}
+
+
+\begin{ex}[Transformation of Lorentz Force]
+Two particles with charge $q$ are distance $d$ apart and are moving perpendicular to $\vec{d}$ with velocity $\vec{v}$.
+
+In the system $S$ where the particles are stationary, the Lorentz Force is simply:
+\begin{align*}
+  S: \vec{F} = q \cdot \vec{E} = \frac{q^{2}}{4 \pi \epsilon_0}\frac{1}{d^{2}} \hat{d}
+\end{align*}
+And in the external system $S'$ the electromagnetic field are
+\begin{align*}
+  \tilde{E} = (E^{1}, \gamma E^{2}, \gamma E^{3}), \quad \tilde{B} = (B^{1} = 0, - \gamma \frac{v}{c^{2}} E^{3}, \gamma \frac{v}{c^{2}}E^{2})
+\end{align*}
+
+and so we see
+\begin{align*}
+  \tilde{\vec{F}} = \frac{1}{\gamma} \vec{F}
+\end{align*}
+\end{ex}
+
+
+
+\subsection{Maxwell Equations}
+The (inhomogenous) Maxwell equations
+\begin{align*}
+  \vec{\nabla} \cdot \vec{E} = \rho, \quad \vec{\nabla} \times \vec{B} - \del_t \vec{E} = \vec{j}
+\end{align*}
+become the simple equation
+\begin{empheq}[box=\bluebase]{align*}
+  \del_{\mu}F^{\mu \nu} = j^{\nu}
+\end{empheq}
+
+We can also combine the scalar and vector potential into the four vector
+\begin{empheq}[box=\bluebase]{align*}
+  A^{\mu} := (\Phi, \vec{A}) = (\Phi, A^{1}, A^{2}, A^{3})
+\end{empheq}
+and the equations
+\begin{align*}
+  \vec{E} = - \vec{\nabla} \Phi - \frac{\del \vec{A}}{\del t}, \quad \vec{B} \times \vec{A}
+\end{align*}
+get simplified with the contravariant derivative 
+\begin{empheq}[box=\bluebase]{align*}
+  F^{\mu \nu} = \del^{\mu} A^{\nu} - \del^{\nu} A^{\mu}
+\end{empheq}
+
+For the homogenous Maxwell equations 
+\begin{align*}
+  \vec{\nabla} \cdot \vec{B} = 0, \quad \vec{\nabla} \times \vec{E} + \frac{\del \vec{B}}{\del t} = 0
+\end{align*}
+we define the \textbf{dual field tensor} $\tilde{F}$ as
+\begin{align*}
+  \tilde{F}_{\mu \nu} := \epsilon_{\mu \nu \rho \sigma} F^{\rho \sigma} = 2 \begin{pmatrix}
+  0 & -\vec{B}^{T}\\
+  \vec{B} & E^{\times}
+  \end{pmatrix}
+\end{align*}
+and get the simple form
+\begin{empheq}[box=\bluebase]{align*}
+  \del^{\mu} \tilde{F}_{\mu \nu} = 0
+\end{empheq}
+In the Lorentz-Gauge: ($\del_{\mu} A^{\mu} = 0$) the maxwell equations become
+\begin{align*}
+  \del^{2} A^{\mu} = j^{\mu}
+\end{align*}
+
+
+\begin{ex}[]
+The 4-vector formulation of the Maxwell equations give a quick derivation of the continuity equation.
+
+Because the electromagnetic field tensor is antisymmetric, we see that
+\begin{align*}
+  \del_{\mu} \del_{\nu} F^{\mu \nu} = - \del_{\mu}\del_{\nu}F^{\nu \mu} = 0
+\end{align*}
+and so we get
+\begin{align*}
+  \del_{\mu}j^{\mu} = \del_{\mu} \del_{\nu}F^{\mu \nu} = 0
+\end{align*}
+\end{ex}
+

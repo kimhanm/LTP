@@ -1,0 +1,198 @@
+\begin{thm}[Tychonoff]
+The product of compact spaces $\{X_i\}_{i \in I}$ is compact.
+\end{thm}
+If the index set $I$ is finite, then this seems quite clear, but to prove this for uncountable products, this theorem is quite strong.
+It turns out that Tychonoff's theorem is equivalent to the axiom of choice.
+
+
+
+\subsection{The role of the countability axioms}
+
+\begin{dfn}[]
+  Let $X,Y$ be topological spaces. A map $f: X \to  Y$ is called \textbf{sequentially continuous}, if for all sequences $\left(x_{n}\right)_{n \in \N})$ converging to $a$ in $X$, the sequence of their images $\left(f(x_{n})\right)_{n \in \N}$ converges to $f(a)$.
+\end{dfn}
+If $f$ is continuous, it is automatically sequentially continuous, as for a neighborhood $V$ of $f(a)$, there exists a neighborhood $U$ of $x$ such that $f(U) \subseteq V$.
+And because the sequence converges
+there exists an $N \in \N$ such that $n \geq N \implies x_n \in U \implies f(x_n) \in V$.
+
+On the contrary, the opposite is not always true as we will see later.
+
+\begin{lem}[]
+Let $f: X \to  Y$ be function between continuous spaces and where $X$ satisfies the 1AA. Then
+$f$ continuous $\iff$ $f$ sequentially continuous.
+\end{lem}
+\begin{proof}
+We show contraposition:
+Assume that $f$ is not continuous, so there exists a point $a \in X$ and a neighborhood $V$ of $f(a)$ such that all neighborhoods $U$ of $a$ do not satisfy $f(U) \subseteq V$.
+
+Let $\mathcal{U} = \{U_1,U_2\ldots\}$ be countable neighborhood basis of $a$.
+Then $\forall n$, chose an $x_n \in U_1 \cap \ldots \cap U_n$ with $f(x_n) \notin V$.
+Clearly, this sequence converges to $a$ since for any neighborhood $U$ of $a$ there exists an $N \in \N$ such that $U$ is a neighborhood of $x_n$ which contains an element of $\mathcal{U}$.
+Also,$f(x_n)$ clearly does not converge since $f(a) \notin V$.
+\end{proof}
+
+
+
+\begin{ex}[]
+  Let $X = \Hom_{\Top}([0,1],[0,1])$ be the space of continuous functions with the subspace topology of $\Hom_{\Set}([0,1],[0,1]) = [0,1]^{[0,1]}$ with the product topology.
+
+  We can show in the exercise classes that 
+  \begin{align*}
+    \lim_{n \to \infty} \phi_n = \phi \iff \lim_{n \to \infty}\phi_n(s) = \phi(s) \forall s \in [0,1]
+  \end{align*}
+
+  If chose the same space $X$, but with the topology $\tau_d$ induced by the $L$-metric 
+  \begin{align*}
+    d(\phi, \psi) = \int_0^{1} \abs{\phi(s) - \psi(s)}ds
+  \end{align*}
+  then the map
+  \begin{align*}
+    f: (X,\tau_{\text{prod}}) \to (Y,\tau_{d}), \quad \phi \mapsto  \phi
+  \end{align*}
+  is sequentially continuous but not continuous.
+
+  By using the majorised converges theorem (and the majorant $1$), we get
+  \begin{align*}
+    \lim_{n \to \infty}\phi_n(s) = \phi(s) \implies \lim_{n \to \infty} \int_0^1 \abs{\phi_n(s) - \phi(s)} ds = 0
+  \end{align*}
+
+  The map $f$ is discontinuous at for example the constant function $\phi = 0$.
+
+  Let $0 < \epsilon < 1$ and $V = B_{\epsilon}(f(\phi_0)) \subseteq (X,\tau_{d})$.
+
+  We now show that all neighborhoods $U \subseteq (X,\tau_{\text{prod}})$ of $\phi$, $f(U) \nsubseteq V$.
+
+  Let $U$ be such a neighborhood of $\phi$. Then there exists $s_1, \ldots, s_m \in [0,1]$ and $U_i \subseteq [0,1]$ open with $00in U_i$ such that
+  \begin{align*}
+    U 
+    &\supseteq \pi_{s_1}^{-1}(U_1) \cap \ldots \cap \pi_{s_m}^{-1}(U_m)\\
+    &= \{\psi: [0,1] \to [0,1] \big\vert \phi_i(s_i) \in U_i, \phi \text{ continuous}\}
+  \end{align*}
+  but because the condition only covers finitely any $i$ we can construct a function $\psi$ which is $0$ at each $s_i$, but almost everywhere else has value $1$.
+
+  So $\psi \in U$ but clearly
+  \begin{align*}
+    d(\phi,\psi) = \int_0^1 \abs{\psi(s)} ds > \epsilon
+  \end{align*}
+\end{ex}
+
+
+\begin{dfn}[]
+A topological space $X$ is called \textbf{sequentially compact} if every sequence has a converging subsequence.
+\end{dfn}
+Generally speaking, compactness and sequential compactness do not imply eachother.
+But some implications are true
+
+\begin{lem}[]
+  If $X$ satisfies the 1AA, then
+\begin{itemize}
+  \item $X$ compact $\implies$ $X$ sequentially compact
+  \item If $X$ is a metric space, then $X$ sequentially compact $\iff X$ compact.
+\end{itemize}
+\end{lem}
+\begin{proof}
+Let $X$ be compact.
+\begin{itemize}
+  \item Let $\left(x_{n}\right)_{n \in \N}$ be a sequence in $X$.
+    We want to find an $a \in X$ such that for all neighborhoods $U$ of $a$, $\forall n \in \N \exists m \geq n: x_m \in U$.
+
+    Such an $a$ exists because if $\forall a \in X$ there exists an neighborhood $U_a$ and a number $N_a$ such that
+    \begin{align*}
+      n \geq N_a \implies x_n \notin U_a
+    \end{align*}
+    then by compactness we could cover $X$ with finitely many $U_a$ and take the maximum of the $N_a$. What this would give us is that $x_n \notin X$ for $n \geq \max \{N_{a_1}, N_{a_2}, \ldots, N_{a_m}\}$, which does not make sense.
+
+    By 1AA, let $\mathcal{U} = \{U_1, \ldots\}$ be a countable neighborhood basis of $a$.
+    Just like in the previous proof we inductivley chose $n_1 \leq n_2 \leq \ldots \leq n_l \leq \ldots$ such that
+    \begin{align*}
+      x_{n_l} \in U_1 \cap \ldots \cap U_l
+    \end{align*}
+    which means $\lim_{l \to \infty} x_{n_l} = a$.
+
+  \item  See Analysis II
+\end{itemize}
+\end{proof}
+
+
+\begin{ex}[Counterexamples]
+  The space $[0,1]^{[0,1]}$ is compact, but not sequentially compact.
+
+  The \textbf{long line} is 1AA, sequentially copmact, but not compact.
+\end{ex}
+
+To better understand why we need the 2AA, we will quickly cover manifolds.
+
+\subsection{Manifolds}
+\begin{dfn}[]
+A subset $M \subseteq \R^{n}$ is called a $d$-dimensional \textbf{smooth submanifold} of $\R^{n}$ if for all $p \in M$ there exist open sets $U_p,V_p \subseteq \R^{n}$ and a diffeomorphism $\phi_p: U_p \to  V_p$ with
+\begin{align*}
+  \phi_p(U_p \cap M) = \{y \in V_p \big\vert y_i = 0, \forall i > d\} = V_p \cap (\R^{d} \times 0)
+\end{align*}
+\end{dfn}
+Another analogous definition is that of a \textbf{topological submanifold}, where we replace smoothness with continuity.
+
+\begin{ex}[]
+  We say in Analysis II that if $F: \R^{n} \to  \R^{m}$ is smooth and has a regular value $v \in \R^{m}$ (i.e. $\text{rank} DF = \min\{n,m\}$, then $F^{-1}(v)$ is a $(n-m)$-dimensional submanifold (if $n \geq m$).
+
+  From this, we see that the torus can be written as the preimage of hte smooth function
+  \begin{align*}
+    F(x,y,z) = (x^{2} + y^{2} + z^{2} + R^{2} - r^{2})^{2} - 4R^{2}(x^{2} + y^{2})
+  \end{align*}
+\end{ex}
+
+
+
+\begin{dfn}[]
+Let $X$ be a topological space.
+We say that $X$ is a $d$-dimensional \textbf{topological manifold}, if 
+\begin{itemize}
+  \item $\forall  p \in M$ there exists a $U \subseteq X$ open with $p \in U$ and $U \iso \R^{4}$
+  \item $X$ is Hausdorff
+  \item $X$ satisfies the 2AA
+\end{itemize}
+\end{dfn}
+But why do we want the two extra requirements? 
+The \textbf{Embedding theorem} gives us an answer:
+The defintions we just saw are in a certain sense equivalent:
+\begin{thm}[Embedding theorem]
+  \phantom{a}
+  \begin{enumerate}
+    \item All topological submanifolds of $\R^{n}$ are topological manifolds.
+    \item If $X$ is a topological manifold, then there exists an $n \in \N$ and a topological submanifold $M \subseteq \R^{n}$ such that $X \iso M$.
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+  The first one trivial: Since subspaces of $\R^{n}$ are ausdorff and fulfill the 2AA.
+
+  And if $p \in M$, then there exists $U_p,V_p \subseteq \R^{n}$ open and a homeomorphism $\phi_p:U_p \to V_p$.
+  What might happen is that the $U_p$ can intersect $M$ at multiple points and so we need to trim $U_p$.
+
+  Chose $\epsilon > 0$ such that $B_{\epsilon}(\phi_p(p)) \subseteq V_p$. Then
+  \begin{align*}
+    U := \phi_p^{-1}(B_{\epsilon}(\phi_p(p))) \cap M \subseteq M
+  \end{align*}
+  is open and isomorhpic to $\R^{d}$.
+
+  
+  Showing (b) is more difficult and is not done in the lecture. See the corresponding section in Munkres for the proof.
+\end{proof}
+
+
+\subsection*{Classification of $d$-dimensional compact path connected manifolds}
+\begin{itemize}
+  \item[$d=1$] All are homemorphic to $S_1$
+  \item[$d=2$] All are homeomorphic to exactly one of the following surfaces
+    \begin{align*}
+      \Sigma_0 = \IS^{2}, \quad \Sigma_1 = \IS^{1} \times \IS^{1} = \mathbb{T}, \quad \ldots \Sigma_n = \text{ genus $n$ Torus}, \ldots
+    \end{align*}
+    also called the orientable surfaces of genus $n \in \N$,
+    and the non-orientable surfaces
+    \begin{align*}
+      \Sigma_1^{\text{non-or}} = \R\IP^{2}, \Sigma_2^{\text{non-or}} = \text{Klein Bottle}, \ldots,\Sigma_k^{\text{non-or}},\ldots
+    \end{align*}
+\end{itemize}
+An important lemma to prove the classification theorem is to show that these surfaces are all distinct.
+\begin{lem}[]
+Let $n,m \in \N$. If $\Sigma_n \sim \Sigma_m$, then $n=m$.
+\end{lem}
+The proof can be done using the fundamental group.
