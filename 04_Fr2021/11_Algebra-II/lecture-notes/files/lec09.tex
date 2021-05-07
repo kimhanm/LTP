@@ -1,0 +1,150 @@
+Recall that the Galois group of a normal extension for a separable polynomial has order $\abs{\Gal(E/k)} = [E:k]$
+and that $[E:E^{G}] = \abs{G}$.
+
+
+\begin{thm}[]\label{thm:4-11}
+  Let $E/k$ be a finite extension with galois group $G = \Gal(E/k)$. Then the following are equivalent
+  \begin{enumerate}
+    \item $E$ is a splitting field of a separable polynomial in $k[X]$
+    \item $E^{G} = k$
+    \item Every irreducible polynomial in $k[x]$ with a root in $E$ is separable and splits over $E$.
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+\begin{itemize}
+  \item[$1 \implies 2$] Since $E$ is a splitting field of a separable polynomial, it follows that $[E:k] = \abs{G}$ and
+    since $G$ is a finite subgroup of $\Aut E$, it follows that $[E:E^{G}] = \abs{G}$. 
+    Because $k \subseteq E^{G} \subseteq E$, we get
+    \begin{align*}
+      [E^{G}:k] = \frac{[E:k]}{[E:E^{g}]} = 1 \implies E^{G} = k
+    \end{align*}
+  \item[$2 \implies 3$] Let $p \in k[x]$ irreducible with a root $\alpha \in E$.
+    Dividing by the leading coefficient, we can also assume that $p$ is unitary (leading coefficient $= 1$).
+    We define the polynomial
+    \begin{align*}
+      q(X) = \prod_{\sigma \in G/\text{Stab}(\alpha)}(X - \sigma(\alpha))
+    \end{align*}
+    and clearly, $q$ is unitary, has degree $\abs{\text{Orb}(\alpha)}$, has no multiple roots, so is separable.
+    Also, because $p \in k[X]$, we see that $p(\sigma(\alpha)) = \sigma(p(\alpha)) = 0$, so $R(q) \subseteq R(p)$.
+
+    In execise sheet 8, Problem 1, we have shown that $q \in E^{G}[X]$.
+    But because by assumption, $E^{G} = k$, so $q$ divides $p$. But they are both unitary, so $p = q$ is separable and splits over $E$.
+  \item[$3 \implies 1$] Let $k \subseteq E' \subseteq E$ be maximal with the property that $E'$ is a splitting field of a separable polynomial $g \in k[X]$.
+
+    Assume that $E \setminus E'$ is nonempty with $\alpha \in E \setminus E'$. 
+    Then the minimal polynomial $\text{irr}(\alpha,k) \in k[X]$ is an irreducible polynomial with root $\alpha$.
+    By assumption, $\text{irr}(\alpha,k)$ is separable and splits over $E$. Taking the product 
+    $f = g \cdot \text{irr}(\alpha,k)$ we see that $f \in k[X]$ is clearly separable and splits in $E$.
+    If $E''$ is a splitting field of $f$, we would get that $E' \subsetneq E'' \subseteq E$, which is a contradiction to the maximality of $E'$.
+\end{itemize}
+\end{proof}
+
+
+
+\begin{dfn}[]
+  A finite extension $E/k$ is called a \textbf{Galois extension} of $k$, if $E$ is a splitting field of a separable polynomial in $k[X]$. (Or as we have just shown, if $E^{G} = k$)
+\end{dfn}
+
+Consider extensions $k \subseteq B \subseteq E$. 
+If $E/k$ is Galois for, say a separable polynomial $f \in k[X]$, then we can take the same polynomial $f \in B[X]$ and so $E/B$ is also Galois.
+However, it does not necessarily follow that $B/k$ is Galois, as it might not even be a normal extension.
+
+
+
+\begin{prop}[]
+Let $k \subseteq B \subseteq E$ such that $E/k$ is Galois.
+Then
+\begin{align*}
+  B/k \text{ is Galois } \iff  \sigma(B) = B  \quad \forall \sigma \in \Gal(E/k)
+\end{align*}
+\end{prop}
+
+\begin{proof}
+  If $B/k$ is Galois, then $B$ is a splitting field of a polynomial $f \in k[X]$.
+
+  But by Theorem %\ref{thm:2-26}
+  we immediately get $\sigma(B) = B$ for all $\sigma \in \Gal(E/k)$.
+
+  Onthe contrary, if $\sigma(B) = B$ for all $\sigma \in \Gal(E/k)$, then consider the image $H < \Gal(B/k)$ of the restriction homomorphism
+  \begin{align*}
+    \Gal(E/k) \to  \Gal(B/k), \quad \sigma \mapsto  \sigma|_{B}
+  \end{align*}
+  Then we have
+  \begin{align*}
+    k \subseteq B^{\Gal(B/k)} \subseteq B^{H} \subseteq E^{\Gal(E/k)} = k \implies B^{\Gal(B/k)} = k
+  \end{align*}
+  So $B/k$ is Galois.
+\end{proof}
+
+
+
+Let $G$ be a group and let $\text{Sub}(G)$ be the set of subgroups of $G$, ordered via inclusion.
+If $E/k$ is a field extensions, then write 
+\begin{align*}
+  \Int(E/k) = \{\text{fields }B \big\vert k \subseteq B \subseteq E\}
+\end{align*}
+for the set of intermediary field extensions between $E$ and $k$.
+This set is also orded via inclusion.
+
+\begin{thm}[Galois correspondence] \label{thm:galois-correspondence}
+  Let $E/k$ be a finite Galois extension.
+  \begin{enumerate}
+    \item The map
+      \begin{align*}
+        \gamma: \text{Sub}(\Gal(E/k)) \to \Int(E/k), \quad H \mapsto E^{H}
+      \end{align*}
+      is a contravariant bijection with inverse map
+      \begin{align*}
+        \delta: \Int(E/k) \to \text{Sub}(\Gal(E/k)), \quad B \mapsto \Gal(E/B)
+      \end{align*}
+    \item $B \in \Int(E/k)$ is Galois if and and only if $\Gal(E/B)$ is a normal subgroup of $\Gal(E/k)$.
+      If that is the case, then
+      \begin{align*}
+        \faktor{\Gal(E/k)}{\Gal(E/B)} \iso \Gal(B/k)
+      \end{align*}
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  Recall the Corollary % \ref{cor:4-10}
+  where we showed that if $E$ is a field and $H,G$ are finite subgroups of $\Aut E$, then
+  \begin{align*}
+    E^{G} \subseteq E^{H} \iff H < G
+  \end{align*}
+
+  \begin{enumerate}
+    \item To show injectivity, let $H_1,H_2$ be subgroups of $\Gal(E/k)$. In particular, $H_1,H_2$ are finite subgroups of $\Aut E$.
+      Then if $E^{H_1} = E^{H_2}$, the corollary immediately gives $H_1 = H_2$.
+
+      For surjectivity, we show that $\gamma \circ \delta = \id_{\Int(E/k)}$.
+      Let $k \subseteq B \subseteq E$. Since $E/k$ Galois $\implies E/B$ Galois, we have
+      \begin{align*}
+        (\gamma \circ \delta)(B) = \gamma(\Gal(E/B)) = E^{\Gal(E/B)} = B
+      \end{align*}
+
+    \item Assume first that $B/k$ is Galois. In particular, it is normal and by Theorem II-26, we know that $\sigma(B) = B \forall  \sigma \in \Gal(E/k)$.
+      And since $\Gal(E/B)$ is the kernel of the restriction mapping
+      \begin{align*}
+        \Gal(E/k) \to  \Gal(B/k), \quad \sigma \mapsto  \sigma|_B
+      \end{align*}
+      it is a normal subgroup. 
+      And by the first isomorphism theorem, we get $\faktor{\Gal(E/k)}{\Gal(E/B)} \iso \Gal(B/k)$.
+
+      On the other hand, assume that $\Gal(E/B)$ is a normal subgroup. We want to show that $B/k$ is Galois, i.e. $B^{\Gal(B/k)} = k$.
+
+      To do this, we use the characterisation from Proposition IV-14, which tells us that it suffices to show
+      $\sigma(B) = B \forall \sigma \in \Gal(E/k)$.
+
+      Since $E/k$ is Galois, we also get that $E/B$ is Galois, so $E^{\Gal(E/B)} = B$.
+      Let $\sigma \in \Gal(E/k), \xi \in B, h \in \Gal(E/B)$.
+      We show that
+      \begin{align*}
+        \sigma(\xi) \in B \iff  h(\sigma (\xi)) = \sigma(\xi)
+      \end{align*}
+      But that is clear because
+      \begin{align*}
+        h \sigma(\xi) = \sigma( (\sigma^{-1}h \sigma \xi) = \sigma(\xi)
+      \end{align*}
+  \end{enumerate}
+\end{proof}
+

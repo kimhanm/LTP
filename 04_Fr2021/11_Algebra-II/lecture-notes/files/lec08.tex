@@ -8,6 +8,9 @@ More generally one might ask if there is a correspondence between subgroups of $
 It turns out that such a correspondence exists if we impose the property that $f$ be separable.
 We wish to better understand this correspondence in this chapter.
 
+Looking at the definition of the galois group of an extension $E/k$, it consists of automorphisms that keep the field $k$ fixed.
+But what can happen is that the Galois group fixes more points than just $k$ and we want to find out when that is the case.
+
 \begin{dfn}[]
   Let $E$ be a field and $H \subseteq \Aut E$ a subset. The set
   \begin{align*}
@@ -15,7 +18,7 @@ We wish to better understand this correspondence in this chapter.
   \end{align*}
   is a subfield of $E$ called the \textbf{fixing field} of $H$.
 \end{dfn}
-Note that the map $H \mapsto E^{H}$ is contravariant monotonous with respect to inclusion
+Note that the map $H \mapsto E^{H}$ is contravariant with respect to inclusion
 \begin{align*}
   H_1 \subseteq H_2 \implies E^{H_2} \subseteq E^{H_1}
 \end{align*}
@@ -26,3 +29,45 @@ If $H$ is the galois group of a field extension $E/k$, then trivially $k \subset
   Take for example $k = \F_p(t), f(X) = X^{p}-t$ and $E$ a splitting field of $f$.
   From the $X^{p}-c$ Lemma, we know that $\Gal(E/k) = \{e\}$, which shows $k \subsetneq E^{\Gal(E/k)} = E$.
 \end{ex}
+
+If $H < \Aut E$ is a finite subgroup, we can find out the order of the extension $E/E^{H}$.
+
+
+In MMP-II, we saw that we can understand a group by studying its character table, where the characters are group homomorphisms of a group $G$ into the circle group $\IS^{1}$. 
+Here we provide a more generalized definition
+\begin{dfn}[]
+  A \textbf{character} of a group $G$ in a field $E$ is a group homomorphism $\chi: G \to  E^{\times}$, into the multiplicative group of $E$.
+
+  We denote the set of characters with $\Hom_{\Grp}(G,E^{\times})$.
+  And we write
+  \begin{align*}
+    F(G,E) = \{\phi: G \to E\}
+  \end{align*}
+  for the $E$-vector space of $E$-valued functions on $G$.
+\end{dfn}
+
+
+Also from MMP-II, we know that the characters in $\Hom_{\Grp}(G,\IS^{1})$ fulfill the orthogonality relation.
+For arbitrary fields $E$, we can get a weaker version:
+
+\begin{prop}[Dedekind]\label{prop:dedekind}
+  $\Hom_{\Grp}(G,E^{\times}) \subseteq F(G,E)$ is linearly independent.
+\end{prop}
+\begin{proof}
+  If assume the opposite, then let $n \geq 2$ be the minimal number such that there exists characters $\chi_1, \ldots, \chi_n$ that are linarly dependend in $F(G,E)$, so
+  \begin{align*}
+    \exists c_1, \ldots, c_n \in E \setminus \{0\} \text{ with } c_1 \chi_1(x) + \ldots + c_n \chi_n(x) = 0 \quad \forall x \in G
+  \end{align*}
+  Since $\chi_1 \neq \chi_2$, there exists a $y \in G$ with $\chi_1(y) \neq \chi_2(y)$.
+  By evaluating the above expressionat $x \cdot y$, we get
+  \begin{align*}
+    c_1 \chi_1(x) \chi_1(y) + \ldots + c_n \chi_n(x) \chi_n(y) = 0 \quad \forall  x \in G
+  \end{align*}
+  and after dividing by $\chi_n(y)$ and subtracting the original equation, we get
+  \begin{align*}
+    c_1
+  \end{align*}
+\end{proof}
+\begin{center}
+Missing 45 mins
+\end{center}
