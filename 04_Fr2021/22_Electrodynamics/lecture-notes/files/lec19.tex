@@ -1,0 +1,27 @@
+\begin{center} \Large{ Lecture 19 Missing
+}
+\end{center}
+
+Recall that we were able to compute the vector and scalar potential using the Green's function
+\begin{align*}
+  G(\Delta \vec{r}, \Delta t) = \frac{1}{2 \pi} \delta(\Delta t^{2} - \Delta \vec{r}^{2}) \Theta(\Delta t > 0)
+\end{align*}
+with this, the four-vector potential can be written as
+\begin{align*}
+  A^{\nu}(x^{\mu}) = \frac{1}{2 \pi} \int d^{4} y j^{\nu}(y^{\mu} \delta\left(
+    (y^{\mu} - x^{\mu})^{2}
+  \right)
+  \Theta(x^{0} > y^{0})
+\end{align*}
+or, using the retarded green's function
+\begin{empheq}[box=\bluebase]{align*}
+  G_{\text{ret}}(x - y) = \frac{1}{2 \pi} \delta\left(
+    (x - y)^{2}
+  \right)
+  \Theta(x^{0} > y^{0})
+\end{empheq}
+it becomes
+\begin{empheq}[box=\bluebase]{align*}
+  A^{\mu}(x) = \int d^{4}y G_{\text{ret}}(x-y)j^{\mu}(y)
+\end{empheq}
+

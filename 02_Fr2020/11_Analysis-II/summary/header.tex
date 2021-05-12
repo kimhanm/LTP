@@ -1,7 +1,6 @@
 % ==== Fontsettings ====
 \usepackage{lmodern} % Latin Modern
 \usepackage{fontenc}[t1]
-\usepackage[ngerman]{babel}
 \usepackage{microtype}
 
 % ==== Content ====
@@ -11,17 +10,8 @@
 \usepackage{wrapfig}
 
 \usepackage{array}   
-\newcolumntype{L}{>{$}l<{$}} % math mode l
+%\newcolumntype{L}{>{$}l<{$}} % math mode l
 
-\usepackage{empheq}
-\usepackage[most]{tcolorbox}
-    \newtcbox{\bluebase}[1][]{%
-        nobeforeafter, math upper, tcbox raise base,
-        enhanced, colframe=black,
-        colback=blue!20, boxrule=0.5pt,
-        sharp corners,
-        #1
-    }
 
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[customcolors,norndcorners]{hf-tikz}
@@ -29,7 +19,7 @@
 % === Page settings ====
 \usepackage{geometry}
 \usepackage{fancyhdr}
-\pagestyle{fancy}
+	\pagestyle{fancy}
 	\fancyhf{}
 	\hoffset = -0.45 in
 	\voffset = 0 in
@@ -38,32 +28,39 @@
 	\setlength{\headheight}{25.6pt}
 	\setlength{\headwidth}{500pt}
 	\setlength{\parindent}{0pt}
+  \setlength\extrarowheight{4pt}
 	\marginparwidth = 0pt
 	\fancyhead[L]{\rightmark}
 	\fancyhead[R]{\today}
+	\fancyfoot[L]{Han-Miru Kim}
+	\fancyfoot[C]{\href{mailto:kimha@student.ethz.ch}{kimha@student.ethz.ch}}
+	\fancyfoot[R]{\thepage}
+
 % ==== Maths ====
 \usepackage{amsmath}
+\usepackage{amssymb} 
+\usepackage{amsthm} 
 \usepackage{dsfont}
 \usepackage{amsfonts}
 \usepackage{mathdots}
 \usepackage{mathrsfs}
 \usepackage{bm} % bold math
 \usepackage{mathtools}
-\usepackage{braket}
+\usepackage{faktor} % Quotients
 \usepackage{xcolor}
 \usepackage{stmaryrd}
 
-\usepackage{upgreek}
+% ==== Physics ====
+\usepackage{braket}
+\usepackage{tensor}
+
 \let\oldphi\phi % \oldphi for ugly phi
 \let\phi\varphi % \phi is curly phi
-\let\oldepsilon\epsilon % \oldphi for ugly phi
-\let\epsilon\varepsilon % \phi is curly phi
 
 % ==== Graphics ====
 \usepackage{graphicx}
 \usepackage{tikz}
     \usetikzlibrary{cd}
-
 % ==== Formatting ====
 \usepackage{sectsty}
     \sectionfont{\LARGE}
@@ -75,15 +72,4 @@
 \usepackage{paracol}
 \usepackage{float}
 
-\usepackage{listings}
-\lstset { %
-    language=Java,
-    backgroundcolor=\color{black!0}, 
-    basicstyle=\footnotesize,
-}
 
-
-% ==== Physics ====
-
-\DeclareMathOperator{\m}{m}
-\DeclareMathOperator{\s}{s}

@@ -5,7 +5,7 @@
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{cor}{Corollary}[thm]
 \newtheorem{lem}[thm]{Lemma}
-\newtheorem{prop}[thm]{Proposition}
+\newtheorem{prop}{Proposition}[thm]
 
 \theoremstyle{definition}
 \newtheorem{dfn}[thm]{Definition}
@@ -14,7 +14,7 @@
 \newtheorem{ex}[thm]{Example}
 
 % ==== Custom Environments ====
-\usepackage{empheq}
+\usepackage{empheq} % bluebox
 \usepackage[most]{tcolorbox}
     \newtcbox{\bluebase}[1][]{%
         nobeforeafter, math upper, tcbox raise base,
@@ -31,16 +31,6 @@
   frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 }
 
-\newenvironment{bdfn}[1][]{%
-\mdfsetup{
-    frametitle={%
-        \tikz[baseline=(current bounding box.east),outer sep=0pt]
-        \node[anchor=east,rectangle,fill=orange!50]{\strut Definition~#1};
-    },
-    linecolor=orange!50,
-}
-\begin{mdframed}[]\relax}
-{\end{mdframed}}
 
 \newenvironment{orangebox}[1][]{%
 \mdfsetup{
@@ -91,3 +81,64 @@
 {\end{mdframed}}
 
 
+
+
+% ==== Boxed Theorem Environments ====
+
+\newenvironment{bdfn}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=orange!50]{\strut Definition #1};
+    },
+    linecolor=orange!50,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+
+\newenvironment{blem}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=blue!35]{\strut Lemma #1};
+    },
+    linecolor=blue!35,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+
+\newenvironment{bthm}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=blue!50!red!30]{\strut Theorem ~#1};
+    },
+    linecolor=blue!50!red!30,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+
+\newenvironment{bprop}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=red!20]{\strut Proposition #1};
+    },
+    linecolor=red!20,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+\newenvironment{bcor}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=red!20]{\strut Corollary #1};
+    },
+    linecolor=red!20,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
