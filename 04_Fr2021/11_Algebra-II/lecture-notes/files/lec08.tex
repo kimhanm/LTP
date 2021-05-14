@@ -105,3 +105,63 @@ The proof of this is done in the exercise sheet 8.
 \begin{lem}[]\label{lem:4-7}
   Let $H = \{\sigma_1, \ldots, \sigma_n\} \subseteq \Aut E$. Then $[E:E^{H}] \geq n$.
 \end{lem}
+\begin{proof}
+  The maps $\sigma_1|_{E^{\times}}, \ldots, \sigma_n|_{E^{\times}}$ are $n$ characters and thus linearly independent in $F(G,E)$
+  By the sublemma, there exist scalaer $\{y_{1}, \ldots, y_{n}\} \subseteq E^{\times}$ such that the vectors
+  \begin{align*}
+    (\sigma_1(y_1), \ldots \sigma_n(y_1)), \ldots , (\sigma_1(y_n), \ldots, \sigma_n(y_n))
+  \end{align*}
+  are linearly independent.
+  If we view $E$ as a vector space over the subfield $E^{H}$, then we can show that $\{y_{1}, \ldots, y_{n}\}$ are linearly independnent over $E^{H}$, which shows the proof.
+
+  Indeed, if we had scalars $c_{1}, \ldots, c_{n} \in E^{H}$ that give a linear combination of $y_i$ summing to zero, then these would also give
+  \begin{align*}
+    \sum_{i=1}^{n}c_i \sigma_j(y_i) = 0 \quad \forall j = 1, \ldots, n
+  \end{align*}
+  but we already know that the vectors above are linearly independent, we would have that the corresponding matrix has full rank.
+  So
+  \begin{align*}
+    \begin{pmatrix}
+      \sigma_1(y_1) & \ldots & \sigma_1(y_n)\\
+    \vdots & \ddots & \vdots\\
+    \sigma_n(y_1) & \ldots & \sigma_n(y_n)
+    \end{pmatrix}
+    \begin{pmatrix}
+    c_1\\
+    \vdots\\
+    c_n
+    \end{pmatrix}
+    =
+    0
+  \end{align*}
+  means $c_1 = \ldots = c_n = 0$.
+\end{proof}
+
+We can now improve the inequality $[E:E^{H}] \geq \abs{H}$ into an equality with some sensible assumptions.
+
+\begin{prop}[]\label{prop:4-9}
+  Let $G < \Aut E$ be a finite subgroup. Then
+  \begin{align*}
+    [E:E^{G}] = \abs{G}
+  \end{align*}
+\end{prop}
+\begin{proof}
+  We already gave lower bound, so assume that $[E:E^{G} > \abs{G}$.
+
+  This means that we could find $b_{1}, \ldots, b_{m} \in E$ linearly independent over $E^{G}$ for some $m > n$.
+
+  If we look at the linear map
+  \begin{align*}
+    T: E^{m} \to E^{n}, \quad \begin{pmatrix}
+    x_1\\
+    \vdots\\
+    x_M
+    \end{pmatrix}
+    \mapsto 
+    \begin{pmatrix}
+      \sigma_1(b_1) & \ldots & \sigma_1(b_m)\\
+    \vdots &  & \vdots\\
+    \sigma_n(b_1) & \ldots & \sigma_n(b_m)
+    \end{pmatrix}
+  \end{align*}
+\end{proof}
