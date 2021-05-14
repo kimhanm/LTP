@@ -1,0 +1,153 @@
+
+The power radiated per solid angle $d \Omega$ is
+\begin{align*}
+  \frac{d P_{\text{rad}}}{d \Omega} = \frac{q^{2}}{16 \pi^{2}} \abs{\vec{a}}^{2} \sin^{2} \Theta
+\end{align*}
+So the total power radiated over all angles is
+\begin{empheq}[box=\bluebase]{align*}
+  P_{\text{rad}} = \int d \Omega \frac{d P_{\text{rad}}}{d \Omega}
+  = \frac{q^{2}}{4 \pi} \frac{2}{3} \abs{\vec{a}}^{2} \left(
+    \frac{1}{\epsilon_0 c}
+  \right)
+\end{empheq}
+also known as \textbf{Larmor's formula}.
+Writing it in terms of the momentum, we get
+\begin{align*}
+  P_{\text{rad}} = \frac{q^{2}}{4 \pi \epsilon_0 c} \frac{2}{3} \left(
+    \frac{d \vec{p}}{dt}
+  \right)^{2} \frac{1}{m^{2}}
+\end{align*} 
+
+Now, that we calculated it in the reference frame of the charge ($\vec{v} = 0$), we can use a Lorentz transformation to get it for arbitrary $\vec{v}$.
+
+Since radiation power is Energy/Time, which both transform contravariantly, we see that it is an invariant under Lorentz transformations.
+
+If we take the scalar product of the force at rest
+\begin{align*}
+  \frac{d p^{\mu}}{d \tau} = (0, \frac{d \vec{p}}{d t}) \implies \frac{d p^{\mu}}{d \tau} \frac{d p_{\mu}}{d \tau} = - \left(
+    \frac{d \vec{p}}{d t}
+  \right)^{2}
+\end{align*}
+we recover the term in the momentum formula for the radiated power, so
+\begin{align*}
+  P_{\text{rad}} = - \frac{q^{2}}{4 \pi} \frac{2}{3m^{2}} \frac{d p^{\mu}}{d \tau} \frac{d p_{\mu}}{d \tau}
+\end{align*}
+and since the scalar product is invariant under Lorentz transformations, the above formula is valid in all refernece frames!
+
+Doing some further manipulation gives us the result
+\begin{empheq}[box=\bluebase]{align*}
+  P_{\text{rad}} = \frac{q^{2}}{4 \pi} \frac{2}{3} \gamma^{6} \left[
+    \abs{\vec{a}}^{2} - \abs{\vec{v} \times \vec{a}}^{2}
+  \right]
+\end{empheq}
+Notice that no matter how fast a particle is moving, if it is not accelerating ($\vec{a} = 0$), then it will not radiate any energy.
+
+Looking at the $\gamma^{6}$ term, we see
+\begin{align*}
+  \gamma^{6} = \frac{1}{\left(
+    1 - \frac{v^{2}}{c^{2}}
+  \right)^{3}}
+\end{align*}
+that for $v \sim c$, the term becomes really big.
+What this means is that if we wanted to accelerate particels (like what the LHC is doing), 
+the particle wants to radiate so much energy that it is almost impossible to acelerate it further.
+
+It would be nice to find the most efficient want to accelerate a particle.
+
+We could accelerate it in circular motion or along a straight line.
+
+
+Looking at the $- \abs{\vec{v} \times \vec{a}}^{2}$ term, we see that in linear acceleration, the cross product vanishes.
+\begin{align*}
+  \vec{v} \parallel \vec{a} \implies P_{\text{rad}} = \frac{q^{2}}{4 \pi} \frac{2}{3} \gamma^{6} \abs{\vec{a}}^{2}
+\end{align*}
+
+However, in circular acceleration, we have $\vec{v} \bot \vec{a}$, maximising the cross product.
+This lets us reduce the $\gamma^{6}$ factor to just $\gamma^{4}$
+\begin{align*}
+\vec{v} \bot \vec{a} \implies
+  P_{\text{rad}} 
+  &= \frac{q^{2}}{4 \pi} \frac{2}{3} \gamma^{6} \underbrace{\left[
+  \abs{\vec{a}}^{2} - \abs{\vec{v}}^{2} \abs{\vec{a}}^{2}\right]}_{= \abs{\vec{a}}^{2} \gamma^{-2}} = \frac{q^{2}}{4 \pi} \frac{2}{3} \gamma^{4} \abs{\vec{a}}^{2}
+\end{align*}
+
+
+We now know about the total radiated power, but let's study the angular distribution of the radiation for arbitrary $\vec{v}$.
+
+After some calcuations, we can show that we would get
+\begin{align*}
+  \frac{d P_{\text{rad}}}{d \Omega} = \frac{q^{2}}{16 \pi^{2}} \abs{\vec{a}}^{2} \frac{\sin^{2} \Theta}{(1 - v \cos \Theta)^{6}}
+\end{align*}
+And we will find that the result is absurd because the radiation for a relativistic particle at angle $\Theta= 0$ will become almost infinite.
+
+To resolve this, we will need quantum mechanics.
+
+
+\section{Scattering}
+When we have a charge $q$ that gets hit by an electromagnetic wave, it will then get accelerated and the emit some radiation.
+
+We will consider two case
+\begin{itemize}
+  \item The charge $q$ is free (Thomson scattering)
+  \item The charge $q$ is in a \textbf{bound state} (Rayleigh scattering)
+\end{itemize}
+Their qualitative differences is how the indicdent elctromagnetic wave accelerates the charge.
+
+\subsection{Thomson scattering}
+We have a free charge $q$ in rest frame $(\vec{v} = 0),\vec{x}= 0j$ that gets hit by a planar electromagnetic wave with direction $\hat{e}$, magnitude $E$ and angular velocity $\omega$.
+\begin{align*}
+  \vec{E}(\vec{x}) = \hat{e} E \text{Re} e^{i(\omega t - \vec{k}\vec{x})}
+  = \hat{e} E \cos(\omega t - \vec{k} \cdot \vec{x})
+\end{align*}
+We know that the force acting on the charge is
+\begin{align*}
+  \vec{F} = q \vec{E}(0) = \hat{e} qE \cos(\omega t)
+\end{align*}
+and it will experience an acceleration
+\begin{align*}
+  \vec{a} = \frac{\vec{F}}{m} = \frac{q}{m}E \cos(\omega t) \hat{e}
+\end{align*}
+Acceleration means radiation, and its angular distribution of the radiation is given by Larmor's formul
+\begin{align*}
+  \frac{d P_{\text{rad}}}{d \Omega} = \frac{q^{2}}{16 \pi^{2}} \abs{\vec{a}}^{2} \sin^{2} \Theta = \frac{q^{4}}{16 \pi^{2} m^{2}} \sin^{2} \Theta E^{2} \cos^{2}(\omega t)
+\end{align*}
+where $\Theta$ is the angle between $\hat{e}$ and the direction of radiation $\hat{n}$.
+
+Averaing over time (i.e. integrating $\cos(\omega t)$ over $t$) we get 
+\begin{align*}
+  \scal{\frac{d P_{\text{rad}}}{d \Omega}} = \frac{1}{T} \int_0^{T} \frac{d P_{\text{rad}}}{d \Omega}(t) dt = \frac{q^{4}}{32 \pi^{2}m^{2}}E^{2} \sin^{2}\Theta
+\end{align*}
+
+We can validate the formula with an experiment where hit a charge $q$ with a laser and see how much radiation it gives off as a function of the angle $\Theta$.
+
+The time average of the Poynting vector is
+\begin{align*}
+  \scal{S} = \scal{E^{2} \cos^{2}(\omega t} = \frac{E^{2}}{2}
+\end{align*}
+which lets us calculate the differential cross section
+\begin{align*}
+  \frac{d \sigma}{d \Omega} := \frac{\scal{\frac{d P_{\text{rad}}}{d \Omega}}}{\scal{S}} = \frac{q^{4}}{16 \pi^{2} m^{2}} \sin^{2} \Theta
+\end{align*}
+With spherical coordinates $(\theta,\phi,\psi)$ we can see that with unpolarised litght, the direction $\hat{e}$ takes on a random angle $\psi$.
+But what can always be controlled is the direction of the light $\vec{k}$, so we want to measure $\theta$.
+Using
+\begin{align*}
+  \sin^{2} \Theta = 1 - \sin^{2} \theta \cos^{2}(\phi - \psi)
+\end{align*}
+and by taking the average over $\psi$,
+\begin{align*}
+  \frac{1}{2 \pi}\int_0^{2 \pi} d \psi \cos^{2}(\phi - \psi) = \frac{1}{2} 
+\end{align*}
+which means that the differential cross section for unpolarised light is
+\begin{align*}
+  \frac{d \sigma}{d \Omega} = \frac{q^{4}}{16 \pi^{2} m^{2}} \frac{1 + \cos^{2} \theta}{2}
+\end{align*}
+so the total cross section becimes
+\begin{align*}
+  \sigma = \int d \Omega \frac{d \sigma}{d \Omega} = \frac{q^{4}}{16 \pi^{2}m^{2}} \frac{8 \pi}{3} = \frac{8 \pi}{3} r_q^{2}, \quad \text{where} \quad r_q := \frac{q^{2}}{4 \pi \epsilon_0 m c^{2}}
+\end{align*}
+is the \textbf{Thomson radius}
+
+
+
+
