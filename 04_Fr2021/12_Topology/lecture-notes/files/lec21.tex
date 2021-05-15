@@ -25,13 +25,15 @@ Interestingly at $d=4$, things get wild, but $d \geq 5$ is understood a bit bett
 
 \begin{dfn}[]
 Let $X$ be a topological space. We say that $X$ is a $d$-dimensional manifold with \textbf{boundary}, if
-$\forall p \in X, \exists$ a neighborhood $U \subseteq X$ of $p$ such that
-\begin{enumerate}
-  \item $U \iso \R^{d}$ or
-  \item $U \subseteq [0,\infty)  \times \R^{d-1}$ 
-  \item $X$ is Hausdorff
-  \item $X$ fulfills the 2AA
-\end{enumerate}
+  \begin{enumerate}
+    \item $X$ is Hausdorff
+    \item $X$ fulfills the 2AA ($X$ a countable neighborhood basis)
+    \item For all $p \in X$ there exists a neighborhood $U \subseteq X$ of $p$ such that excactly one of the following is true
+      \begin{enumerate}
+        \item[(i)] $U \iso \R^{d}$
+        \item[(ii)] $U \iso [0,\infty) \times \R^{d-1}$
+      \end{enumerate}
+  \end{enumerate}
 \end{dfn}
 The space $[0,\infty) \times \R^{d-1}$ can also be understood as the half-open sphere
 \begin{align*}
