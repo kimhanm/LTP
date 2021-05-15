@@ -1,8 +1,8 @@
-#  You can check out the links below 
-- [Summaries](https://kimhanm.github.io/summaries.html)
-- [Lecture Notes](https://kimhanm.github.io/lecture-notes.html)
+# How to use
+- Download the source code for the lecture notes and summaries by browsing the files.
+- Download the .pdf files from [my webpage](https://n.ethz.ch/~kimha)
 
-or download the .tex files directly from my [Github Repository](https://github.com/kimhanm/kimhanm.github.io).
+You are free to download, modify and redistribute the source material provided that you keep the sources available and give the same rights to derivates. 
 
 
 
