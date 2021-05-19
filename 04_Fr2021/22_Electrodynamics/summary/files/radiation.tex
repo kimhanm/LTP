@@ -1,0 +1,105 @@
+\subsection{Radiation}
+A moving charge $q$ generates a Potential $A^{\mu}(x)$ given by
+\begin{empheq}[box=\bluebase]{align*}
+  A^{\mu}(x) &= \int d^{4}y G_{\text{ret}}(x-y) j^{\mu}(y)\\
+             &= \frac{q}{4 \pi} \frac{v^{\mu}(t_{\text{ret}})}{\scal{v(\tau_{\text{ret}})}, x - r(\tau_{\text{ret}})}
+\end{empheq}
+where $\tau_{\text{ret}}$ is the solution to the equation
+\begin{align*}
+  x^{0} - r^{0}(\tau_{\text{ret}}) = \abs{\vec{x} - \vec{r}(\tau_{\text{ret}})}
+\end{align*}
+this is known as the \textbf{Lienard-Wiechert} potential.
+\begin{ex}[]
+  If the charge is stationary, i.e $v^{\mu}=(1,\vec{0})$ and $r(\tau) = (r^{0},\vec{r})$ for some constant $\vec{r}$. We get
+  \begin{align*}
+    A^{\mu}(x) = \frac{q}{4 \pi} \frac{(1,\vec{0})}{\abs{x^{0} - r^{0}}}|_{\text{ret}} = \frac{q}{4 \pi} \frac{(1,\vec{0})}{\abs{\vec{x} - \vec{r}}}
+  \end{align*}
+  which is just the Coulomb potential.
+\end{ex}
+\begin{ex}[Circular motion]
+  The charge $q$ is now moving in a circle radius $R$ and frequency $\omega$ and we want to find out the potential at the center of the circle $\vec{x} = (0,0,0)$.
+  With $\tau =  t \gamma$, we find that the position of the charge is
+  \begin{align*}
+    r(\tau) = (\tau \gamma, r \cos(\omega \tau \gamma), - r \sin(\omega \tau \gamma),0)
+  \end{align*}
+  so the velocity is
+  \begin{align*}
+    v = \frac{d r(\tau)}{d \tau} = 
+    (\gamma, - \gamma \omega r \sin(\omega \gamma \tau),
+    - \gamma \omega r \cos(\omega \gamma \tau), 0)
+  \end{align*}
+  we find out $\tau_{\text{ret}}$ by solving the equation
+  \begin{align*}
+    x^{0} - r^{0}(\tau_{\text{ret}}) = \abs{\vec{x} - \vec{r}(\tau_{\text{ret}})}
+  \end{align*}
+since $\abs{\vec{x} - \vec{r}(\tau)}$ is always constant $R$,  we get
+  \begin{align*}
+    x^{0} - \gamma \tau_{\text{ret}} = r \implies \tau_{\text{ret}} = \frac{x^{0} - R}{\gamma}
+  \end{align*}
+  so after calculating the scalar product
+  \begin{align*}
+    \scal{v(\tau_{\text{ret}}), x - r(\tau_{\text{ret}})} = \gamma R
+  \end{align*}
+  we can use the formula for the potential to find
+  \begin{align*}
+    A(x) 
+    &= \frac{q}{4 \pi}\frac{v(\tau_{\text{ret}})}{\scal{v(\tau_{\text{ret}}, x - r(\tau_{\text{ret}})}}\\
+    &= \frac{q}{4 \pi}\frac{1}{R} \begin{pmatrix}
+    1\\
+    - R\omega\sin(\omega(x^{0}- R) \\
+    - R\omega\cos(\omega(x^{0}- R)\\
+    0
+    \end{pmatrix}
+  \end{align*}
+\end{ex}
+
+\subsection{Fields of moving charges}
+From the Lienard-Wiechert Potential, we can calculate the Electromagnetic field tensor with
+the formula
+\begin{align*}
+  F^{\mu \nu} = \del^{\mu} A^{\nu} - \del^{\nu} A^{\mu}
+\end{align*}
+By defing the vector
+\begin{align*}
+  R^{\mu} := x^{\mu} - r^{\mu}(\tau_{\text{ret}}) =: \abs{\vec{R}}(1,\hat{n)}
+\end{align*}
+we can write the electric and magnetic field with
+\begin{align*}
+  \vec{E} 
+  &= \frac{q}{4 \pi (1 - \hat{n \vec{v}})^{3}} \left[
+    \frac{(1 - \vec{v}^{2)}}{\abs{\vec{R}}^{2}}(\hat{n} - \vec{v}) + \frac{1}{\abs{\vec{R}}} \hat{n} \times \left(
+      (\hat{n} - \vec{v}) \times \vec{a}
+    \right)
+  \right]\\
+  &= \hat{n} \times \vec{E}
+\end{align*}
+
+To describe the radiation of an accelerated particle, we define
+\begin{align*}
+  dP = \frac{d W}{d t} = d \vec{A} \cdot \vec{S}
+\end{align*}
+where
+\begin{align*}
+  \vec{S} = \vec{E} \times \vec{B}
+\end{align*}
+is the \textbf{Ponyting-Vector}.
+
+In the non-relativistic case ($v \ll c$) we have
+\begin{align*}
+  \frac{d P_{\text{rad}}}{d \Omega} = \frac{q^{2}}{16 \pi^{2}} \abs{\vec{a}}^{2} \sin^{2} \Theta
+\end{align*}
+and the total power is given by \textbf{Larmor's Formula}
+\begin{align*}
+  P_{\text{rad}} = \frac{q^{2}}{4 \pi} \frac{2}{3} \abs{\vec{a}}^{2} \left(
+    \frac{1}{\epsilon_0 c}
+  \right)
+\end{align*}
+In the relativistic case, the power radiated per solid angle is
+\begin{align*}
+  \frac{d P_{\text{rad}}}{d \Omega} = \frac{q^{2}}{16 \pi^{2}} \abs{\vec{a}}^{2} \frac{\sin^{2}\Theta}{(1 - v \cos \Theta)^{6}}
+\end{align*}
+so the total power radiated over all angles is
+\begin{empheq}[box=\bluebase]{align*}
+  P_{\text{rad}} = \int d \Omega  \frac{d P_{\text{rad}}}{d \Omega} = \frac{q^{2}}{4 \pi} \frac{2}{3} \gamma^{6} \left[\abs{\vec{a}}^{2} - \abs{\vec{v} \times \vec{a}}^{2}\right]
+\end{empheq}
+In circular motion, the $\gamma$ dependency is of order $\gamma^{4}$, and in linear motion, it is of order $\gamma^{6}$.

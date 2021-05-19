@@ -1,0 +1,172 @@
+\begin{lem}[]\label{lem:alt-covering}
+There is an alternative definition of a covering space.
+Let $\pi: Y \to X$ continuous and surjective. Then $\pi$ is a covering if and only if:
+
+For all $x \in X$ there exists an open neighborhoood $U \subseteq X$ of $x$ and disjoint open subsets $(U_i)_{i\in I}$ of $Y$ such that
+\begin{align*}
+  \pi^{-1}(U) = \bigsqcup_{i \in I}U_i \quad \text{and} \quad \pi|_{U_i}^{U}: U_i \to U \text{ is a homeomorphism}
+\end{align*}
+\end{lem}
+\begin{proof}
+\begin{itemize}
+  \item[$\implies$] Let $U \subseteq$ as in the definition. Set $U_i := U^{-1}(U \times \{i\})$ for all $i \in F$.
+    By construction, they are open and disjoint and the projection $\pi|_{U_i}^{U}$ 
+  \item[$\Leftarrow$] Let $U$ as in the lemma. Then set $F := \pi^{-1}(X) \subseteq Y$ with the subspace topology.
+  Because $F \cap U_j = \{y_j\}$, we know that $F$ is discrete.
+  Then for all $y_i \in \pi^{-1}(x)$ we define the map
+  \begin{align*}
+    \phi: \pi^{-1}(U) = \bigcup_{i \in I}U_i \to  U \times F, \quad y \mapsto (\pi(y),j)
+  \end{align*}
+  which is a homeomorphism.
+\end{itemize}
+\end{proof}
+
+\begin{dfn}[]
+A function $\pi: Y \to  X$ is called \textbf{local homeomorphism}, if
+$\forall y \in Y$ there exists a neighborhood $V \subseteq Y$ of $y$ open and an open subset $U \subseteq X$ such that $\pi|_{V}^{U}: V \to  U$ is a homeomorphism.
+\end{dfn}
+Now that if $\abs{\pi^{-1}(x)} = 1$ for all $x \in X$. Then this is just a homeomorphism.
+
+Local homeomorphisms are not the same as coverings!
+\begin{ex}[]
+  Set $X = \R$ and $Y = \R \times \{0\} \cup (0,\infty) \times \{1\}$ with the map
+  \begin{align*}
+    \pi: Y \to  X, (a,b) \mapsto  a
+  \end{align*}
+  is a local homeomorphism, but not a covering.
+\end{ex}
+
+\begin{dfn}[]
+Let $\pi: Y \to  X$ be a covering.
+\begin{itemize}
+  \item The subset $U \subseteq X$ is open as in Lemma \ref{lem:alt-covering} is said to be \textbf{uniformly covered} by $\pi$ and the $U_i$ is called a \textbf{leaf} of $\pi$ over $U$.
+  \item A covering $\pi$ is called a covering \textbf{of $n$ leaves}, if $\abs{\pi^{-1}(x)} = n$ for all $x \in X$.
+\end{itemize}
+\end{dfn}
+
+
+\begin{ex}[]
+Let $d \in \N$. The map
+\begin{align*}
+  \pi: \IS^{d} \to \R\P^{d} = \IS^{d}/\sim, \quad v \sim - v, \quad v \mapsto [v]
+\end{align*}
+is a covering of $2$ leaves.
+\end{ex}
+
+
+Our next goal is to show a correspondence between coverings of path connected spaces and subgroups of the fundamental group.
+This correspondence is the reminiscent of the Galois correspondence we know from Algebra II. 
+
+For example, if we know that the fundamental group of the circle is $\Z$.
+Its subgroups are $\Z/n\Z$ for some $n\in \N$ which correspond to the maps
+\begin{align*}
+  \IS^{1} \to  \IS^{1}, \quad z \mapsto  e^{2 \pi i n z}, \quad n \in \N
+\end{align*}
+
+\section{Lifts}
+Given a covering $\pi: Y \to X$ and a continuous map $f: Z \to  X$, we would like to ``lift'' $f$ to a function $\tilde{f}: Z \to  Y$. such that the following diagram commutes.
+\begin{center}
+\begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+  & Y \arrow[]{d}{\pi}\\
+  Z \arrow[]{r}{f}\arrow[dotted]{ur}{\tilde{f}} & X
+\end{tikzcd}
+\end{center}
+
+\begin{dfn}[]
+  Let $\pi: Y \to X$ a covering $a < b \in \R$ and $\alpha:[a,b] \to  X$ a path.
+  A path $\tilde{\alpha}:[a,b] \to Y$ is called a \textbf{lift} of $\alpha$ to the starting point $y_0$ if $\tilde{\alpha}(a) = y_0$ and the following diagram commutes:
+\begin{center}
+\begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+  & Y \arrow[]{d}{\pi}\\
+  {[a,b]} \arrow[]{r}{\alpha}\arrow[dotted]{ur}{\tilde{\alpha}} & X
+\end{tikzcd}
+\end{center}
+\end{dfn}
+for example for the map
+\begin{align*}
+  \alpha_k: [0,1] \to \IS^{1}, \quad t \mapsto e^{2 \pi i k t}
+\end{align*}
+a lift of it is the path
+\begin{align*}
+  \tilde{\alpha}_k: [0,1] \to \R, t \mapsto kt
+\end{align*}
+where the covering is given by
+\begin{align*}
+  \pi: \R \to \IS^{1}, x \mapsto  e^{2 \pi i x}
+\end{align*}
+
+\begin{lem}[]
+  Let $\pi: Y \to X$ a covering, $\alpha:[a,b] \to X$ a path and $y_0 \in \pi^{-1}(\alpha(a))$.
+  
+  Then there exists a unique lift of $\alpha$ to $y_0 \in Y$.
+\end{lem}
+\begin{proof}
+  Without loss of generality we can assume $[a,b] = [0,1]$.
+  First note that for any $U \subseteq X$ open and uniformly covered: 
+  for any path $\beta:[0,1] \to U$, there exists a unique lift of $\beta$ to a $y_j \in \pi^{-1}(\beta(0))$.
+  This is because the lift is uniquely determined by
+  \begin{align*}
+    \tilde{\beta}_j := \left(
+      \pi|_{U_j}^{U}
+    \right)^{-1} \circ \beta
+  \end{align*}
+  In particular, the images of $\tilde{\beta}_j$ and $\tilde{\beta}_k$ are disjoint for $j \neq k \in I$.
+  \begin{itemize}
+    \item For uniqueness of the lift, let $\tilde{\alpha}, \hat{\alpha}$ be two lifts of $\alpha$ to the point $y_0$.
+      Then set
+      \begin{align*}
+        I := \{t \in [0,1] \big\vert \tilde{\alpha}(t) = \hat{\alpha}(t)\}
+      \end{align*}
+      Because $\tilde{\alpha}$ and $\hat{\alpha}$ start at the same point $y_0$, $I$ is non-empty.
+
+      $I$ is also open, because for any $t_0 \in I$ chose a $U \subseteq X$ open and uniformly covered with $\alpha(t_0) \in U$.
+      Then chose $a < b$ such that either
+      \begin{align*}
+        a < t_0 < b, \text{ or } a = 0 = t_0 < b \text{ or } a < t_0 = b = 1
+      \end{align*}
+      in any case, we noted that $\tilde{\alpha}$ and $\hat{\alpha}$ have to agree on $[a,b]$. 
+
+      With the same argument, we can show that $I$ is also closed, because for some $t_0 \in [0,1] \setminus I$, we chose $U,a,b$ like before and show that $\tilde{\alpha}(t) \neq \hat{\alpha}(t)$ for all $t \in [a,b]$.
+    \item For existence, set
+      \begin{align*}
+        I := \{t \in [0,1] \big\vert \alpha|_{[0,t]} \text{ has a lift to $y_0$}\}
+      \end{align*}
+      For $T := \sup_{t \in I}$ we either have $I = [0,T)$ or $I=[0,T]$.
+
+      Chosing $U$ uniformly covered with $\alpha(T) \in U$ and $a<b$ as before, we can chose a lift $\tilde{\beta}:[a,b] \to  Y$ of $\alpha|_{[a,b]}$ with $\tilde{\beta}(a) = \tilde{\alpha}(a)$
+      Then set set
+      \begin{align*}
+        \tilde{\alpha}:[0,b] \to  Y, \quad \tilde{\alpha}(t) := \left\{\begin{array}{ll}
+            \tilde{\alpha}|_{[0,a](t)} & t \leq a\\
+            \tilde{\beta}(t) &  t \in [a,b]
+        \end{array} \right.
+      \end{align*}
+      then $\tilde{\alpha}$ is a lift of $\alpha|_{[0,b]}$.
+
+      Which shows that if $T<1$, this is a contradiction that $T$ is the supremum, so we must be in the case, where $a < T = b = 1$.
+  \end{itemize}
+\end{proof}
+
+Next, we want to lift homotopies.
+\begin{lem}[]\label{lem:homotopy-lift}
+  Let $\pi: Y \to X$ be a covering, $Z$ a topological space and $h: Z \times [0,1] \to  X$ a continuous function.
+
+  If $\tilde{h}_0: Z \to Y$ is a lift of $h_0 = h(-,0): Z \to X$.
+
+  Then there exists a unique lift $\tilde{h}:Z \times [0,1] \to Y$ such that the following diagram commutes
+  \begin{center}
+  \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+    Z \arrow[]{r}{\tilde{h}_0} \arrow[swap]{d}{\iota}& Y \arrow[]{d}{\pi}\\
+    Z \times [0,1] \arrow[]{r}{h}\arrow[dotted]{ur}{\exists!\tilde{h}} & X
+  \end{tikzcd}
+  \end{center}
+  in other words: if the outer square of the diagram commutes, then there exists a $\tilde{h}$ completing the diagram.
+
+\end{lem}
+\begin{rem}[]
+  We say that the inclusion
+  \begin{align*}
+    \iota: Z \to Z \times [0,1], z \mapsto (z,0)
+  \end{align*}
+  has the \textbf{left lifting property} with respect to the morphism $\pi$.
+\end{rem}

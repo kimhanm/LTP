@@ -1,0 +1,44 @@
+\subsection{Natural units}
+Recall the SI (système international) units
+\begin{table}[h]
+\centering
+\begin{tabular}{l|L|L|l}
+  Quantity & \text{Symbol} & \text{Base unit} & Name\\\hline
+  Length & \ell & 1 \mathrm{m} & Meter\\
+  Time & t & 1 \mathrm{s} & Second \\
+  Mass & m & 1\mathrm{kg} & Kilogram\\
+  Current & I & 1 \mathrm{A} &  Ampère\\
+\end{tabular}
+\caption{SI Units}
+\end{table}
+
+For example, Coulomb's Law is
+\begin{align*}
+  F &= \frac{q^{2}}{4 \pi \epsilon_0 r^{2}}
+\end{align*}
+where
+\begin{align*}
+  [F] &= \frac{\mathrm{kg} \cdot \mathrm{m}}{\mathrm{s}^{2}}\\
+  [q] &= \mathrm{A} \cdot\mathrm{s}\\
+  [\epsilon_0] &= \frac{\mathrm{A}^{2}\cdot \mathrm{s}^{4}}{\mathrm{m}^{3}}\\
+  [r] &= \mathrm{m}
+\end{align*}
+Now we define the set of natural units
+\begin{align*}
+  [\ell,t,m,I] \mapsto [c, \hbar, m_e, \epsilon_0]
+\end{align*}
+\begin{table}[h]
+\centering
+\begin{tabular}{l|L|L|l}
+  Quantity & \text{Symbol} & \text{Base unit} & Name\\\hline
+  Speed & v & 1 c & Speed of light\\
+        & & 1 \hbar & Plank's reduced constant\\
+  Mass & m & 1 m_e & Mass of electron\\
+       & & 1 \epsilon_0 & \\
+  Length & 1 \left[\frac{\hbar}{m_e C}\right] & 3.86 \cdot 10^{-13} \mathrm{m} & Natural unit lengh\\
+  Time & 1\left[\frac{\hbar}{m_ec^{2}}\right] & 1.288 \cdot 10^{-21} \mathrm{s} & Second \\
+  Mass & m & 1 m_e = 9.109 \cdot 10^{-31} \mathrm{kg}& Mass of Electron\\
+  Charge & q & 1 \sqrt{ \epsilon_0 \hbar c} = 5.29 \cdot 10^{-19}\mathrm{A \cdot s} & \\
+\end{tabular}
+\caption{Natural units}
+\end{table}
