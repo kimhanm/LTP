@@ -1,0 +1,94 @@
+We define what it means to take the average over a field $\vec{F}(\vec{x},t)$ a distance via
+\begin{empheq}[box=\bluebase]{align*}
+  \scal{F(\vec{x},t)}:= \int d^{3}\vec{y} f(\vec{y}) F(\vec{x}- \vec{y},t) = (F(-,t) \ast f(-))(\vec{x})
+\end{empheq}
+where $f(\vec{y})$ is some smooth, non-negative \emph{weighing factor}.
+
+This definition is just the \emph{convolution} we know from harmonic analysis.
+
+For example, to describe the total curren density $j^{\mu}$, we split it into the atomic and free parts, where we average the atomic part.
+\begin{align*}
+  j^{\mu} = j_{\text{free}}^{\mu} + j_{\text{atomic}}^{\mu} \simeq j_{\text{free}}^{\mu} + \scal{j_{\text{atomic}}^{\mu}}
+\end{align*}
+
+\subsection{Charge density}
+Consider a collection of free charges $(q_i)_{i \in \text{ free }}$ at positions $(\vec{x}_i)_{i \in \text{free}}$, 
+aswell as charges $(q_i)_{i \in \text{bound}}$ which are bound to molecules at positions $(\vec{x}_i)_{i \in \text{molec}}$.
+Each of these molecules has charges $q_{i,1}, \ldots, q_{i,m_i}$ for some $m_i \in \N$ at positions $(\vec{x}_{i,j})_{j \in \{1,\ldots,m_i\}}$.
+
+We already know what the charge density that the free charges generate looks like
+\begin{align*}
+  \rho_{\text{free}}(\vec{x}) = \sum_{i \in \text{ free }} q_i \delta(\vec{x} - \vec{x_i})
+\end{align*}
+
+We fix some molecule and look at its contribution to the bound charge density.
+
+If the molecule has $m$ charges $q_1, \ldots, q_m$ bound to it, and is centered around the point $\vec{x}_{\text{mol}}$, then 
+\begin{align*}
+  \rho_{\text{molecule}}(\vec{x}) = \sum_{k = 1}^{m} q_{k} \xi(\vec{x} - \vec{x}_{\text{mol}} - \vec{x}_k )
+\end{align*}
+so taking the average, on both sides, we get 
+\begin{align*}
+  \scal{\rho_{\text{molecule}}}(\vec{x}) 
+  &= \sum_{k=1}^{m} q_k\scal{\delta(\vec{x} - \vec{x}_{\text{mol}} - \vec{x}_k)}\\
+  &= \sum_{k=1}^{m} q_k \int d^{3} \vec{y} f(\vec{y}) \delta(\vec{x} - \vec{x}_{\text{mol}} - \vec{x}_{k} - \vec{y})\\
+  &=
+  \sum_{k=1}^{m} q_k f(\vec{x} - \vec{x}_{\text{mol}} - \vec{x}_k)
+\end{align*}
+Performing a taylor expansion for $f$:
+\begin{align*}
+  f(\vec{x} - \vec{x}_{\text{mol.}} - \vec{x}_k) = f(\vec{x} - \vec{x}_{\text{mol}}) - \vec{x}_k \cdot \vec{\nabla} f(\vec{x} - \vec{x}_{\text{mol}}) + \mathcal{O}(\vec{x}_k^{2})
+\end{align*}
+we can write the average of the charge density as
+\begin{align*}
+  \rho_{\text{molecule}}(\vec{x}) = q_{\text{tot}}f(\vec{x} - \vec{x}_{\text{mol}}) - \sum_{k=1}^{n}q_k \vec{x}_k \cdot \vec{\nabla}f(\vec{x} - \vec{x}_{\text{mol}}) + \mathcal{O}(\vec{x}_k^{2})
+\end{align*}
+where $q_{\text{tot}} = \sum_{k=1}^{m} q_k$ is the total charge of the molecule.
+Using the definition of the \textbf{electric dipole moment} of the molecule
+\begin{align*}
+  \vec{p}_{\text{mol}} := \sum_{k=1}^{m} q_k \vec{x}_k
+\end{align*}
+this gets the compact form
+\begin{align*}
+  \scal{\rho_{\text{molecule}}} = q_{\text{tot}} f(\vec{x} - \vec{x}_{\text{mol}}) - \vec{p} \cdot \vec{\nabla}f(\vec{x} - \vec{x}_{\text{mol}}) + \mathcal{O}(\vec{x}_k^{2})
+\end{align*}
+Summing over all molecules,
+we get that the total bound charge density averaged over atomic distances is up to a first order approximation given by
+\begin{align*}
+  \scal{\rho_{\text{bound}}} 
+= 
+  \left(
+    \sum_{i \in \text{molec}}q_{i,\text{tot}} f(\vec{x} - \vec{x}_i)
+  \right) 
+- 
+  \left(
+    \sum_{i=1}^{n}
+    \vec{p}_i \cdot \vec{\nabla} f(\vec{x}- \vec{x}_i)
+  \right)
+  + \mathcal{O}(\vec{x}_{i,k}^{2})
+\end{align*}
+By defining the \textbf{effective charge density} $\rho_{\text{eff}}$
+\begin{empheq}[box=\bluebase]{align*}
+  \rho_{\text{eff}} := \rho_{\text{free}} + \sum_{i=1}^{n}q_i \delta(\vec{x} - \vec{x}_i) = \sum_{i \in \text{free } \cup \text{ bound}} q_i \delta(\vec{x} - \vec{x}_i)
+\end{empheq}
+aswell as the \textbf{polarised charge density}
+\begin{empheq}[box=\bluebase]{align*}
+  \rho_{\text{pol}} = - \vec{\nabla} \cdot \left(
+    \sum_{i=1}^{m} \vec{p}_i \delta(\vec{x} - \vec{x}_i) 
+  \right)
+  \implies \scal{\rho_{\text{pol}}} = - \vec{\nabla} \cdot \vec{P}
+\end{empheq}
+where $\vec{P}$ is the \textbf{polarisation} of the medium and is given by
+\begin{empheq}[box=\bluebase]{align*}
+  \vec{P} = \scal{\sum_{i=1}^{m} \vec{p}_i \delta(\vec{x} - \vec{x}_i)}
+\end{empheq}
+This lets us decompose the total charge density into the effective and polarised terms:
+\begin{align*}
+  \scal{\rho} = \scal{\rho_{\text{eff}}} + \scal{\rho_{\text{pol}}} = \scal{\rho_{\text{eff}}} - \vec{\nabla} \cdot \vec{P}
+\end{align*}
+
+\subsection{Current density}
+Just like before, we consider currents which are either free or bound to molecules at positions $\vec{x}_1, \ldots, \vec{x}_m$.
+\begin{center}
+  \texttt{Missing}
+\end{center}

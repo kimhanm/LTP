@@ -1,0 +1,145 @@
+\section{Cyclotomic fields}
+Let $n \geq 1 \in \N$, $k$ a field and $k[n]$ a spiltting field of $f := X^{n} - 1 \in k[X]$.
+Let $\mu_n \subseteq k[n]$ be the roots of $f$.
+
+Then $\mu_n$ is a finite subgroup of $k[n]^{\times}$ and therefore cyclic.
+We call a generator of the group an $n$-th primitive root of unity.
+
+If $\xi \in \mu_n$ is an $n$-th primitive root of unity, then $k[n] = k(\xi)$.
+
+When we assume that $\charac k = 0$ or $\charac k\not|n$, then $f$ and its derivative $f'$ have $\gcd(f,f')=1$, so the polynomial has no multiple roots.
+
+So $f$ is separable and $k[n]/k$ is a Galois extension. We now wish to compute $\Gal(k[n]/k)$.
+Let $\xi$ an $n$-th primitve root of unity and consider the map
+\begin{align*}
+  \Z/n\Z \to \mu_n, \quad k \mapsto \xi^{k}
+\end{align*}
+Then we can describe a $\sigma \in \Gal(k[n]/k)$ with some $a_{\sigma} \in \Z/n\N$ such that $\sigma(\xi) = \xi^{a_{\sigma}}$ which means $a_{\sigma} \in (\Z/n\Z)^{\times}$.
+
+
+This gives us an injective group homomorphism
+\begin{align*}
+  \Gal(k[n]/k) \hookrightarrow (\Z/n\Z)^{\times}, \quad \sigma \mapsto  a_{\sigma}
+\end{align*}
+and we can ask wheter this map is surjective.
+
+\begin{thm}[]\label{thm:4-26}
+  For $k = \Q$, the map
+  \begin{align*}
+    \Gal(\Q[n]/\Q) \to (\Z/n\Z)^{\times}, \quad \sigma \mapsto a_{\sigma}
+  \end{align*}
+is an isomorphism.
+\end{thm}
+There are many different proofs for this, but an elementary one comes from Dedekind, which uses Gauss's Lemma.
+\begin{lem}[Gauss]
+  If a polynomial $p \in \Z[X]$ is a product of polynomials $P,R \in \Q[X]$, then there exist $\lambda,\mu \in \Q^{\times}$ such that
+  \begin{align*}
+    q:= \lambda Q \in \Z[X], r:= \mu R \in \Z[X] \text{ and } p = q \cdot r
+  \end{align*}
+  if additionally, $p,Q,R$ are unitary, then $R,Q \in \Z[X]$.
+\end{lem}
+\begin{proof}[Proof theorem]
+  Let $\xi,\xi^{a} \in \mu_n$ be $n$-th primitve roots of unity (which means $\gcd(a,n) = 1$).
+
+  To show surjectivity of the map, we show that there exists a $\sigma \in \Gal(\Q[n]/\Q)$ such that $\sigma(\xi) = \xi^{a}$.
+
+  Let $f = \text{irr}(\xi,\Q),g = \text{irr}(\xi^{a},\Q)$ be the minimal polynomials. Then we can show that $f=g$.
+
+  Indeed, if we assume $f \neq g$ then because both divide $X^{n} -1$, they are irreducible factors.
+  So we can write $X^{n}-1 = f \cdot g \cdot h$ for some $h$ unitary.
+  By Gauss's Lemma, we get that $f,g,h \in \Z[X]$.
+
+  Reducing modulo $p$, we get $X^{n}-1 = \overline{f} \cdot \overline{g} \cdot \overline{h}$ for $\overline{f},\overline{g},\overline{h}\in \F_p[X]$.
+  Since $X^{n}-1$ has no multiple roots, it follows that $\gcd(\overline{f},\overline{g})=1$.
+
+  By decomposing $a$ into primes: $a = p_1 \dots p_r$ we can assume without loss of generality that $a$ is prime, and show that $\text{irr}(\xi,\Q) = \text{irr}(\xi^{p},\Q)$ for any $\xi \in \mu_n$ and $p$ prime, because we can extend this argument with
+  \begin{align*}
+    \text{irr}(\xi,\Q) = \text{irr}(\xi^{p_1},\Q) = \text{irr}((\xi^{p_1})^{p_2},\Q) = \ldots = \text{irr}(\xi^{a},\Q)
+  \end{align*}
+  So let $f = \text{irr}(\xi,\Q)$ and $g = \text{irr}(\xi^{p},\Q)$ for some prime $p$.
+  Because $g(\xi^{p}) = 0$, we know that $\xi$ is a root of $g(X^{p}) \in \Z[X]$ and since $f$ is the minimal polynomial of $\xi$, ewe can factor
+  \begin{align*}
+    g(X^{p}) = f(X) k(X) \quad \text{for some} \quad k \in \Q[X] \text{ unitary}
+  \end{align*}
+  by Gauss' Lemma, $k \in \Z[X]$ and we have
+  \begin{align*}
+    \left(
+      \overline{g}(X)
+    \right)^{p} = \overline{g}(X^{p}) = \overline{f}(X) \overline{k}(X)
+  \end{align*}
+  which contradicts $\gcd(\overline{f},\overline{g}) = 1$.
+
+  So now that we know $f = g = \text{irr}(\xi,\Q)$, the proof follows because we have that $\xi$ and $\xi^{a}$ are both roots of $f$ and $\Q[n]$ is a splitting field of $f$.
+  And from Corollary \ref{cor:rot3-14}, we know that the Galois group of a splitting field over a separable, irreducible polynomial acts transitively over the roots, i.e. $\exists \sigma \in \Gal(\Q[n]/\Q)$ with $\sigma(\xi) = \xi^{p}$.
+\end{proof}
+
+With the identity
+\begin{align*}
+  \frac{X^{n+1}-1}{X-1} = 1 + X + \ldots + X^{n}
+\end{align*}
+we can 
+
+
+\begin{dfn}[]\label{dfn:cyclotomic-polynomial}
+  Let $\xi$ be an $n$-th primitve root of unity.
+  We define the $n$-th \textbf{cyclotomic polynomial} as
+  \begin{align*}
+    \Phi_n(X) := \prod_{\underset{1 \leq a \leq n-1}{\gcd(a,n)=1}} (X - \xi^{a})
+  \end{align*}
+\end{dfn}
+
+\begin{cor}[]
+  $\Phi_n \in \Z[X]$ and is irreducible in $\Q[X]$
+\end{cor}
+\begin{proof}
+  As we have shown earlier, the splitting field is $\Q[n] = \Q(\xi)$ and by the previous theorem the definition is equivalent to
+  \begin{align*}
+    \Phi_n(X) = \prod_{\sigma \in \Gal(\Q[n]/\Q)}(X - \sigma(\xi))
+  \end{align*}
+  Note that all its coefficients are in the fixing field $\Q[n]^{\Gal(\Q[n]/\Q)}$, but since
+  it has no multiple roots and is thus separable, the fixing field is $\Q$, which shows $\Phi_n \in \Q[X]$.
+
+  Moreoever, since $\Phi_n(X)$ divides $X^{n}-1$, it follows from Gauss' Lemma that $\Phi_n \in \Z[X]$.
+
+  It is also irreducible because by definition, $\Gal(\Q[n]/\Q)$ acts transitivitely on its roots. (We use \ref{cor:rot3-14} here)
+\end{proof}
+\begin{rem}[]
+  The degree of $\Phi_n$ is equal to the number of relative primes $1 \leq a \leq n$, or Euler's totient function $\phi(n)$.
+  In particular, if $p$ is prime, $\Phi_p(X) = X^{p-1} + \ldots + X + 1$.
+  
+  Fun fact: $\Phi_{105}$ is the first cyclotomic polynomial, which has a coefficient \emph{not} equal to $1,0,-1$.
+  (That is because $105 = 3 \cdot 5 \cdot 7$ is the smallest product of three distict odd primes.)
+\end{rem}
+
+In the exercise Sheets, we prove the following.
+\begin{prop}[]\label{prop:4-23}
+The cyclotomic polynomials have the following properties:
+Let $p$ be prime and $n \in\N$
+\begin{enumerate}
+  \item $X^{n}-1 = \prod_{d|n}\Phi_d(X)$
+  \item $\Phi_p(X) = X^{p-1} + X^{p-2} + \ldots + 1$
+  \item If $n \geq 2$: $\Phi_n(X) = X^{\phi(n)}\Phi_n(X)$
+  \item $\Phi_{p^{r}} = \Phi_p(X^{p^{r-1}})$
+  \item If $\gcd(p,n)=1$, then
+    \begin{align*}
+      \Phi_{pn}(X) = \frac{\Phi_n(X^{p})}{\Phi_n(X)}
+    \end{align*}
+  \item $\Phi_N(X) = \prod_{d|n}(X^{\frac{n}{d}} - 1)^{\mu(d)}$, where $\mu$ is the Moebius function
+    \begin{align*}
+      \mu: \N^{\ast} \to  \{-1,0,1\}, \quad \mu(n) = \left\{\begin{array}{ll}
+        0 & \text{if $n$ divisible by a square of a prime}\\
+        (-1)^{r} & n= p_1 \dots p_r \text{ pairwise different}\\
+        1 & n=1
+      \end{array} \right.
+    \end{align*}
+\end{enumerate}
+\end{prop}
+
+\begin{thm}[]\label{thm:4-30}
+  If $\gcd(p,n)=1$, then the image of the map
+  \begin{align*}
+    \Gal(\F_p[n]/\F_p) \to (\Z/n\Z)^{\times}, \sigma \mapsto  a \text{ with } \sigma(\xi) = \xi^{a}
+  \end{align*}
+  is the subgroup generated by $p \mod n$.
+\end{thm}
+

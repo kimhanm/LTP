@@ -10,8 +10,6 @@
 \usepackage{hyperref}
 \usepackage{wrapfig}
 
-\usepackage{array}   
-\newcolumntype{L}{>{$}l<{$}} % math mode l
 
 
 \usepackage[framemethod=TikZ]{mdframed}
@@ -30,7 +28,8 @@
 	\setlength{\headwidth}{500pt}
 	\setlength{\parindent}{0pt}
 	\marginparwidth = 0pt
-	\fancyhead[L]{\rightmark}
+  %\fancyhead[L]{\rightmark}
+  \fancyhead[C]{\leftmark}
 	\fancyhead[R]{\today}
 	\fancyfoot[L]{Han-Miru Kim}
 	\fancyfoot[C]{\href{mailto:kimha@student.ethz.ch}{kimha@student.ethz.ch}}
@@ -71,3 +70,7 @@
 
 
 
+\usepackage{array}   
+\newcolumntype{L}{>{$}l<{$}} % math mode left align
+\newcolumntype{R}{>{$}r<{$}} % math mode right align
+\newcolumntype{C}{>{$}c<{$}} % math mode center
