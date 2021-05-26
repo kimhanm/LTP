@@ -72,9 +72,9 @@ we get that the total bound charge density averaged over atomic distances is up 
   }
   + \mathcal{O}(\vec{x}_{n,k}^{2})
 \end{align*}
-By defining the \textbf{effective charge density} $\rho_{\text{eff}}$
+By defining the \textbf{effective charge density} $\scal{\rho_{\text{eff}}}$
 \begin{empheq}[box=\bluebase]{align*}
-  \rho_{\text{eff}} &:= 
+  \scal{\rho_{\text{eff}}} &:= 
   \scal{
     \sum_{i \in \text{free}}q_i \delta(\vec{x} - \vec{x}_i)
   }
@@ -85,11 +85,11 @@ By defining the \textbf{effective charge density} $\rho_{\text{eff}}$
     \delta(\vec{x} - \vec{x}_n)
   }
   \\
-  &= \scal{\rho_{\text{free}}} + \scal{\rho_{\text{molecules}}}
+  &= \scal{\rho_{\text{free}}} + \scal{\rho_{\text{atomic}}}
 \end{empheq}
 aswell as the \textbf{polarised charge density}
 \begin{empheq}[box=\bluebase]{align*}
-  \rho_{\text{pol}} 
+  \scal{\rho_{\text{pol}}} 
   = - \vec{\nabla} \cdot \vec{P}
   \quad \text{for} \quad 
   \vec{P} = \scal{\sum_{n \in \text{molec}} \vec{p}_n \delta(\vec{x} - \vec{x}_n)}
@@ -98,9 +98,9 @@ where $\vec{P}$ is called the \textbf{polarisation} of the medium, this lets us 
 
 \begin{empheq}[box=\bluebase]{align*}
   \scal{\rho} 
-  &\approx \rho_{\text{eff}} + \rho_{\text{pol}} \\
+  &\approx \scal{\rho_{\text{eff}}} + \scal{\rho_{\text{pol}}} \\
   &=
-  \scal{\rho_{\text{free}}} + \scal{\rho_{\text{molecules}}}- \vec{\nabla} \cdot \vec{P}
+  \scal{\rho_{\text{free}}} + \scal{\rho_{\text{atomic}}}- \vec{\nabla} \cdot \vec{P}
 \end{empheq}
 where the approximation is up to first order with respect to $\vec{x}_{n,k}$.
 
@@ -188,7 +188,7 @@ Taking the sum over all molecules, the total bound current density averaged over
 \end{align*}
 To clean this up a bit, we define the \textbf{effective current density}
 \begin{empheq}[box=\bluebase]{align*}
-  \vec{j}_{\text{eff}} 
+  \scal{\vec{j}_{\text{eff}}} 
   &:=
   \scal{\sum_{i \in \text{free}}
   q_i \vec{v}_i \delta(\vec{x} - \vec{x}_i)
@@ -199,17 +199,17 @@ To clean this up a bit, we define the \textbf{effective current density}
   }\\
   &= \scal{\vec{j}_{\text{free}}}
   +
-  \scal{\vec{j}_{\text{molecules}}}
+  \scal{\vec{j}_{\text{atomic}}}
 \end{empheq}
 , the \textbf{polarised current density}
 \begin{empheq}[box=\bluebase]{align*}
-  \vec{j}_{\text{pol}} := \frac{\del \vec{P}}{\del t} \quad \text{for} \quad \vec{P} = \scal{\sum_{n \in \text{molec}}
+  \scal{\vec{j}_{\text{pol}}} := \frac{\del \vec{P}}{\del t} \quad \text{for} \quad \vec{P} = \scal{\sum_{n \in \text{molec}}
     \vec{p}_n \delta(\vec{x} - \vec{x}_n)
   }
 \end{empheq}
 aswell as the \textbf{magnetized current density}
 \begin{empheq}[box=\bluebase]{align*}
-  \vec{j}_{\text{mag}} := \vec{\nabla} \times \vec{M} \quad \text{for} \quad \vec{M} := \scal{\sum_{n \in \text{molec}}\vec{m}_n \delta(\vec{x} - \vec{x}_n)}
+  \scal{\vec{j}_{\text{mag}}} := \vec{\nabla} \times \vec{M} \quad \text{for} \quad \vec{M} := \scal{\sum_{n \in \text{molec}}\vec{m}_n \delta(\vec{x} - \vec{x}_n)}
 \end{empheq}
 , where $\vec{m}_n$ is the \textbf{magnetic moment} of the molecule given by
 \begin{empheq}[box=\bluebase]{align*}
@@ -220,12 +220,12 @@ In the end, we are left with the nice compact formula for the total current dens
 \begin{empheq}[box=\bluebase]{align*}
   \scal{\vec{j}} 
   &\approx
-  \vec{j}_{\text{eff}}
-  + \vec{j}_{\text{pol}}
-  + \vec{j}_{\text{mag}}
+  \scal{\vec{j}_{\text{eff}}}
+  + \scal{\vec{j}_{\text{pol}}}
+  + \scal{\vec{j}_{\text{mag}}}
   \\
   &=
-  \scal{\vec{j}_{\text{free}}} + \scal{\vec{j}_{\text{molecules}}}
+  \scal{\vec{j}_{\text{free}}} + \scal{\vec{j}_{\text{atomic}}}
   + \frac{\del \vec{P}}{\del t}
   + \vec{\nabla}\times \vec{M}
 \end{empheq}

@@ -1,0 +1,207 @@
+\begin{proof}
+  Let $\alpha_z: [0,1] \to X$ with $\alpha_z(t) = h(z,t)$ and $\tilde{\alpha}_z$ the lifting of $\alpha_z$ to $\tilde{h}_0(z)$.
+  We define
+  \begin{align*}
+    \tilde{h}: Z \times [0,1] \to Y, \quad \tilde{h}(z,t) = \tilde{a}_z(t)
+  \end{align*}
+  and we have to show that the diagram commutes, i.e.
+  $\pi \circ \tilde{h} = h$ and $\tilde{h} \circ \iota = \tilde{h}_0$.
+  Indeed, we have
+  \begin{align*}
+    \pi(\tilde{h}(z,t) = \pi(\tilde{a}_z(t)) = a_z(t) = h(z,t) \quad \text{and} \quad \tilde{h}(\iota(z) = \tilde{h}(z,0) = \tilde{h}_0(z)
+  \end{align*}
+  
+  For uniqueness, let $\tilde{h}$ and $\tilde{h}'$ be two such functions. Then for all $z \in \Z$ the functions
+  \begin{align*}
+    \tilde{\alpha}'(t) := \tilde{h}'(z,t) \text{ and } \tilde{\alpha}(t) := \tilde{h}(z,t)
+  \end{align*}
+  would be lifts of the function $\alpha(t) = h(z,t)$ at $y_0 = \tilde{h}_0(z)$.
+  By the Lemma \ref{lem:path-lift}, these would be identical, so
+  \begin{align*}
+    \tilde{\alpha}'(t) = \tilde{a}(t) \forall t \in [0,1] \implies \tilde{h}'(z,t) = \tilde{h}(z,t) \forall t \in [0,1]
+  \end{align*}
+\end{proof}
+
+\begin{cor}[Monodromy Lemma]\label{cor:monodromy}
+  Let $\pi: Y \to X$ be a covering, $y_0 \in Y$ and $\alpha,\beta:[0,1]$ be paths that are homotopic rel. endpoints.
+
+  If $\tilde{\alpha},\tilde{\beta}:[0,1] \to Y$ are lifts of $\alpha$ and $\beta$, respectively at $y_0$, then $\tilde{\alpha}, \tilde{\beta}$ are also homotopic rel. endpoints.
+
+  In particular, $\tilde{\alpha}(1) = \tilde{\beta}(1)$.
+\end{cor}
+\begin{proof}
+This follows directly from the previous lemma because we can use the lifted homotopy.
+
+More precicely, since $\alpha,\beta$ are homotopic rel. endpoints, there exists a homotopy
+\begin{align*}
+  h: [0,1] \times [0,1] \to X \quad \text{with} \quad h(s,0) = \alpha(s), h(s,1) = \beta(s), h(0,t) = \alpha(0) = \beta(0), h(1,t) = \alpha(1) = \beta(1)
+\end{align*}
+Then the constant map $\tilde{h}_0(t) := y_0$ is a lift of $h_0(t) = h(0,t) = x_0$.
+
+By the lemma, there exists a (unique) homotopy
+\begin{align*}
+  \tilde{h}:[0,1] \times[0,1] \to Y \quad \text{with} \quad \tilde{h}(0,t) = h(0) = y_0
+\end{align*}
+\end{proof}
+
+
+
+
+
+\subsection{Fundamental groups and lifts}
+\begin{cor}[]\label{cor:cor2}
+  Let $\pi:(Y,y_0) \to (X,x_0)$ be a covering (in $\Top^{\ast}$), then group homomorphism 
+  \begin{align*}
+    \pi_{\ast}: \pi_1(Y,y_0) \to \pi_1(X,x_0)
+  \end{align*}
+  induced by the fundamental group is injective.
+\end{cor}
+\begin{proof}
+  Let $\tilde{\delta}$ be a loop at $y_0$ in $Y$ with $\pi \circ \tilde{\delta} \sim \text{const.} x_0$ rel. $x_0$ such that $[\tilde{\alpha}] \in \Ker \pi_{\ast}$.
+
+  Then both $\tilde{\delta}$ and the constant map $y_0$ are lifts of $\pi \circ \tilde{\delta}$ and the constant $x_0$ map, respectively.
+
+  By the corollary, $\tilde{\delta}$ and $\text{const.} y_0$ are homotopic rel endpoints, which means that $[\tilde{\delta}$ is the unit in the fundamental group $\pi_1(Y,y_0)$.
+\end{proof}
+
+Now that we know the kernel, can we say something about image of $\pi_{\ast}$?
+\begin{dfn}[]
+  Let $\pi:(Y,y_0) \to  (X,x_0)$ be a covering. The image of the induced group homomorphism
+  \begin{align*}
+    G(\pi) := \pi_{\ast}(\pi_1(Y,y_0)) < \pi
+  \end{align*}
+  is called the \textbf{characteristic subgroup} of the covering $\pi$.
+\end{dfn}
+Warning, there is a clash of definitions from the ``characteristic subgroup'' we know from Algebra. They are not the same thing.
+
+\begin{ex}[]
+  \begin{itemize}
+    \item Looking at the covering $\pi: \R \to \IS, x \mapsto  e^{2 \pi i x}$, we see immediately that $G(\pi) = \{e\}$ is trivial.
+    \item For the covering $\pi_n: \IS^{1} \to \IS^{1}, z \mapsto  z^{n}$, the characteristic subgroup is $\Z/n\Z < \Z$.
+  \end{itemize}
+\end{ex}
+
+\begin{rem}[]
+  Let $\pi:(Y,y_0) \to (X,x_0)$ be a covering and $f(Z,z_0) \to (X,x_0)$ continuous and $\tilde{f}:(Z,z_0) \to (Y,y_0)$ a lift such that the following diagram commutes
+  \begin{center}
+  \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+    & (Y,y_0) \arrow[]{d}{\pi}\\
+    (Z,z_0) \arrow[]{ur}{\tilde{f}} \arrow[]{r}{f} & (X,x_0)
+  \end{tikzcd}
+  \end{center}
+  then $f_{\ast}(\pi_1(Z,z_0)) \subseteq G(\pi)$.
+
+  This follows directly from the functoriality of the fundamental group:
+  Because of functoriality, the following diagram also commutes:
+  \begin{center}
+  \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+    & \pi_1(Y,y_0) \arrow[]{d}{\pi_{\ast}}\\
+    \pi_1(Z,z_0) \arrow[]{ur}{\tilde{f}_{\ast}} \arrow[]{r}{f_{\ast}} & \pi_1(X,x_0)
+  \end{tikzcd}
+  \end{center}
+  in particular, $f_{\ast} = \pi_{\ast} \circ \tilde{f}_{\ast}$, so 
+  \begin{align*}
+    f_{\ast}(\pi_1(Z,z_0)) = \pi_{\ast}(\tilde{f}_{\ast}(\pi_1(Z,z_0))) \subseteq \pi_{\ast}(\pi_1(Y,y_0)) = G(\pi)
+  \end{align*}
+\end{rem}
+
+
+
+\begin{dfn}[]
+  A topological space $X$ is called \textbf{locally path connected}, if for all $x \in X$, every neighborhood of $x$ contains a path connected neighborhood of $X$.
+\end{dfn}
+One can easily show that path connectedness and local path connectedness do not imply eachother.
+\begin{ex}[]
+  For example. open subsets of $\R^{n}$ (or manifolds) are locally path connected.
+  The cone 
+  \begin{align*}
+    C(\{0\} \cup \{\frac{1}{n}|n \in \N\}
+  \end{align*}
+  is path connected, but \emph{not} locally path connected.
+
+\end{ex}
+
+
+\begin{thm}[Lifting criterion]\label{thm:lifting-criterion}
+  Let $\pi:(Y,y_0) \to  (X,x_0)$ be a covering and $Z$ a path connected and locally patch connected topological space and $f:(Z,z_0) \to  (X,x_0)$ continuous.
+
+  Then, there exists a unique lift $\tilde{f}: (Z,z_0) to   (Y,z_0)$ if and only if
+  \begin{align*}
+    f_{\ast}(\pi_1(Z,z_0)) \subseteq G(\pi):= \pi_{\ast}(\pi_1(Y,y_0))
+  \end{align*}
+  In particular, if $Z$ is simply connected, then a lift exists.
+\end{thm}
+\begin{proof}
+\begin{itemize}
+  \item[$\implies$] See previous remark.
+  \item[$\Leftarrow$] If $f_{\ast}(\pi_1(Z,z_0)) \subseteq G(\pi)$, then for all $z \in \Z$
+    chose a path $\alpha$ from $z_0$ to $z$, compose it with $f$ to get $f \circ \alpha$ and lift it to a path $\tilde{\alpha}$ and set $\tilde{f}(z) = \tilde{f \circ \alpha}(1)$.
+
+
+    This map is well defined and independent on the choice of $\alpha$, because if $\beta$ is another path from $z_0 \to z$, then we consider the loop $\alpha \beta^{-}$ at $z_0$.
+
+    Then $\gamma: f \circ (\alpha \beta^{-}) = (f \circ \alpha)(f \circ \beta)$ is a loop at $x_0$.
+    By assumption, we have $[\gamma] = f_{\ast}([\alpha \beta^{-}]) \in G(\pi) = \pi_{\ast}(\pi_1(Y,y_0))$.
+
+    Since this lies in the image, there is a loop $\tilde{\gamma}$ in $(Y,y_0)$ with $\gamma \sim \pi \circ \tilde{\delta}$ rel. endpoints.
+
+    By the Monodromy lemma, $\tilde{\gamma}$ is a lift of $\gamma$ at $y_0$ with 
+    \begin{align*}
+      \tilde{\gamma} = (\tilde{f \circ \alpha})(\tilde{f \circ \beta^{-}})
+    \end{align*}
+    and with $(\tilde{f \circ \beta^{-1}})^{-1} = \tilde{f \circ \beta}$ we get
+    \begin{align*}
+      \tilde{f \circ \beta}(1) = \tilde{f \circ \beta^{-}}(0) = \tilde{f \circ \alpha}81)
+    \end{align*}
+    which shows well-defined ness.
+
+    We also have $\pi \circ \tilde{f} = f$, since $\pi(\tilde{f}(z)) = \pi(\tilde{f \circ \alpha})(z) = f(\alpha(1)) = f(z)$.
+
+    For continuity, let $z \in Z$ and $V \subseteq Y$ open with $\tilde{f}(z) \in V$.
+    Because $\pi$ is a covering, we can assume without loss of generality, we can assume that $\pi(V) = U$ is open and $\pi|_V^{U}:V \to  U$ is  homeomorphism.
+
+    By local path connectedness, we can chose a path connected neighborhood $W \subseteq Z$ of $z$ with $f(W) \subseteq U$.
+
+    Then, for any $w \in W$, let $\alpha$ be a path from $z_0$ to $z$ and $\beta$ a path from $z \to w$ in $W$.
+
+    Taking lifts of $f \circ \alpha$ and $f \circ \beta$ and chaining them together, we get 
+    \begin{align*}
+      \tilde{f}(w) = \left(
+        (\tilde{f \circ \alpha})(\tilde{f \circ \beta})
+      \right)(1) = \tilde{f \circ \beta}(1) \in V
+    \end{align*}
+    which shows $\tilde{f}(W) \subseteq V$ and thus continuity.
+
+    Uniqueness also follows from \ref{lem:path-lift}.
+\end{itemize}
+\end{proof}
+
+
+\subsection{Classification of coverings}
+
+\begin{cor}[Uniqueness theorem]\label{cor:uniqueness-theorem}
+  Let $\pi:(Y,y_0) \to  (X,x_0)$ and $\pi':(Y',y_0') \to (X,x_0)$ be coverings with $Y$ and $Y'$ both pathconnected and locally pathconnected.
+Then there exists an isomorphism $\phi$ (in $\Top^{\ast}$) such that the following diagram commutes
+\begin{center}
+\begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+  (Y,y_0) \arrow[]{r}{\phi} \arrow[]{dr}{\pi} & (Y',y_0') \arrow[]{d}{\pi'}\\
+                                              & (X,x_0)
+\end{tikzcd}
+\end{center}
+if and only if $G(\pi) = G(\pi')$
+\end{cor}
+\begin{proof}
+\begin{itemize}
+  \item[$\implies$] By functoriality of the fundamental group, we have
+    \begin{align*}
+      G(\pi) = \pi_{\ast}(\pi_1(Y,y_0)) = (\pi' \circ \phi)_{\ast} (\pi_1(Y,y_0)) = \pi_{\ast}'(\phi_{\ast}(\pi_1(Y,y_0)) = \pi_{\ast}'(\pi_1(Y',y_0'))
+    \end{align*}
+  \item[$\Leftarrow$] Because $G(\pi) = \pi_{\ast}(\pi_1(Y,y_0)) \subseteq G(\pi')$, we can use the lifting criterion to lift $\pi$ over the covering $\pi'$. to get a function
+    $\phi: (Y,y_0) \to (Y',y_0')$
+    Analogously, we reverse the roles of $\pi'$ and $\pi$ to get a lift $\psi:(Y',y_0') \to  (Y,y_0)$ of $\pi'$ over the covering $\pi$.
+    Then we see that $\psi \circ \pi: (Y,y_0) \to (Y,y_0)$ is a lift of the map $\pi$ over the covering $\pi$.
+
+    But the identity $\id_{(Y,y_0)}$ is also a lift of the map $\pi$ over the covering $\pi$.
+    By the uniqueness of the lift, we see $\psi \circ \phi = \id_{(Y,y_0)}$. Analogously, we show $(\phi \circ \psi) = \id_{(Y',y_0')}$.
+\end{itemize}
+\end{proof}
