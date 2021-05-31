@@ -1,0 +1,82 @@
+\begin{rem}[]
+  If $\pi:(Y,y_0) \to  (X,x_0)$ is a covering with $G(\pi) = \{1\} \subseteq \pi_1(X,x_0)$, $U$ be a uniformly covered neighborhood of $x_0$.
+
+  Then for all loops $\alpha$ in $U$ at $x_0$, there exists a loop $\tilde{\alpha}$ at $y_0 \in \pi^{-1}(U)$ such that $\alpha = \pi \circ \tilde{\alpha}$.
+
+  In particular, $[\alpha] = \pi_{\ast}([\tilde{\alpha}]) \in G(\pi) = \{1\}$.
+\end{rem}
+
+
+\begin{dfn}[]
+Let $X$ be a topological space.
+\begin{itemize}
+  \item We say that $X$ is \textbf{semilocally simply connected}, if $\forall x_0 \in X$ there exists a neighborhood $U$ of $x_0$ such that all loops at $x_0$ in $U$ are homotopic to the constant map $x_0$.
+  \item $X$ is called \textbf{sufficiently connected}, if it is pathconnected, locally path connected and semilocally simply connected.
+\end{itemize}
+\end{dfn}
+
+\begin{ex}[]
+  Open subsets of $\R^{n}$ (or Manifolds) are semilocally simply connected.
+
+  The Hawaiian earring $X$ is path connected, locally pathconnected, but not semilocally simply connected.
+  But it's cone $C(X)$ is sufficiently connected.
+\end{ex}
+
+
+\begin{thm}[Existence Theorem] \label{thm:existence-theorem}
+  Let $X$ be sufficiently connected, $x_0 \in X$ and $G < \pi_1(X,x_0)$ a subgroup.
+  
+  Then there exists a covering $\pi(Y,y_0) \to  (X,x_0)$ with $Y$ connected and locally pathconnected such that the characteristic group of the covering $G(\pi)$ is $G$.
+\end{thm}
+
+Before we prove the theorem, let's consider an example.
+
+For the covering $\pi: (\R,0) \to (\IS^{1},1), x \mapsto  e^{2 \pi i x}$.
+
+Then for any $x \in \R$ there exists a unique homotopy class of loops $[\alpha]$ with $\alpha$ a loop in $\IS^{1}$ such that it's lift satisfies $\tilde{\alpha}(0) = 0$ and $\tilde{\alpha}(1) = x$.
+
+
+\begin{proof}[Proof Sketch]
+  Let $\Omega(X,x_0,x)$ denote the set of paths from $x_0$ to $x \in X$.
+  Define
+  \begin{align*}
+    \Omega(X,x_0) := \bigcup_{x \in X}\Omega(X,x_0,x)
+  \end{align*}
+  which is well-defined because $X$ is path connected.
+
+  For $\alpha, \beta \in \Omega(X,x_0,x)$ define an eqivalence relation 
+  \begin{align*}
+    \alpha \sim \beta \iff  [\alpha \beta^{-} \in G
+  \end{align*}
+
+  If $G = \{1\}$, then $[\alpha \beta^{-}] = 1$ if and only if $\alpha \sim \beta$ rel endpoints.
+
+  Set $Y := \bigcup_{x \in X}Y_x$ where $Y_x := \Omega(X,x_0,x)/\sim$, and define $y_0$ to be the class of loops which are in the same equivalence class of the constant map $x_0$, i.e. $y_0 := [\text{const}x_0]_{\sim} \in Y_{x_0}$ and define the map
+  \begin{align*}
+    \pi:Y \to  X, \quad y= [\alpha]_{\sim} \mapsto  x = \alpha(1)
+  \end{align*}
+  We now want to show that $\pi$ is a covering of $X$ with characteristic subgroup $G(\pi) = G$.
+
+  Since $X$ is path connected, $\pi$ is indeed surjective.
+
+  We then define the topology on $Y$ as follows:
+
+  For $x_0 \in X$, $U$ an open, pathconnected neighborhood of $x$ and $\alpha$ a path from $x_0$ to $x$ (for some $x \in U$) and $y = [\alpha]_{\sim}$, we define the set
+  \begin{align*}
+    V(U,y) := \{[\alpha \beta]_{\sim}\big\vert \beta \text{ path in $U$ with $\beta(0) = x$}\} \ni y
+  \end{align*}
+  and use the collection of all such sets
+  \begin{align*}
+    \mathcal{B} = \{V(U,y) \big\vert y \in Y, U \text{ open path connected, } \pi(y) \subseteq U\}
+  \end{align*}
+  as our basis for the topology.
+
+  We will show in the exercise sheets that $\pi$ is continuous by checking continuity at every point $y \in Y$.
+
+  $\pi$ is also open because for $V \subseteq Y$, we can write
+  \begin{align*}
+    V = \bigcup_{U, y} V(U,y) \implies \pi(V) = \bigcup_{U,y} \pi(V(U,y)) = \bigcup_{U,y} U
+  \end{align*}
+  which is an open subset of $X$.
+
+\end{proof}
