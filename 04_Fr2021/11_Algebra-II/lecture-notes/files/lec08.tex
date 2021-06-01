@@ -95,7 +95,18 @@ We will use this proposition with another lemma to find a lower bound for $[E:E^
 
   Then there exist $s_{1}, \ldots, s_{n} \in S$ such that the vectors
   \begin{align*}
-    (\sigma_1(s_1), \ldots \sigma_n(s_1)), \ldots (\sigma_1(s_n), \ldots, \sigma_n(s_n))
+    \begin{pmatrix}
+      \sigma_1(s_1)\\
+    \vdots\\
+    \sigma_n(s_1)
+    \end{pmatrix}
+    , \ldots
+    ,
+    \begin{pmatrix}
+      \sigma_1(s_n)\\
+    \vdots\\
+    \sigma_n(s_n)
+    \end{pmatrix}
   \end{align*}
   are linearly independent in $E^{n}$.
 \end{lemma}
@@ -146,7 +157,7 @@ We can now improve the inequality $[E:E^{H}] \geq \abs{H}$ into an equality with
   \end{align*}
 \end{prop}
 \begin{proof}
-  We already gave lower bound, so assume that $[E:E^{G} > \abs{G}$.
+  We already gave lower bound, so assume that $[E:E^{G}] > \abs{G}$.
 
   This means that we could find $b_{1}, \ldots, b_{m} \in E$ linearly independent over $E^{G}$ for some $m > n$.
 
@@ -155,7 +166,7 @@ We can now improve the inequality $[E:E^{H}] \geq \abs{H}$ into an equality with
     T: E^{m} \to E^{n}, \quad \begin{pmatrix}
     x_1\\
     \vdots\\
-    x_M
+    x_m
     \end{pmatrix}
     \mapsto 
     \begin{pmatrix}
@@ -164,4 +175,72 @@ We can now improve the inequality $[E:E^{H}] \geq \abs{H}$ into an equality with
     \sigma_n(b_1) & \ldots & \sigma_n(b_m)
     \end{pmatrix}
   \end{align*}
+  Because $m > n$ we have that $\Ker T \neq 0$ and with $\sigma \sigma_j = \sigma_{s_i}$ it follows that 
+  \begin{align*}
+    (x_1,\ldots,x_n) \in \Ker T \implies (\sigma(x_1),\ldots,\sigma(x_n)) \in \Ker T
+  \end{align*}
+  If we set
+  \begin{align*}
+    r := \min \{k \big\vert v \in \Ker T \setminus 0 \text{ has a $k$-th non-zero coordinate}\}
+  \end{align*}
+  then let $(x_1,\ldots,x_m) \int \Ker T$ such that it's $r$-th coordinate is non-zero.
+
+  Without loss of generality, we can assume that $x_1 \neq 0$ and we get that for all $\sigma \in G$, by the definition of $r$
+  \begin{align*}
+    \Ker T \ni
+    \frac{1}{\sigma(x_1)} \begin{pmatrix}
+      \sigma(x_1)\\
+    \vdots\\
+    \sigma(x_n)
+    \end{pmatrix}
+     - \frac{1}{x_1} \begin{pmatrix}
+     x_1\\
+     \vdots\\
+     x_m
+     \end{pmatrix}
+     =
+     \begin{pmatrix}
+     0\\
+     \sigma(\frac{x_2}{x_1}) - \frac{x_2}{x_1}\\
+     \vdots\\
+     \sigma(\frac{x_m}{x_1}) - \frac{x_m}{x_1}
+     \end{pmatrix}
+  \end{align*}
+  So when applying $T$ to this vector, we get that
+  \begin{align*}
+    \sum_{j=1}^{m} \sigma_i(b_j) \frac{x_j}{x_1} = 0
+  \end{align*}
+  which, when applied to $\sigma_i = \id$ gives us
+  \begin{align*}
+    \sum_{j=1}^{m} b_j \frac{x_j}{x_1} = 0
+  \end{align*}
+  This gves us a non-trivial linear combination of $0$, namely
+  \begin{align*}
+    b_1 + b_2 \frac{x_2}{x_1} + \ldots + b_m + \frac{x_m}{x_1} = 0
+  \end{align*}
+  which is a contradiction.
+
+  This proves the upper bound and thus $[E: E^{G}] = \abs{G}$
+\end{proof}
+
+
+
+\begin{cor}[]\label{cor:4-10}
+  Let $G,H$ be finite subgroups of $\Aut E$. Then
+  \begin{align*}
+    E^{G} \subseteq E^{H} \iff H < G
+  \end{align*}
+\end{cor}
+\begin{proof}
+  By monotoneity of the fixing fields, $\Leftarrow$ is clear
+
+  Now assume $E^{G} \subseteq E^{H}$ and $H \not\subset G$.
+  Then, there exists a $\sigma \in H$ with $\sigma \notin G$.
+  But since $\sigma$ fixes every element of $E^{H}$ it also fixes every element from $E^{G}$, and thus $E^{G} = E^{G \cup \{\sigma\}}$.
+
+  With the previous lemma, we get that
+  \begin{align*}
+    \abs{G} = [E:E^{G}] = [E : E^{G \cup \{\sigma\}}] \geq \abs{G} + 1
+  \end{align*}
+  which is a contradiction.
 \end{proof}
