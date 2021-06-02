@@ -1,0 +1,261 @@
+
+\begin{thm}[Existence Theorem] \label{thm:existence-theorem}
+  Let $X$ be sufficiently connected, $x_0 \in X$ and $G < \pi_1(X,x_0)$ a subgroup.
+  
+  Then there exists a covering $\pi(Y,y_0) \to  (X,x_0)$ with $Y$ connected and locally pathconnected such that the characteristic group of the covering $G(\pi)$ is $G$.
+\end{thm}
+
+Before we prove the theorem, let's consider an example.
+
+For the covering $\pi: (\R,0) \to (\IS^{1},1), x \mapsto  e^{2 \pi i x}$.
+
+Then for any $x \in \R$ there exists a unique homotopy class of loops $[\alpha]$ with $\alpha$ a loop in $\IS^{1}$ such that it's lift satisfies $\tilde{\alpha}(0) = 0$ and $\tilde{\alpha}(1) = x$.
+
+
+\begin{proof}[Proof Sketch]
+  Let $\Omega(X,x_0,x)$ denote the set of paths from $x_0$ to $x \in X$.
+  Define
+  \begin{align*}
+    \Omega(X,x_0) := \bigcup_{x \in X}\Omega(X,x_0,x)
+  \end{align*}
+  which is well-defined because $X$ is path connected.
+
+  For $\alpha, \beta \in \Omega(X,x_0,x)$ define an eqivalence relation 
+  \begin{align*}
+    \alpha \sim \beta \iff  [\alpha \beta^{-} \in G
+  \end{align*}
+
+  If $G = \{1\}$, then $[\alpha \beta^{-}] = 1$ if and only if $\alpha \sim \beta$ rel endpoints.
+
+  Set $Y := \bigcup_{x \in X}Y_x$ where $Y_x := \Omega(X,x_0,x)/\sim$, and define $y_0$ to be the class of loops which are in the same equivalence class of the constant map $x_0$, i.e. $y_0 := [\text{const}x_0]_{\sim} \in Y_{x_0}$ and define the map
+  \begin{align*}
+    \pi:Y \to  X, \quad y= [\alpha]_{\sim} \mapsto  x = \alpha(1)
+  \end{align*}
+  We now want to show that $\pi$ is a covering of $X$ with characteristic subgroup $G(\pi) = G$.
+
+  Since $X$ is path connected, $\pi$ is indeed surjective.
+
+  We then define the topology on $Y$ as follows:
+
+  For $x_0 \in X$, $U$ an open, pathconnected neighborhood of $x$ and $\alpha$ a path from $x_0$ to $x$ (for some $x \in U$) and $y = [\alpha]_{\sim}$, we define the set
+  \begin{align*}
+    V(U,y) := \{[\alpha \beta]_{\sim}\big\vert \beta \text{ path in $U$ with $\beta(0) = x$}\} \ni y
+  \end{align*}
+  and use the collection of all such sets
+  \begin{align*}
+    \mathcal{B} = \{V(U,y) \big\vert y \in Y, U \text{ open path connected, } \pi(y) \subseteq U\}
+  \end{align*}
+  as our basis for the topology.
+
+  We will show in the exercise sheets that $\pi$ is continuous by checking continuity at every point $y \in Y$.
+
+  $\pi$ is also open because for $V \subseteq Y$, we can write
+  \begin{align*}
+    V = \bigcup_{U, y} V(U,y) \implies \pi(V) = \bigcup_{U,y} \pi(V(U,y)) = \bigcup_{U,y} U
+  \end{align*}
+  which is an open subset of $X$.
+
+  Now we show that $\pi$ is a covering.
+  Because $X$ is semilocally simply connected, for all $x \in X$, we can chose an open neighborhood $U$ of $x$ that is simply connected, i.e. such that every loop at $x$ in $U$ is homotopic to the constant map $x$.
+
+  We now show that $U$ is uniformly covered by $\pi$.
+  This is true because for all $z \in V(U,y)$ we have that $V(U,y) = V(U,z)$, so 
+  \begin{align*}
+    \pi^{-1}(U) \bigcup_{y \in \pi^{-1}(U)} \{y\} = \bigcup_{y \in \pi^{-1}(U)} V(U,y) = \bigcup_{y \in \pi^{-1}(x)}V(u,y)
+  \end{align*}
+  but this union is disjiont because for $z \in V(u,y) \cap V(U,y')$ for two classes $y = [\alpha]$ and $y' = [\alpha']$, then we have
+  \begin{align*}
+    [\alpha \beta]_{\sim} = z = [\alpha' \beta']_{\sim} \iff [(\alpha \beta)({\beta'}^{-}{\alpha'}^{-}] \in G
+  \end{align*}
+  but because $\beta \beta^{-}$ is homotopic to the constant path $x_0$, we get 
+  \begin{align*}
+    [\alpha \beta]_{\sim} = [\alpha' \beta']_{\sim} \iff [\alpha {\alpha'}^{-}] \in G \iff [\alpha]_{\sim} = [\alpha']_{\sim} \iff y = y'
+  \end{align*}
+  and so we get
+  \begin{align*}
+    \pi^{-1}(U) = \bigsqcup_{y \in \pi^{-1}(x)}V(u,y)
+  \end{align*}
+  now we show that $\pi|_{V(U,y)}^{U}: V(U,y) \to  U$ is a bijection.
+  It is clearly surjective because $U$ is path connected and the map is injective because 
+  \begin{align*}
+    \pi([\alpha \beta]_{\sim}) = \pi([\alpha \beta']_{\sim}) \implies \beta(1) = \beta'(1) \implies \beta {\beta'}^{-} \simeq \text{ const }x \implies [(\alpha \beta)({\beta'}^{-} \alpha^{-})] = [\alpha \alpha^{-}] = 1 \in G
+  \end{align*}
+  by continuity and openness of $\pi$, the restriction $\pi|_{V(U,y)}^{U}$ is a homeomorphism.
+  Because we have a local homeomorphism, local path connectedness of $X$ also gives us local path connectedness of $Y$. 
+  (It also follows that $Y$ is semilocally simply connected).
+
+  We now show that $Y$ is path connected.
+
+  Let $[\alpha]_\sim \in Y$. Then we can find a path from $y_0$ (which is the equivalence class $[\text{const} x_0]_{\sim}$) to $[\alpha]_{\sim}$ by defining the map
+  \begin{align*}
+    \tilde{\alpha}:[0,1] \to  Y, t \mapsto  [s \mapsto  \alpha(ts)]_{\sim}
+  \end{align*}
+
+  Lastly, we show $G(\pi) = G$.
+  Let $[\alpha] \in \pi_1(X,x_0)$. Then
+  \begin{align*}
+    G(\pi) \ni [\alpha] \iff \tilde{\alpha}(1) = y_0 \iff [\alpha]_{\sim} = [\text{const} x_0]_{\sim} \iff [\alpha \text{const} x_0^{-}] \in G \iff [\alpha] \in G
+  \end{align*}
+\end{proof}
+
+
+
+\subsection{The deck transformation group and universal coverings}
+
+\begin{dfn}[]
+Let $\pi:Y \to X$ be a covering.
+A homeomorphism $\phi: Y \to  Y$ with $\pi \circ \phi = \pi$ is called a \textbf{deck transformation}.
+We denote the set of deckbegegungen $\text{Deck}(\pi)$ the \textbf{deck transformation group}.
+\end{dfn}
+
+\begin{ex}[]
+
+We will show in exercise sheet 13 that the deck transformation group of the covering $\pi: \R \to \IS^{1}, x \mapsto  e^{2 \pi i x}$ is
+\begin{align*}
+  \text{Deck}(\pi) = \{\phi_k : \R \to  \R, r \mapsto  k + r \big\vert k \in \Z\} \iso \Z
+\end{align*}
+which turns out to be isomorphic of the fundamental group $\pi_1(\IS^{1})$.
+\begin{align*}
+  \Phi: \pi_1(\IS^{1}) \to  \text{Deck}(\pi), [\alpha_k] \mapsto \phi_k
+\end{align*}
+\end{ex}
+
+\begin{ex}[]
+The deck transformation group of the covering $\pi_n : \IS^{1} \to \IS^{1}, z \mapsto  z^{n}$ is
+\begin{align*}
+  \text{Deck}(\pi) = \{\phi_{\overline{k}}: z \mapsto  e^{2 \pi i k/n}z \big\vert \overline{k} \in \{\overline{0},\overline{1},\ldots,\overline{n-1}\}\}\iso \Z/n\Z \iso \faktor{\pi_1(\IS^{1})}{G(\pi)}
+\end{align*}
+\end{ex}
+
+The isomorphisms between the Deckbewegungsruppe and the quotient of the fundamental group is no coincidence.
+
+
+For a group $G$, let $N_G$ denote its \textbf{normalizer}
+\begin{align*}
+  N_g := \{g \in G \big\vert g^{-1}Gg = G\}
+\end{align*}
+\begin{thm}[Deck transformationgroup theorem]
+  Let $X,Y$ be path connected and locally path connected, $\phi:(Y,y_0) \to (X,y_0)$ a covering and $G := G(\pi)$.
+  Then for all elements in the normalizer $[\alpha] \in N_G < \pi_1(X,x_0)$ there exists a unique Deckbewegung $\phi_{[\alpha]} \in \text{Deck}(\pi)$ with $\phi_{[\alpha]}(y_0) = \tilde{\alpha}(1)$.
+
+  Moreover, we have a group isomorphism
+  \begin{align*}
+    \Psi: \faktor{N_G}{G} \to  \text{Deck}(\pi), [\alpha] \mapsto  \phi_{[\alpha]} 
+  \end{align*}
+  In particular, if $G$ is a normal divisor, then $N_G = \pi_1(X,x_0)$ is the fundamental group and we have a group isomorphism
+  \begin{align*}
+    \Psi: \faktor{\pi_1(X,x_0)}{G} \to \text{Deck}(\pi)
+  \end{align*}
+  Moreover, if $G(\pi) = \{1\}$, then $\faktor{N_G}{G} = \pi_1(X,x_0)$.
+\end{thm}
+We will only prove the first part
+\begin{proof}
+  Let $y_0,y_1 \in \pi^{-1}(y_0)$. Then by the uniqueness theorem \ref{cor:uniqueness-theorem}
+  \begin{align*}
+    !\exists \phi \in \text{Deck}(\pi) \text{ with } \phi(y_0) = y_1 \iff G(Y,y_0) := \pi_{\ast}(\pi_1(Y,y_0))= \pi_{\ast}(\pi_1(Y,y_1)) = G(y,y_1)
+  \end{align*}
+
+  Let $[\alpha] \in \pi_1(X,x_0)$ with $\tilde{\alpha}(1) = y_1$. Then
+  \begin{align*}
+    G(Y,y_1) 
+    &= \pi_{\ast}\left(
+      \left\{
+        [\tilde{\alpha}^{-} (\tilde{\delta} \tilde{\alpha}] \big\vert \tilde{\delta} \text{ is a loop at } y_0
+      \right\}
+    \right)\\
+    &= \{\left[\alpha^{-1}\left(
+        (\pi \circ \tilde{\delta}) \alpha
+    \right)\right]
+    \big\vert \tilde{\delta} \text{ is a loop at }y_0
+  \}
+  \\
+    &=
+    \left\{[\alpha^{-}][\delta][\alpha] \big\vert \delta \in G(Y,y_0)\right\}\\
+    &=
+    [\alpha]^{-1} G(Y,y_0)[\alpha]
+  \end{align*}
+  and thus for any $[\alpha] \in \pi_1(X,x_0)$ such a Deckbewegung $\phi_{[\alpha]}$ exists if and only if
+  \begin{align*}
+    G(y,y_0) = G(Y,y_1)  = [\alpha]^{-1} G(Y,y_0)[\alpha] \iff [\alpha] \in N_{G(Y,y_0)}
+  \end{align*}
+\end{proof}
+
+\begin{ex}[]
+For the covering $\pi: \IS^{n} \to  \R\IP^{n} = \IS^{n}/\{\pm\}$, the deck transformation group is
+$\text{Deck}(\pi) = \{\id, - \id\}$
+because for $v_0 \in \IS^{n}$ we have
+\begin{align*}
+  \pi^{-1}(\pi(v_0)) = \pi^{-1}([v_0]_{\sim}) = \{v_0,-v_0\}
+\end{align*}
+so $\phi \in \text{Deck}(\pi)$ means either $\phi(v_0) = v_0$ or $\phi = - \id$.
+
+The theorem lets us easily calculate the fundamental group
+\begin{align*}
+  \pi_1(\R\IP^{n}) \iso \text{Deck}(\pi) \iso \Z/2\Z
+\end{align*}
+So, for a path $\tilde{\alpha}:[0,1] \to \IS^{n}$ from $v_0$ to $-v_0$, we set $\alpha = \pi \circ \tilde{\alpha}$.
+Then
+\begin{align*}
+  \pi_1(\R\IP^{n},[v_0]) = \{1\, [\alpha]\}
+\end{align*}
+Another result of this is
+\begin{align*}
+  \pi_1(\text{SO}(3),\bm{1}) \iso \Z/2\Z
+\end{align*}
+where we use isomorphisms
+\begin{align*}
+  \text{SO}(3) \iso \ID^{3}/\sim \iso \R\IP^{3}
+\end{align*}
+where the class $[v] \in \ID^{3}/\sim$ corresponds to the rotation by the angle $\theta_v = \pi \cdot \abs{v}$.
+\end{ex}
+
+
+\begin{dfn}[]
+Let $\pi: Y \to  X$ be a covering with $Y,X$ path connected and locally path connected.
+
+We call $\pi$ a \textbf{universal covering}, if $Y$ is simply connected.
+
+$\pi$ is called a \textbf{normal} covering, if $G(\pi) < \pi_1(X,x_0)$ is a normal divisor.
+\end{dfn}
+
+\begin{rem}[]
+  $\pi$ is normal if and only if $\text{Deck}(\pi)$ acts transitiviely on $\pi^{-1}(x_0)$.
+
+  Universal coverings exist are unique, up to isomorphisms in $\Top^{\ast}$.
+
+  ``The'' universal covering $\tilde{\pi}: (\tilde{X},\tilde{x}_0) \to (X,x_0)$ has the following universal property:
+  For any covering $\pi:(Y,y_0) \to  (X,x_0)$, there exists a unique continuous map
+  $\phi: (\tilde{X},\tilde{x}_0) \to  (Y,y_0)$ such that the following diagram commutes:
+
+  \begin{center}
+    \begin{tikzcd}[column sep=0.8em] %\arrow[bend right,swap]{dr}{F}
+      (\tilde{X},\tilde{x}_0) \arrow[]{rr}{\exists!\phi} \arrow[]{dr}{\tilde{\pi}}& & (Y,y_0)\arrow[swap]{dl}{\pi}\\
+                              & (X,x_0)
+    \end{tikzcd}
+  \end{center}
+  In other words, the universal covering is the initial object in the category of coverings of $(X,x_0)$.
+\end{rem}
+
+
+
+\section{Topology and other subjects}
+Many concepts we proved in this lecture can be used to prove results from other subjects.
+
+For example we can prove the following theorem
+\begin{thm}[]
+Let $F$ be a free group and $H < F$ a subgroup. Then $H$ is also a free group.
+\end{thm}
+To prove this, we construct a space $X$ (usally looks like a graph) with fundamental group $\pi_1(X) = F$.
+
+Using the Existence theorem, there exists a covering $\pi:(Y,y_0) \to  (X,x_0)$ such that $G(\pi) = H \iso \pi_1(Y,y_0)$.
+
+Then using the Seifert van-Kapmen theorem, we can show that $Y$ is again graph-like and show that its fundamental group is another free group.
+
+Another example is from Knot-Theory, which concerns itself with $1$-dimensional submanifolds of $\R^{3}$.
+
+For the untied knot $K_0$ and some other knot $K_1 \subseteq \R^{3}$ we want to know if we can ``untie'' the knot $K_1$.
+This is equivalent to asking if there exists a homeomorphism $\phi:\R^{3} \to \R^{3}$ with $\phi(K_1) = K_0$.
+
+For example, for the ``Kleeblatt'' $K_0$, we can calulate the fundamental group of $\R^{3}/K_0$ and of $\R^{3}/K_1$ and show that they are not isomorphic groups.
+
+
