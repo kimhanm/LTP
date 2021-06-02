@@ -1,0 +1,143 @@
+\section{Maxwell Equations in a medium}
+
+After combining the averaged charge and current density $\scal{\rho}$ and $\scal{\vec{j}}$ into the averaged $4$ vector $\scal{j^{\mu}}$,
+we can find out the electromagnetic field tensur (and thus the averaged $\vec{E}$ and $\vec{B}$ fields with the equation
+
+\begin{align*}
+  \delta_{\mu} \scal{F^{\mu \nu}} = \scal{j^{\nu}}
+\end{align*}
+
+in particular, we get
+
+\begin{align*}
+  \vec{\nabla} \cdot \scal{\vec{B}} 
+  &= 0
+  \\
+  \vec{\nabla} \times \scal{\vec{E}} 
+  &=
+  - \frac{\del \scal{\vec{B}}}{\del }
+  \\
+  \vec{\nabla} \cdot \left(
+    \scal{\vec{E}} + \frac{\vec{P}}{\epsilon_0}
+  \right)
+  &=
+  \frac{\scal{\rho_{\text{eff}}}}{\epsilon_0}
+  \\
+  \vec{\nabla} \times \left(
+    \scal{\vec{B}} - \frac{\vec{M}}{c^{2}\epsilon_0}
+  \right)
+  &=
+  \frac{\scal{\vec{J}_{\text{eff}}}}{c^{2}\epsilon_0} + \frac{1}{c^{2}}
+  \frac{\del }{\del t} \left(
+    \vec{E} + \frac{\vec{P}}{\epsilon_0}
+  \right)
+\end{align*}
+
+To simplify the maxwell equations, we define the $\vec{D}$ and $\vec{H}$ field
+\begin{empheq}[box=\bluebase]{align*}
+  \vec{D} &:= \epsilon_0 \scal{\vec{E}} + \vec{P}\\
+  \vec{H} &:= \scal{\vec{B}} - \frac{\vec{M}}{c^{2}\epsilon_0}
+\end{empheq}
+where from now on we drop the $\scal{}$ symbol and always implicitly assume that we are take averages.
+
+The Maxwell equations then take the form
+\begin{empheq}[box=\bluebase]{align*}
+  \vec{\nabla}\cdot \vec{D} 
+  &= \rho\\
+  \vec{\nabla} \times \vec{E} 
+  &=
+  - \frac{\del \vec{B}}{\del t}
+  \\
+  \vec{\nabla} \cdot \vec{B}
+  &= 0
+  \\
+  \vec{\nabla} \times \vec{H} 
+  &= \frac{\vec{j}}{c^{2}\epsilon_0} + \frac{1}{\epsilon_0 c^{2}} \frac{\del \vec{D}}{\del t}
+\end{empheq}
+
+\subsection{Dielectric materials}
+A dielectic material is a medium where there is no magnetisation ($\vec{M} = 0$), but usually is able to get a high amount of polarisation $\vec{P}$.
+And in particular we have $\vec{H} = \vec{B}$ (averaged).
+
+Experimentally, one sees that when disregarding non-linear terms, the $\vec{E}$ field and the polarisation $\vec{P}$ two follow a linear relationship
+\begin{align*}
+  \vec{P} = \chi \epsilon_0 \vec{E}
+\end{align*}
+for some factor $\chi$ known as the \textbf{electric susceptibility} of the dielectric medium.
+
+To simplify the Maxwell equations, we alter the electric permittivity and the speed of light constants by introducing
+\begin{align*}
+  c_m = \frac{c}{\sqrt{1 + \chi}} \quad \text{and} \quad \epsilon = (1 + \chi) \epsilon_0
+\end{align*}
+after which the Maxwell equations take on the familiar form
+\begin{align*}
+  \vec{\nabla} \cdot \vec{E} 
+  &= \frac{\rho}{\epsilon}\\
+  \vec{\nabla} \times \vec{E} 
+  &=  \frac{\del \vec{B}}{\del t}\\
+  \vec{\nabla} \cdot \vec{B} &= 0\\
+  \vec{\nabla} \times \vec{B} 
+  &= \frac{\vec{J}}{\epsilon c_m^{2}} + \frac{1}{c_m^{2}} \frac{\del \vec{E}}{\del t}
+\end{align*}
+
+We can solve these how we usually would, except that we need to replace the constants $c$ and $\epsilon_0$ with their dielectric counterparts $c_m$ and $\epsilon$.
+
+For example, we know that the electric and magnetic fields satisfy the wave equation
+\begin{align*}
+  \left(
+    \frac{1}{c_m^{2}} \frac{\del^{2}}{\del t^{2}} - \nabla^{2}
+  \right)
+  \vec{E}(\vec{x},t) = 0
+\end{align*}
+which has solutions of the form
+\begin{align*}
+  \vec{E}(\vec{x},t) = \vec{E}_0 e^{i(\omega t - \vec{k} \cdot \vec{x})}
+\end{align*}
+which satisfies
+\begin{align*}
+  k^{2} = \frac{\omega^{2}}{c^{2}_m} = \frac{\omega^{2}}{c^{2}}(1 + \chi)
+\end{align*}
+which has a phase-velocity of $c_m = \frac{c}{\sqrt{1 + \chi}} =: \frac{c}{n}$, where $n = \sqrt{1 + \chi}$ is also known as the \textbf{refraction index} of the dielectric material.
+
+
+\subsection{The dielectric susceptibility $\chi$}
+We just saw that once we know $\chi$, the maxwell equations can be solved with our usual methods.
+
+We would like to find a nice way to calculate $\chi$, or equivalently, the polarisation $\vec{P}$ of the medium when subjected to an electric field $\vec{E}$.
+
+To do so, we can (to good approximation) view the dielectirc medium as a colllection of dipoles with positive and negative charges, where the dipoles are bound together.
+
+These binding forces require us to calculate quantum effects which we won't address.
+We can however make good approximations by modeling the bindings forces as those of a harmonic oscillator.
+
+Because accelerating charges radiate and lose energy, we assume that the harmonic oscillator is a dampened one, i.e. that the force acting on a charge $q$ of a dipole is
+\begin{align*}
+  F = qE = m(\ddot{x} + \gamma \dot{x} + \omega_0^{2} x)
+\end{align*}
+where the electric field is given by $E = E_0 e^{i \omega t}$.
+
+The solutions to the differential equation are of the form
+\begin{align*}
+  x = x_0 e^{i \omega t} \quad \text{for} \quad x_0 = \frac{\frac{qE_0}{m}}{\omega_0^{2} - \omega^{2} + i \omega \gamma}
+\end{align*}
+The electric dipole moment is then
+\begin{align*}
+  \vec{p} = q \vec{x} = \frac{\frac{q^{2}}{m}}{\omega_0^{2} - \omega^{2} + i \omega \gamma} \vec{E}
+\end{align*}
+so assuming a constant charge density $N$, the polarisation of the dielectirc is
+\begin{align*}
+  \vec{P} = N \vec{p} = N q \vec{x} = \frac{Nq^{2}}{m} \frac{1}{\omega_0^{2} - \omega^{2} + i \omega \gamma}\vec{E}
+\end{align*}
+and so, the dielectric susceptibility is
+\begin{align*}
+  \chi = n^{2} - 1 = \frac{N q^{2}}{m \epsilon_0} \frac{1}{\omega_0^{2} - \omega^{2} + i \omega \gamma}
+\end{align*}
+Note, the index of refraction $n$ can be a complex number, so we sometimes want to split it into its real and imaginy parts
+\begin{align*}
+  n = n_r + i n_I
+\end{align*}
+this lets us describe for example, the amplitude of a planar wave,
+\begin{align*}
+  \vec{E} = \vec{E}_0 e^{i \omega (t - n \hat{k} \cdot \vec{x})} \implies \abs{\vec{E}} = \abs{\vec{E}_0} e^{- \omega \frac{n_I}{c} \hat{k} \cdot \vec{x}}
+\end{align*}
+which, in the physical case ($n_I > 0$) decreases, as the wave penetrates further into the material.
