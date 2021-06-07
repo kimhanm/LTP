@@ -52,7 +52,7 @@ When we say that something is a category, we usually specify what the objects ar
     \item The category $\Top_{\ast}$, with Topological spaces with a basepoint $(X,\tau,x_0)$ as objects and where the morphisms are continous, base-point preserving functions.
     \item The category $\Ring$ with Rings as objects and ring homomorphisms as morphisms.
     \item \textsf{Graph} has graphs as objects and graph homomorphisms as morphisms.
-    \item For a fixed field $k$, the category $\textsf{Vect}_k$ has $k$-vector spaces as objects with linear maps as morphisms.
+    \item For a fixed field $k$, the category $\textsf{k-Vec}$ has $k$-vector spaces as objects with linear maps as morphisms.
     \item One rather weird category is the category of fields with field homomomorphisms.
   \end{itemize}
   Some of these categories will be of special interest later (in particular $\Top_{\ast}$ and $\Grp$)
@@ -221,6 +221,8 @@ We can use the notion of universal property in a more general way by using a met
 \end{dfn}
 
 Let's see how the meta-definition can be used to describe universal properties of some known objects.
+
+
 \begin{ex}[Product]
   In the category $\Set$, the (cartesian) product $X \times Y$ of two sets $X,Y$ is equipped with \textbf{projection mappings}
   \begin{align*}
@@ -247,9 +249,11 @@ Let's see how the meta-definition can be used to describe universal properties o
 
  In the category $\Top$, the cartesian product with the product topology has the same universal property of being the terminal object of such a category.
 
- In the category $\textsf{k-Vect}$, the direct product $V \oplus W$ has the same universal property.
+ In the category $\textsf{k-Vec}$, the direct product $V \oplus W$ has the same universal property.
 \end{ex}
+
 This leads to our definition of a Product in a general category:
+
 \begin{dfn}[]
   Let $(X_i)_{i \in I}$ be a collection of objects in a category. The (cartesian) \textbf{product} of these objects (if it exists), is an object $Z$ with morphisms 
   $\left\{Z \stackrel{\pi_i}{\to}X\right\}_{i \in I}$ 
@@ -291,4 +295,82 @@ This embedding is universal in that for any other set $Z$ with maps $f: X \to Z,
   \end{tikzcd}
   \end{center}
 \end{ex}
+
+We can generalise the notion of products and coproducts to respect morphisms between the components $X_i$.
+We skip the category theoretical definition of diagrams for now\footnote{This requires the notion of a functor, which maps objects and morphisms from one category to another in a structure-preserving way.} and think of a diagram as a directed graph over an indexed set of vertices.
+
+\begin{dfn}[]
+Let $I$ be some ordered index set, $\{X_i\}_{i \in I}$ a collection of objects in a category, together with some morphisms $\{\alpha_{i,j}:X_i \to X_j\}_{i \leq j}$.
+
+A \emph{cone} over this diagram, is an object $Z$ with morphisms $\{Z \stackrel{f_i}{\to} X_i\}_{i \in I}$ such that for all $i,j$: $\alpha_{i,j} \circ f_i = f_j$ i.e. such that the triangles
+\begin{center}
+\begin{tikzcd}[column sep=0.8em]
+& Z \arrow[swap]{dl}{f_i} \arrow[]{dr}{f_j} &\\
+X_i \arrow[]{rr}{\alpha_{i,j}} & & X_j
+\end{tikzcd}
+\end{center}
+commute.
+
+A \emph{limit} over this diagram (if it exists) is a universal cone.
+In other words, if for every cone $Z'$ with morphisms $\{Z' \stackrel{g_i}{\to} X_i\}_{i \in I}$ there exists a unique morphism $\phi: Z' \to Z$ such that $f_i \circ \phi = g_i$.
+\begin{center}
+\begin{tikzcd}[column sep=0.8em]
+& Z' \arrow[dashed]{d}{\phi}\arrow[swap, bend right]{ddl}{g_i} \arrow[bend left]{ddr}{g_j} &\\
+& Z \arrow[swap]{dl}{f_i} \arrow[]{dr}{f_j} &\\
+X_i \arrow[]{rr}{\alpha_{i,j}} & & X_j
+\end{tikzcd}
+\end{center}
+A \emph{colimit} over this diagram is a limit in the opposite category.
+\end{dfn}
+
+\begin{ex}[Glueing]
+  Given two topological spaces $X,Y$, a subset $A \subseteq X$ and a morphism $\phi: A \to Y$, then the glueing of $X$ onto $Y$ by $\phi$ is the colimit of the diagram
+  \begin{center}
+    \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+      A \arrow[hook]{r}{\iota} \arrow[]{d}{\phi} & X\\
+      Y
+    \end{tikzcd}
+  \end{center}
+Equivalently, it is the \textbf{coequalizer} of the parallel morphisms
+\begin{center}
+\begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+  X_0 \arrow[shift left=0.5ex]{r}{\iota} \arrow[swap,shift right=0.5ex]{r}{\phi} & Y \sqcup X
+\end{tikzcd}
+\end{center}
+where $\iota:A \to X$ is the inclusion mapping.
+\end{ex}
+
+\textbf{More Examples}
+\begin{itemize}
+  \item The limit of the empty diagram is the terminal object. In $\Set$ this is any singleton set. In $\Top$, this is the one-point space. In $\Grp$ this is the trivial group $\{e\}$. In the category $\N$ with $n \stackrel{k}{\to} m$ if $k \cdot n = m$, it is $0$. In $\textsf{k-Vec}$ it is the zero vector space.
+    Dually, the colimit is the initial object.
+    \item The product is a limit over a diagram without any morphisms. In the poset $\R$ with $x \to y$ if $x \leq y$, it is the infimum $\inf\{x_i \big\vert i \in I\}$. In $\N$ as above, it is the greatest common divisor. 
+    Dually, the colimit over such a diagram is the coproduct.
+    \item For the diagram $X \stackrel{f}{\to} Y$ in $\Set$, the limit is the smallest subset of $X \times Y$ such that $[(x,y) \mapsto x \mapsto f(x)] = [(x,y) \mapsto y]$. 
+    This is just the graph $\text{Graph}(f) \subseteq X \times Y$.
+    \item The limit over a diagram $A \stackrel{f}{\longrightarrow} C \stackrel{g}{\longleftarrow}B$ is called the \emph{pullback}.
+    In $\Set$, if $B = \{\ast\}$ is a singleton, then the pullback is the preimage of $g(\ast)$ under $f$. In $\N$ as before, it is the greatest common divisor $\gcd(n,m)$. In $\Grp$, if $B = \{e\}$ is the trivial group, then the pullback is the kernel $\Ker f \subseteq A \times \{e\} \cong A$
+    \item For a sequence of sets $A_0 \supseteq A_1 \supseteq A_2 \supseteq \ldots$, the limit (in $\Set$) is the intersection $\bigcap_{n \in \N}A_n$.  For a sequence of non-increasing real numbers $x_0 \geq x_1 \geq \ldots$, the limit exists if and only if the sequence is bounded.
+    \item The limit over a parallel pair of morphisms $X \overset{f}{\underset{g}{\rightrightarrows}} Y$ is called \emph{equaliser} of $f$ and $g$. 
+    If $g:X \to Y$ is a zero morphism (in categories where this makes sense), then the equaliser is the kernel. 
+\end{itemize} 
+    
+
+\begin{table}[ht]
+    \label{tab:limit-examples}
+    \centering
+\begin{tabular}{l|c|c|c|c}
+	& Initial Object & Terminal Object & Product & Coproduct \\ \hline
+	$\Set$ & empty set & singleton & cartesian product & disjoint union \\
+	$\Grp$ & \multicolumn{2}{c|}{trivial group} 
+	& direct product & Free product \\
+	$\Top$ & empty space & singleton & product topology & disjoint union \\
+  $\textsf{k-Vec}$ & \multicolumn{2}{c|}{zero vector space} & cartesian product & direct sum \\
+	Field & -- & -- & -- & --\\
+	$\Ring$ & --\footnote{Depending on whether $0 \neq 1$ is an axiom, an initial object may not exist.} & $\Z$ & direct product & tensor product
+\end{tabular}
+    \caption{Examples of limits in some categories.
+    Entries marked with $^\ast$ do not always exist.}
+\end{table}
+
 

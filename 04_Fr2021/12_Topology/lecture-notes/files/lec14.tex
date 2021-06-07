@@ -64,6 +64,15 @@ If $X,Y \in \text{Ob}(\textsf{C})$ and $f \in \Hom(X,Y)$ is an isomorphism, then
 \end{proof}
 We can use this lemma to immediately prove that every homeomorphism (iso in $\Top$) is also a homotopy equivalence (iso in $\Htpy$).
 
+As hinted at earlier, we can give a definition of what a diagram really is.
+
+\begin{dfn}[]
+  Let $I$ be a small category.
+  A diagram of shape $I$ in a category $C$ is a functor 
+  \begin{align*}
+    X_{\bullet}: I \to  C, (i \stackrel{\phi}{\to}j) \mapsto  (X_i \stackrel{X(\phi)}{\to} X_j)
+  \end{align*}
+\end{dfn}
 
 \section{The fundamental group}
 One central idea in category theory is the view that we can understand objects in a category by studying their Hom-sets to other objects.
