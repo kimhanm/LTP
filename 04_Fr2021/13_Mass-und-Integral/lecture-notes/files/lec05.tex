@@ -7,9 +7,20 @@ Let $X$ be non-empty set.
     \emptyset \in \mathcal{K} \quad \text{and} \quad \exists (K_j)_{j \in \N} \subseteq \mathcal{K}: \quad X = \bigcup_{j=1}^{\infty}K_j
   \end{align*}
 \end{dfn}
-It is easy to see that every Algebra $\mathcal{A}$ of $X$ is a covering since $\emptyset,X \in \mathcal{A}$.
+\begin{ex}[]
+  The collection of higher-dimensional open intervals
+  \begin{align*}
+    \{\prod_{k=1}^{n}(a_k,b_k) \big\vert a_k \leq b_k \in \R\}
+  \end{align*}
+  are a covering of $\R^{n}$.
+
+  It is easy to see that every Algebra $\mathcal{A}$ of $X$ is a covering since $\emptyset,X \in \mathcal{A}$.
+\end{ex}
+
 \begin{thm}[]
-  Let $\mathcal{K}$ be a covering of $X$ and $\lambda: \mathcal{K} \to [0,\infty]$ with $\lambda(\emptyset) = 0$. Then we can define a measure $\mu$ on $X$ given by
+  Let $\mathcal{K}$ be a covering of $X$ and $\lambda: \mathcal{K} \to [0,\infty]$ and any function with $\lambda(\emptyset) = 0$. 
+
+  Then this induces a measure $\mu$ on $X$ given by
   \begin{align*}
     \mu(A) = \inf \left\{
       \sum_{j=1}^{\infty}\lambda(K_j) \big\vert
@@ -18,18 +29,38 @@ It is easy to see that every Algebra $\mathcal{A}$ of $X$ is a covering since $\
   \end{align*}
 \end{thm}
 \begin{proof}
-  We show $\sigma$-subadditivity of $\mu$.
+  Let $A \subseteq \bigcup_{k=1}^{\infty} A_k$.
+  We show $\sigma$-subadditivity of $\mu$, i.e $\mu(A) \leq \sum_{k=1}^{\infty}\mu(A_k)$.
+
+  If the right-hand side is infinite, then the inequality is trivial, so assume it is finite.
+
+  By definition of $\mu$, for all $k \in \N$ and $\epsilon > 0$ there exists a sequence $(K_{j,k})_{j \in \N}$ in $\mathcal{K}$ such that
+  \begin{align*}
+    A_k \subseteq \bigcup_{j=1}^{\infty}K_{j,k} \quad \text{and} \quad \sum_{j=1}^{\infty} \lambda(K_{j,k}) \leq \mu(A_k) + \frac{\epsilon}{2^{k}}
+  \end{align*}
+  Taking the union over all sequences for each $k$, we get
+  \begin{align*}
+    A \subseteq \bigcup_{j,k = 1}^{\infty} K_{j,k} \quad \text{and} \quad 
+    \mu(A) \leq \sum_{j,k} \lambda(K_{j,k}) \leq \epsilon + \sum_{k=1}^{\infty} \mu(A_k)
+  \end{align*}
+  Since $\epsilon > 0$ was arbitrary, subadditivity follows.
 \end{proof}
+
+\begin{ex}[]
+  Set $\mathcal{K} = \{\emptyset,X\}$ and define $\lambda(\emptyset) = 0$, $\lambda(X) = 1$.
+
+  The induced measure is defined by $\mu(A) = 0$ if $A = \emptyset$ and $\mu(A) = 1$ if $A \neq \emptyset$.
+\end{ex}
+
+The function $\lambda$ in the previous theorem only had minimal restrictions ($\mathcal{K}$ had to be a covering and $\lambda: \mathcal{K} \to  [0,\infty]$ with $\lambda(\emptyset) = \emptyset$).
+
+It turns out that if $\lambda$ and $\mathcal{K}$ are \emph{nice enough}, then the induced measure is a $\sigma$-additive extension of $\lambda$.
+Nice-enough here means that $\mathcal{K}$ is an algebra and $\lambda$ is a pre-measure.
+
+Recall that given an algebra $\mathcal{A} \subseteq \mathcal{P}(X)$, 
+a function $\lambda: \mathcal{A} \to [0,\infty]$ is called a \textbf{pre-measure} if it is $\sigma$-additive and satisifes $\lambda(\emptyset) = 0$.
 \begin{dfn}[]
-  Let $\mathcal{A}\subseteq \mathcal{P}(X)$ be an algebra. A mapping $\lambda: \mathcal{A} \to [0,\infty]$ is called a \textbf{pre-measure} if
-  \begin{enumerate}
-    \item $\lambda(\emptyset) = 0$
-    \item For every $A \in \mathcal{A}$ such that $A = \bigsqcup_{k=1}^{\infty}A_k$, $A_k \in \mathcal{A}$ 
-      \begin{align*}
-        \lambda(A) = \sum_{k=1}^{\infty}\lambda(A_k)
-      \end{align*}
-  \end{enumerate}
-  $\lambda$ is called \textbf{$\sigma$-finite} if there exists a covery $X = \bigcup_{k=1}^{\infty}S_k$, $S_k \in \mathcal{A}$ such that $\lambda(S_k) < \infty, \forall k$.
+A pre-measure $\lambda$ is called \textbf{$\sigma$-finite} if there exists a covering $X = \bigcup_{k=1}^{\infty}S_k$, $S_k \in \mathcal{A}$ such that $\lambda(S_k) < \infty, \forall k$.
 \end{dfn}
 Given a pre-measure $\lambda$ on $\mathcal{A}$, we can obtain a measure $\mu$ on $\mathcal{P}(X)$ that coincides with $\lambda$ on $\mathcal{A}$, i.e. $\mu$ extends $\lambda$.
 \begin{thm}[Carathéodory-Hahn extension]
@@ -96,6 +127,3 @@ So by taking the infimum over all such coverings $(A_k)_{k \in \N}$ as in the de
 
 
 The condition for the uniqueness cannot be weakened as the following counterexample shows:
-\begin{ex}[]
-
-\end{ex}

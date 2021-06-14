@@ -1,9 +1,13 @@
 \section{Measure spaces}
 
+If we naively try to define a notion of measure that has some intuitive properties, we can run into some problems that give paradoxical results.
+The \textbf{Riemann Integral} we saw in Analysis I/II also had some drawbacks of not being general enough. 
+We can use measure theory to define a better definition of the integral.
+
 \subsection{Algebras and $\sigma$-Algebras}
 From now on, let $X$ denote a non-empty set.
 
-\begin{dfn}[]
+\begin{dfn}[]\label{dfn:lim-set}
   For a sequence of subsets $\left(A_{n}\right)_{n = 1}^{\infty}$ in $\mathcal{P}(X)$. We define
 \begin{align*}
   \limsup_{n \to \infty}A_n := \bigcap_{n=1}^{\infty} \bigcup_{m=n}^{\infty}A_m\\
@@ -16,6 +20,7 @@ Informally, the $\limsup$ consists of elements of $X$ that occur in infinitely m
 
 
 \begin{rem}[]
+  \phantom{a}
   \begin{enumerate}
     \item $\liminf_{n \to \infty}A_n \subseteq \limsup_{n \to \infty}A_n$
     \item If $A_n \subseteq A_{n+1}$ for all $n \in \N$, then
@@ -40,6 +45,7 @@ Informally, the $\limsup$ consists of elements of $X$ that occur in infinitely m
     \limsup_{n \to \infty}A_n = A \iff \limsup_{n \to \infty} \mathds{1}_{A_n} = \mathds{1}_A\\
     \liminf_{n \to \infty}A_n = A \iff \liminf_{n \to \infty} \mathds{1}_{A_n} = \mathds{1}_A
   \end{align*}
+  where the $\limsup$ and $\liminf$ on the left are as in Definition \ref{dfn:lim-set} and the ones on the right are the ones from Analysis.
 \end{rem}
 
 \begin{dfn}[Algebras of sets]

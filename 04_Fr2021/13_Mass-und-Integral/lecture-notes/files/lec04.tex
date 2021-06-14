@@ -1,9 +1,112 @@
+The Carathéodory criterion of $\mu$-measurable sets and the $\sigma$-subadditivity of the measure give us some nice properties back.
+
 \begin{thm}[]
   Let $(X, \Sigma, \mu)$ be a measure space and $\left(A_{n}\right)_{n \in \N} \subseteq \Sigma$. Then the following are true
   \begin{enumerate}
     \item $\mu$ is $\sigma$-additive.
-    \item If $A_n \subseteq A_{n+1} \forall n \in \N$, then $\mu \left(\bigcup_{n=1}^{\infty}A_n \right) = \lim_{n \to \infty}\mu(A_n)$
-    \item If $A_{n+1} \subseteq A_n \forall n \in N$ and $\mu(A_1) < \infty$, then
+    \item Continuity from below: 
+      \begin{align*}
+        A_1 \subseteq A_2 \subseteq \ldots \subseteq A_n \subseteq A_{n+1} \subseteq \ldots \implies 
+        \mu \left(\bigcup_{n=1}^{\infty}A_n \right) 
+        = \lim_{n \to \infty}\mu(A_n)
+      \end{align*}
+    \item Continuity from above:
+      \begin{align*}
+        \mu(A_1) < \infty, \quad
+        A_1 \supseteq A_2 \supseteq \ldots \supseteq A_n \supseteq A_{n+1} \supseteq \ldots
+        \implies
+        \mu\left(
+          \bigcap_{n=1}^{\infty}A_n
+        \right)
+        =
+        \lim_{n \to \infty} \mu(A_n)
+      \end{align*}
 
   \end{enumerate}
 \end{thm}
+\begin{proof}
+  \begin{enumerate}
+    \item Let $(A_n)_{n \in \N}$ be a sequence of mutually disjoint sets.
+      In the proof of the previous theorem, we already saw
+      \begin{align*}
+        \mu \left(
+          B \cap \bigsqcup_{k=1}^{m}A_k
+        \right)
+        = \sum_{k=1}^{m}\mu(B \cap A_k)
+      \end{align*}
+      so in particular, for $B = X$, we see
+      \begin{align*}
+        \mu \left(
+          \bigsqcup_{k=1}^{m}A_k
+        \right)
+        = \sum_{k=1}^{m} \mu(A_k)
+      \end{align*}
+      By monotonicity of $\mu$, we have
+      \begin{align*}
+        \mu \left(
+          \bigsqcup_{k=1}^{\infty}A_k
+        \right)
+        \geq \lim_{m \to \infty} \mu\left(
+          \bigsqcup_{k=1}^{m}A_k
+        \right)
+        =
+        \lim_{m \to \infty} \sum_{k=1}^{m}\mu(A_k)
+        =
+        \sum_{k=1}^{\infty}\mu(A_k)
+      \end{align*}
+      The other inequality (and thus equality) follow from $\sigma$-subadditivity of the measure.
+
+    \item Let $(A_n)_{n \in \N}$ be an increasing sequence. 
+      Define the pairwise disjoint family
+      \begin{align*}
+        \tilde{A}_1 := A_1, \quad \tilde{A}_k := A_k \setminus A_{k-1} \implies \mu(\tilde{A}_k) = \mu(A_k) - \mu(A_{k-1}), \quad \bigsqcup_{k=1}^{\infty} \tilde{A}_k = \bigcup_{k=1}^{\infty}A_k, 
+      \end{align*}
+      from $\sigma$-additivity, summation into a telescoping sum 
+      \begin{align*}
+        \mu \left(
+          \bigcup_{k=1}^{\infty}A_k
+        \right)
+        &=
+        \mu \left(
+          \bigsqcup_{k=1}^{\infty}\tilde{A}_k
+        \right)
+        =
+        \sum_{k=1}^{\infty}\mu(\tilde{A}_k)
+        \\
+        &=
+        \mu(\tilde{A}_1) + \lim_{m \to \infty} \sum_{k=2}\mu(A_k) - \mu(A_{k-1})
+        \\
+        &=
+        \lim_{m \to \infty} \mu(A_m)
+      \end{align*}
+
+    \item Let $(A_n)_{n \in \N}$ be a decreasing sequence. 
+      Consider instead the increasing sequence $\tilde{A}_1 \subseteq \tilde{A}_2 \subseteq \ldots$ given by
+      \begin{align*}
+        \tilde{A}_1 := \emptyset, \quad \tilde{A}_k := A_1 \setminus A_k \implies \mu(A_1) = \mu(A_k) + \mu(\tilde{A}_k), \quad \bigcup_{k=1}^{\infty} \tilde{A}_k = A_1 \setminus \bigcap_{k=1}^{\infty}A_k
+      \end{align*}
+      by (b), we find
+      \begin{align*}
+        \mu(A_1)  - \lim_{k \to \infty} \mu(A_k)
+        &=
+        \lim_{k \to \infty} \mu(\tilde{A}_k)\\
+        &\stackrel{(b)}{=} \mu \left(
+          \bigcup_{k=1}^{\infty} \tilde{A}_k
+        \right)
+        =
+        \mu\left(
+          A_1 \setminus \bigcap_{k=1}^{\infty} A_k
+        \right)
+        \\
+        &=
+        \mu(A_1) - \mu \left(
+          \bigcap_{k=1}^{\infty}A_k
+        \right)
+      \end{align*}
+  \end{enumerate}
+\end{proof}
+
+The condition $\mu(A_1)$ in (c) is necessary. 
+Consider the example $X = \N$ with the counting-measure and the sequence $A_n := \{m \in \N \big\vert m \geq n\}$.
+The intersections converge to the emtpy set, but the $\mu(A_k)$ is always $\infty$.
+

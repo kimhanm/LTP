@@ -1,0 +1,155 @@
+\section{Rings}
+
+
+
+
+
+\begin{dfn}
+  An element $a \in R \setminus \{0\}$ is called a \textbf{zero divisor} (Nullteiler), if there exists a $b \in R \setminus \{0\}$ with $a b = 0$.
+
+  A ring $R \neq \{0\}$ is called an \textbf{integral domain} (Integritätsbereich), if it has no zero divisors.
+  This is equivalent to asking that the following holds
+  \begin{align*}
+    ab = ac \land a \neq 0 \implies b = c
+  \end{align*}
+\end{dfn}
+
+\begin{prop}[]
+  \phantom{a}
+  \begin{itemize}
+    \item Every subring of an integral domain is again an integral domain.
+    \item Every field is an integral domain.
+    \item $Z/n\Z$ is an integral domain $\iff$ $n$ is prime.
+  \end{itemize}
+\end{prop}
+
+\begin{dfn}
+  In a commuative ring $R$, $a,b \in R$ we say that $a$ \textbf{divides} $b$, (write $a | b$) if there exists a $c \in R$ with $b = ac$.
+  Define the \textbf{group of units} (Einheitengruppe)
+  \begin{align*}
+    R^{\times} := \{a \big\vert a \text{ divides } 1\}
+  \end{align*}
+
+  If $b = ac$ for some unit $c \in R^{\times}$, write $b \sim a$.
+\end{dfn}
+
+\begin{prop}[]
+  \phantom{a}
+\begin{itemize}
+  \item $a \sim b \implies a|b$ and $b|a$
+  \item If $R$ is an integral domain, then $a \sim b \Leftarrow a | b$ and $b | a$.
+\end{itemize}
+\end{prop}
+
+\begin{dfn}[]
+  Let $R$ be an integral domain. It's \textbf{quotient field} (Quotientenkörper) is the field
+  \begin{align*}
+    \text{Quot}(R) := \faktor{R \times (R \setminus \{0\})}{\sim}, \quad (a,b) \sim (p,q) \iff  aq = bp
+  \end{align*}
+  and write $\frac{a}{b} = [(a,b)]_{\sim}$.
+  There is a canonical inclusion
+  \begin{align*}
+    \iota: R \hookrightarrow \text{Quot}(R), \quad x \mapsto \frac{x}{1}
+  \end{align*}
+\end{dfn}
+
+\begin{itemize}
+  \item $\text{Quot}(\Z) = \Q$
+  \item Because $i^{2}, \sqrt{2}^{2} \in \Z$ we have $\text{Quot}(\Z[i]) = \text{Quot}(Z)[i]$, $\text{Quot}(\Z[\sqrt{2}]) = \text{Quot}(\Z)[\sqrt{2}]$
+\end{itemize}
+
+
+
+
+
+\begin{dfn}
+  For a commutative ring $R$, the \textbf{polynomial ring} (with variable $X$) is the collection of finite power series
+  \begin{align*}
+    R[X] := \left\{
+      \sum_{k=0}^{n} a_k X^{k} \big\vert a_k \in R n \in \N
+    \right\}
+  \end{align*}
+  with coefficient-wise addition and Cauchy-multiplication
+  \begin{align*}
+    \left(
+      \sum_{k=0}^{n}a_k X^{k}
+    \right)
+    \left(
+      \sum_{k=0}^{m}b_k X^{k}
+    \right)
+    =
+    \sum_{k=0}^{n+m}
+    c_k X^{k}
+    , \quad c_k = \sum_{i+j = k}a_ib_j
+  \end{align*}
+\end{dfn}
+
+To construct this ring, we start with the set of all sequences $(a_n)_{n \in \N} \in R^{\N}$ and identify $(0,1,0,\ldots) =: X$.
+
+
+Every polynomial $f \in R[X]$ induces a function $f:R \to R, x \mapsto  f(x)$, but the mapping
+\begin{align*}
+  R[X] \to \End_{\Set}(R), f \mapsto (x \mapsto f(x))
+\end{align*}
+is not injective. (i.e $X^{2} + X \in \F_2[X]$)
+
+
+The ring of formal power series is denoted by $R\dbrack{X}$
+
+
+\begin{dfn}
+  For $f \in R[X]$ define its \textbf{degree}
+  \begin{align*}
+    \degree (f) = \sup \{n \in \N \big\vert a_n = 0\}
+  \end{align*}
+  in particular $\degree (0) = - \infty$.
+\end{dfn}
+
+\begin{prop}[]
+  If $R$ is an integral domain, then so is $R[X]$ and
+  \begin{itemize}
+    \item $\degree(fg) = \degree(f) + \degree(g)$
+    \item $\degree(f+g) \leq \max \{\degree (f), \degree(g)\}$
+    \item $(R[X])^{\times} = R^{\times}$. (In general, only $R^{\times}  \subseteq R[X]^{\times}$,
+      For example $2 X + 1 \in \Z/4\Z[X]$ is invertible.)
+  \end{itemize}
+\end{prop}
+
+\begin{dfn}
+For $n \in \N$, define the polynomial ring in $n$-variables inductively as
+\begin{align*}
+  R[X_1,\ldots,X_n] = \left\{\begin{array}{ll}
+    R & n = 0\\
+    R[X_1,\ldots,X_{n-1}][X_n] &  n > 0
+  \end{array} \right.
+\end{align*}
+This ring has multiple degree functions, $\degree_{X_1}, \ldots, \degree_{X_n}$ or $\degree_{\text{tot}}$.
+
+For a field $K$, define the field of \textbf{rational functions} in $n$-variables as
+\begin{align*}
+  K(X 1,\ldots,X_n) &:= \text{Quot}(K[X_1,\ldots,X_n])\\
+                    &= \{\frac{f}{g} \big\vert f,g \in K[X_1,\ldots,X_n], g \neq 0\}
+\end{align*}
+\end{dfn}
+
+\begin{thm}
+  For the canonical inclusion $\iota: R \to R[X_1,\ldots,X_n]$, $n$-elements $x_1,\ldots,x_n \in S$, any ringhomormophism $\phi: R \to  S$ induces a unique ringhomomorphism $\overline{\phi}: R[X_1,\ldots,X_n] \to S$ such that the following diagram commutes
+  \begin{center}
+  \begin{tikzcd}[column sep=0.8em] %\arrow[bend right,swap]{dr}{F}
+    R \arrow[]{dr}{\iota} \arrow[]{rr}{\phi} & & S\\
+      & R[X_1,\ldots,X_n] \arrow[dotted]{ur}{\exists! \overline{\phi}}
+  \end{tikzcd}
+  \end{center}
+  and $\overline{\phi}(X_i) = x_i$.
+
+\end{thm}
+This ringhomomorphism is given by
+\begin{align*}
+  &\overline{\phi}\left(
+    \sum_{k_1,\ldots,k_n = 0}^{m}a_{k_1,\ldots,k_n}X_1^{k_1} \dots X_n^{k_n}
+  \right)\\
+  &=\sum_{k_1,\ldots,k_n = 0}^{m}
+  \phi(a_{k_1,\ldots,k_n}) x_1^{k_1}\dots x_n^{k_n} \in S
+\end{align*}
+
+

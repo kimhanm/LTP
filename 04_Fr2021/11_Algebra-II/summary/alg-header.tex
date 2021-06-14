@@ -1,5 +1,6 @@
 % ==== Fontsettings ====
 \usepackage{lmodern} % Latin Modern
+%\usepackage[ngerman]{babel}
 \usepackage{fontenc}[t1]
 \usepackage{microtype}
 
@@ -9,8 +10,6 @@
 \usepackage{hyperref}
 \usepackage{wrapfig}
 
-\usepackage{array}   
-\newcolumntype{L}{>{$}l<{$}} % math mode l
 
 
 \usepackage[framemethod=TikZ]{mdframed}
@@ -29,7 +28,8 @@
 	\setlength{\headwidth}{500pt}
 	\setlength{\parindent}{0pt}
 	\marginparwidth = 0pt
-	\fancyhead[L]{\rightmark}
+  %\fancyhead[L]{\rightmark}
+  \fancyhead[C]{\leftmark}
 	\fancyhead[R]{\today}
 	\fancyfoot[L]{Han-Miru Kim}
 	\fancyfoot[C]{\href{mailto:kimha@student.ethz.ch}{kimha@student.ethz.ch}}
@@ -56,16 +56,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
     \usetikzlibrary{cd}
-
-\usepackage{empheq}
-\usepackage[most]{tcolorbox}
-  \newtcbox{\bluebase}[1][]{%
-    nobeforeafter, math upper, tcbox raise base,
-    enhanced, colframe=black,
-    colback=blue!20, boxrule=0.5pt,
-    sharp corners,
-    #1
-  }
+\usepackage{rotating}
 % ==== Formatting ====
 \usepackage{sectsty}
     \sectionfont{\LARGE}
@@ -78,20 +69,8 @@
 \usepackage{float}
 
 
-% ==== Colors ====
 
-% ==== Colors ====
-\RequirePackage{xcolor}
-\definecolor{nordbg}{HTML}{282C34}
-\definecolor{nordfg}{HTML}{D8DEE9}
-\definecolor{nordblack}{HTML}{3B4252}
-\definecolor{nordred}{HTML}{BF616A}
-\definecolor{nordgreen}{HTML}{A3BE8C}
-\definecolor{nordyellow}{HTML}{EBCB8B}
-\definecolor{nordblue}{HTML}{81A1C1}
-\definecolor{nordmagenta}{HTML}{BA8EAD}
-\definecolor{nordcyan}{HTML}{88C0D0}
-\definecolor{nordwhite}{HTML}{E5E9F0}
-
-
-
+\usepackage{array}   
+\newcolumntype{L}{>{$}l<{$}} % math mode left align
+\newcolumntype{R}{>{$}r<{$}} % math mode right align
+\newcolumntype{C}{>{$}c<{$}} % math mode center
