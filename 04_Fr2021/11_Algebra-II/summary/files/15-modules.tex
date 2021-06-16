@@ -1,0 +1,64 @@
+\section{Modules}
+Modules are to ring what vector spaces are to fields.
+
+\begin{dfn}
+  For a ring $R$, an \textbf{$R$-module} $M$ is an abelian group with scalar multiplication
+\begin{align*}
+  R \times M \to  M, \quad (a,m) \mapsto a \cdot m
+\end{align*}
+For an index set $I$, we define the \textbf{free $R$-module}
+\begin{align*}
+  R^{(I)} := \{x: I \to R \big\vert x_i = 0 \text{ for almost all $i$}\}
+\end{align*}
+Any free module is isomorphic to $R^{(I)}$ for some set $I$.
+
+For $R$-modules $M,N$, \textbf{module homomorphism} over $R$ is a group homomorphism $\Phi: M \to N$ that satisfies
+\begin{align*}
+  \Phi(am) = a \Phi(m) \quad \forall a \in R, m \in M
+\end{align*}
+\end{dfn}
+
+\begin{dfn}
+Let $M$ be an $R$-module.
+An element $m \in M$ is called a \textbf{torsion element} of $M$, if there exists an $a \in R \setminus \{0\}$ with $a \cdot m = 0$.
+
+Write $M_{\text{tor}}$ for the set of torsion elements of $M$.
+
+We say that $M$ is a \textbf{torsion-module}, if $M_{\text{tor}} = M$ and we say that $M$ is \textbf{torsion-free}, if $M_{\text{tor}} = \{0\}$.
+\end{dfn}
+
+
+\begin{itemize}
+  \item Every ideal $\mathfrak{a} \subseteq R$ is an $R$-module.
+  \item If $R$ is a PID, then $\mathfrak{a}$ is a free $R$-module.
+  \item An abelian group is a $\Z$-module with $n \cdot g = g^{n}$.
+    Taking $a = \text{ord}(g)$, we see that $G$ is a torsion-module.
+
+  \item $M = \Q/\Z$ is a torsion module over $\Z$.
+  \item If $R$ is an integral domain and $M$ is a free $R$-module, then $M$ is torsion-free.
+\end{itemize}
+
+
+
+
+\begin{thm}[Classification theorem]
+  Let $R$ be a PID and $M$ a finitely generated $R$-module.
+
+  Then there exist $d_1|d_2| \ldots |d_n \in R \setminus \{0\}$ such that
+  \begin{align*}
+    M \iso R^{r} \times R/(d_1) \times \ldots \times R/(d_n)
+  \end{align*}
+
+  alternatively, we can write
+  \begin{align*}
+    M \iso R^{r} \times \prod_{j=1}^{n} M_{\text{tors}}^{(p_i)}
+  \end{align*}
+  where $p_1,\ldots,p_n$ are non-conjugate primes in $R$ and
+  \begin{align*}
+    M_{\text{tors}}^{(p_i)} &:= \{m \in M_{\text{tors}} \big\vert \exists k \in \N \text{ with } p_i^{k}m = 0 \} \\
+                            &\iso \faktor{R}{(p_j^{n_j,1}} \times \ldots \times
+                            \faktor{R}{(p_j^{n_j,k})}
+  \end{align*}
+\end{thm}
+
+

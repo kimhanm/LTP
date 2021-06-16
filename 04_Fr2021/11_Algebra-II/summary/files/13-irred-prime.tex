@@ -1,0 +1,159 @@
+\subsection{Factorisation}
+For this section, let $R$ be an integral domain.
+
+\begin{dfn}[]
+An element $p \in R \setminus \{0\}$ is \textbf{irreducible}, if $p \notin R^{\times}$ and for all $a,b \in R$
+\begin{align*}
+  p = ab \implies a \in R^{\times} \text{ or } b \in R^{\times}
+\end{align*}
+We say $p \in R \setminus \{0\}$ is \textbf{prime}, if $(p)$ is a prime ideal.
+Equivalently, if $p \notin R^{\times}$ and for all $a,b \in R$
+\begin{align*}
+  p | ab \implies p|a \text{ or } p|b
+\end{align*}
+\end{dfn}
+\begin{itemize}
+  \item Every prime $p \in R$ is also irreducible.
+  \item $2 \in Z[i]$ is not irreducible because $2 = (1+i)(1-i)$.
+  \item $2 \in Z[i \sqrt{5}]$ is irreducible, but not prime because $2|6$ but $6 = (1 + i \sqrt{5})(1 - i \sqrt{5})$.
+\end{itemize}
+
+
+
+\begin{dfn}[]
+  An integral domain $R$ is called a \textbf{unique factorisation domain} (UFD) (Faktorieller Ring), if every element $a \in R \setminus \{0\}$ can be written as a product of a unit and finitely many prime elements of $R$.
+  \begin{align*}
+    a = u p_1 \dots p_n \quad \text{for} \quad u \in R^{\times}, p_1,\ldots,p_n \text{ prime}
+  \end{align*}
+\end{dfn}
+\begin{itemize}
+  \item Every PID is a UFD
+  \item The factorisation is unique up association and permutation of prime elements.
+  \item In a UFD, $p$ prime $\iff$ $p$ irreducible.
+  \item $\Z[i \sqrt{5}]$ is an integral domain, but not a UFD.
+\end{itemize}
+
+
+\begin{dfn}[]
+In a UFD $R$, a collection $P \subseteq R$ of prime elements is called a \textbf{representation set}, if for every prime $q \in R$ there exists a unique $p \in P$ with $q \sim p$.
+\end{dfn}
+\begin{itemize}
+  \item Using the axiom of choice, every UFD has a representation set.
+  \item In $R = K[X]$, the following is a representation set
+    \begin{align*}
+      P = \{f \in K[X] \big\vert f \text{ irreducible with leading coefficient } 1\}
+    \end{align*}
+\end{itemize}
+
+
+\begin{thm}[]
+Let $R$ be a UFD and $P \subseteq R$ a representation set. 
+Then every element $a \in R \setminus \{0\}$ has a unique prime factorisation of the form
+\begin{align*}
+  a = u \prod_{p \in P}^{\prime} p^{\mu_p}, \quad u \in R^{\times}
+\end{align*}
+where $\mu_p$ is non-zero for only finitely many $p \in P$.
+
+If $a = u \prod_{p \in P}p^{\mu_p}$ and $b = v \prod_{p\in P}p^{\nu_p}$, then
+\begin{align*}
+  a | b \iff \mu_p \leq \nu_p \quad \forall p \in P
+\end{align*}
+\end{thm}
+
+\begin{dfn}[]
+Let $R$ be a UFD and $a_{1}, \ldots, a_{n} \in R$.
+\begin{itemize}
+  \item $b \in R$ is called a \textbf{common divisor} of $a_{1}, \ldots, a_{n}$, if $b|a_i$.
+  \item $b$ is called a \textbf{greatest common divisor} (gcd,ggT) of $a_{1}, \ldots, a_{n}$, if for all other common divisors $b'$ we have $b'|b$.
+  \item We say that $a_{1}, \ldots, a_{n}$ are \textbf{coprime}, if the gcd is associated to $1$.
+  \item Two ideals $\mathfrak{a},\mathfrak{b}$ are \textbf{coprime}, if $I+J = R$, i.e. $\exists a\in \mathfrak{a}, b \in \mathfrak{b}$ with $a + b = 1$.
+\end{itemize}
+
+\end{dfn}
+
+\begin{prop}[]
+  Let $R$ be a UFD with prepresentation set $P$.
+  If $a = u \prod_{p \in P}p^{\mu_p}$ and $b = v \prod_{p \in P}p^{\nu_p}$, then a gcd exists and one of them has the form
+  \begin{align*}
+    \gcd(a,b) = \prod_{p \in P}p^{\min(\mu_p,\nu_p)}
+  \end{align*}
+  The gcd is unique up to a unit.
+\end{prop}
+
+
+\begin{cor}
+  Let $R$ be a UFD and $K = \text{Quot}(R)$ its quotient field. 
+
+  Then every $x \in K$ has a representation $x = \frac{a}{b}$ with $a,b$ coprime.
+  of the form
+  \begin{align*}
+    x = u \prod_{p \in P}^{\prime} p^{\mu_p}
+  \end{align*}
+\end{cor}
+
+\begin{prop}[]
+In a PID $R$ with elements $a_{1}, \ldots, a_{n}$ we have
+\begin{align*}
+  (a_{1}, \ldots, a_{n}) = \left(
+    \gcd(a_{1}, \ldots, a_{n})
+  \right)
+\end{align*}
+in particular, there exists a linear combination
+\begin{align*}
+  \sum_{i=1}^{n}x_ia_i \sim \gcd(a_{1}, \ldots, a_{n})
+\end{align*}
+\end{prop}
+
+
+\begin{thm}[Chinese Remainder Theorem]
+Let $\mathfrak{a}_1,\ldots,\mathfrak{a}_n$ be pairwise coprime ideals. 
+Then the ringhomomorphism
+\begin{align*}
+  \phi: R &\to  R/\mathfrak{a}_1 \times \ldots \times R/\mathfrak{a}_n\\
+  x &\mapsto (x + \mathfrak{a}_1,\ldots,x+ \mathfrak{a}_n)
+\end{align*}
+is surjective and $\Ker \phi = \mathfrak{a}_1 \cap \ldots \cap \mathfrak{a}_n$.
+\end{thm}
+
+
+\begin{cor}[Simplified Chinese Remainder Theorem]
+  Let $R$ be a PID, $a_{1}, \ldots, a_{n} \in R$ pairwise coprime.
+
+  Then the map
+  \begin{align*}
+    \faktor{R}{(a_1 \dots a_n)} &\to R/(a_1) \times \ldots \times R/(a_n)\\
+    x + (a_1 \dots a_n) &\mapsto (x + (a_1),\ldots,x + (a_n))
+  \end{align*}
+  is an isomorphism.
+\end{cor}
+
+
+
+\begin{dfn}[]
+An integral domain $R$ is called a \textbf{euclidean ring}, if there exists a function $N: \R \setminus \{0\} \to  \N$ such that
+\begin{enumerate}
+  \item \textbf{Degree inequality:} $N(f) \leq N(fg)$ for all $f,g \in \R \setminus \{0\}$.
+  \item \textbf{Division with rest:} For $f,g \in R$ with $g \neq 0$ there exist $q,r \in R$ such that $f = q g + r$ with either $r = 0$ or $N(r) < N(f)$.
+  We call $q$ the \textbf{quotient} and $r$ the \textbf{rest} of the division.
+\end{enumerate}
+\end{dfn}
+
+\begin{itemize}
+  \item Any field is a euclidean ring.
+  \item For a field $K$, $K[X]$ with $N = \deg$ is a euclidean ring.
+  \item $\Z[i]$ with $N(a+ib) = a^{2} + b^{2}$ is a euclidean ring.
+  \item $\Z[\sqrt{2}]$ with $N(a + \sqrt{2}b) = \abs{a^{2} - 2 b^{2}}$ (same with $\Z[\sqrt{3}]$)
+  \item $Z[\frac{i + i \sqrt{19}}{2}]$ is a PID but not a euclidean ring.
+\end{itemize}
+
+
+\begin{thm}[Euclidean Algorithm]
+  Let $a_0,a_1 \in R$.
+  
+  \begin{itemize}
+    \item If $a_n = 0$, we are finished.
+    \item After division with rest, obtain the next lement with $a_n = q_n a_n + a_{n+1}$.
+    \item Repeat. If $a_m = 0$ for the first time, then $\gcd(a_0,a_1) = a_{m-1}$.
+  \end{itemize}
+\end{thm}
+

@@ -107,4 +107,47 @@ Equivalently, we have
   \end{align*}
 \end{prop}
 
-Cliv-hanger: Does every ring have a maximal ideal?
+\begin{thm}[Krull's theorem]
+  Assuming Zorn's lemma, for every ideal $\mathfrak{a} \subsetneq R$, there exists a maximal ideal $\mathfrak{a} \subseteq \mathfrak{m}$.
+  In particular, every non-trivial ring has a maximal ideal.
+\end{thm}
+
+
+\begin{prop}[Meta-Proposition]
+  Every rule about matrices over a field $k$ we know from LinAlg that only uses $+,-,\cdot,0,1$ also apply for matrices over a commutative ring $R$.
+\end{prop}
+
+The proof of this is non-trivial, we will make use of the following lemma.
+
+\begin{lem}[]
+  If a polynomial $f \in \R[X_1,\ldots,X_n]$ vanishes on $\R^{n}$, then $f = 0$.
+
+\end{lem}
+\begin{proof}
+Let $f = \sum_{k_1,\ldots,k_n}a_{k_1,\ldots,k_n}X_1^{k_1}\dots X_n^{k_n}$.
+If the polynomial vanishes everywhere, then so do its derivatives.
+
+
+If the polynomial vanishes everywhere, then so do its derivatives.
+So to eliminate the coefficient $a_{k_1,\ldots,k_n}$, all we have to do is to take the derivative with the same multi-index and evaluate at $X = 0$:
+\begin{align*}
+  \del_{k_1} \dots \del_{k_n}f(0) = k_1! \dots k_n! a_{k_1,\ldots,k_n} 
+\end{align*}
+\end{proof}
+
+The meta-proposition follows in that every ``calculation rule'' (for example $\det(AB) = \det(A) \det(B)$ etc.) can be written as a collection of polynomial equations with integer coefficients!
+
+
+\begin{dfn}[]
+A ring $R$ is a \textbf{noetherian ring}, if for every sequence of ideals $\mathfrak{a}_0 \subseteq \mathfrak{a}_1 \subseteq \ldots$ there exists a $n_0$ such that $n \geq n_0 \implies \mathfrak{a}_n = \mathfrak{a}_{n_0}$.
+\end{dfn}
+
+\begin{thm}[]
+Let $R$ be a PID. 
+\begin{enumerate}
+  \item $R$ is noetherian
+  \item For $a \in R \setminus (R^{\times} \{0\})$, there exists a prime $p$ with $p | a$.
+\end{enumerate}
+\end{thm}
+
+

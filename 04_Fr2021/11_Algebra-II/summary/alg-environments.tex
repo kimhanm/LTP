@@ -76,3 +76,25 @@
 \begin{mdframed}[]\relax}
 {\end{mdframed}}
 
+\newenvironment{cor}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=nordmagenta]{\strut Proposition #1};
+    },
+    linecolor=nordmagenta,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
+\newenvironment{ex}[1][]{%
+\mdfsetup{
+    frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=nordred]{\strut Example #1};
+    },
+    linecolor=nordred,
+}
+\begin{mdframed}[]\relax}
+{\end{mdframed}}
+
