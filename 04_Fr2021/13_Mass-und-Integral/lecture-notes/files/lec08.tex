@@ -1,13 +1,38 @@
 One would naturally think that the ``physical'' volume of an object should stay invariant under translation or rotation.
+
 \begin{thm}[]
-  The Lebegue measure is invariant under isometries $\Phi: \R^{n} \to \R^{n}, x \mapsto x_0 + Rx$, for $R \in O(n)$.
+  The Lebegue measure is invariant under isometries of $\R^{n}$, which are maps
+  \begin{align*}
+    \Phi: \R^{n} \to \R^{n}, \quad x \mapsto x_0 + Rx, \quad R \in O(n)
+  \end{align*}
 \end{thm}
+\begin{proof}
+  \texttt{Missing}
+\end{proof}
 
 
 \begin{dfn}[]
   A Borel measure $\mu$ on $\R^{n}$ is called \textbf{Borel regular}, if for every $A \subseteq \R^{n}$ there exists a borel set $B \supseteq A$ such that $\mu(A) = \mu(B)$.
 \end{dfn}
-The Lebesgue measure is Borel regular.
 
+\begin{lem}[]
+  The Lebesgue measure is Borel regular.
+\end{lem}
+\begin{proof}
+  If $\Leb^{n}(A) = \infty$, we can simply take $B =  \R^{n}$, so assume $\Leb^{n}(A) < \infty$.
+
+  By the characterisation with open sets from Theorem \ref{thm:leb-open}, we can chose for every $k \in \N$ an open set $U_k \supseteq A$ open with
+  \begin{align*}
+    \Leb^{n}(U_k) < \Leb^{n}(A) +  \frac{1}{k}, \quad k \in \N
+  \end{align*}
+  by intersecting each $U_k$ with the previous ones, 
+  we can also assume without loss of generality that the sequence $(U_k)_{k \in \N}$ is monotonously decreasing (i.e. $U_{k+1} \subseteq U_k$).
+
+  By Remark \ref{rem:leb-is-borel}, the open sets $U_k$ are in the $\sigma$-algebra of $\Leb^{n}$-measurable subsets.
+  Setting $B := \bigcap_{k=1}^{\infty}U_k$ it follows from continuity from above (Theorem \ref{thm:mspace-properties})
+  \begin{align*}
+    \Leb^{n}(B) \stackrel{\text{c.f.a}}{=} \lim_{k \to \infty} \Leb^{n}(U_k) = \Leb^{n}(A)
+  \end{align*}
+\end{proof}
 
 
