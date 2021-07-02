@@ -110,7 +110,8 @@ On $S_n$, the sign is a homomorphism: $\text{sgn}: S_n \to \{\pm 1\}$, whose ker
 
 
 \begin{ntheorem}[First Isomorphism Theorem]
-Let $\phi: G \to H$ be a homomorphism for two groups $G,H$. Then $\phi$ induces an Isomorhpism $\overline{\phi}: G/\Ker \phi \to \Image \phi$ such that the following diagram commutes:
+Let $\phi: G \to H$ be a homomorphism.
+Then $\phi$ induces an isomorphism $\overline{\phi}: G/\Ker \phi \to \Image \phi$ such that the following diagram commutes:
 \begin{center}
 	\begin{tikzcd}[] %\arrow[bend right,swap]{dr}{F}
 		G \arrow[swap]{d}{\pi} \arrow[]{r}{\phi} & H\\
@@ -119,25 +120,42 @@ Let $\phi: G \to H$ be a homomorphism for two groups $G,H$. Then $\phi$ induces 
 \end{center}
 where $\pi$ is the canonical projection and $\iota$ is the inclusion mapping.
 \end{ntheorem}
-Proof: We show that $\overline{\phi}(x \Ker \phi) = \phi(x)$ on $G|_{\Ker \phi}$ is well defined and injective:
-
-\#\#\# Missing 30 mins.
-
-
 
 
 \begin{corollary}[Second Isomorphism Theorem]
-Let $G$ e a group and $H \lhd G$ and $K < G$. Then
-\begin{align*}
-	KH = HK < G, \quad H \lhd KH, \quad H \cap K \lhd K, \quad \text{and} \quad K/(H\cap K)	 \simeq KH/H
-\end{align*}
+  Let $N \lhd G$ and $H < G$. Then $NH = HN$ and
+  \begin{align*}
+    (N \cap H) \lhd  H, &\quad N \lhd HN\\
+    H/(N \cap H) &\iso HN/N < G
+  \end{align*}
+  In a diagram, we get
+  \begin{center}
+  \begin{tikzcd}[column sep=0.8em] %\arrow[bend right,swap]{dr}{F}
+    & HN\\
+    N \arrow[hook,color=orange]{ur}{}&& H
+    \arrow[hook]{ul}{}
+    \\
+    & N \cap H
+    \arrow[hook]{ul}{}
+    \arrow[hook,color=orange]{ur}{}\\
+  \end{tikzcd}
+  \end{center}
+
 \end{corollary}
-Proof: For $k \in K$ we have $kH = Hk$. By taking the union of all $k$ we know $KH = HK$.
-If $k_1,k_2 \in K$ and $h_1,h_2 \in H$, then
-\begin{align*}
-	(k_1h_1)(k_2h_2) \in KHKH = HKKH = HKH = KHH = KH\\
-	(k_1h_1)^{-1} = h_1^{-1}k_1^{-1} \in HK = KH	
-\end{align*}
-which shows that $KH < G$ is a subgroup. Furthermore, since $H < KH$ and for any $x \in KH \subseteq G$ we know that \#\#\# Missing 10 ins
+
+
+\begin{corollary}[Third Isomorphism Theorem]
+  Let $N \lhd G$. Then there exists a correspondence between subgroups that contain $N$ and subgroups of $H/N$.
+  For such subgroups $N < H < G$.
+  \begin{align*}
+    H/N \lhd  G/N \iff H \lhd G
+  \end{align*}
+  and there is an isomorphism
+  \begin{align*}
+    \faktor{G/N}{H/N} &\iso G/H\\
+    (gN)(H/N) &\leftrightarrow gH
+  \end{align*}
+\end{corollary}
+
 
 

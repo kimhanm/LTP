@@ -1,0 +1,69 @@
+
+\section{Appendix}
+
+\subsection{Distributions}
+
+\subsubsection*{Poisson Distribution with parameter $\lambda$}
+
+\begin{align*}
+  \Omega = \{0,1,2,\ldots\}, \quad \IP[X=n] = e^{-\lambda} \frac{\lambda^{n}}{n!}
+\end{align*}
+
+\begin{align*}
+  X \sim \text{Poi}(\lambda), Y \sim \text{Poi}(\mu) \text{ independent} \implies X +Y \sim \text{Poi}(\lambda + \mu)
+\end{align*}
+\begin{proof}
+  For $S = X + Y$
+  \begin{align*}
+    \IP[S = s] 
+    &= \sum_{k=0}^{s} \IP[X = k, Y = s-k]\\
+    &= \sum_{k=0}^{s} \IP[X = k] \cdot \IP[Y = s-k]\\
+    &= \sum_{k=0}^{s} e^{- \lambda} \frac{\lambda^{s}}{s!} e^{- \mu} \frac{\mu^{k-s}}{(s-k)!}\\
+    &= \frac{e^{-\lambda + \mu}}{s!}\sum_{k=0}^{s} \binom{s}{k} \lambda^{k} \mu^{s-k}\\
+    &= \frac{e^{-\lambda + \mu}}{s!} (\lambda + \mu)^{s}
+  \end{align*}
+\end{proof}
+
+
+
+
+\subsection{Theorems}
+
+\subsubsection*{Borel Cantelli}
+
+Let $A_1,A_2, \ldots \in \mathcal{A}$. Set
+\begin{align*}
+  A_{\infty} := \limsup_{n = \infty} = \bigcap_{n=1}^{\infty} \bigcup_{k=1}^{n} A_k
+\end{align*}
+then
+\begin{enumerate}
+  \item $\sum_{k=1}^{\infty} \IP[A_k] < \infty \implies \IP[A_{\infty}] = 0$
+  \item If the $(A_k)_{k \in \N}$ are independent, then $\sum_{k=1}^{\infty} \IP[A_k] = \infty \implies \IP[A_{\infty}] = 1$.
+\end{enumerate}
+
+
+
+\subsection{Gaussian/Normal Distribution with parameters $\mu,\sigma^{2}$}
+
+For $\mu,\sigma \in \R,\sigma > 0$ the density for $\mathcal{N}(\mu,\sigma^{2}$ is given by
+\begin{align*}
+  f(x) = \frac{1}{\sigma \sqrt{2 \pi}} \exp\left(
+    - \frac{(x - \mu)^{2}}{2 \sigma^{2}}
+  \right)
+\end{align*}
+$\mu$ is called the \textbf{mean} and for 
+$X \sim \mathcal{N}(\mu,\sigma^{2})$ is the expectation value $\E[X] = \mu$.
+$\sigma$ is called the \textbf{standard deviation} and $\sigma^{2} =: \variance(X)$ the \textbf{variance}
+
+\begin{lem}[]
+  For $X \sim \mathcal{N}(\mu_X,\sigma_X^{2})$ and $Y \sim \mathcal{N}(\mu_Y,\sigma_Y^2)$ independent, their sum is also normal distributed with parameters
+  \begin{align*}
+    Z = X + Y \sim \mathcal{N}(\mu_X + \mu_Y, \sigma_X^{2} + \sigma_Y^{2})
+  \end{align*}
+\end{lem}
+\begin{proof}
+  Since $\IP[Z = z] = \IP[X = x] \cdot \IP[Y = z-x]$, the density of $Z$ is the convolution of the densities of $X$ and $Y$.
+
+\end{proof}
+
+

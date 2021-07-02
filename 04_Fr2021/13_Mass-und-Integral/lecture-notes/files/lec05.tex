@@ -1,7 +1,7 @@
 \subsection{Construction of Measures}
 Let $X$ be non-empty set.
 
-\begin{dfn}[]
+\begin{dfn}[]\label{dfn:covering}
   A collection of subsets $\mathcal{K} \subseteq \mathcal{P}(X)$ is called a \textbf{covering} of $X$ if
   \begin{align*}
     \emptyset \in \mathcal{K} \quad \text{and} \quad \exists (K_j)_{j \in \N} \subseteq \mathcal{K}: \quad X = \bigcup_{j=1}^{\infty}K_j
@@ -17,7 +17,7 @@ Let $X$ be non-empty set.
   It is easy to see that every Algebra $\mathcal{A}$ of $X$ is a covering since $\emptyset,X \in \mathcal{A}$.
 \end{ex}
 
-\begin{thm}[]
+\begin{thm}[] \label{thm:cover-to-measure}
   Let $\mathcal{K}$ be a covering of $X$ and $\lambda: \mathcal{K} \to [0,\infty]$ and any function with $\lambda(\emptyset) = 0$. 
 
   Then this induces a measure $\mu$ on $X$ given by

@@ -1,5 +1,6 @@
-\section{Repetition Algebra I}
+\setcounter{section}{-1}
 
+\section{Prerequisites}
 
 \subsection{Ring Theory}
 
@@ -44,10 +45,11 @@ such that every subgroup is normal in the next one.
 We say that $G$ is \textbf{resolvable}, if such a subnormal series exists such that $G_{k+1}/G_k$ is an abelian group for all $k$.
 \end{dfn}
 
-\subsection{Field Theory}
+\subsection{Fields}
 
 \begin{dfn}[]
-  Let $L$ be a field and $K \subseteq L$ a subring that is also a field. We say that $K$ is a \textbf{subfield} of $L$ and we call $L$ a \textbf{field-extension} of $K$ and write $L/K$ ($L$ over $K$).
+  Let $L$ be a field and $K \subseteq L$ a subring that is also a field. 
+  If that is the case, we say that $K$ is a \textbf{subfield} of $L$ and call $L$ a \textbf{field-extension} of $K$ and write $L/K$ (read: $L$ over $K$).
 
   $L$ can also be seen as a vector space over $K$. Its \textbf{degree} is $[L:K] := \dim_K L$.
   If $[L:K] < \infty$, we say that $L$ is a \textbf{finite field extension} of $K$.
@@ -59,7 +61,24 @@ We say that $G$ is \textbf{resolvable}, if such a subnormal series exists such t
     [F:K] = [F:L] \cdot [L:K]
   \end{align*}
 \end{lem}
-To prove this, we consider basis $x_1, \ldots, x_m \in F$ of $F$ over $L$ and a basis $y_{1}, \ldots, y_{n} \in L$ of $L$ over $K$ and show that the products $x_iy_j \in F$ for $1 \leq i \leq m, 1 \leq j \leq n$ is a basis of $F$ over $K$.
+\begin{proof}[Proof Sketch]
+  If $x_1, \ldots, x_m \in F$ is a basis of $F$ over $L$ and $y_{1}, \ldots, y_{n} \in L$ is a basis of $L$ over $K$, 
+  then the products $x_iy_j \in F$ for $1 \leq i \leq m, 1 \leq j \leq n$ form a basis of $F$ over $K$.
+\end{proof}
+
+\begin{dfn}[]
+  Every field $k$ contains a smallest subfield called the \textbf{prime field} of $k$.
+  It is either isomorphic to $\Q$ or $\F_p$ for some prime $p \in \N$.
+
+  Define the \textbf{characteristic} of the field as
+  \begin{align*}
+    \charac k := \left\{\begin{array}{ll}
+        p & \text{ if its prime field is } \F_p\\
+        0 & \text{ if its prime field is } \Q
+    \end{array} \right.
+  \end{align*}
+
+\end{dfn}
 
 
 \begin{dfn}[]

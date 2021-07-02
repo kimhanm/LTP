@@ -33,6 +33,8 @@ If $E$ is $\Leb^{1}$-meaurable, then the translated sets $E_1,E_2$ are also $\Le
   &= \Leb^{1}(E)
 \end{align*}
 
+
+\subsubsection*{A non-measurable set}
 Then we define the equivalence relation
 \begin{align*}
   x,y \in [0,1) \quad x \sim y \iff x-y \in \Q
@@ -94,24 +96,85 @@ Not only does there exists a non-$\Leb^{1}$-measurable subset, we can construct 
   As we showed earlier, if $B_i$ were $\Leb^{1}$-measuralble, then $\Leb^{1}(B_i) = 0$, which contradicts $\Leb^{1}(A) = \sum_{i=0}^{\infty} \Leb^{1}(B_i)$.
 \end{proof}
 
-\begin{prop}[]
-  Every countable subset of $\R$ has Lebesgue measure zero.
-\end{prop}
-\begin{proof}
-MISSING
-\end{proof}
+\begin{rem}[]
+  Because singletons $\{\alpha\} \in \R$ are contained in the arbitrarily small interval $(\alpha - \epsilon, \alpha + \epsilon)$ with Lebesgue measure $2 \epsilon$,
+  singletons have Lebesgue measure zero.
 
+  It follows that by subadditivity, every countable subset of $\R$ also has Lebesgue measure zero.
+\end{rem}
 
 
 
 \subsubsection*{The Cantor tridadic set}
 
-The real numbers can be defined as the set of Cauchy-sequences in $\Q$ up to limits.
+The real numbers can be defined as the set of Cauchy-sequences in $\Q$ up to equivalence of Cauchy sequences.
 
-The cantor set is the set of numbers whose triadic digits don't contain a $1$.
+This gives for every $x \in \R$ and base $b > 2 \in \N$ a $b$-ary expansion with digits $d_i(x) \in \{0,\ldots,b-1\}$.
+
+\begin{align*}
+  x = \sum_{i=1}^{\infty}d_i(x) b^{-i}
+\end{align*}
+
+Although the digit expansion is not always unique, the set of those with multiple expansions is countable and thus have measure zero.
+
+\begin{prop}[]
+The \textbf{Cantor set} is the set of numbers whose $3$-adic digits don't contain a $1$.
 \begin{align*}
   C = \{x \in [0,1] \big\vert d_i(x) \in \{0,2\} \forall i\}
 \end{align*}
 Then $C$ is uncountable and $\Leb(C) = 0$.
+\end{prop}
+\begin{proof}
+  We construct the Cantor set as $C := \bigcap_{n = 1}^{\infty}C_n$, where
+  \begin{align*}
+    C_n = \{x \in [0,1] \big\vert d_i(x) \neq 1 \forall i \leq n
+  \end{align*}
+  Then each $C_n$ can be written as a finite union closed intervals. For example
+  \begin{align*}
+    C_1 = \left[0, \frac{1}{3}\right] \cup \left[\frac{2}{3},1\right], \text{etc.}
+  \end{align*}
+  They are in particular Borel and have Lebesgue measure
+  \begin{align*}
+    \Leb^{1}(C_n) = \left(
+      \frac{2}{3}
+    \right)^{n}
+  \end{align*}
+  because this sequence is decreasing, by continuity from above we have
+  \begin{align*}
+    \Leb^{1}(C) = \Leb^{1} \left(
+      \bigcap_{n=1}^{\infty}C_n
+    \right)
+    =
+    \lim_{n \to \infty} \Leb^{1}(C_n) = 0
+  \end{align*}
 
+  To show that $C$ is countable, we define a function that maps elements of $C$ surjectively to $[0,1]$
+
+
+  Because $C$ consists of numbers whose $3$-ary sequence of digits don't contain a $1$, i.e. only use the digits $0$ and $2$, 
+  we can map them to binary sequences of digits which use the digit $0$ and $1$, by converting every digit $2$ to a $1$ and look at it as a binary sequence.
+  \begin{align*}
+    f: C \to [0,1], \quad \sum_{i=1}^{\infty} \frac{d_i(x)}{3^{i}} \mapsto \sum_{i=1}^{\infty} \frac{d_i(x)}{2} \frac{1}{2^{i}}
+  \end{align*}
+  For example,
+  $
+    \frac{8}{27} = 0.022_3 \mapsto 0.011_2 = \frac{3}{8} .
+  $
+  
+  Because this lets us generate any (even infinite) binary sequence of digits, the map is surjective. 
+\end{proof}
+
+
+The construction of the Cantor set can be generalised to give us the so-called \textbf{fat Cantor sets}, where we start off with the interval $I_1 = [0,1]$, and for $n \in \N$, if some interval inside $I_n$ has length $\ell$, then we remove the centered subinterval of length $\beta \ell$ and let $I_{n+1} \subseteq I_n$ be the remaining pieces of this operation.
+
+The fat cantor set with parameter $\beta$ is then $C_{\beta} := \bigcap_{n=1}^{\infty}I_n$.
+
+We see that the ``normal'' Cantor set has the parameter $\beta = \frac{1}{3}$ and if $\beta < \frac{1}{3}$, then we have
+\begin{align*}
+  \Leb^{1}(I_n \setminus I_{n+1}) = 2^{n-1}\beta^{n} \implies \Leb^{1}(I_1 \setminus C_{\beta}) = \sum_{n=1}^{\infty} 2^{n-1} \beta^{n} = \frac{\beta}{1 - 2 \beta}
+\end{align*}
+but this set is not Jordan-measurable as 
+\begin{align*}
+  \underline{\mu}(C_{\beta}) = 0 \quad \text{but} \quad \overline{\beta}(C_{\beta}) = 1 - \frac{\beta}{1 - 2 \beta}
+\end{align*}
 

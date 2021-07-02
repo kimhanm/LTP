@@ -148,3 +148,197 @@ This set is also orded via inclusion.
   \end{enumerate}
 \end{proof}
 
+\begin{ex}[]
+  For the finite galois extension $E/k :=\Q(\sqrt[3]{2},\zeta_3)/\Q$. Find all intermediate fields.
+
+  To do so, set
+  \begin{align*}
+    a_1 := \sqrt[3]{2}, a_2 := \zeta_3 \sqrt[3]{2}, a_3 := \zeta_3^{2} \sqrt[3]{2}
+  \end{align*}
+  and let $T$ be complex conjugation, $R$ multiplication with $\zeta_3$.
+  We already know that
+  $\Gal(E/k) = \scal{T,R} \iso D_3$
+
+  \begin{center}
+  \begin{tikzcd}[column sep=0.6em] %\arrow[bend right,swap]{dr}{F}
+    && \{e\} 
+    \arrow[hook,swap,color=orange]{dll}{2}
+    \arrow[hook,swap,color=orange]{dl}{2}
+    \arrow[hook,color=orange]{d}{2}
+    \arrow[hook,color=orange]{ddr}{3}
+    \\
+    \scal{T}
+    \arrow[hook]{ddrr}{3}
+    & \scal{T,R}
+    \arrow[hook]{ddr}{3}
+    & \scal{T,R^{2}}
+    \arrow[hook]{dd}{3}
+    \\
+    &&& \scal{R}
+    \arrow[hook,swap,color=orange]{dl}{2}
+    \\
+    && \Gal(E/k)
+  \end{tikzcd}
+  \end{center}
+  and the corresponding diagram for the fixing fields is given by
+  \begin{center}
+  \begin{tikzcd}[column sep=0.8em] %\arrow[bend right,swap]{dr}{F}
+   &&\Q(\sqrt[3]{2},\zeta_3)
+   \\
+   \Q(\sqrt[3]{2})
+   \arrow[hook,color=orange]{urr}{2}
+   &
+   \Q(\zeta_3,\sqrt[3]{2})
+   \arrow[hook,color=orange]{ur}{2}
+   &
+   \Q(\zeta_3^{2},\sqrt[3]{2})
+   \arrow[hook,color=orange]{u}{2}
+   \\
+   &&& \Q(\zeta_3)
+   \arrow[hook,color=orange]{uul}{3}
+   \\
+   && \Q
+   \arrow[hook]{uull}{3}
+   \arrow[hook]{uul}{3}
+   \arrow[hook]{uu}{3}
+   \arrow[hook,color=orange]{ur}{2}
+  \end{tikzcd}
+  \end{center}
+  where the coloured morphisms are the normal subgroup inclusions, or the Galois extensions, respectively.
+
+  Where the numbers are the index of the subgroups, or the degree of the field extension.
+\end{ex}
+
+
+
+\begin{ex}[]
+  For the extension $E/k := \Q(\zeta_{15})/\Q$ we proceed as follows
+  \begin{itemize}
+    \item Compute $\Gal(E/k)$ and find its subgroups.
+    \item Find isomorphism classes and automorphisms $\Aut(E)$
+    \item Use the Galois correspondence to find the intermediate fields by computing the fixing fields.
+  \end{itemize}
+  Using the chinese remainder theorem, we get
+  \begin{align*}
+    \Gal(\Q(\zeta)/\Q) \iso (\Z/15 \Z)^{\times} = (\Z/3\Z)^{\times} \times (\Z/5\Z)^{\times} \iso (\Z/2\Z) \times \Z/4\Z
+  \end{align*}
+  The subgroups are
+  \begin{center}
+  \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+    & \{e\} \arrow[hook]{dr}{2}
+    \arrow[hook]{d}{2}
+    \arrow[hook,swap]{dl}{2}
+    \\
+    \scal{(1,0)}
+    \arrow[hook]{dr}{2}
+    & \scal{(0,2)}
+    \arrow[hook]{d}{2}
+    \arrow[hook]{dr}{2}
+    \arrow[hook,swap]{dl}{2}
+    & \scal{(1,2)}
+    \arrow[hook,swap]{dl}{2}
+    \\
+    \scal{(0,1)} 
+    \arrow[hook]{dr}{2}
+    & \scal{(1,0),(0,2)}
+    \arrow[hook]{d}{2}
+    & \scal{(1,1)} \arrow[hook,swap]{dl}{2}
+    \\
+    & \scal{(1,0),(0,1)}
+  \end{tikzcd}
+  \end{center}
+  For the correspondence, we first note that
+  \begin{align*}
+    \F_3^{\times} \times \F_5^{\times} \iso (\Z/15\Z)^{\times}, (-3) \cdot 3 + 2 \cdot 5 = 1
+  \end{align*}
+  The correspondence is as follows
+  \begin{align*}
+    \Z/2\Z \times \Z/4\Z \stackrel{\sim}{\to} \F_3^{\times} \times \F_5^{\times} \stackrel{\sim}{\to} (\Z/15\Z)^{\times} \stackrel{\sim}{\to} \Gal(E/k)\\
+    (1,0) \stackrel{\sim}{\mapsto} (2,1) \stackrel{\sim}{\mapsto} (2 \cdot 2 \cdot 5 + 1 \cdot (-1) \cdot 3 = 11) \stackrel{\sim}{\mapsto} (\zeta \mapsto \zeta^{11}) =: \sigma\\
+    (0,1) \stackrel{\sim}{\mapsto} (1,2) \stackrel{\sim}{\mapsto} (1 \cdot 2 \cdot 5 + 2 \cdot (-3) \cdot 2 = 7) \stackrel{\sim}{\mapsto} (\zeta \mapsto \zeta^{7}) =: \tau
+  \end{align*}
+  so the automorphism classes are 
+  \begin{center}
+  \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+    & \scal{\id}
+    \\
+    \scal{\sigma} 
+    & \scal{\tau^{2}}
+    & \scal{\sigma \tau^{2}}
+    \\
+    \scal{\tau}
+    & \scal{\sigma,\tau^{2}}
+    & \scal{\sigma \tau}
+    \\
+    & \scal{\sigma,\tau}
+  \end{tikzcd}
+  \end{center}
+  We now compute fixing fields.
+  \begin{itemize}
+    \item[$\scal{\sigma}$]
+  \begin{align*}
+    \zeta \mapsto \zeta^{11} \quad \text{fixes} \quad \zeta^{3} \mapsto \zeta^{33} = \zeta^{3}
+  \end{align*}
+  and the minimal polynomial of $\zeta^{3} = e^{\frac{2 \pi i}{5}}$ is $\frac{X^{5} - 1}{X-1} = X^{4} + X^{3} + X^{2} + X+ 1$.
+  \item[$\scal{\tau^{2}}$]
+  \begin{align*}
+    \zeta \mapsto \zeta^{49} = \zeta^{4}\quad \text{fixes} \quad \zeta + \zeta^{4} \mapsto \zeta^{4} + \zeta
+  \end{align*}
+
+  \item[$\scal{\sigma \tau^{2}}$]
+  \begin{align*}
+    \zeta \mapsto \zeta^{49 \cdot 11} = \zeta^{-1} \quad \text{fixes} \quad \zeta + \zeta^{-1} \mapsto \zeta^{-1} + \zeta
+  \end{align*}
+  has minimal polynomial
+  \begin{align*}
+    X^{2} + (\zeta + \zeta^{-1})X + 1 \in \Q(\zeta + \zeta^{-1})[X]
+  \end{align*}
+
+
+  \item[$\scal{\tau}$]
+  \begin{align*}
+    \zeta \mapsto \zeta^{7} \quad \text{fixes} \quad \zeta^{5} \mapsto \zeta^{35} = \zeta^{5}
+  \end{align*}
+  The minimal polynomial of $\zeta^{5} = e^{\frac{2 \pi i}{3}}$ is $\frac{X^{3} -1}{X-1} = X^{2} + X + 1$
+
+  \item[$\scal{\sigma,\tau^{2}}$]
+    \begin{align*}
+      (\zeta^{3} + \zeta^{12})^{2} = \zeta^{6} + 2 + \zeta^{9}
+    \end{align*}
+    \ldots
+
+  \item[$\scal{\sigma \tau}$]
+    \begin{align*}
+      \zeta \mapsto \zeta^{77} = \zeta^{2}
+    \end{align*}
+    Note that $\Image(\zeta + \zeta^{2} + \zeta^{4} + \zeta^{8}) \neq 0$.
+    So it is not the fixing field of $\Q$, so it has to be the only remaining one.
+\end{itemize}
+
+  \begin{center}
+  \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+    & \Q(\zeta)
+    \\
+    \Q(\zeta^{3})
+    \arrow[hook]{ur}{2}
+    & \Q(\zeta + \zeta^{4})
+    \arrow[hook]{u}{2}
+    & \Q(\zeta + \zeta^{-1})
+    \arrow[hook]{ul}{2}
+    \\
+    \Q(\zeta^{5})
+    \arrow[hook]{ur}{2}
+    & \Q(\zeta^{3} + \zeta^{12})
+    \arrow[hook]{ul}{2}
+    \arrow[hook]{u}{2}
+    \arrow[hook]{ur}{2}
+    & \Q(\zeta + \zeta^{2} + \zeta^{4} + \zeta^{8})
+    \arrow[hook]{ul}{2}
+    \\
+    & \Q
+    \arrow[hook]{ul}{2}
+    \arrow[hook]{u}{2}
+    \arrow[hook]{ur}{2}
+  \end{tikzcd}
+  \end{center}
+\end{ex}

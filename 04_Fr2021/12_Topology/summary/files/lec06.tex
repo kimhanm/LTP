@@ -1,0 +1,129 @@
+It is not always true that a continuous bijective map has a continuous inverse.
+Take for example the set $X= \{1,2\}$ once with the discrete and indiscrete topology and the ``identity'' on $X$.
+
+We want to study when that is the case.
+
+
+\subsection{Separation axioms}
+
+\begin{dfn}[]
+  Let $X$ be a topological space and $(x_n)_{n \in \N}$ a sequence in $X$.
+  We say that $a \in X$ is a \textbf{limit point} of the sequence if for every neighborhood $U$ of $a$ there exists an $N \in \N$ such that $U$ is a neighborhood of $x_n$ for $n \geq N$
+\end{dfn}
+\begin{ex}[]
+  Limit point(s) is not always unique:
+\begin{itemize}
+  \item For an indiscrete topological space, every point $a \in X$ is a limit for any sequence in $X$.
+  \item For $(\Z,\tau_{\text{cofin}}$, we have $\lim_{n \to \infty}n = k$ for all $k \in \Z$.
+\end{itemize}
+\end{ex}
+
+We can however require that the limit be unique. This can be done using the following axiom.
+
+\begin{dfn}[]
+  We say that a topological space $X$ is \textbf{Hausdorff} (or $T_2$) if distict points have neighborhoods that are disjiont. i.e
+  \begin{align*}
+    \forall x,y \in X, x \neq y \exists U,V \text{ open such that } x \in U, y \in V, U \cap V = \emptyset
+  \end{align*}
+\end{dfn}
+There are more separation axioms, which are labelled $T_0,T_1,T_{2.5},T_3,T_{3.5},T_4$ which are in general independent.
+\begin{rem}[]
+  We can easily show the following
+\begin{enumerate}
+  \item Every metric space is Hausdorff. As for $x \neq y \in X$ we can take balls of radius $\frac{d(x,y)}{2}$ around $x$ and $y$.
+  \item Singletons in Hausdorff spaces are closed.
+  \item Every sequence $\left(x_{n}\right)_{n \in \N}$ in $X$ has at most one limit point.
+  \item Subspaces of $T_2$ spaces are $T_2$ (with the subspace topolgy)
+  \item For $X,Y$ two topological spaces
+    \begin{align*}
+      X,Y \text{ are } T_2 \iff X \times Y \text{ are }T_2 \iff X \sqcup Y \text{ are }T_2
+    \end{align*}
+\end{enumerate}
+\end{rem}
+In general, $T_2$-ness is not conserved by continuous functions.
+
+\subsection{Compactness}
+Recall Heine-Borel's theorem on compactness of subspaces of $\R^{n}$.
+\begin{align*}
+  K \subseteq \R^{n} \text{ compact } \iff K \text{ closed and bounded}
+\end{align*}
+Such a definition is obviously not compatible with the language of topology as the notion of \emph{bounded-ness} is not well defined.
+We need a more ``topological'' definition for it
+
+\begin{dfn}[]
+  A topological space $X$ is \textbf{compact} if every open covering of $X$ has a finite subcovering. 
+  That is, if $\left(U_{i}\right)_{i \in I}$ is a collection of open subsets such that $\bigcup_{i \in I}U_i = X$ there exists a finite subset $J \subseteq I$ such that $\bigcup_{j \in J}U_j = X$.
+
+  We say that a subset $A \subseteq X$ is compact, if it is compact in the subspace topology.
+\end{dfn}
+\begin{ex}[]
+  Of course, any finite topological space is compact. 
+  \begin{itemize}
+    \item $\R$ is not compact. Take for example the open covering of intervals $(-n,n), n \in \N$.
+    \item If a metric space is compact, then it is bounded. So there exists an $R>0$, $x_0 \in X$ such that $d(x,x_0) < R$ for all $x \in X$.
+      Moreover, compact metric spaces are totally bounded.
+    \item All subsets of a cofinite topological space are compact.
+  \end{itemize}
+\end{ex}
+
+Some generall properties of compact spaces are
+\begin{enumerate}
+  \item Closed subsets of compact spaces are compact. 
+  \item The image of compact spaces under continuous functions are compact.
+  \item For $X,Y$ non-empty topological spaces:
+    \begin{align*}
+      X \text{ and } Y \text{ compact } \iff X \times Y \text{ compact } \iff X \sqcup Y \text{ compact }
+    \end{align*}
+\end{enumerate}
+\begin{proof}
+  \begin{enumerate}
+    \item Let $K \subseteq X$ closed and $\left(U_{i} \cap K\right)_{i \in I}$ be an open cover of $K$. 
+      Since $K$ is closed, we get the open cover $\left(U_{i}\right)_{i\in I} \cup (X \setminus K)$ of $X$ and the proof follows.
+    \item This is trivial: Let $f: X \to Y$ continuous.
+      Since the preimage of open subsets of the image is open any open cover of $f(X)$ induces an open cover of $X$.
+    \item This follows from the continuity of the projection/inclusion mappings.
+  \end{enumerate}
+\end{proof}
+
+\begin{lem}[]
+Let $X$ be $T_2$ and $K \subseteq X$ compact. Then $K$ is closed.
+\end{lem}
+\begin{proof}
+  Let $p \in K^{c}$. Since $X$ is Hausdorff, for all $x \in K$ we obtain open subsets $U_x,V_x$ which are disjoint neighborhoods of $x$ and $p$.
+  This generates the open covering $(U_x)_{x \in K}$ of $K$.
+  Since $K$ is compact, this gives us a finite subcovering $(U_j)_{j \in J \subseteq K}$.
+  Define $V := \bigcap_{j \in J}V_j$ as the finite intersection of open sets.
+  This is an open neighborhood of $p$ that does not intersect $K$. So $K^{c}$ is open.
+\end{proof}
+
+
+We now are able to state a criterion for the existence of homeomorphisms.
+\begin{thm}
+Let $f: X \to Y$ be continuous and bijective.
+If $X$ is compact and $Y$ is $T_2$, then $f$ is a homeomorphism.
+\end{thm}
+\begin{proof}
+  To show that the inverse $f^{-1}$ is continuous let $A \subseteq X$ be closed.
+  Since $X$ is compact, $A$ is also compact. 
+  Then $f(A)$ is again compact as it is the image of a compact set under a continuous function.
+  Our previous lemma says that because $f(A)$ is a compact subset of a $T_2$ space it is also closed.
+\end{proof}
+
+This theorem is very nice. For example, it directly shows that taking the third root is continuous because
+\begin{align*}
+  f: [0,1] \to [0,1], \quad x \mapsto  x^{3}
+\end{align*}
+is continuous and bijective. A counter example would be the map
+\begin{align*}
+  f: [0,1) \to \mathbb{S}^{1}, \quad t \mapsto  e^{2 \pi i t}
+\end{align*}
+which is continuous and bijective, but its inverse is not continuous at $z = 1$.
+
+The theorem is also a bit stronger than its analogue in the category of continuosly differentiable manifolds, where we require that the Derivativebe locally invertible. 
+So, for $F: U \to V$ continously differentiable bijective, the existence of a continously differentiable inverse depends on whether $D_xF$ is invertible for all $x$.
+
+
+Compactness has the implication that some local properties can be extended to the entire space if the property is stable under finite unions.
+For example, if $f: X \to \R$ is locally bounded and $X$ is comact, then $f$ is bounded.
+
+

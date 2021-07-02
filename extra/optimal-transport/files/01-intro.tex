@@ -1,0 +1,33 @@
+\section{Introduction}
+
+Introduction is stolen from \url{https://golem.ph.utexas.edu/category/2021/06/duality_in_transport_problems.html}.
+
+
+Suppose we want to transport some material from $s$ suppliers $S_{1}, \ldots, S_{s}$ to $r$ receivers $R_{1}, \ldots, R_{n}$, where the supply available from supplier $S_i$ is $\sigma_i$ and the demand at receiver $R_j$ is $\rho_j$.
+
+
+If the cost of moving one part of material from $S_i$ to $R_j$ is $k_{ij} \in \R_{\geq 0}$, 
+then we are interested in finding a \textbf{transport plan}, which can be given by a matrix $(\alpha_{ij})_{i,j}$ where $\alpha_{ij}$ denotes the amount of material moved from supplier $S_i$ to receiver $R_j$, such that
+\begin{align*}
+  \forall j: \sum_{i} \alpha_{ij} \geq \rho_j, \quad \forall  i: \sum_{j} \alpha_{ij} \leq \sigma_i
+\end{align*}
+and the total cost of the transport plan $\sum_{i,j}k_{ij} \alpha_{ij}$ is minimized.
+
+
+Because the cost of moving material is positive, it is clear that the demand constraint is an equality $\sum_{i} \alpha_{ij} = \rho_j$.
+
+
+\begin{ex}[]
+Let's say that there are three supplies and three receivers, with
+\begin{align*}
+  \sigma = (\sigma_1,\sigma_2,\sigma_3) = (350,100,200), \quad \rho = (\rho_1,\rho_2,\rho_3) = (200,200,250)
+\end{align*}
+and where the transport cost is given by
+\begin{align*}
+  K =  \begin{pmatrix}
+    39 & 44 & 47\\
+    22 & 22 & 30\\
+    14 & 25 & 29
+  \end{pmatrix}
+\end{align*}
+\end{ex}

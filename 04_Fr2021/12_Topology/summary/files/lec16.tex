@@ -1,0 +1,203 @@
+
+\begin{lem}[]
+  The following are easy to prove
+\begin{enumerate}
+  \item Let $\beta$ be a path from $x_0$ to $x_1$ in $X$. Then the mapping
+    \begin{align*}
+      \Psi_{\beta}: \pi_1(X,x_1) \to  \pi_1(X,x_0),  \quad [\alpha] \mapsto [\beta \alpha \beta^{-}]
+    \end{align*}
+    is an isomorphism (in $\Grp$).
+  \item The fundamental group of the product is the product of the fundamental groups. So for $(X,x_0),(Y,y_0)$ in $\Top^{\ast}$, there exists an isomorphism
+    \begin{align*}
+      \pi_1(X,x_0) \times \pi_1(Y,y_0) \stackrel{\sim}{\to} \pi_1(X \times Y, (x_0,y_0))
+    \end{align*}
+\end{enumerate}
+In other words, for a fixed space $(X,x_0)$ in $\Top^{\ast}$, the following ``diagram'' commutes
+\begin{center}
+  \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+    \Top^{\ast} 
+    \arrow[]{r}{\pi_1}  
+    \arrow[swap]{d}{(X,x_0) \times -}
+  & \Grp
+  \arrow[]{d}{\pi_1(X,x_0) \times -}
+  \\
+  \Top^{\ast}
+  \arrow[]{r}{\pi_1}
+  & \Grp
+  \end{tikzcd}
+\end{center}
+\end{lem}
+
+From now on, we will write $\pi_1(X) := \pi_1(X,x_0)$ if $X$ is path connected.
+
+\begin{cor}[]
+$\R^{2} \iso \R^{n} \implies n = 2$
+\end{cor}
+\begin{proof}
+  Because a homeomorphism $\phi: \R^{2} \setminus \{0\}$ induces a homeomorhpism
+  \begin{align*}
+    \tilde{\phi}: \R^{2} \setminus \{0\} \to  \R^{n} \{0\}
+  \end{align*}
+  it follows directly from the computation done in Example \ref{ex:homotopy-of-spheres}.
+\end{proof}
+
+
+Now we can finally define what it means for a topological space to have no point-holes.
+\begin{dfn}[]
+  A path connected space $X$ is called \textbf{simply connected}, if $\pi_1(X) = \{e\}$
+\end{dfn}
+For example, $\IS^{n}$ is simply connected for $n \geq 2$.
+
+\begin{thm}[]
+  Let $f: (X,x_0) \to (Y,y_0)$ be a homotopy equivalence.
+  Then the induced mapping $f_{\ast}: \pi_1(X,x_0) \to  \pi_1(Y,y_0)$ is a group isomorphism.
+\end{thm}
+To prove the theorem, we will use the following lemma
+\begin{lem}[]
+  Let $f_0 \sim f_1: X \to Y$ be homotopic via $h$, $x_0 \in X$ and $\beta$ a path from $f_0(x_0) \to f_1(x_0)$.
+  Then $(f_0)_{\ast} = \Psi_{\beta} \circ (f_1)_{\ast}$.
+  The corresponding diagram is
+  \begin{center}
+  \begin{tikzcd}[row sep=0.8em] %\arrow[bend right,swap]{dr}{F}
+   & \pi_1(Y,f_1(x_0)) \arrow[]{dd}{\Psi_{\beta}}
+   \\
+   \pi_1(X,x_0)
+   \arrow[]{ur}{(f_1)_{\ast}}
+   \arrow[]{dr}{(f_0)_{\ast}}\\
+   & \pi_1(Y,f_0(x_0))
+  \end{tikzcd}
+  \end{center}
+\end{lem}
+\begin{proof}[Proof Lemma]
+  Set $\beta_t:[0,1] \to Y$ as $\beta_{t}(s) = \beta(st)$.
+  Then for any loop $\alpha$ at $x_0$ we get
+  \begin{align*}
+    f_0 \circ \alpha \sim \beta (f_1 \circ \alpha_)\beta^{-} \text{ rel }x_0
+  \end{align*}
+  via the homotopy
+  \begin{align*}
+    H(s,t) = \beta_t(h_t \circ \alpha)\beta_t^{-}
+  \end{align*}
+  and as such, the group homomorhpisms are equal:
+  \begin{align*}
+    (f_0)_{\ast}[\alpha] = [f_0 \circ \alpha] = [\beta(f_1 \circ \alpha)\beta^{-})] = \Psi_{\beta}([f_1 \circ \alpha]) = (\Psi_{\beta} \circ (f_1)_{\ast})[\alpha]
+  \end{align*}
+\end{proof}
+
+\begin{proof}[Proof theorem]
+Let $f: X \to Y$ be a homotopy equivalence and $g: Y \to  X$ its homotopy inverse. So let $h,k$ be the corresponding homotopies
+\begin{align*}
+  g \circ f \sim_h \id_X \quad \text{and} \quad f \circ g \sim_k \id_Y
+\end{align*}
+Let $x_0 \in X$ and consider the diagram
+\begin{center}
+\begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
+  \pi_1(X,x_0) 
+  \arrow[]{r}{f_{\ast}}
+  &
+  \pi_1(Y,f(x_0)) 
+  \arrow[]{r}{g_{\ast}}
+  &
+  \pi_1(X,(g \circ f)(x_0))
+  \arrow[]{r}{f_{\ast}}
+  &
+  \pi_1(X,(f \circ g \circ f)(x_0))
+\end{tikzcd}
+\end{center}
+We then take the path $\beta(s) := h(x_0,s)$ that connects $(g \circ f)(x_0)$ with $x_0$, we can use the previous lemma to get
+\begin{align*}
+  g_{\ast} \circ f_{\ast} = (g \circ f)_{\ast} = \Psi_{\beta} \circ (\id_X)_{\ast} = \Psi_{\beta}
+\end{align*}
+which shows that $f_{\ast}$ is injective.
+For surjectivity, we take the path $\beta'(s) = k(f(x_0),s)$ connecting $(f \circ g \circ f)(x_0)$ with $f(x_0)$ and get similarly
+\begin{align*}
+ f_{\ast}\circ g_{\ast} = \Psi_{\beta'} 
+\end{align*}
+which shows injectivity of $g_{\ast}$, so since $g_{\ast} \circ f_{\ast}$ is bijective, $f_{\ast}$ is also surjective and thus an isomorphism.
+\end{proof}
+
+
+
+\begin{ex}[]
+If $X$ is contractible, then $X$ is simply connected because the fundamental group of the singleton space is $\{e\}$.
+\end{ex}
+
+We have called the fundamental group functor $\pi_{\bm{1}}$. But if there is a $\pi_1$, is there a $\pi_2$?
+
+Because a loop $\alpha: [0,1]$ is the same as continuous function $\alpha \in \Hom_{\Top^{\ast}}(\IS^{\bm{1}},(X,x_0))$ we can generalize the notion of the fundamental group.
+
+\begin{dfn}[]
+  For $(X,x_0) \in \Top^{\ast}$ and $n \in \N$ we define the \textbf{higher homotopy groups}
+  \begin{align*}
+    \pi_n(X,x_0) := \{[\alpha] \big\vert \alpha: \IS^{n} \to  X \text{ with } \alpha(e_1) = x_0\} = \Hom_{\Htpy^{\ast}}(\IS^{n},(X,x_0))
+  \end{align*}
+\end{dfn}
+They are actually only a group for $n \geq 1$, but for $n \geq 2$ they are all abelian.
+
+To give an intuition what the homotopy groups mean, let's first note that
+\begin{align*}
+  \pi_0(X,x_0) = \{[\alpha] \big\vert \alpha: \{-1,1\} \to  X, \alpha(1) = x_0\} \iso \{[x] \big\vert x \in X\}
+\end{align*}
+so:
+\begin{itemize}
+  \item $\pi_0(X,x_0)$ measures the number of path connected components of $X$ (irrespective of the choice of $x_0$). In $\R^{n}$ this corresponds to $n-1$-dimensional holes.
+  \item In $\R^{n}$, $\pi_1(X,x_0)$ tells us how many $(n-1)$-dimensional ``holes'' there are.
+\end{itemize}
+
+\begin{rem}[]
+  There is a theorem that says that the functor $\pi_1$ is ``surjective''. 
+  That is, for every group $G$ there exists a topological space $X$ such that $\pi_1(X) = G$.
+\end{rem}
+
+\subsection{Free groups}
+Consider the example
+\begin{align*}
+  X = \C \setminus \{-1,1\}, z_0 = 0
+\end{align*}
+and loops $\alpha,\beta$ with basepoint $z_0$, where $\alpha$ loops around $1$ and $\beta$ loops around $-1$.
+
+If we set
+\begin{align*}
+  A := \{z \in X \big\vert \text{Re}(z) > -1\} \iso B:= \{z \in X \big\vert \text{Re}(z) < 1\} \iso \C \setminus \{0\}
+\end{align*}
+then we see that the fundamental groups 
+\begin{align*}
+  \pi_1(A,x_0) \iso \Z \quad \pi_1(B,x_0) \iso \Z
+\end{align*}
+are generated by $[\alpha]$ and $[\beta]$ each.
+
+Since $[\alpha] [\beta] \neq [\beta] [\alpha]$, we could get the hint that $\pi_1(X) = F_2 = \Z \ast \Z$ is the free group generated by two elements $[\alpha],[\beta]$.
+
+So the main idea is that we want to express the fundamental group of a union $X = A \cup B$ using the fundamental groups of $A$ and $B$.
+
+\begin{dfn}[]
+  Let $H,K$ be (disjoint) groups. 
+  \begin{itemize}
+    \item A \textbf{word} in $H$ and $K$ is an expression of the form $g_1g_2 \dots g_n$ for $n \in \N$ such that $g_j \in H \cup K$.
+    \item A word is said to be \textbf{reduced}, if $g_j \notin \{e_H,e_K\}$, and $g_j,g_{j+1}$ are in alternatting groups.
+  \end{itemize}
+\end{dfn}
+
+\begin{ex}[]
+  For $H = \scal{a} = \{a^{k} \big\vert k \in \Z\}$ and $K = \scal{b} = \{b^{k} \big\vert k \in \Z\}$, the following are reduced words
+  \begin{align*}
+    aba^{-1}b^{-1}, \quad a^{2}, \quad a^{-3}, \quad b^{-7}a, \quad aba
+  \end{align*}
+\end{ex}
+Note: Every word $w$ has a unique \textbf{reduction} $R(w)$. For example
+\begin{align*}
+  w = aab1_Hb^{-2}a^{-1} \implies R(w) = a^{2}b^{-1}a^{-1}
+\end{align*}
+
+\begin{dfn}[]
+  The \textbf{free product} (or \textbf{coproduct}) of two groups $H,K$ is the group
+\begin{align*}
+  H \ast G := \{w \big\vert w \text{ is a reduced word in } H\& K\}
+\end{align*}
+where the multiplication is defined as
+\begin{align*}
+  (H \ast K) \times (H \ast K) \to H \ast K, \quad (w_1,w_2) \mapsto R(w_1w_2)
+\end{align*}
+\end{dfn}
+As the name implies, it is the coproduct in the category $\Grp$.
+

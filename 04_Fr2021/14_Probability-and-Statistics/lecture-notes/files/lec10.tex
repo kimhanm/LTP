@@ -51,6 +51,16 @@ It's density is given by
 \end{empheq}
 the distribution function $F$ doesn't have a closed form but has a quite distinct look.
 
+
+\begin{lem}[]
+  Let $X_{1}, \ldots, X_{n} \stackrel{\text{i.i.d.}}{\sim} \mathcal{N}(\mu,\sigma^{2})$.
+  For $\overline{X} = \frac{1}{n} \sum_{i=1}^{n}X_i$, we can obtain the normalisation
+  \begin{align*}
+    \frac{\overline{X} - \E[\overline{X}]}{\sqrt{\variance(\overline{X}]}} \sim \mathcal{N}(0,1)
+  \end{align*}
+\end{lem}
+
+
 Not all continuous random variables are absolutely continous.
 Take for example the P-space of $0-1$ experiments with parameter $p \in [0,1]$.
 

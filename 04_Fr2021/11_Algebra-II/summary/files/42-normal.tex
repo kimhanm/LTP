@@ -1,0 +1,174 @@
+\subsection{Normal Field extensions}
+
+
+\begin{dfn}[]
+  A field extension $E/k$ is called \textbf{normal}, if $E$ the splitting field of some polynomial $f \in  k[X]$.
+\end{dfn}
+
+\begin{prop}[]
+  Let $L = k(\alpha_{1}, \ldots, \alpha_{n})$ and $\overline{L}$ an algebraic closure of $L$.
+  Then the following are equivalent
+  \begin{enumerate}
+    \item $L$ is normal
+    \item For ally $\alpha \in L$, the minimal polynomial $\irr(\alpha,k)$ splits over $L$.
+    \item The minimal polynomial of all $\alpha_i$ splits over $L$
+    \item For $\phi \in \Hom(L,\overline{L})$ with $\phi|_k = \id_k$ it holds $\phi(L) \subseteq L$
+    \item For $\phi \in \Hom(L,\overline{L})$ with $\phi|_k = \id_k$ it holds $\phi(L) = L$
+    \item Every irreducible polynomial in $k[X]$ with one root in $L$ splits over $L$
+  \end{enumerate}
+\end{prop}
+
+\begin{itemize}
+  \item $\Q(\sqrt[3]{2})/\Q$ is not normal. Because $X^{3} -2$, has a root, but doesn't split.
+\end{itemize}
+
+
+\begin{prop}[]
+Let $B/E/K$ be algebraic extensions. Then
+\begin{align*}
+  B/k \text{ normal } \implies B/E \text{ normal}
+\end{align*}
+\end{prop}
+Other implications are not true. Take for example
+\begin{align*}
+  \Q(\sqrt[3]{2},e^{\frac{2 \pi i}{3}})/\Q(\sqrt[3]{2})/\Q
+\end{align*}
+shows that $E/k$ is not normal.
+
+The tower
+\begin{align*}
+  \Q(\sqrt[4]{2})/\Q(\sqrt[2]{2})/\Q
+\end{align*}
+has $B/E$ and $E/k$ normal (with $X^{2} -2$ and $X^{2} - \sqrt{2}$, but $B/k$ is not normal.
+
+
+
+\begin{dfn}[]
+  Let $k$ be a field and $H \subseteq \Aut(k)$ a subset.
+  The \textbf{fixing field} (Fixkörper) of $H$ is
+  \begin{align*}
+    k^{H} := \{x \in k \big\vert \sigma(x) = x \quad \forall  \sigma \in H\} \subseteq E
+  \end{align*}
+\end{dfn}
+The map $H \mapsto k^{H}$ is contravariant with respect to inclusion.
+For $E/k$, we always have $k \subseteq E^{\Gal(E/k)}$.
+
+\begin{dfn}[]
+  A finite field extension $L/k$ is called \textbf{Galois} (galoissch), if $L$ is the splitting field of a separable polynomial in $k[X]$.
+\end{dfn}
+
+\begin{prop}[]
+  Let $E/k$ be a finite field extension. 
+  Then the following are equivalent
+
+  \begin{enumerate}
+    \item $E/k$ is a Galois extension
+    \item $E/k$ is normal a separable extension.
+    \item $E^{\Gal(E/k)} = k$
+    \item $[E/k] = \abs{\Gal(E/k)}$
+  \end{enumerate}
+\end{prop}
+
+
+\begin{prop}[]
+  Given a tower $B/E/K$
+  \begin{align*}
+    B/k \text{ Galois } \implies B/E \text{ galois}
+  \end{align*}
+\end{prop}
+The counterexamples for the other implications are the same as for normal towers.
+
+
+\begin{dfn}[]
+For a group $G$ define the collection of subgroups of $G$
+\begin{align*}
+  \text{Sub}(G) := \{H \text{ group} \big\vert H < G\}
+\end{align*}
+Fr a field extension $E/k$ define the collection of intermediate fields
+\begin{align*}
+  \text{Int}(E/k) := \{B \text{ field} \big\vert E/B/k\}
+\end{align*}
+\end{dfn}
+
+
+\begin{thm}[Galois Correspondence]
+  Let $E/k$ be a finite Galois extension.
+  \begin{enumerate}
+    \item There are bijective maps (that are contravariant with respect to inclusion)
+      \begin{align*}
+        \text{Sub}(\Gal(E/k)) &\leftrightarrow \text{Int}(E/k)\\
+        H &\mapsto  E^{H}\\
+        B &\mapsfrom \Gal(E/B)
+      \end{align*}
+    \item $B \in \text{Int}(E/k)$ is Galois if and only if $\Gal(E/B)$ is a normal subgroup of $\Gal(E/k)$. 
+      If that is the case, then
+      \begin{align*}
+        \faktor{\Gal(E/k)}{\Gal(E/B)} \iso \Gal(B/k)
+      \end{align*}
+  \end{enumerate}
+\end{thm}
+
+\begin{ex}[]
+  For the finite galois extension $E/k :=\Q(\sqrt[3]{2},\zeta_3)/\Q$. Find all intermediate fields.
+
+  To do so, set
+  \begin{align*}
+    a_1 := \sqrt[3]{2}, a_2 := \zeta_3 \sqrt[3]{2}, a_3 := \zeta_3^{2} \sqrt[3]{2}
+  \end{align*}
+  and let $T$ be complex conjugation, $R$ multiplication with $\zeta_3$.
+  We already know that
+  $\Gal(E/k) = \scal{T,R} \iso D_3$
+
+  \begin{center}
+  \begin{tikzcd}[column sep=0.6em] %\arrow[bend right,swap]{dr}{F}
+    && \{e\} 
+    \arrow[hook,swap,color=orange]{dll}{2}
+    \arrow[hook,swap,color=orange]{dl}{2}
+    \arrow[hook,color=orange]{d}{2}
+    \arrow[hook,color=orange]{ddr}{3}
+    \\
+    \scal{T}
+    \arrow[hook]{ddrr}{3}
+    & \scal{T,R}
+    \arrow[hook]{ddr}{3}
+    & \scal{T,R^{2}}
+    \arrow[hook]{dd}{3}
+    \\
+    &&& \scal{R}
+    \arrow[hook,swap,color=orange]{dl}{2}
+    \\
+    && \Gal(E/k)
+  \end{tikzcd}
+  \end{center}
+  and the corresponding diagram for the fixing fields is given by
+  \begin{center}
+  \begin{tikzcd}[column sep=0.8em] %\arrow[bend right,swap]{dr}{F}
+   &&\Q(\sqrt[3]{2},\zeta_3)
+   \\
+   \Q(\sqrt[3]{2})
+   \arrow[hook,color=orange]{urr}{2}
+   &
+   \Q(\zeta_3,\sqrt[3]{2})
+   \arrow[hook,color=orange]{ur}{2}
+   &
+   \Q(\zeta_3^{2},\sqrt[3]{2})
+   \arrow[hook,color=orange]{u}{2}
+   \\
+   &&& \Q(\zeta_3)
+   \arrow[hook,color=orange]{uul}{3}
+   \\
+   && \Q
+   \arrow[hook]{uull}{3}
+   \arrow[hook]{uul}{3}
+   \arrow[hook]{uu}{3}
+   \arrow[hook,color=orange]{ur}{2}
+  \end{tikzcd}
+  \end{center}
+  where the coloured morphisms are the normal subgroup inclusions, or the Galois extensions, respectively.
+
+  Where the numbers are the index of the subgroups, or the degree of the field extension.
+\end{ex}
+
+
+
+
