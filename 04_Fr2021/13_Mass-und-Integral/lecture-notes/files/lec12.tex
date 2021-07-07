@@ -3,46 +3,118 @@ For $s \geq 0$, $\mathcal{H}^{s}$ is a Borel regular measure on $\R^{n}$
 \end{thm}
 \begin{proof}
   Let $s \geq 0$. 
-  We first prove that it is a meausre.
-  Clearly, $\mathcal{H}^{s}(\emptyset) = 0$.
-  Let $(A_k)_{k \in \N}$ and $A \subseteq \bigcup_{k=1}^{\infty}A_k$.
-  Since $\mathcal{H}_{\delta}^{s}$ is $\sigma$-subadditive for all $\delta > 0$, we get
-  \begin{align*}
-    \mathcal{H}_{\delta}^{s}(A)\leq \sum_{k}\mathcal{H}_{\delta}^{s}(A_k) \leq \sum_{k}\mathcal{H}^{s}(A_k)
-  \end{align*}
-  by taking the limit (in the definition of $\mathcal{H}^{s}$) we get the $\sigma$-subadditivity of $\mathcal{H}^{s}$.
-
-  To show that it is Borel, we just show that it is metric.
-  Let $A,B \subseteq \R^{n}$ such that $\delta_0 := \text{dist}(A,B) > 0$.
-  We then take a covering $A \cup B$ of balls of size smaller than $\delta := \tfrac{\delta_0}{4}$ and claim that we can partition the covering into two non-overlapping coverings of $A$ and $B$ each.
+  \begin{enumerate}[{(}i{)}]
+    \item $\bm{\Hau^{s}}$ \textbf{is a measure.}
+      Clearly, $\mathcal{H}^{s}(\emptyset) = 0$.
+      Let $(A_k)_{k \in \N}$ and $A \subseteq \bigcup_{k=1}^{\infty}A_k$.
+      Since $\mathcal{H}_{\delta}^{s}$ is $\sigma$-subadditive for all $\delta > 0$, we get
+      \begin{align*}
+        \mathcal{H}_{\delta}^{s}(A)\leq \sum_{k}\mathcal{H}_{\delta}^{s}(A_k) \leq \sum_{k}\mathcal{H}^{s}(A_k) \quad \forall  \delta > 0
+      \end{align*}
+      by taking the limit $\delta \to  0$ (as in the definition of $\mathcal{H}^{s}$) we get the $\sigma$-subadditivity of $\mathcal{H}^{s}$.
 
 
-  Since $\mathcal{H}_{\delta}^{s}$ takes the infimum over all such coverings, suppose that $A \cup B = \bigcup_{k}B(x_k,r_k)$ with $r_k < \delta$.
-  Then we set
-  \begin{align*}
-    \mathcal{A} = \{B(x_k,r_k) \big\vert B(x_k,r_k) \cap A \neq \emptyset\}
-    \mathcal{B} = \{B(x_k,r_k) \big\vert B(x_k,r_k) \cap B \neq \emptyset\}
-  \end{align*}
-  And it becomes obvious that 
-  these are non-overlapping coverings of $A$ and $B$ each (by using the triangle inequality).
-
-  Therefore, we get
-  \begin{align*}
-    \mathcal{H}_{\delta}^{s}(A) + \mathcal{H}_{\delta}^{s}(B) \leq \sum_{k}r_k^{s}
-  \end{align*}
-  and taking the infimum of coverings of $A \cup B$, this means
-  \begin{align*}
-    \mathcal{H}_{\delta}^{s}(A \cup B) \geq \mathcal{H}_{\delta}^{s}(A) + \mathcal{H}_{\delta}^{s}(B) 
-  \end{align*}
-  which, when taking the limit $\delta \to 0$ just states $\mathcal{H}^{s}(A \cup B) \geq \mathcal{H}^{s}(A) + \mathcal{H}^{s}(B)$.
-  By ($\sigma$)-subadditivity of $\mathcal{H}^{s}$, the reverse inequality holds and so $\mathcal{H}^{s}(A \cup B) = \mathcal{H}^{s}(A) + \mathcal{H}^{s}(B)$ shows that $\mathcal{H}^{s}$ is metric and thus also Borel.
-
-  For Borel regularity, let $A \subseteq \R^{n}$ and suppose $\mathcal{H}^{s}(A) < \infty$ (Otherwise, just take $B = \R^{n}$).
-  By monotonicity of $\mathcal{H}_{\delta}^{s}$, this also means that $\mathcal{H}_{\delta}^{s}(A) < \infty$ for all $\delta > 0$.
-
-  For $\delta = \tfrac{1}{l}$ 
+    \item $\bm{\Hau^{s}}$ \textbf{is metric and therefore Borel.}
+      The proof is more or less the same as for the Lebesgue-Stieltjes measure.
+      Let $A,B \subseteq \R^{n}$ such that $\delta_0 := \text{dist}(A,B) > 0$.
+      We then take a covering $A \cup B$ of balls of size smaller than $\delta := \tfrac{\delta_0}{4}$ and claim that we can partition the covering into two non-overlapping coverings of $A$ and $B$ each.
 
 
+      Since $\mathcal{H}_{\delta}^{s}$ takes the infimum over all such coverings, suppose that $A \cup B = \bigcup_{k}B(x_k,r_k)$ with $r_k < \delta$.
+      Then we set
+      \begin{align*}
+        \mathcal{A} = \{B(x_k,r_k) \big\vert B(x_k,r_k) \cap A \neq \emptyset\}
+        \mathcal{B} = \{B(x_k,r_k) \big\vert B(x_k,r_k) \cap B \neq \emptyset\}
+      \end{align*}
+      And it becomes obvious that 
+      these are non-overlapping coverings of $A$ and $B$ each (by using the triangle inequality).
 
+      Therefore, we get
+      \begin{align*}
+        \mathcal{H}_{\delta}^{s}(A) + \mathcal{H}_{\delta}^{s}(B) \leq \sum_{k}r_k^{s}
+      \end{align*}
+      and taking the infimum of coverings of $A \cup B$, this means
+      \begin{align*}
+        \mathcal{H}_{\delta}^{s}(A \cup B) \geq \mathcal{H}_{\delta}^{s}(A) + \mathcal{H}_{\delta}^{s}(B) 
+      \end{align*}
+      which, when taking the limit $\delta \to 0$ just states $\mathcal{H}^{s}(A \cup B) \geq \mathcal{H}^{s}(A) + \mathcal{H}^{s}(B)$.
+      By ($\sigma$)-subadditivity of $\mathcal{H}^{s}$, the reverse inequality holds and so $\mathcal{H}^{s}(A \cup B) = \mathcal{H}^{s}(A) + \mathcal{H}^{s}(B)$ shows that $\mathcal{H}^{s}$ is metric and thus also Borel.
+
+    \item $\bm{\Hau^{s}}$ \textbf{is Borel regular.}
+      Again, the proof follows the same structure as in the proof for the Lebesgue-Stieltjes measure.
+      Let $A \subseteq \R^{n}$ and suppose $\mathcal{H}^{s}(A) < \infty$ (Otherwise, just take $B = \R^{n}$).
+      By monotonicity of $\mathcal{H}_{\delta}^{s}$, this also means that $\mathcal{H}_{\delta}^{s}(A) < \infty$ for all $\delta > 0$.
+
+      For $\delta = \tfrac{1}{m}, m = 1, 2, \ldots$, this gives us a covering $\bigcup_{k\in I}B(x_{k,m}, r_{k,m}) \supseteq A$ with $r_{k,m} < \frac{1}{m}$ and 
+    \begin{align*}
+      \sum_{k \in I}r_{k,m}^{s} \leq \Hau_{\frac{1}{m}}^{s}(A) + \frac{1}{m}
+    \end{align*}
+    Then set $A_m := \bigcup_{k \in I}B(x_{k,m},r_{k,m})$ and $B = \cap_{m=1}^{\infty} A_m$.
+    Then $B$ is a Borel set containing $A$.
+
+    Which by monotonicity of $\Hau_{\frac{1}{m}}^{s}$ lets us sandwich
+    \begin{align*}
+      \Hau_{\frac{1}{m}}^{s}(A)
+      &\leq \Hau_{\frac{1}{m}}^{s}(B) 
+      \leq \Hau_{\frac{1}{m}}^{s}(A_m) \leq \sum_{k \in I}r_{k,l}^{s}\\
+      &\leq \Hau_{\frac{1}{m}}^{s}(A) + \frac{1}{m}
+    \end{align*}
+    so in the limit $m \to \infty$, we get $\Hau^{s}(B) = \Hau^{s}(A)$.
+  \end{enumerate}
 \end{proof}
 
+In the example, where we calculated $\Hau^{s}(\mathbb{S}^{1})$, we saw that
+\begin{align*}
+  \Hau^{0}(A) = \infty, \quad \Hau^{1}(A) = \pi, \quad \Hau^{2}(A) = 0
+\end{align*}
+The following Lemma proves the general pattern.
+
+\begin{lem}[] \label{lem:hausdorff-dimension}
+  Let $A \subseteq \R^{n}$ and $0 \leq s < t < \infty$.
+  Then
+  \begin{enumerate}
+    \item $\Hau^{s}(A) < \infty \implies \Hau^{t}(A) = 0$
+    \item $\Hau^{t}(A) > 0 \implies \Hau^{s}(A) = \infty$
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+  Since (b) is just the contraposition of (a), it's enough to prove (a).
+
+  Let $0 \leq s < t \in \R$ and $A \subseteq \R^{n}$ with $\Hau^{s}(A) < \infty$.
+
+  For any covering $A \subseteq \bigcup_{k \in I}B(x_k,r_k)$ with $r_k < \delta$, we have
+  \begin{align*}
+    \Hau_{\delta}^{t}(A) \leq \sum_{k \in I}r_k^{t} = \sum_{k \in I}r_k^{t-s} r_k^{s} \leq \delta^{t-s} \sum_{k \in I}r_k^{s}
+  \end{align*}
+  Considering the infimum over all such coverings we get
+  \begin{align*}
+    \Hau_{\delta}^{t}(A) \leq \delta^{t -s} \Hau_{\delta}^{s}(A)
+  \end{align*}
+  so as $\delta \to  0$, we get $\Hau^{t}(A) = 0$.
+\end{proof}
+
+
+This Lemma makes the definition of ``dimension'' possible.
+\begin{dfn}[]
+  The \textbf{Hausdorff dimension} of a subset $A \subseteq \R^{n}$ is defined as 
+  \begin{empheq}[box=\bluebase]{align*}
+    \dim_{\Hau}(A) := \inf \{s \geq 0 \big\vert \Hau^{s}(A) = 0\}
+  \end{empheq}
+\end{dfn}
+Equivalently, we could have defined it as
+\begin{align*}
+  \dim_{\Hau}(A) := \sup \{t \geq 0 \big\vert \Hau^{t}(A) = \infty\}
+\end{align*}
+
+
+\begin{ex}[]\label{ex:unit-cube}
+  Let $Q = [-1,1]^{n} \subseteq \R^{n}$.
+  Then
+  
+  \begin{align*}
+    2^{-n}\Leb^{n}(Q) \leq \Hau^{n}(Q) \leq 2^{-n} n^{\frac{n}{2}}(Q)
+  \end{align*}
+\end{ex}
+\begin{proof}
+  \texttt{Missing}
+\end{proof}

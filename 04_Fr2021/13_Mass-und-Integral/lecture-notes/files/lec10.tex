@@ -13,21 +13,12 @@ For $a,b$ we define
   \end{array} \right.
 \end{align*}
 
-Because the collection of half-open sets
+Because the collection of bounded half-open sets
 $
   \mathcal{K} = \{[a,b)\big\vert a,b \in \R\}
 $
-does not form an Algebra\footnote{
-  The collection of finite disjoint unions
-  \begin{align*}
-    \tilde{\mathcal{K}} = \left\{
-      \bigsqcup_{k=1}^{\infty} [a_k,b_k) \big\vert m \geq 1 \in \N, a_k,b_k \in \R
-    \right\}
-  \end{align*}
-  forms a \textbf{Ring}. 
-  That is: $\emptyset \in \tilde{\mathcal{K}}$ and $A,B \in \tilde{\mathcal{K}} \implies A \cap B, A \cup B \in \tilde{\mathcal{K}}$
-
-}, we cannot use the Carathéodory-Hahn extension theorem to produce a measure induced by $\lambda_F$.
+does not form an Algebra (see \ref{rem:half-open-ring}), 
+we cannot use the Carathéodory-Hahn extension theorem to produce a measure induced by $\lambda_F$.
 
 However, $\mathcal{K}$ constitutes a covering of $\R$ as in Definition \ref{dfn:covering},
 so by Theorem \ref{thm:cover-to-measure}, the function $\lambda_F$ induces a measure
@@ -155,7 +146,9 @@ By subadditivity, the inequality ``$\geq$'' is sufficient.
   The Lebesgue-Stieltjes measure $\Lambda_F$ is Borel regular.
 \end{thm}
 \begin{proof}
-  To show that it is Borel, we show that it is metric and use the previous theorem, so let $A,B \subseteq \R$ with $\delta := \text{dist}(A,B) > 0$.
+  \begin{enumerate}[{(}i{)}]
+    \item $\bm{\Lambda_F}$ \textbf{is Borel.}
+  We show that it is metric and use the previous theorem, so let $A,B \subseteq \R$ with $\delta := \text{dist}(A,B) > 0$.
   We now show that for all $\epsilon > 0$ we have
   \begin{align*}
     \Lambda_F(A) + \Lambda_F(B) \leq \Lambda_F(A \cup B) + \epsilon
@@ -184,16 +177,103 @@ By subadditivity, the inequality ``$\geq$'' is sufficient.
   \end{align*}
   This shows that $\Lambda_F$ is metric and thus Borel.
 
+  \item $\bm{\Lambda_F}$ \textbf{is Borel regular.}
+
   To show that $\Lambda_F$ is Borel regular, let $A \subseteq \R$.
   Of course we can assume $\Lambda_F(A) < \infty$.
   Then for any $n \in \N$ we can find coverings 
   \begin{align*}
-    A \subseteq \bigcup_{k=1}^{\infty} [a_k^{(n)},b_k^{(n)}) =: B_n \quad \text{with} \quad \sum_{k=1}^{\infty} \lambda_F([a_k^{(n)},b_k^{(n)})) \leq \Lambda_F(A) + \frac{1}{n}
+    A \subseteq \bigcup_{k=1}^{\infty} \left[a_k^{(n)},b_k^{(n)}\right) =: B_n 
+    \quad \text{with} \quad 
+    \sum_{k=1}^{\infty} \lambda_F\left(\left[a_k^{(n)},b_k^{(n)}\right)\right) \leq \Lambda_F(A) + \frac{1}{n}
   \end{align*}
   If we set $B := \bigcap_{n=1}^{\infty}B$, then $B$ is Borel and $A \subseteq B \subseteq B_n$ and 
   \begin{align*}
-    \Lambda_F(A) \leq \Lambda_F(B) \leq \Lambda_F(B_n) \leq \sum_{k=1}^{\infty}\lambda_F([a_k^{(n)},b_k^{(n)})) \leq \Lambda_F(A) + \frac{1}{n}
+    \Lambda_F(A) \leq \Lambda_F(B) \leq \Lambda_F(B_n) 
+    \leq 
+    \sum_{k=1}^{\infty}\lambda_F\left(\left[a_k^{(n)},b_k^{(n)}\right)\right) \leq \Lambda_F(A) + \frac{1}{n}
   \end{align*}
-  in the limit $n \to \infty$, we get $\Lambda_F(A) = \Lambda_F(B)$.
+  in the limit $n \to \infty$, we get $\Lambda_F(A) = \Lambda_F(B)$, so $\Lambda_F$ is Borel regular.
+  \end{enumerate}
 \end{proof}
 
+
+The Carathéodory-Hahn extension had the property that it coincided with the pre-measure on the algebra, on which the pre-measure was defined.
+Despite not being such an extension, the Lebesgue-Stieltjes measure has a similar property.
+
+\begin{thm}[]
+For $a<b \in \R$ it holds
+\begin{align*}
+  \Lambda_F \left(
+    [a,b)
+  \right)
+  = \lambda_F\left(
+    [a,b)
+  \right)
+  = F(b) - F(a)
+\end{align*}
+\end{thm}
+\begin{proof}
+  Let $a<b \in \R$. By definition of $\Lambda_F$, we already have $\Lambda_F([a,b)) \leq \lambda_F([a,b))$.
+
+  For the other inequality, let $\left(
+    [a_k,b_k)
+  \right)_{k \in \N}$ be a covering of $[a,b)$.
+
+  Since $F$ is left-continuous, for every $\epsilon> 0$ there exist $\delta, \delta_k > 0$ such that
+  \begin{align*}
+    F(b) - F(b - \delta) \leq \epsilon, \quad \text{and} \quad F(a_k) - F(a_k - \delta_k) \leq 2^{-k} \epsilon \quad \forall k \in \N
+  \end{align*}
+  Because $[a, b - \delta]$ is compact and is covered by $\bigcup_{k=0}^{\infty}(a_k - \delta_k,b_k)$, there exists a finite subcovering
+  \begin{align*}
+    [a, b- \delta] \subseteq \bigcup_{k=0}^{m}(a_k - \delta_k, b_k)
+  \end{align*}
+  By removing any redundant intervals, we can decrease the sum $\sum_{k=0}^{m} \lambda_F(a_k - \delta_k,b_k)$, so we can assume WLOG that they are ordered in such a way that 
+  \begin{align*}
+    a_k - \delta_k < b_{k-1} \quad \text{for all} \quad k = 1, \ldots, m
+  \end{align*}
+  
+  Since $F$ is increasing and $a_0 - \delta_0 < a < b < b_m$, we have
+  \begin{align*}
+    %\lambda_F([a, b - \delta)) 
+    %&=
+    F(b- \delta) - F(a) 
+    &\leq F(b_m) - F(a_0 - \delta_0)\\
+    &\leq F(b_m) 
+    - F(a_1 - \delta_1) 
+    + F(b_0)
+    - F(a_0 - \delta_0)\\
+    &\leq \ldots \leq
+    \sum_{k=0}^{m}F(b_k) - F(a_k - \delta_k)
+  \end{align*}
+  so with the initial estimates, we have
+  \begin{align*}
+    \lambda_F([a,b)) 
+    &= F(b) - F(a)
+    =
+    F(b) - F(b - \delta) + F(b - \delta) - F(a)\\
+    &\leq \epsilon + \sum_{k=0}^{m} F(b_k) - F(a_k - \delta_k)\\
+    &= \epsilon + \sum_{k=0}^{m} F(b_k) - F(a_k) + \sum_{k=0}^{m} F(a_k) - F(a_k - \delta_k)\\
+    &\leq \epsilon + \sum_{k=0}^{\infty}F(b_k) - F(a_k) + \sum_{k=0}^{\infty} 2^{-k} \epsilon\\
+    &= \sum_{k=0}^{\infty} \lambda_F([a_k,b_k)) + 3 \epsilon
+  \end{align*}
+  Since this is true for all coverings $([a_k,b_k))_{k \in \N}$, we get in the limit $\epsilon \to 0$
+  \begin{align*}
+    \lambda_F([a,b)) \leq \Lambda_F([a,b))
+  \end{align*}
+\end{proof}
+
+
+\begin{ex}[]
+\phantom{a}
+\begin{itemize}
+  \item The Lebesgue measure is the special case when $F(x) = x$, so $\Lambda_{\id_{\R}} = \Leb^{1}$
+  \item The Dirac measure $\delta_0$ from Example \ref{ex:dirac-counting-indiscrete} is the Lebesgue-Stieltjes measure $\Lambda_{\Theta}$ for the Heaviside step function
+    \begin{align*}
+      \Theta(x) = \left\{\begin{array}{ll}
+        1 & x > 0\\
+        0 & x \leq 0
+      \end{array} \right.
+    \end{align*}
+\end{itemize}
+\end{ex}

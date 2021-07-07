@@ -49,8 +49,13 @@
 \usepackage{xcolor}
 \usepackage{stmaryrd}
 
-\let\oldphi\phi % \oldphi for ugly phi
-\let\phi\varphi % \phi is curly phi
+% use curly \phi, \epsilon as default
+\let\tmpvar\phi 
+\let\phi\varphi 
+\let\varphi\tmpvar
+\let\tmpvar\epsilon 
+\let\epsilon\varepsilon
+\let\varepsilon\tmpvar
 
 % ==== Graphics ====
 \usepackage{graphicx}
