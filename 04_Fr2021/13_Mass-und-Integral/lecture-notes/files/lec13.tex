@@ -196,7 +196,7 @@ For every $\mu$-measurable set $A \subseteq \R^{n}$ it holds
           \mu(D_k \cap A) - \mu(C_k) \leq \frac{1}{2^{k}}
         \end{align*}
         Because $\left(
-          \bigcup_{k=1}^{m}
+          \bigcup_{k=1}^{m}C_k
         \right)_{m \in \N}$ is an increasing sequence, we can use continuity from below and the fact that measures are $\sigma$-additive on the $\sigma$-algebra of $\mu$-measurable sets
         \begin{align*}
           \lim_{m \to \infty} \mu \left(
@@ -211,15 +211,15 @@ For every $\mu$-measurable set $A \subseteq \R^{n}$ it holds
           &\geq \sum_{k=1}^{\infty} \mu(D_k \cap A) - \frac{1}{2^{k}}\\
           &= \mu(A) - 1 = \infty
         \end{align*}
-
-        %Since $\bigcup_{k=1}^{m}C_k$ is closed for all $m$
-
-
-
-        
+        This shows that
+        \begin{align*}
+          \sup \{\mu(C) \big\vert C \subseteq A \text{ closed }\big\vert\} = \infty = \mu(A)
+        \end{align*}
+        and by a similar argument as in the first case (writing $\mu(C) = \lim_{m \to \infty} \mu(C \cap \overline{B}(0,m))$) we get
+        \begin{align*}
+          \mu(A) = \sup\{\mu(K) \big\vert K \subseteq A \text{ compact}\}
+        \end{align*}
     \end{enumerate}
-
-
 \end{enumerate}
 \end{proof}
 
