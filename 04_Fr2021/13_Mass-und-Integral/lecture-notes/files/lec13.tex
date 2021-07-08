@@ -1,2 +1,226 @@
 \subsubsection*{Examples of non-integer Hausdorff-dimension sets}
 
+There is a famous problem of finding out what the coast-line length of England is.
+The problem is that depending on how many knicks and bumps in the coast-line we count, the length gets longer and longer.
+
+Although it seems to be a bit counter-intuitive that a coast-line does not have a length, it isn't as unbelievable as it seems, because this is exactly what happened when we tried to measure $\Hau_{\delta}^{0}(\mathbb{S}^{1})$.
+The more and more we decreased $\delta$, the harder it became to cover all points, so in the limit $\delta \to 0$, we found that $\Hau^{0}(\mathbb{S}^{1}) = \infty$.
+
+What this points to is that the coast-line must have some Hausdorff dimension $\dim_{\Hau}(A) > 1$.
+
+
+\begin{ex}[Triadic Cantor Set]
+  When talking about the Lebesgue, we found that the Triadic Cantor set $C$ was an example of an uncountable set with $\Leb^{1}$-measure zero (see \ref{prop:triadic-cantor-set})
+
+  First we note that if we strech a set $A \subseteq \R^{n}$ by some factor $\lambda > 0\R$, then
+  \begin{align*}
+    \Hau^{s}(\lambda \cdot A) = \lambda^{s} \Hau^{s}(A), \quad \forall s > 0
+  \end{align*}
+  If we let $d := \Hau^{d}(C)$, then we can take two copies of $\frac{1}{3} \cdot C$ and when we put them back together, we obtain $C$ again. So
+  \begin{align*}
+    \Hau^{d}(C) = 2 \Hau^{d}\left(
+      \frac{1}{3} \cdot C
+    \right)
+    = \frac{2}{3^{d}} \Hau^{d}(C)
+  \end{align*}
+  which gives us the result
+  \begin{align*}
+    d = \log_3 2 = \frac{\ln 2}{\ln 3}
+  \end{align*}
+\end{ex}
+
+
+\begin{ex}[Cantor Dust]
+\texttt{Missing}
+\end{ex}
+
+
+\begin{ex}[The Koch Curve]
+\texttt{Missing}
+\end{ex}
+
+
+
+
+
+\subsection{Radon Measures}
+
+\begin{dfn}[]
+  A measure $\mu$ on $\R^{n}$ is called a \textbf{Radon} measure, if $\mu$ is Borel regular and $\mu(K) < \infty$ for every compact $K \subseteq \R^{n}$.
+\end{dfn}
+
+\begin{ex}[]
+\phantom{a}
+\begin{itemize}
+  \item $\Leb^{n}$ is a Radon measure on $\R^{n}$
+  \item $\Hau^{s}$ for $s < n$ is not a Radon measure.
+  \item The Dirac measure $\delta_0$ is a Radon measure.
+  \item If $\mu$ is Borel regular and $A \subset \R^{n}$ is $\mu$-measurable with $\mu(A) < \infty$, then the restriction measure
+    \begin{align*}
+      (\mu \mres A)(B) := \mu(A \cap B)
+    \end{align*}
+    is a Radon measure.
+\end{itemize}
+\end{ex}
+
+We wish to show that for Radon measure, an analogous to Theorem \ref{thm:leb-characterisation} holds.
+For this we need the following Lemma:
+
+
+\begin{lem}[]
+Let $\mu$ be a Radon measure.
+For every $\mu$-measurable set $A \subseteq \R^{n}$ it holds
+\begin{align*}
+  \forall  \epsilon > 0\ \exists U \supseteq A, U \text{ open such that } \mu(U \setminus A) < \epsilon \tag{$\ast$}
+\end{align*}
+\end{lem}
+\begin{proof}[Proof Sketch]
+
+  For the full proof, see Prof. Michael Struwe's notes ``Analysis III -- Mass und Integral''
+
+  We only show that WLOG, $A$ is a Borel set. Let $A,\mu,\epsilon$ as above.
+
+  Since $\mu$ is Borel-regular, there exists a Borel set $B \supseteq A$ with $\mu(B) = \mu(A)$.
+  By $\mu$-measurability of $A$:
+  \begin{align*}
+    \mu(A) =
+    \mu(B) = \mu(\underbrace{B \cap A}_{=A}) + \mu(B \setminus A) \implies \mu(B \setminus A) = 0
+  \end{align*}
+  Now assume that the Lemma is true for Borel sets, so there exists an open set $U \supseteq B$ with $\mu(U \setminus B) < \epsilon$.
+  
+  Since Borel sets are also $\mu$-measurable, we apply the Carathéodory criterion on the test set $U \setminus A$ to get
+  \begin{align*}
+    \mu(U \setminus A) 
+    &= \mu((U \setminus A) \cap B) + \mu((U \setminus A) \setminus B)\\
+    &= \mu(B \setminus A) + \mu(U \setminus B) < \epsilon
+  \end{align*}
+
+
+  For the rest, set
+  \begin{align*}
+    \mathcal{G} := \{B \subseteq \R^{n} \big\vert B \text{ Borel}, (\ast) \text{ is true for $B$}\}
+  \end{align*}
+  and show that $\mathcal{G}$ contains the Borel algebra $\mathcal{B}$.
+  To do so, we proceed as follows
+  \begin{itemize}
+    \item $\mathcal{G}$ contains all the open sets.
+    \item $\mathcal{G}$ is closed under countable inclusion.
+    \item $\mathcal{G}$ is closed under countable intersection.
+    \item It therefore contains all closed sets.
+  \end{itemize}
+  Then we set
+  \begin{align*}
+    \mathcal{F} = \{B \subseteq \R^{n} \big\vert B \in \mathcal{G}, \text{ or } B^{c} \in \mathcal{G}\}
+  \end{align*}
+  Using de Morgan's rule, we see that 
+  $\mathcal{F}$ is a $\sigma$-algebra that contains all open sets.
+\end{proof}
+
+\begin{thm}[Approximation by open and compact sets]
+  Let $\mu$ be a Radon measure on $\R^{n}$.
+  \begin{itemize}
+    \item For every $A \subseteq \R^{n}$ it holds
+      \begin{align*}
+        \mu(A) = \inf \{\mu(U): A \subseteq U, U \text{ open}\}
+      \end{align*}
+    \item For every $A \subseteq \R^{n}$ $\mu$-measurable it holds
+      \begin{align*}
+        \mu(A) = \sup \{\mu(K): K \subseteq A, K \text{ compact}\}
+      \end{align*} 
+  \end{itemize}
+\end{thm}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}
+  \item Suppose $\mu(A) < \infty$ (or else take $U = \R^{n})$.
+
+    We first show it assuming that $A$ is $\mu$-measurable.
+    Since for all $\epsilon >0$ there exists an open set $U \supseteq A$ with $\mu(U \setminus A) < \epsilon$.
+    By $\mu$-measurablility of $A$, we have
+    \begin{align*}
+      \mu(U) = \mu(U \cap A) + \mu(U \setminus S) = \mu(A) + \epsilon
+    \end{align*}
+
+    Now let $A$ be an arbitrary set. Since $\mu$ is Borel regular, there exists a Borel set $B \subseteq A$ with $\mu(A) = \mu(B)$. Then
+    \begin{align*}
+      \mu(A) = \mu(B)
+      &= \inf \{\mu(U), B \subseteq U \text{ open}\}\\
+      &\geq \inf \{\mu(U), A \subseteq U \text{ open}\}
+    \end{align*}
+  \item Let $A$ be $\mu$-measurable. We consider two cases:
+    \begin{enumerate}
+      \item[$\mu(A) < \infty:$]
+        Set $\nu := \mu \mres A$, which is also a Radon measure.
+        By applying (a) on the set $\R^{n} \setminus A$ , for all $\epsilon > 0$ there exists an open set $U$ with $\R^{n} \setminus A \subseteq U$ and
+        \begin{align*}
+          \nu(U) \leq\footnote[4]{} \nu((\R^{n} \setminus A) \cap U) + \nu(\R^{n} \setminus U) = \mu((\R^{n} \setminus A) \cap A) + \epsilon = \epsilon
+        \end{align*}
+        Then the set $C := \R^{n} \setminus U$ is closed and is contained in $A$ and
+        \begin{align*}
+          \mu(A \setminus C) = \mu(A \cap (\R^{n} \setminus C)) = \nu(\R^{n} \setminus C) = \nu(G) < \epsilon
+        \end{align*}
+        Which gives
+        $\mu(A) \leq$\footnote[4]{
+        Since $\R^{n} \setminus A$ and $C$ are also $\mu$-measurable, we could also have used equality here.}
+        $\mu(C) + \epsilon$
+        and therefore
+        \begin{align*}
+          \mu(A) = \sup \{\mu(C)\big\vert C \subset A, C \text{ closed}\}
+        \end{align*}
+        Notice that for any closed set $C$ we can take the sequence of compact sets
+        \begin{align*}
+          C_m := C \cap \overline{B}(0,m) \implies \bigcup_{m \in \N} C_m = C
+        \end{align*}
+        and by continuity from below for $\mu$-measurable subsets, we also have $\mu(C) = \lim_{m \to \infty} \mu(C_m)$, which means
+        \begin{align*}
+          \forall  \epsilon > 0\ \exists m_0: m \geq m_0 \implies \mu(C) - \mu(C_m) < \epsilon
+        \end{align*}
+        And therefore 
+        \begin{align*}
+          \sup \{\mu(K) \big\vert K \subseteq A, K \text{ compact}\}
+          =
+          \sup \{\mu(C) \big\vert C \subseteq A, C \text{ closed } \}
+          = \mu(A)
+        \end{align*}
+
+
+      \item[$\mu(A) = \infty:$] In ths case, set $D_k := \{x \big\vert k-1 \leq \abs{x} < k\}$. These disjoint sets can be written as the union of a closed an an open set, and are thus Borel.
+        Moreover,
+        $A = \bigcup_{k=1}^{\infty}(D_k \cap A)$.
+
+        Because $D_k \cap A \subseteq \overline{D_k} \cap A$ and $\mu$ is Radon, $\mu(D_k \cap A) < \infty$.
+
+        But then we are in the first case, so there exists a closed set $C_k \subseteq D_k \cap A$ with
+        \begin{align*}
+          \mu(D_k \cap A) - \mu(C_k) \leq \frac{1}{2^{k}}
+        \end{align*}
+        Because $\left(
+          \bigcup_{k=1}^{m}
+        \right)_{m \in \N}$ is an increasing sequence, we can use continuity from below and the fact that measures are $\sigma$-additive on the $\sigma$-algebra of $\mu$-measurable sets
+        \begin{align*}
+          \lim_{m \to \infty} \mu \left(
+            \bigcup_{k=1}^{m}C_k
+          \right) 
+          &=
+          \mu \left(
+            \bigcup_{k=1}^{\infty}C_k
+          \right)
+          = \sum_{k=1}^{\infty} \mu(C_k)
+          \\
+          &\geq \sum_{k=1}^{\infty} \mu(D_k \cap A) - \frac{1}{2^{k}}\\
+          &= \mu(A) - 1 = \infty
+        \end{align*}
+
+        %Since $\bigcup_{k=1}^{m}C_k$ is closed for all $m$
+
+
+
+        
+    \end{enumerate}
+
+
+\end{enumerate}
+\end{proof}
+
+
