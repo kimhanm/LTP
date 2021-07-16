@@ -1,0 +1,256 @@
+
+Recall that when defining the Riemann integral in Analysis I/II, we started by defining the Integral of \emph{step functions} ``by hand'', which were functions that were constant when decomposing them into intervals.
+
+To define the Riemann integral of general types of functions, we defined the ``Ober- und Untersummen'', and if they coincided, took that as the value for the integral.
+
+Our approach will be slightly more general
+
+\begin{dfn}[]
+Given a subset $A \subseteq \R^{n}$, we define the \textbf{characteristic function} of the set $A$ as
+\begin{align*}
+  \chi_A: \R^{n} \to \R, \quad \chi_A(x) = \left\{\begin{array}{ll}
+      1 & \text{ if } x \in A\\
+     0 &  \text{ otherwise}
+  \end{array} \right.
+\end{align*}
+It's easy to see that $\chi_A$ is $\mu$-measurable if and only if $A$ is $\mu$-measurable.
+
+
+A \textbf{simple function} is a function of the form
+\begin{align*}
+  f(x) = \sum_{i=1}^{\infty} c_i \chi_{A_i}(x), \quad c_i \in \R, A_i \subseteq \R^{n}, A_i \text{ mutually disjoint}
+\end{align*}
+And if the $A_i$ are $\mu$-measurable, then $f$ is called a \textbf{$\bm{\mu}$-measurable simple function}.
+
+Equivalently, a function $f: \R^{n} \to  \R$ is a $\mu$-measurable simple function if and only if $f$ is $\mu$-measurable and the image of $f$ is a countable subset of $\R$.
+
+\end{dfn}
+
+
+The following theorem lets us decompose any non-negative $\mu$-measurable function into a simple function.
+\begin{thm}[]
+  Let $f: \Omega \to  [0,\infty]$ be $\mu$-measurable. Then there exist $\mu$-measurable sets $A_k \subseteq \Omega$ such that
+  \begin{align*}
+    f = \sum_{k=1}^{\infty} \frac{1}{k} \chi_{A_k}
+  \end{align*}
+\end{thm}
+\begin{proof}
+  We define the sets $A_k$ inductively, starting with
+  \begin{align*}
+    A_1 = \{x \in \Omega \big\vert f(x) \geq 1\} = f^{-1}[1, \infty]
+  \end{align*}
+  which is $\mu$-measurable. Then for all $k = 2,3, \ldots$, we define
+  \begin{align*}
+    A_k = \{x \in \Omega \big\vert \frac{1}{k} + \sum_{j=1}^{k-1} \frac{1}{j} \chi_{A_j}\}
+  \end{align*}
+  To show that this produces the function $f$, we show both inequalities in
+  \begin{align*}
+    f(x) = \sum_{k=1}^{\infty} \frac{1}{k} \chi_{A_k}(x)
+  \end{align*}
+  \begin{itemize}
+    \item[$\geq$:] If $\sup \{k \big\vert x \in A_k\} = \infty$, then 
+  \end{itemize}
+  \texttt{Missing Rest}
+\end{proof}
+
+\begin{prop}[]
+  Let $f: \Omega \to \R$ be continuous and $\mu$ a Borel measure.
+  Then $f$ is $\mu$-measurable.
+\end{prop}
+\begin{proof}
+  For any open set $U \subseteq \R^{n}$, $f^{-1}(U) = O \cap \Omega$ for some open set $O \subseteq \R^{n}$.
+
+  Since $\mu$ is Borel, $f^{-1}(U)$ is $\mu$-measurable.
+\end{proof}
+
+From now on, we will say that a statement holds ``$\mu$-a.e.'' or ``\textbf{almost everywhere with respect to $\mu$}'' to mean that the set $A$, for which the statement does not hold, has $\mu(A) = 0$.
+
+
+
+\subsection{Lusin's and Egoroff's Theorems}
+In this section, let $\mu$ be a Radon measure on $\R^{n}$.
+
+Consider for example the sequence of ($\Leb^{1}$-measurable) functions $(f_k: [0,1] \to \R)_{k \in \N}$ given by
+\begin{align*}
+  f_k = \chi_{A_k}, \quad \text{for} \quad A_{k} = \left(1 - \frac{1}{2^{k}},1\right)
+\end{align*}
+this sequence converges pointwise to the constant function $\bm{0}$, but not uniformly.
+
+However we can say that for any $\delta > 0$, it converges uniformly on the (compact) subset $A := [0,1 - \delta]$, which satisfies $\Leb^{1}([0,1] \setminus A) = \delta$.
+
+
+\begin{dfn}[]
+  Let $\Omega \subseteq \R^{n}$.
+  We say that a sequence of functions $(f_k: \Omega \to \overline{\R})_{k \in \N}$ \textbf{converges almost uniformly} on $\Omega$ to a function $f: \Omega \to \overline{\R}$,
+if for all $\delta > 0$ there exists a $\mu$-measurable subset $A \subseteq \Omega$ with $\mu(\Omega \setminus A) < \delta$ such that $(f_k)_{k \in \N}$ converges uniformly on $A$.
+That is:
+\begin{align*}
+  \sup_{x \in A} \abs{f_k(x) - f(x)} \to  0 \text{ as } k \to  \infty
+\end{align*}
+\end{dfn}
+
+
+\begin{thm}[Egoroff]
+  Let $\Omega \subseteq \R^{n}$ be $\mu$-measurable with $\mu(\Omega) < \infty$.
+
+  Let $f_k: \Omega \to \overline{\R}$ be $\mu$-measurable, for all $k \in \N$ and $f: \Omega \to \overline{\R}$ be $\mu$-measurable, and $f(x)$ finite $\mu$-a.e.
+
+  If $f_k(x) \to  f(x)$ as $k \to  \infty$ for $\mu$-a.e. $x \in \Omega$, then
+  $(f_k)_{k \in \N}$ converges almost uniformally to $f$ on $\Omega$.
+
+  Since $\mu$ is a Radon measure and $\mu(\Omega) < \infty$ (in particular Theorem \ref{thm:radon-open-compact}),
+  we can also assume that the set on which $(f_k)_{k \in \N}$ converges uniformly is compact.
+  That is:
+
+$\forall \delta > 0\ \exists C \subseteq \Omega$ compact with $\mu(\Omega \setminus C) < \delta$ and
+\begin{align*}
+  \sup_{x \in C} \abs{f_k(x) - f(x)} \to 0 \text{ as } k \to  \infty
+\end{align*}
+namely $(f_k)_{k \in \N}$ converges uniformly to $f$ on $F$.
+\end{thm}
+
+\begin{proof}
+Let $\delta > 0$ and for $i,j \in \N$ define the sets
+\begin{align*}
+  C_{ij} := \bigcup_{k=j}^{\infty} \left\{x \in \Omega \big\vert \abs{f_k(x) - f(x)} > \frac{1}{2^{i}}\right\}
+\end{align*}
+which are $\mu$-measurable, since they are the pre-images of open subsets under a $\mu$-measurable function.
+They are also decreasing in $j$ (i.e. $C_{i,j + 1} \subseteq C_{i,j} \forall i,j$) and since $\mu(\Omega) < \infty$,
+we can use continuity from above. 
+Together with $f_k(x) \to f(x)$ for $\mu$-a.e. $x$, we get
+\begin{align*}
+  \lim_{j \to \infty} \mu(C_{ij}) = \mu\left(
+    \bigcap_{j=1}^{\infty}C_{ij}
+  \right)
+  = 0, \quad \forall i \in \N
+\end{align*}
+This means that for every $i$, there exists an $N(i) > 0$ such that
+\begin{align*}
+  \mu\left(
+    \bigcap_{j=1}^{N(i)}C_{i,j}
+  \right)
+  =
+  \mu(C_{i,N(i)})  < \frac{\delta}{2^{i+1}}
+\end{align*}
+setting
+\begin{align*}
+  A := \Omega \setminus \bigcup_{i=1}^{\infty}C_{i,N(i)}
+\end{align*}
+which is $\mu$-measurable, we get the estimate
+\begin{align*}
+  \mu(\Omega \setminus A) = \mu \left(
+    \bigcup_{i=1}^{\infty}C_{i,N(i)} 
+  \right)
+    < \sum_{i=1}^{\infty} \frac{\delta}{2^{i+1}} = \frac{\delta}{2}
+\end{align*}
+Moreover, for all $x \in A, i \in \N, k \geq N(i)$ we have
+\begin{align*}
+  \abs{f_k(x) - f(x)} \leq \frac{1}{2^{i}}
+\end{align*}
+which shows uniform convergence of $(f_k) \to f$ on $A$.
+
+By applying Theorem \ref{thm:radon-open-compact}, there exists a compact subset $K \subseteq A$ such that $\mu(A \setminus K) < \frac{\delta}{2}$, and so
+\begin{align*}
+  \mu(\Omega \setminus K) \leq \mu(\Omega \setminus A) + \mu(A \setminus K) \leq \delta
+\end{align*}
+\end{proof}
+
+\begin{rem}[]
+  The condition that $\mu(\Omega) < \infty$ is necessary.
+Take for example the sequence of ``bump functions moving to the right'':
+$f_k = \chi_{[k,k+1]}:\R \to \R$, which converges pointwise to $\bm{0}$.
+
+It is clear that any set $A \subseteq \R$ on which the sequence converges uniformly must be bounded from the right, which means that $A$ cannot satisfy $\mu(\R \setminus A) < \delta$.
+\end{rem}
+
+In Analysis I/II, we proved that continous functions are Riemann integrable and that Riemann-integrable functions only have measure-zero points of discontinuity.
+
+Because $\mu$ is assumed to be a Radon measure, all continuous functions are $\mu$-measurable.
+We now show the generalisation of the other fact.
+
+\begin{thm}[Lusin's Theorem]
+  Let $\Omega \subseteq \R^{n}$ be $\mu$-measurable 
+  with $\mu(\Omega) < \infty$ and $f: \Omega \to \overline{\R}$ $\mu$-measurable and finite $\mu$.a.e..
+
+  Then $\forall  \epsilon > 0\ \exists K \subseteq \Omega$ compact with $\mu(\Omega \setminus K) < \epsilon$ such that $f|_K$ is continuous.
+
+
+\end{thm}
+\begin{rem}[]
+  \textbf{Warning:} The theorem states that the function $f|_K: K \to \overline{\R}$ is continous and \emph{not} that $f$ is continous at $x$ for all $x \in K$.
+
+  If we drop the condition $\mu(\Omega) < \infty$, then we can still find such a set $C \subseteq \Omega$, which is closed, but not necessarily compact.
+\end{rem}
+\begin{proof}
+  For each $i \in \N_{> 0}$, let $\{B_{ij}\}_{j \in \N}$ be a collection of disjoint Borel sets such that 
+  \begin{align*}
+    \R = \bigsqcup_{j = 1}^{\infty}B_{ij} \quad \text{and} \quad 
+    \text{diam}(B_{ij}) := \sup \{\abs{x - y} \big\vert x,y \in B_{ij}\} < \frac{1}{i}
+  \end{align*}
+  Then define $A_{ij} := f^{-1}(B_{ij})$ which are $\mu$-measurable and let
+  \begin{align*}
+    \tilde{\Omega} := \bigcup_{j=1}^{\infty}A_{ij} \implies \Omega = \tilde{\Omega} \sqcup f^{-1}\{\pm \infty\}
+  \end{align*}
+  since $\mu$ is a Radon measure, there exist compact sets $K_{ij} \subseteq A_{ij}$ such that
+  \begin{align*}
+    \mu(A_{ij} \setminus K_{ij}) < \frac{\epsilon}{2^{i+j}}
+  \end{align*}
+  Then 
+  \begin{align*}
+    \mu\left(
+      \tilde{\Omega} \setminus \bigcup_{j=1}^{\infty}K_{ij}
+    \right)
+    &=
+    \mu\left(
+      \bigcup_{j=1}^{\infty}A_{ij} 
+      \setminus
+      \bigcup_{j=1}^{\infty}K_{ij}
+    \right)
+    \\
+    &\leq \mu\left(
+      \bigcup_{j=1}^{\infty}(A_{ij} \setminus K_{ij})
+    \right)
+    \\
+    &\leq \sum_{j=1}^{\infty} \mu(A_{ij} \setminus K_{ij})\\
+    &< \sum_{j=1}^{\infty} \frac{\epsilon}{2^{i+j}} = \frac{\epsilon}{2^{i}}
+  \end{align*}
+  This means that for all $i$, there exists a $N(i)$ such that
+  \begin{align*}
+    \mu\left(
+      \tilde{\Omega} \setminus \bigcup_{j=1}^{N(i)} K_{ij}  < \frac{\epsilon}{2^{i}}
+    \right)
+  \end{align*}
+
+  Then define the compact sets
+  \begin{align*}
+    D_i := \bigcup_{j=1}^{N(i)} K_{ij}
+    \quad \text{and} \quad
+    K := \bigcap_{i=1}^{\infty}D_i
+  \end{align*}
+  For each $i,j$ chose some $b_{ij} \in B_{ij}$ and define $g_i: D_i \to \R, g_i(x) = b_{ij}$ if $x \in K_{ij}$ for all $j \leq N(i)$.
+
+  Since the sets $\{K_{ij}\}_{j \in \N}$ are compact disjoint sets, this means that $g_i$ is locally constant and thus continuous.
+  Moreover, by construction of $B_{ij}$, we have
+  \begin{align*}
+    \text{diam}(B_{ij}) < \frac{1}{i} \implies \abs{f(x) - g_i(x)} < \frac{1}{i}, \quad \forall x \in D_i
+  \end{align*}
+  which means that the sequence of continuous functions $(g_i|_K)_{i \in \N^{> 0}}:K \to \R$ converges uniformly to a continous function $f|_K$.
+
+  The set $K$ also satisifes 
+  \begin{align*}
+    \mu(\tilde{\Omega} \setminus K) = \mu\left(
+      \bigcup_{i=1}^{\infty} (\tilde{\Omega} \setminus D_i)
+    \right)
+    \leq \sum_{i=1}^{\infty} \mu(\tilde{\Omega \setminus D_i}) < \epsilon
+  \end{align*}
+  and since $f(x)$ is finite $\mu$-a.e., we have
+  \begin{align*}
+    \mu(\Omega \setminus K) \leq \mu(\tilde{\Omega} \setminus K) + \mu(f^{-1}\{\pm \infty\} \setminus K) \leq \epsilon + 0
+  \end{align*}
+
+  
+
+\end{proof}
+
+
+
