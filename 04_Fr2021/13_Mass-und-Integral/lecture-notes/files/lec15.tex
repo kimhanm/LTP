@@ -66,9 +66,7 @@ The following theorem lets us decompose any non-negative $\mu$-measurable functi
 From now on, we will say that a statement holds ``$\mu$-a.e.'' or ``\textbf{almost everywhere with respect to $\mu$}'' to mean that the set $A$, for which the statement does not hold, has $\mu(A) = 0$.
 
 
-
 \subsection{Lusin's and Egoroff's Theorems}
-In this section, let $\mu$ be a Radon measure on $\R^{n}$.
 
 Consider for example the sequence of ($\Leb^{1}$-measurable) functions $(f_k: [0,1] \to \R)_{k \in \N}$ given by
 \begin{align*}
@@ -81,7 +79,7 @@ However we can say that for any $\delta > 0$, it converges uniformly on the (com
 
 \begin{dfn}[]
   Let $\Omega \subseteq \R^{n}$.
-  We say that a sequence of functions $(f_k: \Omega \to \overline{\R})_{k \in \N}$ \textbf{converges almost uniformly} on $\Omega$ to a function $f: \Omega \to \overline{\R}$,
+  We say that a sequence of functions $(f_k: \Omega \to \overline{\R})_{k \in \N}$ \textbf{converges $\mu$-almost uniformly} on $\Omega$ to a function $f: \Omega \to \overline{\R}$,
 if for all $\delta > 0$ there exists a $\mu$-measurable subset $A \subseteq \Omega$ with $\mu(\Omega \setminus A) < \delta$ such that $(f_k)_{k \in \N}$ converges uniformly on $A$.
 That is:
 \begin{align*}
@@ -91,71 +89,75 @@ That is:
 
 
 \begin{thm}[Egoroff]
-  Let $\Omega \subseteq \R^{n}$ be $\mu$-measurable with $\mu(\Omega) < \infty$.
+  Let $\Omega \subseteq \R^{n}$ be $\mu$-measurable with $\mu(\Omega) < \infty$,
+  and let
+  $f,(f_k)_{k \in \N}: \Omega \to \R$ $\mu$-measurable.
+  \begin{enumerate}
+    \item 
+      If $f_k(x) \to  f(x)$ as $k \to  \infty$ for $\mu$-a.e. $x \in \Omega$, and $f(x)$ finite $\mu$-a.e., 
+      then $(f_k)_{k \in \N}$ converges $\mu$-almost uniformally to $f$ on $\Omega$.
+    \item 
+      If additionally, $\mu$ is a Radon measure we can also assume that the set on which $(f_k)_{k \in \N}$ converges uniformly is compact.
+      That is:
 
-  Let $f_k: \Omega \to \overline{\R}$ be $\mu$-measurable, for all $k \in \N$ and $f: \Omega \to \overline{\R}$ be $\mu$-measurable, and $f(x)$ finite $\mu$-a.e.
-
-  If $f_k(x) \to  f(x)$ as $k \to  \infty$ for $\mu$-a.e. $x \in \Omega$, then
-  $(f_k)_{k \in \N}$ converges almost uniformally to $f$ on $\Omega$.
-
-  Since $\mu$ is a Radon measure and $\mu(\Omega) < \infty$ (in particular Theorem \ref{thm:radon-open-compact}),
-  we can also assume that the set on which $(f_k)_{k \in \N}$ converges uniformly is compact.
-  That is:
-
-$\forall \delta > 0\ \exists C \subseteq \Omega$ compact with $\mu(\Omega \setminus C) < \delta$ and
-\begin{align*}
-  \sup_{x \in C} \abs{f_k(x) - f(x)} \to 0 \text{ as } k \to  \infty
-\end{align*}
-namely $(f_k)_{k \in \N}$ converges uniformly to $f$ on $F$.
+      $\forall \delta > 0\ \exists K \subseteq \Omega$ compact with $\mu(\Omega \setminus K) < \delta$ and
+      \begin{align*}
+        \sup_{x \in C} \abs{f_k(x) - f(x)} \to 0 \text{ as } k \to  \infty
+      \end{align*}
+      namely $(f_k)_{k \in \N}$ converges uniformly to $f$ on $K$.
+  \end{enumerate}
 \end{thm}
 
 \begin{proof}
-Let $\delta > 0$ and for $i,j \in \N$ define the sets
-\begin{align*}
-  C_{ij} := \bigcup_{k=j}^{\infty} \left\{x \in \Omega \big\vert \abs{f_k(x) - f(x)} > \frac{1}{2^{i}}\right\}
-\end{align*}
-which are $\mu$-measurable, since they are the pre-images of open subsets under a $\mu$-measurable function.
-They are also decreasing in $j$ (i.e. $C_{i,j + 1} \subseteq C_{i,j} \forall i,j$) and since $\mu(\Omega) < \infty$,
-we can use continuity from above. 
-Together with $f_k(x) \to f(x)$ for $\mu$-a.e. $x$, we get
-\begin{align*}
-  \lim_{j \to \infty} \mu(C_{ij}) = \mu\left(
-    \bigcap_{j=1}^{\infty}C_{ij}
-  \right)
-  = 0, \quad \forall i \in \N
-\end{align*}
-This means that for every $i$, there exists an $N(i) > 0$ such that
-\begin{align*}
-  \mu\left(
-    \bigcap_{j=1}^{N(i)}C_{i,j}
-  \right)
-  =
-  \mu(C_{i,N(i)})  < \frac{\delta}{2^{i+1}}
-\end{align*}
-setting
-\begin{align*}
-  A := \Omega \setminus \bigcup_{i=1}^{\infty}C_{i,N(i)}
-\end{align*}
-which is $\mu$-measurable, we get the estimate
-\begin{align*}
-  \mu(\Omega \setminus A) = \mu \left(
-    \bigcup_{i=1}^{\infty}C_{i,N(i)} 
-  \right)
-    < \sum_{i=1}^{\infty} \frac{\delta}{2^{i+1}} = \frac{\delta}{2}
-\end{align*}
-Moreover, for all $x \in A, i \in \N, k \geq N(i)$ we have
-\begin{align*}
-  \abs{f_k(x) - f(x)} \leq \frac{1}{2^{i}}
-\end{align*}
-which shows uniform convergence of $(f_k) \to f$ on $A$.
-
-By applying Theorem \ref{thm:radon-open-compact}, there exists a compact subset $K \subseteq A$ such that $\mu(A \setminus K) < \frac{\delta}{2}$, and so
-\begin{align*}
-  \mu(\Omega \setminus K) \leq \mu(\Omega \setminus A) + \mu(A \setminus K) \leq \delta
-\end{align*}
+  \begin{enumerate}
+    \item 
+      Let $\delta > 0$ and for $i,j \in \N$ define the sets
+      \begin{align*}
+        C_{ij} := \bigcup_{k=j}^{\infty} \left\{x \in \Omega \big\vert \abs{f_k(x) - f(x)} > \frac{1}{2^{i}}\right\}
+      \end{align*}
+      which are $\mu$-measurable, since they are the pre-images of open subsets under a $\mu$-measurable function.
+      They are also decreasing in $j$ (i.e. $C_{i,j + 1} \subseteq C_{i,j} \forall i,j$) and since $\mu(\Omega) < \infty$,
+      we can use continuity from above. 
+      Together with $f_k(x) \to f(x)$ for $\mu$-a.e. $x$, we get
+      \begin{align*}
+        \lim_{j \to \infty} \mu(C_{ij}) = \mu\left(
+          \bigcap_{j=1}^{\infty}C_{ij}
+        \right)
+        = 0, \quad \forall i \in \N
+      \end{align*}
+      This means that for every $i$, there exists an $N(i) > 0$ such that
+      \begin{align*}
+        \mu\left(
+          \bigcap_{j=1}^{N(i)}C_{i,j}
+        \right)
+        =
+        \mu(C_{i,N(i)})  < \frac{\delta}{2^{i+1}}
+      \end{align*}
+      setting
+      \begin{align*}
+        A := \Omega \setminus \bigcup_{i=1}^{\infty}C_{i,N(i)}
+      \end{align*}
+      which is $\mu$-measurable, we get the estimate
+      \begin{align*}
+        \mu(\Omega \setminus A) = \mu \left(
+          \bigcup_{i=1}^{\infty}C_{i,N(i)} 
+        \right)
+        < \sum_{i=1}^{\infty} \frac{\delta}{2^{i+1}} = \frac{\delta}{2}
+      \end{align*}
+      Moreover, for all $x \in A, i \in \N, k \geq N(i)$ we have
+      \begin{align*}
+        \abs{f_k(x) - f(x)} \leq \frac{1}{2^{i}}
+      \end{align*}
+      which shows uniform convergence of $(f_k) \to f$ on $A$.
+    \item 
+      By applying Theorem \ref{thm:radon-open-compact}, there exists a compact subset $K \subseteq A$ such that $\mu(A \setminus K) < \frac{\delta}{2}$, and so
+      \begin{align*}
+        \mu(\Omega \setminus K) \leq \mu(\Omega \setminus A) + \mu(A \setminus K) \leq \delta
+      \end{align*}
+  \end{enumerate}
 \end{proof}
 
-\begin{rem}[]
+\begin{rem}[] \label{rem:egoroff-finite-necessary}
   The condition that $\mu(\Omega) < \infty$ is necessary.
 Take for example the sequence of ``bump functions moving to the right'':
 $f_k = \chi_{[k,k+1]}:\R \to \R$, which converges pointwise to $\bm{0}$.
@@ -169,7 +171,7 @@ Because $\mu$ is assumed to be a Radon measure, all continuous functions are $\m
 We now show the generalisation of the other fact.
 
 \begin{thm}[Lusin's Theorem]
-  Let $\Omega \subseteq \R^{n}$ be $\mu$-measurable 
+  Let $\mu$ be a Radon measure on $\R^{n}$, $\Omega \subseteq \R^{n}$ be $\mu$-measurable 
   with $\mu(\Omega) < \infty$ and $f: \Omega \to \overline{\R}$ $\mu$-measurable and finite $\mu$.a.e..
 
   Then $\forall  \epsilon > 0\ \exists K \subseteq \Omega$ compact with $\mu(\Omega \setminus K) < \epsilon$ such that $f|_K$ is continuous.

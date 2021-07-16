@@ -1,1 +1,74 @@
+\subsection{Convergence in Measure}
+For this section, let 
+$\mu$ be an arbitrary measure on $\R^{n}$ and 
+$\Omega \subseteq \R^{n}$ $\mu$-measurable and let 
+$f,f_k: \Omega \to  \overline{\R}$ be $\mu$-measurable and 
+$\abs{f(x)} < \infty$ $\mu$-a.e..
 
+
+\begin{dfn}[]
+  We say that the sequence $(f_k)_{k \in \N}$ converges \textbf{in measure $\mu$} to $f$ (written $f_k \stackrel{\mu}{\to} f$ as $k \to  \infty$)\footnote{In contrast to the lecturer, I will be using $f_k \stackrel{\mu}{\to} f$ as shorthand for ``$f_k \stackrel{\mu}{\to}f$ as $k \to \infty$'' as it should be clear from context.},
+  if $\forall \epsilon > 0$
+  \begin{align*}
+    \lim_{k \to \infty} \mu\left(
+      \left\{x \in \Omega \big\vert \abs{f(x) - f_k(x)} > \epsilon\right\}
+    \right)
+    = 0
+  \end{align*}
+\end{dfn}
+\begin{rem}[]
+If the sequence converges uniformly, then also $f_k \stackrel{\mu}{\to} f$.
+However pointwise convergence is not enough to show $f_k \stackrel{\mu}{\to} f$,
+as the same Example as in \ref{rem:egoroff-finite-necessary} proves otherwise.
+
+Also, the sequence $f_k = \chi_{\{0\}} \stackrel{\Leb^{1}}{\to} \bm{0}$ shows that pointwise convergence does not necessarily follow from in-measure convergence.
+\end{rem}
+
+
+\begin{thm}[]
+  Let $\mu(\Omega) < \infty$. If $f_k \to f$ $\mu$-a.e. then $f_k \stackrel{\mu}{\to} f$.
+\end{thm}
+\begin{proof}
+  By Egoroff's theorem, $(f_k)_{k \in \N}$ converges $\mu$-almost uniformally on $\Omega$.
+
+  This means that for all $\epsilon > 0$ there exists a set $A$ with $\mu(\Omega \setminus A) < \delta$ such that for all $\epsilon > 0: \exists N \in \N$ with
+    \begin{align*}
+      \sup_{x \in A} \abs{f_n(x) - f(x)} < \epsilon \quad \forall n \geq N
+    \end{align*}
+    for such $n \geq N$ we have
+    \begin{align*}
+      \{x \in \Omega \big\vert \abs{f_n(x) - f(x)} > \epsilon\} \subseteq \Omega \setminus A
+    \end{align*}
+    Taking $\mu(\cdot)$ on both sides gives the result.
+\end{proof}
+
+\begin{rem}
+The converse of this theorem does not hold, so the statement $f_k \to f$ $\mu$-a.e. is stronger than $f_k \stackrel{\mu}{\to} f$.
+
+To see this, take $\Omega = [0,1)$ with the measure $\Leb^{1}$.
+And set $f_k = \chi_{A_k}$, for
+\begin{align*}
+  A_1 = [0,1), \quad 
+  A_2 = [0,\tfrac{1}{2}), A_3 = [\tfrac{1}{2},1), \quad 
+  A_4 = [0,\tfrac{1}{4}), A_5 = [\tfrac{1}{4},\tfrac{2}{4}), \ldots, A_7 = [\tfrac{3}{4},1), \quad 
+  A_8 = [0, \tfrac{1}{8}), \ldots
+\end{align*}
+and more generally for $k \geq 1$, chose $n$ such that $2^{n} \leq k < 2^{n+1}$ and set
+\begin{align*}
+  A_k = \left[\frac{k - 2^{n}}{2^{n}}, \frac{k- 2^{n}+1}{2^{n}}\right)
+\end{align*}
+Therefore
+\begin{align*}
+  \mu\left(
+  \{\abs{f_k(x)} > 0\}
+\right) = \mu(A_k) = \frac{1}{2^{n}} < \frac{2}{k} \implies f_k \stackrel{\mu}{\to} \bm{0}
+\end{align*}
+But the nowhere does the sequence converge pointwise to $0$.
+\end{rem}
+
+\begin{thm}[]\label{thm:subsequence-muae}
+  Let $f_k \stackrel{\mu}{\to} f$. Then there exists a subsequence $(f_{k_n})_{n \in \N}$ that converges to $f$ $\mu$-a.e..
+\end{thm}
+\begin{proof}
+  Since $f_k \stackrel{\mu}{\to} f$, it means that 
+\end{proof}
