@@ -9,12 +9,12 @@ $\abs{f(x)} < \infty$ $\mu$-a.e..
 \begin{dfn}[]
   We say that the sequence $(f_k)_{k \in \N}$ converges \textbf{in measure $\mu$} to $f$ (written $f_k \stackrel{\mu}{\to} f$ as $k \to  \infty$)\footnote{In contrast to the lecturer, I will be using $f_k \stackrel{\mu}{\to} f$ as shorthand for ``$f_k \stackrel{\mu}{\to}f$ as $k \to \infty$'' as it should be clear from context.},
   if $\forall \epsilon > 0$
-  \begin{align*}
+  \begin{empheq}[box=\bluebase]{align*}
     \lim_{k \to \infty} \mu\left(
       \left\{x \in \Omega \big\vert \abs{f(x) - f_k(x)} > \epsilon\right\}
     \right)
     = 0
-  \end{align*}
+  \end{empheq}
 \end{dfn}
 \begin{rem}[]
 If the sequence converges uniformly, then also $f_k \stackrel{\mu}{\to} f$.
@@ -70,5 +70,36 @@ But the nowhere does the sequence converge pointwise to $0$.
   Let $f_k \stackrel{\mu}{\to} f$. Then there exists a subsequence $(f_{k_n})_{n \in \N}$ that converges to $f$ $\mu$-a.e..
 \end{thm}
 \begin{proof}
-  Since $f_k \stackrel{\mu}{\to} f$, it means that 
+  Since $f_k \stackrel{\mu}{\to} f$, for all $n \in \N$ there exists a $k_n \in \N$ such that
+  \begin{align*}
+    \mu\left(
+      \left\{x \in \Omega \big\vert \abs{f_k(x) - f(x)}> 2^{-n}\right\} 
+    \right) < 2^{-n}
+    , \quad
+    \forall k \geq k_n 
+  \end{align*}
+  Define for $h \geq 1$
+  \begin{align*}
+    A_n := \left\{x \in \Omega \big\vert \abs{f_{k_n}(x) - f(x)} > 2^{-n}\right\}
+    \quad \text{and} \quad E_h := \bigcup_{n \geq h}A_n
+  \end{align*}
+  by subadditivity, we have
+  \begin{align*}
+    \mu(E_h) \leq \sum_{n=h}^{\infty}\mu(A_n) < 2^{-h + 1}
+  \end{align*}
+  For any $x \in \Omega \setminus E_h$ we have that 
+  \begin{align*}
+    \forall n \geq h:
+    x \notin A_n, \implies \forall n \geq h: \abs{f_{k_n}(x) -f(x)} \leq 2^{-n}
+  \end{align*}
+  This means that for all $h \in \N$ the sequence $(f_{k_n})_{n \in \N}$ converges to $f(x)$ on $\Omega \setminus E_h$.
+
+  Because $\mu(E_1) \leq \mu(\Omega) < \infty$ and the sequence $(E_h)_{h \in \N}$ is decreasing, we have by continuity from above:
+  \begin{align*}
+    E := \bigcap_{h=1}^{\infty}E_h
+    \implies
+    \mu(E) = \lim_{h \to \infty}\mu(E_h) = 0
+  \end{align*}
+  Since $(f_{k_n})_{n \in \N}$ converges to $f$ on $\Omega \setminus E_h$, the sequence $(f_{k_n}|_{E})_{n \in \N}$ converges to $f$ on $\Omega \setminus E$.
+
 \end{proof}

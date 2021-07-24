@@ -1,7 +1,4 @@
 % ==== Symbols ====
-
-
-
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -61,6 +58,20 @@
 0.13ex\vrule height 0.13ex depth 0pt width 1.3ex}}
 \DeclareMathOperator{\vol}{vol}
 
+% define \upint and \lowint
+% might interfere with some unicode packages
+\def\upint{\mathchoice%
+    {\mkern10mu\overline{\vphantom{\intop}\mkern10mu}\mkern-20mu}% display
+    {\mkern8mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}% text
+    {\mkern8mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}% script
+    {\mkern8mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}% scripscript
+  \int}
+\def\lowint{\mathchoice%
+    {\mkern10mu\underline{\vphantom{\intop}\mkern10mu}\mkern-12mu}% display
+    {\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu}% text
+    {\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu}% script
+    {\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu}% scripscript
+  \int}
 
 
 
@@ -82,9 +93,3 @@
   \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
 
-
-% ==== Tikz ====
-\def\centerarc[#1](#2)(#3:#4:#5){ 
-    \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); 
-}
-% Syntax: [draw options] (center) (initial angle:final angle:radius)

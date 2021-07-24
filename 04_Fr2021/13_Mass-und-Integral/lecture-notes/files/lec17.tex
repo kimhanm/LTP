@@ -1,0 +1,192 @@
+\section{Integration}
+Assume for this chapter, that $\mu$ is a Radon measure on $\R^{n}$ and $\Omega \subseteq \R^{n}$ is $\mu$-measurable.
+
+\subsection{Definitions and Basic Properties}
+
+\begin{dfn}[]
+A function $g: \Omega \to \overline{\R}$ is called a \textbf{simple function}, if the image of $g$ is at most countable.
+\end{dfn}
+
+Because summing up series with both positive and negative coefficients can lead to some convergence issues (for example the sequence $a_n = (-1)^{n}$), we split a function into its positive and negative parts.
+Define
+\begin{align*}
+  f^{+} := \max(f,0), \quad f^{-} := \max(-f,0)\\
+  \implies f = f^{+} - f^{-}, \quad \abs{f} = f^{+} + f^{-}
+\end{align*}
+
+
+\begin{dfn}[] \label{dfn:integral}
+\phantom{a}
+  \begin{itemize}
+    \item 
+    For $g: \Omega \to [0,\infty]$ is a \textbf{non-negative, simple, $\bm{\mu}$-measurable} function, we define
+    \begin{empheq}[box=\bluebase]{align*}
+      \int_{\Omega} g d \mu := \sum_{0 \leq y \leq \infty} y \cdot \mu\left(g^{-1}\{y\}\right)
+    \end{empheq}
+    where we use the convention $0 \cdot \infty = 0$. (We want the integral of the function $\bm{0}$ to be zero.)
+
+  \item A simple, $\mu$-measurable function $g: \Omega \to [-\infty,+\infty]$ is called a $\bm{\mu}$\textbf{-integrable simple function}, if either $\int_{\Omega}g^{+}d \mu < \infty$ or $\int_{\Omega}g^{-} d \mu < \infty$.
+    Then define
+    \begin{align*}
+      \int_{\Omega} g d \mu := \int_{\Omega}g^{+} d \mu - \int_{\Omega}g^{-} d \mu =  \sum_{-\infty \leq y \leq \infty} y \cdot \mu\left(g^{-1}\{y\}\right)
+    \end{align*}
+  %%%
+  \item For any function $f: \Omega \to [-\infty,\infty]$ define the \textbf{upper integral} 
+    \begin{empheq}[box=\bluebase]{align*}
+      \upint_{\Omega} f d \mu :=
+      \inf \left\{
+        \int_{\Omega}g d \mu
+        \big\vert g \geq f \mu\text{-a.e., $g$ is a $\mu$-integrable simple function}
+      \right\}
+    \end{empheq}
+    aswell as the \textbf{lower integral}
+    \begin{empheq}[box=\bluebase]{align*}
+      \lowint_{\Omega} f d \mu :=
+      \sup \left\{
+        \int_{\Omega}e d \mu
+        \big\vert e \leq f \mu\text{-a.e., $e$ is a $\mu$-integrable simple function}
+      \right\}
+    \end{empheq}
+    %%%
+    \item A $\mu$-measurable function $f: \Omega \to \overline{\R}$ is called \textbf{$\bm{\mu}$-integrable}, if the upper- and lower integral coincide, in which case we write
+      \begin{align*}
+        \int_{\Omega} f d \mu := \upint_{\Omega} f d \mu = \lowint_{\Omega}f d \mu
+      \end{align*}
+  \end{itemize}
+\end{dfn}
+\textbf{Warning:} in some contexts, functions with integral $\pm \infty$ are called ``not integrable''. For our purposes, they are.
+
+It is easy to show that
+\begin{align*}
+ \lowint_{\Omega} f d \mu \leq \upint_{\Omega} f d \mu
+\end{align*}
+
+\begin{prop}[]
+  Let $f: \Omega \to [0,\infty]$ be $\mu$-measurable. Then $f$ is $\mu$-integrable.
+\end{prop}
+\begin{proof}
+  If $\lowint_{\Omega} f d \mu = \infty$, then it is trivial.
+  Now, if $\lowint_{\Omega}f d \mu < \infty$, it means that $f(x) < \infty$ $\mu$-a.e.
+
+  \begin{itemize}
+    \item \textbf{Case $\mu(\Omega) < \infty$:}
+      For all $\epsilon > 0$, set for $k \in \N$
+      \begin{align*}
+        A_k := \{x \in \Omega \big\vert k \epsilon \leq f(x) < (k+1)\epsilon\} = f^{-1}\left[k \epsilon, (k+1)\epsilon\right)
+      \end{align*}
+      Since $f(x) < \infty$ $\mu$-a.e. it means that for $\tilde{\Omega} := \bigcup_{k \in \N} A_k = f^{-1}[0,\infty)$, we have $\mu(\Omega \setminus \tilde{\Omega}) = 0$.
+
+      To sandwich $f$ between $\mu$-integrable simple functions, we define
+      \begin{align*}
+        e(x) &:= \epsilon \sum_{k=0}^{\infty} k \chi_{A_k}(x)\\
+        g(x) &:= \epsilon \sum_{k=0}^{\infty} (k+1) \chi_{A_k}(x)
+      \end{align*}
+      which gives us $e(x) \leq f(x) < g(x)$ $\mu$-a.e. and
+      \begin{align*}
+        \int_{\Omega}e d \mu 
+        &\leq 
+        \lowint_{\Omega} f d \mu 
+        \leq \upint_{\Omega} f d \mu 
+        \leq \int_{\Omega} g d \mu
+        = \epsilon\sum_{k \in \N}(k+1) \mu(A_k)\\
+        &= \epsilon \sum_{k\in \N} k \mu(A_k) + \epsilon \sum_{k \in \N} \mu(A_k)
+        = \int_{\Omega} e d \mu + \epsilon \cdot \mu(\tilde{\Omega})
+      \end{align*}
+      where in the last step we used that the $A_k$ were mutually disjoint and were preimages of Borel sets and thus $\mu$-measurable.
+      Because $\mu(\tilde{\Omega}) \leq \mu(\Omega) < \infty$, we can let $\epsilon \to 0$ and get the result.
+
+    %%%
+    \item \textbf{General Case:} Let $\Omega \subseteq \R^{n}$ be a $\mu$-measurable set. 
+      Then take any countable covering of $\R^{n}$ with disjoint dyadic cubes $R^{n} = \bigcup_{l=1}^{\infty}Q_l$ and set $\Omega_l := \Omega \cap Q_l$.
+
+      Since $\mu(\Omega_l) < \infty$, we are in the first case, so for all $\epsilon > 0 $ we can find $\mu$-integrable simple functions $e_l,g_l: \Omega_l \to [0,\infty]$ with $e_l \leq f \leq g_l$ $\mu$-a.e. and
+      \begin{align*}
+        \int_{\Omega_l} e_l d \mu 
+        \leq 
+        \int_{\Omega_l} g_l d \mu 
+        \leq
+        \int_{\Omega_l} e_l d \mu + \frac{\epsilon}{2^{l}}
+      \end{align*}
+      We then define
+      \footnote{There is some minor abuse of notation but it's easy to extend the domain of $e_l,g_l$ to $\Omega$.}
+      \begin{align*}
+        e := \sum_{l=1}^{\infty} e_l \cdot \chi_{\Omega_l}, 
+        \quad \text{and} \quad 
+        g := \sum_{l=1}^{\infty} g_l \cdot \chi_{\Omega_l}
+      \end{align*}
+      which are again $\mu$-integrable simple functions satisfying $e \leq f \leq g$ for $\mu$-a.e. $x \in \Omega$ and
+      \begin{align*}
+        \int_{\Omega}e d \mu 
+        \leq 
+        \lowint_{\Omega}f d \mu 
+        \leq 
+        \upint_{\Omega}f d \mu
+        \leq
+        \int_{\Omega}g d \mu 
+        = 
+        \sum_{l=1}^{\infty} \int_{\Omega_l}g_l d \mu 
+        \leq 
+        \sum_{l=1}^{\infty} \int_{\Omega_l} e_l d \mu + \sum_{l=1}^{\infty} \frac{\epsilon}{2^{l}}
+        = \int_{\Omega}e d \mu + \epsilon
+      \end{align*}
+      letting $\epsilon \to  0$, we get the result.
+  \end{itemize}
+\end{proof}
+
+
+
+
+\begin{prop}[Monotonicity]
+  Let $f_1,f_2: \Omega \to \overline{\R}$ be $\mu$-integrable with $f_1 \leq f_2$ $\mu$-a.e.. Then
+  \begin{align*}
+    \int_{\Omega} f_1 d \mu \leq \int_{\Omega} f_2 d \mu
+  \end{align*}
+\end{prop}
+\begin{proof}
+  If a $\mu$-integrable simple function $g$ satisfies $g \geq f_2$ $\mu$-a.e., then it also satisfies $g \geq f_1$ $\mu$-a.e..
+
+  Looking at the definition of $\mu$-integrable functions, 
+  \begin{align*}
+    \int f d \mu = 
+      \inf \left\{
+        \int_{\Omega}g d \mu
+        \big\vert g \geq f \mu\text{-a.e., $g$ is a $\mu$-integrable simple function}
+      \right\}
+  \end{align*}
+  then we are taking the infimum over a larger set for $f_1$ than for $f_2$, so 
+  \begin{align*}
+    \int_{\Omega}f_1 d \mu 
+    =
+    \upint_{\Omega}f_1 d \mu
+    \leq
+    \upint_{\Omega}f_2 d \mu
+    = \int_{\Omega}f_2 d \mu
+  \end{align*}
+\end{proof}
+
+\begin{dfn}[]
+  Let $f: \Omega \to \overline{\R}$ be a function
+  \begin{itemize}
+    \item $f$ is called \textbf{$\bm{\mu}$-summable}, if $f$ is $\mu$-measurable and
+      \begin{align*}
+        \int_{\Omega} \abs{f} d \mu < \infty
+      \end{align*}
+    \item $f$ is called \textbf{locally $\bm{\mu}$-summable} in $\Omega$, if for all compact sets $K \subseteq \Omega$, $f|_K$ is $\mu$-summable.
+  \end{itemize}
+\end{dfn}
+
+
+\begin{prop}
+Let $f: \Omega \to \overline{\R}$.
+\begin{itemize}
+  \item If $f$ is $\mu$-summable, then it is $\mu$-integrable.
+  \item If $f = 0$ $\mu$-a.e., then $f$ is $\mu$-integrable and $\int_{\Omega} f d \mu = 0$.
+\end{itemize}
+\end{prop}
+\begin{proof}
+  \phantom{a}
+  \begin{enumerate}
+    \item We show that $\lowint_{\Omega}f d \mu = \upint_{\Omega} f d \mu$.
+  \end{enumerate}
+
+\end{proof}
