@@ -61,7 +61,7 @@ It is easy to show that
  \lowint_{\Omega} f d \mu \leq \upint_{\Omega} f d \mu
 \end{align*}
 
-\begin{prop}[]
+\begin{prop}[] \label{prop:measurable-implies-integrable}
   Let $f: \Omega \to [0,\infty]$ be $\mu$-measurable. Then $f$ is $\mu$-integrable.
 \end{prop}
 \begin{proof}
@@ -136,7 +136,7 @@ It is easy to show that
 
 
 
-\begin{prop}[Monotonicity]
+\begin{prop}[Monotonicity]\label{prop:monotonicity-integral}
   Let $f_1,f_2: \Omega \to \overline{\R}$ be $\mu$-integrable with $f_1 \leq f_2$ $\mu$-a.e.. Then
   \begin{align*}
     \int_{\Omega} f_1 d \mu \leq \int_{\Omega} f_2 d \mu
@@ -163,7 +163,13 @@ It is easy to show that
     = \int_{\Omega}f_2 d \mu
   \end{align*}
 \end{proof}
-
+As an immediate consequence, we have
+\begin{cor}[]
+  Let $f_1,f_2: \Omega \to \overline{\R}$ $\mu$-integrable with $f_1 = f_2$ $\mu$-a.e.
+  \begin{align*}
+    \int_{\Omega} f_1 d \mu = \int_{\Omega} f_2 d \mu
+  \end{align*}
+\end{cor}
 \begin{dfn}[]
   Let $f: \Omega \to \overline{\R}$ be a function
   \begin{itemize}
@@ -180,13 +186,96 @@ It is easy to show that
 Let $f: \Omega \to \overline{\R}$.
 \begin{itemize}
   \item If $f$ is $\mu$-summable, then it is $\mu$-integrable.
-  \item If $f = 0$ $\mu$-a.e., then $f$ is $\mu$-integrable and $\int_{\Omega} f d \mu = 0$.
+  \item If $f(x) = 0$ $\mu$-a.e., then $f$ is $\mu$-integrable and $\int_{\Omega} f d \mu = 0$.
 \end{itemize}
 \end{prop}
 \begin{proof}
   \phantom{a}
   \begin{enumerate}
     \item We show that $\lowint_{\Omega}f d \mu = \upint_{\Omega} f d \mu$.
-  \end{enumerate}
+      Since $f$ is $\mu$-measurable, $f^{\pm} = \max(\pm f,0)$ are also $\mu$-measurable. Moreover, since $0 \leq f^{\pm} \leq \abs{f}$, by Proposition \ref{prop:measurable-implies-integrable}, they are $\mu$-integrable and satisfy $\int_{\Omega} f^{\pm} d \mu < \infty$.
 
+  This means that for all $\epsilon > 0$, there exist $\mu$-integrable simple functions $e_{\pm} \leq f^{\pm} \leq g_{\pm}$ $\mu$-a.e. with
+  \begin{align*}
+    \int_{\Omega} e_{\pm} d \mu \leq \int_{\Omega}f^{\pm} d \mu \leq \int_{\Omega} g_{\pm} d \mu \leq \int_{\Omega} e_{\pm}  d \mu + \frac{\epsilon}{2}
+  \end{align*}
+  Setting $e := e_+ - g_-$ and $g := g_+ - e_-$, we see that again $e \leq f \leq g$ $\mu$-a.e. and
+  \begin{align*}
+    \int_{\Omega} e d \mu 
+    &\leq 
+    \lowint_{\Omega}f d \mu 
+    \leq 
+    \upint_{\Omega} f d \mu 
+    \leq 
+    \int_{\Omega} g d \mu 
+    = 
+    \int_{\Omega} g_+ d \mu- \int_{\Omega}e_- d \mu
+    \\
+    &\leq
+    \int_{\Omega} e_+ d \mu + \frac{\epsilon}{2}+ \int_{\Omega} g_- d \mu + \frac{\epsilon}{2}
+    = 
+    \int_{\Omega} e d \mu + \epsilon
+  \end{align*}
+  Letting $\epsilon \to 0$ shows that $f$ is $\mu$-integrable.
+
+  \item If $f(x) = 0$ $\mu$-a.e. we can set $e = g = \bm{0}$ and see that $e \leq f \leq g$ $\mu$-a.e., which shows
+    \begin{align*}
+      0 = \int_{\Omega}e d \mu \leq \lowint_{\Omega}f d \mu \leq \upint_{\Omega}f d \mu \leq \int_{\Omega} g d \mu = 0
+    \end{align*}
+
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}
+  Let $f: \Omega \to [0,\infty]$ be $\mu$-measurable.
+  \begin{enumerate}
+    \item $\int_{\Omega} f d \mu = 0 \implies f(x) = 0$ $\mu$-a.e.
+    \item $\int_{\Omega} f d \mu < \infty \implies f(x) < \infty$ $\mu$-a.e.
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+\begin{enumerate}
+  \item Contraposition: Assume $f(x)$ is not $\mu$-a.e. zero. Then the $\mu$-measurable sets
+    \begin{align*}
+      A_k = \left\{x \in \Omega \big\vert f(x) \geq \frac{1}{k}\right\}, \quad k \geq 1
+    \end{align*}
+    form an increasing sequence and their union
+    \begin{align*}
+      A_{\infty} := \bigcup_{k=1}^{\infty} A_k = \{x \in \Omega \big\vert f(x) > 0\}
+    \end{align*}
+    has non-zero measure $0 < \mu(A_{\infty}) = \lim_{k \to \infty} \mu(A_k)$.
+
+    This means that there exists some $K \geq 1$ such that $\mu(A_K) > 0$.
+    Then the simple function 
+    $s := \frac{1}{K} \chi_{A_K}$
+    satisfies $s \leq f$, which implies
+    \begin{align*}
+      0 < \frac{1}{K} \mu(A_K) = \int_{\Omega} s d \mu \leq \int_{\Omega} f d \mu
+    \end{align*}
+  \item Contraposition: Assume there exists an $A \subseteq \Omega$ with
+    $f(x) = \infty, \forall x \in A, \mu(A) > 0$
+    then the simple function
+    $s := \infty \cdot \chi_{A}$ satisfies $s \leq f$, and thus
+    \begin{align*}
+      \int_{\Omega} f d \mu \geq \int_{\Omega} s d \mu = \infty \cdot \mu(A) = \infty
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+
+\begin{thm}[Tchebyshev Inequality]\label{thm:tchebychev-inequality}
+  Let $f: \Omega \to \overline{\R}$ be $\mu$-summable. Then for every $a > 0$:
+  \begin{align*}
+    \mu\left(
+      \{x \in \Omega \big\vert \abs{f(x)} > a\}
+      \leq \frac{1}{a} \int_{\Omega} \abs{f} d \mu
+    \right)
+  \end{align*}
+\end{thm}
+\begin{proof}
+  Apply monotonicity (Proposition \ref{prop:monotonicity-integral}) on the functions
+  \begin{align*}
+      f_1 = a \cdot \chi_{\{x \in \Omega \big\vert \abs{f(x)} > a\}} \leq f_2 = \abs{f}
+  \end{align*}
+  here, $f_1$ takes on the value $a$, whenever $\abs{f(x)} > a$, and $0$ elsewhere.
 \end{proof}
