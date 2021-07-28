@@ -17,7 +17,7 @@ Define
 
 \begin{dfn}[] \label{dfn:integral}
 \phantom{a}
-  \begin{itemize}
+  \begin{enumerate}
     \item 
     For $g: \Omega \to [0,\infty]$ is a \textbf{non-negative, simple, $\bm{\mu}$-measurable} function, we define
     \begin{empheq}[box=\bluebase]{align*}
@@ -52,14 +52,22 @@ Define
       \begin{align*}
         \int_{\Omega} f d \mu := \upint_{\Omega} f d \mu = \lowint_{\Omega}f d \mu
       \end{align*}
-  \end{itemize}
+  \end{enumerate}
 \end{dfn}
 \textbf{Warning:} in some contexts, functions with integral $\pm \infty$ are called ``not integrable''. For our purposes, they are.
 
-It is easy to show that
-\begin{align*}
- \lowint_{\Omega} f d \mu \leq \upint_{\Omega} f d \mu
-\end{align*}
+\begin{rem}[]
+  It is easy to show that
+  \begin{align*}
+    \lowint_{\Omega} f d \mu \leq \upint_{\Omega} f d \mu
+  \end{align*}
+
+  In Exercise Sheet 09, we prove that the multiple definitions of an integral are ``consistent'', that is: for a $\mu$-integrable simple fucntion we have
+  \begin{align*}
+    \lowint_{\Omega} f d \mu = \upint_{\Omega} f d \mu = \int_{\Omega} f d \mu
+  \end{align*}
+  where the last integral is understood as the definition used in (b)
+\end{rem}
 
 \begin{prop}[] \label{prop:measurable-implies-integrable}
   Let $f: \Omega \to [0,\infty]$ be $\mu$-measurable. Then $f$ is $\mu$-integrable.
@@ -278,4 +286,24 @@ Let $f: \Omega \to \overline{\R}$.
       f_1 = a \cdot \chi_{\{x \in \Omega \big\vert \abs{f(x)} > a\}} \leq f_2 = \abs{f}
   \end{align*}
   here, $f_1$ takes on the value $a$, whenever $\abs{f(x)} > a$, and $0$ elsewhere.
+\end{proof}
+
+\begin{cor}[]
+Let $f, f_k: \Omega \to \overline{\R}$ be $\mu$-integrable with
+\begin{align*}
+  \lim_{k \to \infty} \int_{\Omega} \abs{f_k - f} d \mu = 0
+\end{align*}
+Then $f_k \stackrel{\mu}{\to} f$ and there exists a subsequence $(f_{k_n})_{n \in \N}$ with $f_{k_n} \to f$ $\mu$-a.e.
+\end{cor}
+\begin{proof}
+Applying Tchebyshev's inequality on the function $f_k - f$, it means that for all $\epsilon > 0$
+\begin{align*}
+  \mu\left(
+    \{x \in \Omega \big\vert \abs{f_k - f} > \epsilon\}
+  \right)
+    \leq \frac{1}{\epsilon} \int_{\Omega} \abs{f_k - f} d \mu
+\end{align*}
+since the right hand side converges to $0$ as $k \to  \infty$, it follows that $f_k \stackrel{\mu}{\to} f$ (as in Definition \ref{dfn:convergence-in-measure}).
+
+The second part follows from Theorem \ref{thm:subsequence-muae}.
 \end{proof}
