@@ -39,19 +39,22 @@ Local homeomorphisms are not the same as coverings!
 \begin{dfn}[]
 Let $\pi: Y \to  X$ be a covering.
 \begin{itemize}
-  \item The subset $U \subseteq X$ is open as in Lemma \ref{lem:alt-covering} is said to be \textbf{uniformly covered} by $\pi$ and the $U_i$ is called a \textbf{leaf} of $\pi$ over $U$.
+  \item The neighborhood $U \subseteq X$ as in Lemma \ref{lem:alt-covering} is said to be \textbf{uniformly covered} by $\pi$ and the $U_i$ are called \textbf{leaves} of $\pi$ over $U$.
   \item A covering $\pi$ is called a covering \textbf{of $n$ leaves}, if $\abs{\pi^{-1}(x)} = n$ for all $x \in X$.
 \end{itemize}
 \end{dfn}
 
-
 \begin{ex}[]
 Let $d \in \N$. The map
 \begin{align*}
-  \pi: \IS^{d} \to \R\P^{d} = \IS^{d}/\sim, \quad v \sim - v, \quad v \mapsto [v]
+  \pi: \IS^{d} \to \R\IP^{d} = \IS^{d}/\sim, \quad v \sim - v, \quad v \mapsto [v]
 \end{align*}
 is a covering of $2$ leaves.
+
+For the covering $\pi: \R \to \IS^{1}$, the subset $U = \{e^{2 \pi i t}, t \in [0,\frac{1}{2}\}$ is uniformly covered, but the subset $V = X$ is not.
 \end{ex}
+
+One can show that for a covering (or even a fiber bundle), that for any two points $x_1,x_2 \in X$ we have $\pi^{-1}(x_1) \iso \pi^{-1}(x_2)$.
 
 
 Our next goal is to show a correspondence between coverings of path connected spaces and subgroups of the fundamental group.
@@ -115,25 +118,25 @@ where the covering is given by
     \item For uniqueness of the lift, let $\tilde{\alpha}, \hat{\alpha}$ be two lifts of $\alpha$ to the point $y_0$.
       Then set
       \begin{align*}
-        I := \{t \in [0,1] \big\vert \tilde{\alpha}(t) = \hat{\alpha}(t)\}
+        T := \{t \in [0,1] \big\vert \tilde{\alpha}(t) = \hat{\alpha}(t)\} \subseteq [0,1]
       \end{align*}
-      Because $\tilde{\alpha}$ and $\hat{\alpha}$ start at the same point $y_0$, $I$ is non-empty.
+      Because $\tilde{\alpha}$ and $\hat{\alpha}$ start at the same point $y_0$, $T$ is non-empty.
 
-      $I$ is also open, because for any $t_0 \in I$ chose a $U \subseteq X$ open and uniformly covered with $\alpha(t_0) \in U$.
+      $T$ is also open, because for any $t \in T$ chose a $U \subseteq X$ open and uniformly covered with $\alpha(t_0) \in U$.
       Then chose $a < b$ such that either
       \begin{align*}
         a < t_0 < b, \text{ or } a = 0 = t_0 < b \text{ or } a < t_0 = b = 1
       \end{align*}
       in any case, we noted that $\tilde{\alpha}$ and $\hat{\alpha}$ have to agree on $[a,b]$. 
 
-      With the same argument, we can show that $I$ is also closed, because for some $t_0 \in [0,1] \setminus I$, we chose $U,a,b$ like before and show that $\tilde{\alpha}(t) \neq \hat{\alpha}(t)$ for all $t \in [a,b]$.
+      With the same argument, we can show that $T$ is also closed, because for some $t \in [0,1] \setminus T$, we chose $U,a,b$ like before and show that $\tilde{\alpha}(t) \neq \hat{\alpha}(t)$ for all $t \in [0,1]$.
     \item For existence, set
       \begin{align*}
-        I := \{t \in [0,1] \big\vert \alpha|_{[0,t]} \text{ has a lift to $y_0$}\}
+        T := \{t \in [0,1] \big\vert \alpha|_{[0,t]} \text{ has a lift to $y_0$}\}
       \end{align*}
-      For $T := \sup_{t \in I}$ we either have $I = [0,T)$ or $I=[0,T]$.
+      Tor $t_0 := \sup_{t \in T}$ we either have $T = [0,t_0)$ or $T=[0,t_0]$.
 
-      Chosing $U$ uniformly covered with $\alpha(T) \in U$ and $a<b$ as before, we can chose a lift $\tilde{\beta}:[a,b] \to  Y$ of $\alpha|_{[a,b]}$ with $\tilde{\beta}(a) = \tilde{\alpha}(a)$
+      Chosing $U$ uniformly covered with $\alpha(t_0) \in U$ and $a<b$ as before, we can chose a lift $\tilde{\beta}:[a,b] \to  Y$ of $\alpha|_{[a,b]}$ with $\tilde{\beta}(a) = \tilde{\alpha}(a)$
       Then set set
       \begin{align*}
         \tilde{\alpha}:[0,b] \to  Y, \quad \tilde{\alpha}(t) := \left\{\begin{array}{ll}
@@ -143,7 +146,7 @@ where the covering is given by
       \end{align*}
       then $\tilde{\alpha}$ is a lift of $\alpha|_{[0,b]}$.
 
-      Which shows that if $T<1$, this is a contradiction that $T$ is the supremum, so we must be in the case, where $a < T = b = 1$.
+      Which shows that if $t_0<1$, this is a contradiction that $t_0$ is the supremum, so we must be in the case, where $a < t_0 = b = 1$.
   \end{itemize}
 \end{proof}
 
@@ -151,7 +154,7 @@ Next, we want to lift homotopies.
 \begin{lem}[]\label{lem:homotopy-lift}
   Let $\pi: Y \to X$ be a covering, $Z$ a topological space and $h: Z \times [0,1] \to  X$ a continuous function.
 
-  If $\tilde{h}_0: Z \to Y$ is a lift of $h_0 = h(-,0): Z \to X$.
+  If we can lift $h_0 = h \circ \iota: Z \to X$ to a continuous function $\tilde{h}_0: Z \to Y$
 
   Then there exists a unique lift $\tilde{h}:Z \times [0,1] \to Y$ such that the following diagram commutes
   \begin{center}

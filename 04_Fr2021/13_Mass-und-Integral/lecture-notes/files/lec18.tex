@@ -64,9 +64,25 @@
       which shows that $a f + bg$ is a simple function because the $C_n$ are disjoint.
       By (b), we get
       \begin{align*}
-        \int_{\Omega} (af + bg) d \mu = \sum_{n \in \N} (aa_n + bb_n) \mu(C_n) = a\sum_{n \in \N}a_n \mu(C_n) + b\sum_{n \in \N} b_n \mu(C_n) = a\int_{\Omega} f d \mu + b\int_{\Omega} f d \mu
+        \int_{\Omega} (af + bg) d \mu = \sum_{n \in \N} (aa_n + bb_n) \mu(C_n) = a\sum_{n \in \N}a_n \mu(C_n) + b\sum_{n \in \N} b_n \mu(C_n) = a\int_{\Omega} f d \mu + b\int_{\Omega} g d \mu
       \end{align*}
-      Here, we use that $f,g$ are $\mu$-summable. This becomes more clear when we write
+
+      To show that $a f + bg$ is $\mu$-summable, repeat the same argument with $\abs{f},\abs{g}$ and use the triangle inequality, to find
+      \begin{align*}
+        \int_{\Omega} \abs{f+g} d \mu
+        \leq
+        \int_{\Omega} \abs{f} + \abs{g} d \mu
+        = \int_{\Omega} \abs{f} d \mu + \int_{\Omega} \abs{g} d \mu < \infty
+      \end{align*}
+  \end{enumerate}
+\end{proof}
+\begin{rem}[]
+  We can actually weaken the condition on $f,g$.
+  The reason we used that $f,g$ are $\mu$-summable in the first place was so that the right hand side of the equation
+  \begin{align*}
+    \int_{\Omega} (af + bg) d \mu = a \int_{\Omega} f d \mu + b \int_{g} f d \mu
+  \end{align*}
+  is well defined. This becomes more clear when we write out 
       \begin{align*}
         \int_{\Omega} (af+bg) d \mu
         =
@@ -79,24 +95,17 @@
           - \int_{\Omega} g^{-} d \mu
         \right]
       \end{align*}
-      Which actually shows that it is enough to require that either
+      We can see that it is enough to require that either
       \begin{align*}
         \int_{\Omega} f^{+} d \mu < \infty \quad &\text{and} \quad  
         \int_{\Omega} g^{+} d \mu < \infty\\
         \text{or}\quad
-        \int_{\Omega} f^{+} d \mu < \infty \quad &\text{and} \quad  
-        \int_{\Omega} g^{+} d \mu < \infty
+        \int_{\Omega} f^{-} d \mu < \infty \quad &\text{and} \quad  
+        \int_{\Omega} g^{-} d \mu < \infty
       \end{align*}
-
-      To show that $a f + bg$ is $\mu$-summable, repeat the same argument with $\abs{f},\abs{g}$ and use the triangle inequality, to find
-      \begin{align*}
-        \int_{\Omega} \abs{f+g} d \mu
-        \leq
-        \int_{\Omega} \abs{f} + \abs{g} d \mu
-        = \int_{\Omega} \abs{f} d \mu + \int_{\Omega} \abs{g} d \mu < \infty
-      \end{align*}
-  \end{enumerate}
-\end{proof}
+      which is the case when $f,g$ are $\mu$-summable.
+      Of course, that means that $af + bg$ may no longer be $\mu$-summable.
+\end{rem}
 
 \begin{thm}[] \label{thm:linearity-integral}
   Let $f,g: \Omega\to \overline{\R}$ be $\mu$-summable
@@ -133,10 +142,10 @@
     \quad
     \int_{\Omega} g d \mu - \int_{\Omega} g_{\epsilon} d \mu < \epsilon
   \end{align*}
+  %%%
   and since $f,g$ are $\mu$-summable, we have
   \begin{align*}
-    0 \leq \int_{\Omega} (f^{\epsilon})^{-} d \mu < \infty, \quad
-    0 \leq \int_{\Omega} (g^{\epsilon})^{-} d \mu < \infty
+    0 \leq \int_{\Omega} (f_{\epsilon})^{+} \leq \int_{\Omega} f^{-} d \mu \leq \int_{\Omega} \abs{f} d \mu < \infty
   \end{align*}
   %\begin{align*}
     %\int_{\Omega} (\{f^{\epsilon},f_{\epsilon},g^{\epsilon},g_{\epsilon}\})^{\pm} d \mu \leq \int_{\Omega} \abs{\{f,g\}} d \mu < \infty
