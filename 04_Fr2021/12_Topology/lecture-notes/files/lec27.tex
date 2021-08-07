@@ -105,12 +105,14 @@ Then for any $x \in \R$ there exists a unique homotopy class of loops $[\alpha]$
 \begin{dfn}[]
 Let $\pi:Y \to X$ be a covering.
 A homeomorphism $\phi: Y \to  Y$ with $\pi \circ \phi = \pi$ is called a \textbf{deck transformation}.
-We denote the set of deckbegegungen $\text{Deck}(\pi)$ the \textbf{deck transformation group}.
+We denote the set of deck transformations $\text{Deck}(\pi)$ the \textbf{deck transformation group}.
 \end{dfn}
+To see that it is indeed a group, first note that the set of endomorphisms on $Y$ forms a group. 
+It is therefore sufficient to show that $\text{Deck}(\pi)$ is closed under composition and thus forms a subgroup. 
 
 \begin{ex}[]
 
-We will show in exercise sheet 13 that the deck transformation group of the covering $\pi: \R \to \IS^{1}, x \mapsto  e^{2 \pi i x}$ is
+We will show in exercise sheet 13 that the deck transformation group of the covering $\pi: \R \to \IS^{1}, x \mapsto  e^{2 \pi i x}$ is given by the set of integer-translations
 \begin{align*}
   \text{Deck}(\pi) = \{\phi_k : \R \to  \R, r \mapsto  k + r \big\vert k \in \Z\} \iso \Z
 \end{align*}
@@ -123,11 +125,11 @@ which turns out to be isomorphic of the fundamental group $\pi_1(\IS^{1})$.
 \begin{ex}[]
 The deck transformation group of the covering $\pi_n : \IS^{1} \to \IS^{1}, z \mapsto  z^{n}$ is
 \begin{align*}
-  \text{Deck}(\pi) = \{\phi_{\overline{k}}: z \mapsto  e^{2 \pi i k/n}z \big\vert \overline{k} \in \{\overline{0},\overline{1},\ldots,\overline{n-1}\}\}\iso \Z/n\Z \iso \faktor{\pi_1(\IS^{1})}{G(\pi)}
+  \text{Deck}(\pi_n) = \{\phi_{\overline{k}}: z \mapsto  e^{2 \pi i k/n}z \big\vert \overline{k} \in \{\overline{0},\overline{1},\ldots,\overline{n-1}\}\}\iso \Z/n\Z \iso \faktor{\pi_1(\IS^{1})}{G(\pi)}
 \end{align*}
 \end{ex}
 
-The isomorphisms between the Deckbewegungsruppe and the quotient of the fundamental group is no coincidence.
+The isomorphisms between the deck transformation group and the quotient of the fundamental group is no coincidence.
 
 
 For a group $G$, and $H \subseteq G$, let $N_H$ denote its \textbf{normalizer}
@@ -135,8 +137,8 @@ For a group $G$, and $H \subseteq G$, let $N_H$ denote its \textbf{normalizer}
   N_H := \{g \in G \big\vert g^{-1}Hg = H\}
 \end{align*}
 \begin{thm}[Deck transformationgroup theorem]
-  Let $X,Y$ be path connected and locally path connected, $\phi:(Y,y_0) \to (X,y_0)$ a covering and $G := G(\pi)$.
-  Then for all elements in the normalizer $[\alpha] \in N_G < \pi_1(X,x_0)$ there exists a unique Deckbewegung $\phi_{[\alpha]} \in \text{Deck}(\pi)$ with $\phi_{[\alpha]}(y_0) = \tilde{\alpha}(1)$.
+  Let $X,Y$ be path connected and locally path connected, $\phi:(Y,y_0) \to (X,y_0)$ a covering and $G := G(\pi) = \phi_{\ast}(\pi_1(Y,y_0)) \subseteq \pi_1(X,x_0)$.
+  Then for all elements in the normalizer $[\alpha] \in N_G < \pi_1(X,x_0)$ there exists a unique deck transformation $\phi_{[\alpha]} \in \text{Deck}(\pi)$ with $\phi_{[\alpha]}(y_0) = \tilde{\alpha}(1)$.
 
   Moreover, we have a group isomorphism
   \begin{align*}
@@ -224,7 +226,7 @@ $\pi$ is called a \textbf{normal} covering, if $G(\pi) < \pi_1(X,x_0)$ is a norm
   Universal coverings exist are unique, up to isomorphisms in $\Top^{\ast}$.
 
   ``The'' universal covering $\tilde{\pi}: (\tilde{X},\tilde{x}_0) \to (X,x_0)$ has the following universal property:
-  For any covering $\pi:(Y,y_0) \to  (X,x_0)$, there exists a unique continuous map
+  For any connected covering $\pi:(Y,y_0) \to  (X,x_0)$, there exists a unique continuous map
   $\phi: (\tilde{X},\tilde{x}_0) \to  (Y,y_0)$ such that the following diagram commutes:
 
   \begin{center}
@@ -235,6 +237,18 @@ $\pi$ is called a \textbf{normal} covering, if $G(\pi) < \pi_1(X,x_0)$ is a norm
   \end{center}
   In other words, the universal covering is the initial object in the category of coverings of $(X,x_0)$.
 \end{rem}
+
+
+
+\begin{ex}[]
+  The covering $\R \to \IS^{1}, x \mapsto  e^{2 \pi i x}$ is universal and normal.
+
+With the universal property of products, one can also show that the covering
+\begin{align*}
+  \pi: \R^{2} \to \IT^{2} = \IS^{1}\times \IS^{1}, \quad (x,y) \mapsto (e^{2 \pi i x}, e^{2 \pi i y})
+\end{align*}
+is universal.
+\end{ex}
 
 
 

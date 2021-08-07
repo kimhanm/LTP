@@ -1,48 +1,103 @@
 \begin{proof}
-  For $z \in Z$,
-  let $\alpha_z: [0,1] \to X$ with $\alpha_z(t) = h(z,t)$ and $\tilde{\alpha}_z$ the lifting of $\alpha_z$ to $\tilde{h}_0(z)$.
-  We define
+  Let $h,\tilde{h}_0$ as above.
+  We define $\tilde{h}$ as follows:
+  For all $z \in \Z$, the function $h$ induces a path $\alpha_z = h(z,-): [0,1] \to X$.
+  By the previous Lemma, for any point $y_0 \in \pi^{-1}(h(z,0))$ we can lift this to a path $\tilde{\alpha}_z: [0,1] \to Y$ 
+  with
+  $(\pi \circ \tilde{\alpha}_z) = \alpha_z$ and $\tilde{\alpha}_z(0) = y$.
+  In particular, we can chose $y_0 = \tilde{h}_0(z)$.
+  Then define $\tilde{h}$ as
   \begin{align*}
-    \tilde{h}: Z \times [0,1] \to Y, \quad \tilde{h}(z,t) = \tilde{a}_z(t)
+    \tilde{h}: Z \times [0,1] \to Y, \quad (z,t) \mapsto
+    \tilde{\alpha}_z(t)
   \end{align*}
-  and we have to show that the diagram commutes, i.e.
-  $\pi \circ \tilde{h} = h$ and $\tilde{h} \circ \iota = \tilde{h}_0$.
-  Indeed, we have
+  To show that the diagram commutes in the lower-right and upper-left triangle, we have to show
   \begin{align*}
-    \pi(\tilde{h}(z,t) = \pi(\tilde{a}_z(t)) = a_z(t) = h(z,t) \quad \text{and} \quad \tilde{h}(\iota(z) = \tilde{h}(z,0) = \tilde{h}_0(z)
+    \pi \circ \tilde{h} = h \quad \text{and} \quad \tilde{h} \circ \iota = \tilde{h}_0
+  \end{align*}
+  Indeed, these follow directly from construction:
+  \begin{align*}
+    \pi(\tilde{h}(z,t))
+    =
+    \pi(\tilde{a}_z(t)) 
+    = 
+    a_z(t) 
+    = 
+    h(z,t) 
+    \quad \text{and} \quad 
+    \tilde{h}(\iota(z))
+    =
+    \tilde{h}(z,0)
+    =
+    \tilde{\alpha}_z(0)
+    = 
+    \tilde{h}_0(z)
   \end{align*}
   
-  For uniqueness, let $\tilde{h}$ and $\tilde{h}'$ be two such functions. Then for all $z \in \Z$ the functions
+  For uniqueness, let $\tilde{h}$ and $\tilde{h}'$ be two such functions. Then for all $z \in \Z$ the paths
   \begin{align*}
-    \tilde{\alpha}'(t) := \tilde{h}'(z,t) \text{ and } \tilde{\alpha}(t) := \tilde{h}(z,t)
+    \tilde{\alpha}' := \tilde{h}'(z,-) \text{ and } \tilde{\alpha} := \tilde{h}(z,-)
   \end{align*}
-  would be lifts of the function $\alpha(t) = h(z,t)$ at $y_0 = \tilde{h}_0(z)$.
-  By the Lemma \ref{lem:path-lift}, these would be identical, so
+  would be lifts of the path $\alpha = h(z,-)$ at $y_0 = \tilde{h}_0(z)$.
+  But by the previous Lemma, these would be identical:
   \begin{align*}
-    \tilde{\alpha}'(t) = \tilde{a}(t) \forall t \in [0,1] \implies \tilde{h}'(z,t) = \tilde{h}(z,t) \forall t \in [0,1]
+    \tilde{\alpha}'(t) = \tilde{\alpha}(t) \forall t \in [0,1] \implies \tilde{h}'(z,t) = \tilde{h}(z,t) \forall (z,t) \in Z \times [0,1]
   \end{align*}
 \end{proof}
 
+
+
+\begin{ex}[Monodromy]
+  In the covering $\R \to \IS^{1}$, we can consider two paths in $\IS^{1}$. Both starting at $1$, one going clockwise ($\alpha$) and the other one going counter-clockwise ($\beta$).
+
+  We know that we could lift these to paths to $\tilde{\alpha},\tilde{\beta}:[0,1] \to \R$, but even if both start at the same point, say $\tilde{\alpha}(0) = \tilde{\beta}(0) = 0$,
+  the path $\tilde{\alpha}$ will end and the point $-1$ and $\tilde{\beta}$ at $+1$.
+
+  Similar things happen with the complex logarithm, which when we continuously move the argument around the origin, wants to end up at a value shifted by $2 \pi i$.
+\end{ex}
+
+
 \begin{cor}[Monodromy Lemma]\label{cor:monodromy}
-  Let $\pi: Y \to X$ be a covering, $y_0 \in Y$ and $\alpha,\beta:[0,1]$ be paths that are homotopic rel. endpoints.
+  Let $\pi: Y \to X$ be a covering, $y_0 \in Y$ and $\alpha,\beta:[0,1] \to X$ be paths that are homotopic rel. endpoints.
 
   If $\tilde{\alpha},\tilde{\beta}:[0,1] \to Y$ are lifts of $\alpha$ and $\beta$, respectively at $y_0$, then $\tilde{\alpha}, \tilde{\beta}$ are also homotopic rel. endpoints.
 
   In particular, $\tilde{\alpha}(1) = \tilde{\beta}(1)$.
 \end{cor}
 \begin{proof}
-This follows directly from the previous lemma because we can use the lifted homotopy.
+  This follows directly from the previous Lemma.
 
-More precicely, since $\alpha,\beta$ are homotopic rel. endpoints, there exists a homotopy
+Since $\alpha,\beta$ are homotopic rel. endpoints $x_0,x_1$, there exists a homotopy
+$h: [0,1] \times [0,1] \to X$ with
 \begin{align*}
-  h: [0,1] \times [0,1] \to X \quad \text{with} \quad h(s,0) = \alpha(s), h(s,1) = \beta(s), h(0,t) = \alpha(0) = \beta(0), h(1,t) = \alpha(1) = \beta(1)
+  h(0,t) = \alpha(t), 
+  \quad
+  h(1,t) = \beta(t), 
+  \quad
+  h(s,0) = \alpha(0) = \beta(0)
+  = x_0, 
+  \quad
+  h(s,1) = \alpha(1) = \beta(1) = x_1
 \end{align*}
-Then the constant map $\tilde{h}_0(t) := y_0$ is a lift of $h_0(t) = h(0,t) = x_0$.
+Then the constant map $\tilde{h}_0(s) := y_0$ is a lift of $h_0(s) = h(s,0) = x_0$.
 
-By the lemma, there exists a (unique) homotopy
+By the Lemma, there exists a (unique) lift
 \begin{align*}
-  \tilde{h}:[0,1] \times[0,1] \to Y \quad \text{with} \quad \tilde{h}(0,t) = h(0) = y_0
+  \tilde{h}:[0,1] \times[0,1] \to Y \quad \text{with} \quad 
+  \tilde{h}(s,0) = \tilde{h}_0(s) \quad \text{and} \quad \pi(\tilde{h}(s,t)) = h(s,t)
 \end{align*}
+The first equality means $\tilde{h}(s,0) =  \tilde{h}_0(s) = y_0$.
+The second means that $\tilde{h}(0,-)$ is a lift of $h(0,-) = \alpha$ and $\tilde{h}(1,-)$ is a lift of $\beta$.
+
+But the lift of paths is unique, and since $\tilde{\alpha},\tilde{\beta}$ are already lifts, we have
+\begin{align*}
+  \tilde{\alpha}(t) = \tilde{h}(0,t) \quad \text{and} \quad \tilde{\beta}(t) = \tilde{h}(1,t)
+\end{align*}
+
+To show that the endpoints are fixed, consider 
+the continuous map $\tilde{h}(-,1): [0,1] \to bY$. 
+Since it is a lift of $h$, we have $\tilde{h}(s,1) \in \pi^{-1}(h(s,1)) = \pi^{-1}(x_0)\subseteq Y$.
+But this is a discrete set (see \ref{dfn:covering}), and so the only way for $\tilde{h}(1,-)$ to be continous is if it is constant.
 \end{proof}
 
 
@@ -78,7 +133,7 @@ Warning, there is a clash of definitions from the ``characteristic subgroup'' we
 \begin{ex}[]
   \begin{itemize}
     \item Looking at the covering $\pi: \R \to \IS, x \mapsto  e^{2 \pi i x}$, we see immediately that $G(\pi) = \{e\}$ is trivial.
-    \item For the covering $\pi_n: \IS^{1} \to \IS^{1}, z \mapsto  z^{n}$, the characteristic subgroup is $\Z/n\Z < \Z$.
+    \item For the covering $\pi_n: \IS^{1} \to \IS^{1}, z \mapsto  z^{n}$, the characteristic subgroup is $n\Z < \Z$.
   \end{itemize}
 \end{ex}
 

@@ -1,0 +1,66 @@
+\section{Weird Spaces}
+A weird space is a topological space that behaves verymuch unlike ``real-world'' spaces such as $\R^{n}$, where our physical intuition may lead us to come to false conclusions.
+
+It is a good idea to have these weird spaces in mind because they are a great source for counterexamples.
+
+
+\subsection*{The Topologist's sine curve}
+
+The Topologist's sine curve $\textsf{Tsc}$ is the closure of the graph of the function $\sin(\tfrac{1}{x})$, over some domain, usually $(0,1]$.
+\begin{align*}
+  \textsf{Tsc} 
+  &= \overline{
+    \left\{
+      (x,y) \in \R^{2} \big\vert
+      x \in (0,1], y = \sin\left(
+        \frac{1}{x}
+      \right)
+    \right\}
+  } 
+  \\
+  &=
+    \left\{
+      (x,y) \in \R^{2} \big\vert
+      x \in (0,1], y = \sin\left(
+        \frac{1}{x}
+      \right)
+    \right\}
+    \bigsqcup
+    \{0\} \times [-1,1]  \subseteq \R^{2}
+\end{align*}
+\begin{itemize}
+  \item $\textsf{TSC}$ is connected, but not path connected.
+
+    One can show that there is no path that connects the endpoint $(1,\sin(1))$ and $(1,0)$ because if $\gamma: [0,1] \to \textsf{Tsc}$ were such a path, we could find a sequence of times $t_0 < t_1 < \ldots$ with $\lim_{n \to \infty} t_n = 1$ such that $\gamma(t_n) = (x_n,-1)$ for some $x_n \in [0,1]$ and $\lim_{n \to \infty} x_n = 0$.
+
+    For $\gamma$ to be continuous, it would mean that
+    \begin{align*}
+      \lim_{n \to \infty} \gamma(t_n) = \gamma( \lim_{n \to \infty} t_n) = (0,-1) \neq (0,1)
+    \end{align*}
+\end{itemize}
+
+
+\subsection*{$\R/\Z$}
+
+The space $\R/\Z$ is the quotient space obtained by identifying all the integers to a single point.
+
+It sort of looks like a flower petal with infinite petals.
+
+This space can be used to show that the quotient space does not necessarily retain
+\begin{enumerate}
+  \item $\R/\Z$ is not locally compact, unlike $\R$.
+  \item $\R/\Z$ is not first countable (and thus neither second countable), unlike $\R$
+\end{enumerate}
+
+
+\subsection*{Fine Brush}
+
+For the set $K = \{\tfrac{1}{n} \big\vert n \in \N\}$, the fine brush is the set
+\begin{align*}
+  \textsf{Fine brush} := \text{Cone}\left(
+    \{0\} \cup K
+  \right) \subseteq \R^{2}
+\end{align*}
+
+This is an example where $A = [(0,0)]$, is a deformation retract but not a strong deformation retract.
+

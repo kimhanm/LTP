@@ -99,12 +99,11 @@ where the covering is given by
 \end{align*}
 
 \begin{lem}[]\label{lem:path-lift}
-  Let $\pi: Y \to X$ a covering, $\alpha:[a,b] \to X$ a path and $y_0 \in \pi^{-1}(\alpha(a))$.
+  Let $\pi: Y \to X$ a covering, $\alpha:[0,1] \to X$ a path and $y_0 \in \pi^{-1}(\alpha(0))$.
   
   Then there exists a unique lift of $\alpha$ to $y_0 \in Y$.
 \end{lem}
 \begin{proof}
-  Without loss of generality we can assume $[a,b] = [0,1]$.
   First note that for any $U \subseteq X$ open and uniformly covered: 
   for any path $\beta:[0,1] \to U$, there exists a unique lift of $\beta$ to a $y_j \in \pi^{-1}(\beta(0))$.
   This is because the lift is uniquely determined by
@@ -150,24 +149,26 @@ where the covering is given by
   \end{itemize}
 \end{proof}
 
-Next, we want to lift homotopies.
+Now that we can lift paths, we want to lift homotopies next.
 \begin{lem}[]\label{lem:homotopy-lift}
-  Let $\pi: Y \to X$ be a covering, $Z$ a topological space and $h: Z \times [0,1] \to  X$ a continuous function.
+  Let $\pi: Y \to X$ be a covering, and $h: Z \times [0,1] \to  X$ continuous.
 
-  If we can lift $h_0 = h \circ \iota: Z \to X$ to a continuous function $\tilde{h}_0: Z \to Y$
-
-  Then there exists a unique lift $\tilde{h}:Z \times [0,1] \to Y$ such that the following diagram commutes
+  If we can lift $h_0 = h \circ \iota: Z \to X$ to a continuous function $\tilde{h}_0: Z \to Y$, 
+  
+  then there exists a unique lift $\tilde{h}:Z \times [0,1] \to Y$ such that the following diagram commutes
   \begin{center}
   \begin{tikzcd}[ ] %\arrow[bend right,swap]{dr}{F}
     Z \arrow[]{r}{\tilde{h}_0} \arrow[swap]{d}{\iota}& Y \arrow[]{d}{\pi}\\
     Z \times [0,1] \arrow[]{r}{h}\arrow[dotted]{ur}{\exists!\tilde{h}} & X
   \end{tikzcd}
   \end{center}
-  in other words: if the outer square of the diagram commutes, then there exists a $\tilde{h}$ completing the diagram.
+  In other words: if the outer square of the diagram commutes, then there exists an $\tilde{h}$ completing the diagram.
 
 \end{lem}
 \begin{rem}[]
-  We say that the inclusion
+  When $Z = [0,1]$, we call this the \textbf{homotopy lifting property}.
+  More generally, we also say
+  that the inclusion
   \begin{align*}
     \iota: Z \to Z \times [0,1], z \mapsto (z,0)
   \end{align*}
