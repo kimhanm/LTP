@@ -162,15 +162,13 @@ For a group $G$, and $H \subseteq G$, let $N_H$ denote its \textbf{normalizer}
   \begin{align*}
     \Psi: \faktor{N_G}{G} \to  \mathrm{Deck}(\pi), [\alpha] \mapsto  \phi_{[\alpha]} 
   \end{align*}
-  In particular, if $G$ is a normal divisor, then $N_G = \pi_1(X,x_0)$ is the fundamental group and we have a group isomorphism
-  \begin{align*}
-    \Psi: \faktor{\pi_1(X,x_0)}{G} \to \text{Deck}(\pi)
-  \end{align*}
   Often, the theorem is used in the special cases where
   \begin{itemize}
-    \item $G(\pi) = \{1\}$ and $N_G = \pi_1(X,x_0)$.
-      Then $\pi_1(X,x_0) \iso \text{Deck}(\pi)$
-    \item If $G$ is already a normal divisor, then $N_G = \pi_1(X,x_0)$, so $\text{Deck}(\pi) \iso \faktor{\pi_1(X,x_0)}{G}$.
+    \item If $G$ is already a normal divisor, then $N_G = \pi_1(X,x_0)$, so 
+      \begin{align*}
+        \Psi: \faktor{\pi_1(X,x_0)}{G} \to \mathrm{Deck}(\pi) 
+      \end{align*}
+    \item And if additionnally, $G(\pi) = \{1\}$, then $\pi_1(X,x_0) \iso \text{Deck}(\pi)$
   \end{itemize}
 \end{thm}
 We will only prove the first part
