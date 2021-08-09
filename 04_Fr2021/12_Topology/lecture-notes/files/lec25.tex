@@ -161,21 +161,46 @@ Warning, there is a clash of definitions from the ``characteristic subgroup'' we
   \end{align*}
 \end{rem}
 
-
-
 \begin{dfn}[]
-  A topological space $X$ is called \textbf{locally path connected}, if for all $x \in X$, every neighborhood of $x$ contains a path connected neighborhood of $X$.
+  Warning: There are two common versions of this definition. In the lectures, we used Version 1.
+
+  \textbf{Version 1}:
+  A topological space $X$ is called \textbf{locally path connected}(lokal wegzusammenhängend), if for all $x \in X$, every neighborhood of $x$ contains a path connected neighborhood of $x$.
+
+  \textbf{Version 2}:
+  A topological space $X$ is called \textbf{locally path connected$^{\ast}$}, if for all $x \in X$, there exists a path connected neighborhood of $x$.
 \end{dfn}
+Clearly, if $X$ is locally path connected, then it is locally path connected$^{\ast}$.
+
+One can show that if $X$ is Hausdorff, then both deftinions are equivalent.
+
 One can easily show that path connectedness and local path connectedness do not imply eachother.
 \begin{ex}[]
   For example. open subsets of $\R^{n}$ (or manifolds) are locally path connected.
-  The cone 
+  The Space 
   \begin{align*}
-    C(\{0\} \cup \{\frac{1}{n}|n \in \N\}
+    \text{Cone}(\{0\} \cup \{\frac{1}{n}|n \in \N\}
   \end{align*}
   is path connected, but \emph{not} locally path connected.
-
 \end{ex}
+
+
+\begin{rem}[]
+  Let $\pi: Y \to X$ be a covering. If $X$ is locally path connected, then so is $Y$.
+\end{rem}
+\begin{proof}
+  Let $y \in Y$. Since $\pi$ is a covering, there exists a neighborhood $U$ of $\pi(y)$ such that
+  $$
+  \pi|_{\pi^{-1}(U)}: \pi^{-1}(U) \to U
+  $$
+  is a trivial fiber. Which means that there exist a discrete space $F$ such that
+  $
+  \pi^{-1}(U) \cong X \times F
+  $
+  Since $X$ is locally path connected, there exists path connected neighborhood $V \subseteq U$ of $\pi(y)$.
+
+  In the leaf with index $f \in F$ such that $y \in X \times \{f\}$, we se that $V \times \{f\}$ is a neighorhood of $y$ which is homeomorphic to $V$ and thus also locally path connected.
+\end{proof}
 
 
 \begin{thm}[Lifting criterion]\label{thm:lifting-criterion}

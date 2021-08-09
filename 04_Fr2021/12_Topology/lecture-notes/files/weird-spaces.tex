@@ -44,6 +44,8 @@ The Topologist's sine curve $\textsf{Tsc}$ is the closure of the graph of the fu
 
 The space $\R/\Z$ is the quotient space obtained by identifying all the integers to a single point.
 
+Not to be confused with $\R/\sim \iso \IS^{1}$, where $x \sim y \iff x-y \in \Z$, which is sometimes also denoted as $\R/\Z$!
+
 It sort of looks like a flower petal with infinite petals.
 
 This space can be used to show that the quotient space does not necessarily retain
@@ -63,4 +65,43 @@ For the set $K = \{\tfrac{1}{n} \big\vert n \in \N\}$, the fine brush is the set
 \end{align*}
 
 This is an example where $A = [(0,0)]$, is a deformation retract but not a strong deformation retract.
+
+
+\subsection*{Sorgenfrey Line $\R_l$}
+The Sorgenfrey Line $\R_l$ has the set $\R$, but with the half-open topology, of which the collection of half-open intervals $[a,b), a,b, \in \R$ is a basis.
+
+\begin{itemize}
+  \item 
+    Because an open interval $(a,b)$ can be written as
+    \begin{align*}
+      (a,b) = \bigcup_{n \in \N} [a + \frac{1}{n},b)
+    \end{align*}
+    this topology is finer than the standard topology.
+
+  \item 
+    In this topology, the sets $[a,b)$ is clopen, and so are the sets $(-\infty,a)$ and $[a,\infty)$, which shows that the space is disconnected (and even totally disconnected).
+
+  \item $\R_l$ is an example of a first-countable and sepearable, but not second-countable space and therefore not metrizable.
+  \item Any compact subset of $\R_l$ is at most countable, so this space is not locally compact.
+\end{itemize}
+
+\subsection*{Sorgenfrey Plane $\R_l^{2}$}
+
+The Sorgenfrey Plane is the cartesian product of two Sorgenfrey Lines $\R_l^{2} = \R_l \times \R_l$ with the product topology.
+
+
+A basis of this is the set of ``half-open'' rectangles. That is the interior of a rectangle plus the southern and western border and the south-western corner.
+
+\begin{itemize}
+  \item The anti-diagonal $\Delta := \{(x,-x) \big\vert x \in \R\}$ is an uncountable discrete set and non-separable.
+  \item For $K = \Delta \cap \Q^{2}$ the rational points on the diagonal, both sets $K$ and $\Delta \setminus K$ are closed and one can show that they cannot be separated by open sets.
+    Therefore, $\R_l^{2}$ shows that a product of normal spaces is not necessarily normal.
+\end{itemize}
+
+
+
+\subsection*{$\R$-cofinite}
+
+The set $\R$ with cofinite topology is Hausd
+
 
