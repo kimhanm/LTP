@@ -100,3 +100,17 @@ In particuar
   \faktor{\pi_1(A) \ast \pi_a(B)}{\Ker \phi} \iso \pi_1(X)
 \end{align*}
 \end{thm}
+
+
+\begin{rem}[]
+Another useful way to write the equation is using the 'generators and relations' notation.
+Seifert van Kampen's theorem says that the generators of $\pi_1(X)$ are the generators of $\pi_1(A)$ together with the generators of $\pi_1(B)$, with relations from $A,B$ and the additional relation $i_A(c) =i_B(c), c \in \pi_1(A \cap B)$.
+
+So if $\pi_1(A)$ and $\pi_1(B)$ have generators $a_i$ and $b_j$, respectively with relations $p_k$ and $q_l$, then
+\begin{align*}
+  \pi(A \cup B) = \scal{a_i,b_j\big\vert p_k, q_l, i_A(c) = i_B(c), c \in \pi_1(A \cap B)}
+\end{align*}
+
+The relation $i_A(c) = i_B(c)$ should be intuitive, as when we embed a loop in $A \cap B$ into $X$, it does not matter if we first embed it into $A$ or $B$.
+\end{rem}
+

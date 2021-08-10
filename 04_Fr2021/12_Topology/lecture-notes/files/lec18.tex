@@ -102,6 +102,22 @@ The theorem lets us easily prove that $\pi_1(\IS^{n}) = \{e\}$ for $n \geq 2$ if
     \right)^{-1}} \big\vert [\beta_k] \in \pi_1(A \cap B) }\\
     &=\{[(\beta \alpha_k \beta^{-})^{d}] \big\vert k \in \Z\} \lhd \pi_1(A) \implies \pi_1(A)/N \iso \Z/d\Z
   \end{align*}
+
+
+  Alternatively, with the generators-and-relations notation, we have
+  \begin{align*}
+    \pi_1(A) = \scal{\alpha_1\big\vert \emptyset} 
+    , \quad
+    \pi_1(B) = \scal{1 \big\vert \emptyset}
+    ,\quad
+    \pi_1(A \cap B) = \scal{\beta_1\big\vert \emptyset}
+  \end{align*}
+  Embedding the loop on the dome $\beta_1$ into $B$ returns the constant path $1$.
+  But embedding it into $A$ returns $\alpha_1^{d}$, as $\phi_d$ makes it go around $d$-times faster.
+  Seifert van Kampen's theorem gives us
+  \begin{align*}
+    \pi_1(X) = \scal{\alpha_1 \big\vert i_A(\beta_1) = \alpha_1^{d} = 1 = i_B(\beta_1)} \iso \Z/d\Z
+  \end{align*}
 \end{ex}
 
 \begin{proof}
@@ -234,7 +250,10 @@ Consider the space
 \begin{align*}
   X := \bigcup_{n \in \N}C_n \subseteq \C \quad \text{where} \quad C_n = \{z \big\vert \abs{z - \frac{1}{n}} = \frac{1}{n}\}
 \end{align*}
-Then $X$ is not isomorphic to $\bigvee_{n \in \N}\IS^{1}$ because $\pi_1(X)$ is uncountable.
+Then $X$ is not isomorphic to $\bigvee_{n \in \N}\IS^{1}$. 
+To see this, note that a loop in $\bigvee_{n \in \N}\IS^{1}$ may not make infinitely many loops in the different circles without losing continuity, as the loops are of constant size.
+
+But a loop in $X$ may very well chose infinitely many $C_n$ and still be continuous, as the loops get smaller and smaller.
 \end{ex}
 
 
@@ -242,7 +261,7 @@ Then $X$ is not isomorphic to $\bigvee_{n \in \N}\IS^{1}$ because $\pi_1(X)$ is 
 %  We wish to compute the fundamental group of $\R\IP^{2} = \faktor{\R^{n+1} \setminus \{0\}}{\sim}$ with $x \sim \lambda x$ for $\lambda \in \R \setminus \{0\}$.
 %
 %  Before we go on, let's check some equivalent definitions of the real projective plane. 
-%  We can write
+%  We can writet the g
 %  \begin{align*}
 %    \R\IP^{2} = \faktor{\IS^{2}}{\pm 1}\quad \text{and} \quad \R\IP^{2} = \faktor{\ID^{2}}{\sim}
 %  \end{align*}

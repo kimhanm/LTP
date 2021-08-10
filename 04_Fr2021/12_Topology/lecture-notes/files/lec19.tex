@@ -56,19 +56,25 @@ The following definition was not covered in the lecture, but comes up in many of
       X \text{ fulfills } 1AA/2AA \implies Y \text{ fulfills the } 1AA/2AA
     \end{align*}
   \item If there exists an uncountable and discrete subset $A \subseteq X$, then $X$ cannot fulfill the 2AA.
-    To see this let $\mathcal{B}$ be a basis and choose a $U_a \subseteq X$ such that $U_a \cap A = \{a\}$. But then
+    To see this let $\mathcal{B}$ be a basis and choose a $U_a \subseteq X$ such that $U_a \cap A = \{a\}$. This is possible because $A$ is discrete.
+    Since $\mathcal{B}$ is a Basis, 
     \begin{align*}
-      \forall a \in A \exists O_a \in \mathcal{B} \text{ with } a \in O_a \subseteq U_a \implies A \hookrightarrow B, a \mapsto O_a \text{ is injective}
+     \forall a \in A, \exists O_a \in \mathcal{B} \text{ with }a  \in O_a \subseteq U_a
     \end{align*}
+    Because $O_a \cap A \subseteq U_a \cap A = \{a\}$, this defines an injective map
+    $
+      A \hookrightarrow \mathcal{B}, a \mapsto O_a 
+    $
+    and shows that $\mathcal{B}$ is uncountable.
 \end{itemize}
 
 \begin{ex}[]
-  The space of continuous and bounded funcitons with the metric induced by the $\|\cdot\|_{\infty}$-Norm
+  The space of continuous and bounded functions with the metric induced by the $\|\cdot\|_{\infty}$-Norm
   \begin{align*}
     C(\R) := \{\phi:  \R \to \R \big\vert \phi \text{ continuous, bounded}\}
   \end{align*}
   fulfills the 1AA but not the 2AA.
-  To prove this, we construct such an uncoutable discrete subset $A$ as before. Take the set of $(0,1)$ sequences
+  To prove this, we construct such an uncountable discrete subset $A$ as before. Take the set of $(0,1)$ sequences
   \begin{align*}
     \epsilon = \left(\epsilon_{n}\right)_{n \in \N}
   \end{align*}
