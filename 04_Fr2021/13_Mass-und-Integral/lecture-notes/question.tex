@@ -1,0 +1,40 @@
+From section 2.3 (Lusin's and Egoroff's Theorem) through section 3.3 (Convergence results), we sometimes started with the assumption that $\mu$ was a Radon measure.
+As noted in the script, that assumption is not always necessary and I would like to know where we can discard it.
+
+While reading the proofs through those sections, I found that we only used it section 2.3 for Lusin's theorem and as mentioned before in the thread, we can weaken Egoroff's theorem a bit and remove the assumption.
+Can someone tell me if there was another proof in these sections that relied on the assumption that $\mu$ is Radon? I couldn't find any.
+
+Also, would you accept this alternative Characterisation of Egoroff's theorem? The definition of $\mu$-almost uniform convergence is used in Wikipedia, for example.
+
+\begin{bluebox}[Definition]
+  Let $\Omega \subseteq \R^{n}$.
+  We say that a sequence of functions $(f_k: \Omega \to \overline{\R})_{k \in \N}$ \textbf{converges $\mu$-almost uniformly} on $\Omega$ to a function $f: \Omega \to \overline{\R}$,
+  if for all $\delta > 0$ there exists a $\mu$-measurable subset $A \subseteq \Omega$ with $\mu(\Omega \setminus A) < \delta$ such that $(f_k)_{k \in \N}$ converges uniformly on $A$.
+  That is:
+  \begin{align*}
+    \sup_{x \in A} \abs{f_k(x) - f(x)} \to  0 \text{ as } k \to  \infty
+  \end{align*}
+\end{bluebox}
+
+
+\begin{orangebox}[Egoroff's Theorem (alternative)]
+
+
+  Let $\Omega \subseteq \R^{n}$ be $\mu$-measurable with $\mu(\Omega) < \infty$,
+  and let
+  $f,(f_k)_{k \in \N}: \Omega \to \overline{\R}$ $\mu$-measurable.
+  \begin{enumerate}
+    \item 
+      If $f_k(x) \to  f(x)$ as $k \to  \infty$ for $\mu$-a.e. $x \in \Omega$, and $f(x)$ finite $\mu$-a.e., 
+      then $(f_k)_{k \in \N}$ converges $\mu$-almost uniformally to $f$ on $\Omega$.
+    \item 
+      If additionally, $\mu$ is a Radon measure we can also assume that the set on which $(f_k)_{k \in \N}$ converges uniformly is compact.
+      That is:
+
+      $\forall \delta > 0\ \exists K \subseteq \Omega$ compact with $\mu(\Omega \setminus K) < \delta$ and
+      \begin{align*}
+        \sup_{x \in C} \abs{f_k(x) - f(x)} \to 0 \text{ as } k \to  \infty
+      \end{align*}
+  \end{enumerate}
+\end{orangebox}
+

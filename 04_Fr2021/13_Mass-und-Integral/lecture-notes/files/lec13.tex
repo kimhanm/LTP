@@ -16,7 +16,7 @@ What this points to is that the coast-line must have some Hausdorff dimension $\
   \begin{align*}
     \Hau^{s}(\lambda \cdot A) = \lambda^{s} \Hau^{s}(A), \quad \forall s > 0
   \end{align*}
-  If we let $d := \Hau^{d}(C)$, then we can take two copies of $\frac{1}{3} \cdot C$ and when we put them back together, we obtain $C$ again. So
+  If we let $d := \mathrm{dim}_{\Hau}(C)$, then we can take two copies of $\frac{1}{3} \cdot C$ and when we put them back together, we obtain $C$ again. So
   \begin{align*}
     \Hau^{d}(C) = 2 \Hau^{d}\left(
       \frac{1}{3} \cdot C
@@ -43,7 +43,7 @@ What this points to is that the coast-line must have some Hausdorff dimension $\
 
 
 
-\subsection{Radon Measures}
+\subsection{Radon Measures}\label{sec:radon}
 
 \begin{dfn}[]
   A measure $\mu$ on $\R^{n}$ is called a \textbf{Radon} measure, if $\mu$ is Borel regular and $\mu(K) < \infty$ for every compact $K \subseteq \R^{n}$.
@@ -63,7 +63,7 @@ What this points to is that the coast-line must have some Hausdorff dimension $\
 \end{itemize}
 \end{ex}
 
-We wish to show that for Radon measure, an analogous to Theorem \ref{thm:leb-characterisation} holds.
+We wish to show that for Radon measure, an analogue to Theorem \ref{thm:leb-characterisation} holds.
 For this we need the following Lemma:
 
 
@@ -139,10 +139,10 @@ For every $\mu$-measurable set $A \subseteq \R^{n}$ it holds
     Since for all $\epsilon >0$ there exists an open set $U \supseteq A$ with $\mu(U \setminus A) < \epsilon$.
     By $\mu$-measurablility of $A$, we have
     \begin{align*}
-      \mu(U) = \mu(U \cap A) + \mu(U \setminus S) = \mu(A) + \epsilon
+      \mu(U) = \mu(U \cap A) + \mu(U \setminus A) = \mu(A) + \epsilon
     \end{align*}
 
-    Now let $A$ be an arbitrary set. Since $\mu$ is Borel regular, there exists a Borel set $B \subseteq A$ with $\mu(A) = \mu(B)$. Then
+    Now let $A$ be an arbitrary set. Since $\mu$ is Borel regular, there exists a Borel set $B \supseteq A$ with $\mu(A) = \mu(B)$. Then
     \begin{align*}
       \mu(A) = \mu(B)
       &= \inf \{\mu(U), B \subseteq U \text{ open}\}\\

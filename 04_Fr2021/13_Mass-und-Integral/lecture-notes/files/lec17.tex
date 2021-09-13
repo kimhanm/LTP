@@ -70,7 +70,8 @@ Define
 \end{rem}
 
 \begin{prop}[] \label{prop:measurable-implies-integrable}
-  Let $f: \Omega \to [0,\infty]$ be $\mu$-measurable. Then $f$ is $\mu$-integrable.
+  Let $\mu$ be Radon and
+  let $f: \Omega \to [0,\infty]$ be $\mu$-measurable. Then $f$ is $\mu$-integrable.
 \end{prop}
 \begin{proof}
   If $\lowint_{\Omega} f d \mu = \infty$, then it is trivial.
@@ -172,7 +173,7 @@ Define
   \end{align*}
 \end{proof}
 As an immediate consequence, we have
-\begin{cor}[]
+\begin{cor}[]\label{cor:same-integral}
   Let $f_1,f_2: \Omega \to \overline{\R}$ $\mu$-integrable with $f_1 = f_2$ $\mu$-a.e.
   \begin{align*}
     \int_{\Omega} f_1 d \mu = \int_{\Omega} f_2 d \mu
@@ -234,7 +235,7 @@ Let $f: \Omega \to \overline{\R}$.
   \end{enumerate}
 \end{proof}
 
-\begin{prop}
+\begin{prop} \label{prop:integral-and-zero}
   Let $f: \Omega \to [0,\infty]$ be $\mu$-measurable.
   \begin{enumerate}
     \item $\int_{\Omega} f d \mu = 0 \implies f(x) = 0$ $\mu$-a.e.
@@ -290,7 +291,7 @@ Let $f: \Omega \to \overline{\R}$.
   here, $f_1$ takes on the value $a$, whenever $\abs{f(x)} > a$, and $0$ elsewhere.
 \end{proof}
 
-\begin{cor}[]
+\begin{cor}[]\label{cor:reverse-convergence}
 Let $f, f_k: \Omega \to \overline{\R}$ be $\mu$-integrable with
 \begin{align*}
   \lim_{k \to \infty} \int_{\Omega} \abs{f_k - f} d \mu = 0

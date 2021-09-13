@@ -3,13 +3,14 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\IS}{\mathbb{S}}
+\newcommand{\ID}{\mathbb{D}}
+\newcommand{\IT}{\mathbb{T}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\F}{\mathbb{F}}
-\newcommand{\E}{\mathbb{E}}
+\newcommand{\IP}{\mathbb{P}}
 
-\newcommand{\Leb}{\mathcal{L}}
-\newcommand{\Hau}{\mathcal{H}}
 
 \DeclareMathOperator{\charac}{char}
 \DeclareMathOperator{\degree}{deg}  
@@ -27,9 +28,13 @@
 \DeclarePairedDelimiter\scal{\langle}{\rangle}
 \DeclarePairedDelimiter\dbrack{\llbracket}{\rrbracket}
 
+
 % ==== Math Operators ====
 % Algebra
 \newcommand{\iso}{\cong}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+
 \DeclareMathOperator{\Bil}{Bil}
 \DeclareMathOperator{\ev}{ev}
 \DeclareMathOperator{\Hom}{Hom}
@@ -41,7 +46,7 @@
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Eig}{Eig}
-\DeclareMathOperator{\Haupt}{Hau}
+\DeclareMathOperator{\Hau}{Hau}
 \DeclareMathOperator{\trace}{tr}
 \DeclareMathOperator{\rot}{rot} 
 \DeclareMathOperator{\ad}{ad}
@@ -53,35 +58,20 @@
 \DeclareMathOperator{\sgn}{sgn}
 
 
-% Measure 
-\newcommand{\mres}{\mathbin{\vrule height 1.6ex depth 0pt width
-0.13ex\vrule height 0.13ex depth 0pt width 1.3ex}}
-\DeclareMathOperator{\vol}{vol}
-
-% define \upint and \lowint
-% might interfere with some unicode packages
-\def\upint{\mathchoice%
-    {\mkern10mu\overline{\vphantom{\intop}\mkern10mu}\mkern-20mu}% display
-    {\mkern8mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}% text
-    {\mkern8mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}% script
-    {\mkern8mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}% scripscript
-  \int}
-\def\lowint{\mathchoice%
-    {\mkern10mu\underline{\vphantom{\intop}\mkern10mu}\mkern-12mu}% display
-    {\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu}% text
-    {\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu}% script
-    {\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu}% scripscript
-  \int}
+\newcommand*{\Top}{\text{\sffamily Top}}
+\newcommand*{\Htpy}{\text{\sffamily Htpy}}
+\newcommand*{\Grp}{\text{\sffamily Grp}}
+\newcommand*{\Set}{\text{\sffamily Set}}
+\newcommand*{\Ring}{\text{\sffamily Ring}}
 
 
-
+% Category
+%\newcommand{\coprod}{\amalg}
 
 % Analysis
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\graph}{graph}
 \DeclareMathOperator{\supp}{supp}
-\DeclareMathOperator{\esssup}{ess\ sup}
-\DeclareMathOperator{\essinf}{ess\ inf}
 
 
 % ==== Formatting ====
@@ -95,3 +85,9 @@
   \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
 
+
+% ==== Tikz ====
+\def\centerarc[#1](#2)(#3:#4:#5){ 
+    \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); 
+}
+% Syntax: [draw options] (center) (initial angle:final angle:radius)

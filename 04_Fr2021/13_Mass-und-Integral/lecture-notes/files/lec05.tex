@@ -132,7 +132,7 @@ A pre-measure $\lambda$ is called \textbf{$\sigma$-finite} if there exists a cov
 \begin{thm}[Uniqueness of Carathéodory-Hahn extension]
   Let $\lambda: \mathcal{A} \to  [0,\infty]$ be a $\sigma$-finite pre-measure on $X$ and $\mu$ the Carathéodory-Hahn extension of $\lambda$ and let $\Sigma$ be the $\sigma$-algera of $\mu$-measurable sets.
 
-  If $\tilde{\mu}: \mathcal{P}(X) \to [0,\infty]$ is another measure with $\tilde{\mu}|_{\mathcal{A}} = \lambda$, then $\tilde{\mu}|_{\Sigma} = \mu$
+  If $\tilde{\mu}: \mathcal{P}(X) \to [0,\infty]$ is another measure with $\tilde{\mu}|_{\mathcal{A}} = \lambda$, then $\tilde{\mu}|_{\Sigma} = \mu|_{\Sigma}$
 \end{thm}
 \begin{proof}
   Let $\tilde{\mu}: \mathcal{P}(X) \to [0,\infty]$ be a measure extending $\lambda$.
@@ -158,7 +158,7 @@ A pre-measure $\lambda$ is called \textbf{$\sigma$-finite} if there exists a cov
   \begin{align*}
     \tilde{\mu}(S \setminus A) \leq \mu(S \setminus A) \leq \mu(S) = \lambda(S)
   \end{align*}
-    Since $S \in \mathcal{A}$ is $\mu$-measurable and $A = S \cap A$ we get with $\mu|_{\mathcal{A}} = \lambda = \tilde{\mu}|_{\mathcal{A}}$ that 
+    Since $A \in \mathcal{A}$ is $\mu$-measurable and $A = S \cap A$ we get with $\mu|_{\mathcal{A}} = \lambda = \tilde{\mu}|_{\mathcal{A}}$ that 
   \begin{align*}
     \tilde{\mu}(A) + \tilde{\mu}(S \setminus A) 
     &\leq

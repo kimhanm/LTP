@@ -185,3 +185,58 @@ More generally, we can define \textbf{higher rank} tensors, where we can have mu
   T_{\nu_1 \nu_2 \ldots \nu_n}^{\mu_1 \mu_2 \ldots \mu_m} 
 \end{align*}
 
+
+\begin{ex}[]
+  In each of the two cases, describe what is happening using usual (non-tensor) language.
+  \begin{enumerate}
+    \item A tensor $\tensor{x}{^\mu}$ transforms in the following way:
+      \begin{align*}
+        x^{\mu} \mapsto \tilde{x}^{\mu} = \tensor{\Lambda}{^\mu_\nu}x^{\nu}
+      \end{align*}
+    \item Describe the transformation
+      \begin{align*}
+        \tensor{A}{^\mu_\nu} \mapsto \tensor{\tilde{A}}{^{\mu}_\nu} = \tensor{\Lambda}{^{\mu}_\sigma}\tensor{A}{^{\sigma}_{\nu}}
+      \end{align*}
+    \item Describe the transformation
+      \begin{align*}
+        \tensor{A}{^\mu_\nu} \mapsto \tensor{\tilde{A}}{^{\mu}_\nu} = \tensor{\Lambda}{^{\sigma}_\nu}\tensor{A}{^{\mu}_\sigma}
+      \end{align*}
+      Hint: Write down the definition of Matrix multiplication for two matrices $A,B$: $(AB)_{ij} = \sum_{k=1}^{n}\ldots$
+    \item Describe the transformation
+      \begin{align*}
+        \tensor{A}{^\mu_\nu} \mapsto \tensor{\tilde{A}}{^\mu_\nu} = \tensor{\Lambda}{^{\mu}_{\rho}} \tensor{\Lambda}{^{\sigma}_{\nu}}\tensor{A}{^\rho_{\sigma}}
+      \end{align*}
+      Hint: Break down the transformation into two steps.
+    \item The (covariant rank $2$) tensor $T^{\mu \nu}$ transforms as follows
+      \begin{align*}
+        T^{\mu \nu} \mapsto \tilde{T}^{\mu \nu} = \tensor{\Lambda}{^{\mu}_{\rho}}\tensor{\Lambda}{^{\nu}_{\sigma}}T^{\rho \sigma}
+      \end{align*}
+      Hint: use $(A^{T})_{ij} = A_{ji}$.
+  \end{enumerate}
+  \textbf{Solution:}
+  \begin{enumerate}
+    \item This is just matrix-vector multiplication: $(Ax)_{i} = a_{ij}x_j$. The transformation is therefore $x \mapsto Ax$.
+    \item For matrices $A,B$ matrix multiplication is defined as $(AB)_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}$.
+      The common index $\sigma$ over which the summation occurs is the first index of $A$ and the second index of $\Lambda$. 
+      This therefore describes left-multiplication with $\Lambda$: $A \mapsto \Lambda A$.
+    \item Notice that since multiplication of scalars is commutative, we have $\tensor{\Lambda}{^\sigma_{\nu}} \tensor{A}{^{\mu}_\sigma} = \tensor{A}{^{\mu}_\sigma} \tensor{\Lambda}{^{\sigma_{\nu}}}$.
+      The summation occurs over the second index of $A$ and the first index of $\Lambda$, which describes \emph{right}-multiplication with $\Lambda$.
+
+    \item Here, we combine the transformation of (b) and (c), i.e. the transformation
+      \begin{align*}
+        A \mapsto \Lambda A \Lambda
+      \end{align*}
+      Check this by computing the triple product
+      \begin{align*}
+        (ABC)_{\mu \nu} = (AB)_{\mu \sigma} C_{\nu} = A_{\mu \rho} B_{\rho \sigma} C_{\sigma \nu}
+      \end{align*}
+    \item As $\tensor{(\Lambda^{T})}{^\nu_\sigma} =  \tensor{\Lambda}{^{\sigma}_{\nu}}$, we get the same as in (d), except we transpose the right multiplication matrix:
+      \begin{align*}
+        A \mapsto \Lambda A \Lambda^{T}
+      \end{align*}
+  \end{enumerate}
+
+  We will soon see some important covariant rank $2$ tensors such as the \textbf{Energy momentum tensor tensor} $\tensor{T}{^\mu_\nu}$ and the \textbf{Electromagnetic field tensor} $\tensor{F}{^\mu_\nu}$.
+
+  Knowing the matrix-representation for their transformations can be helpful.
+\end{ex}

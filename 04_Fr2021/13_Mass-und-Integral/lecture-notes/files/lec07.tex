@@ -31,13 +31,13 @@ This alternative characterisation lets us find out what subsets $A \subseteq \R^
 \begin{thm}[] \label{thm:leb-characterisation}
   For any subset $A \subseteq \R^{n}$ the following are equivalent
   \begin{enumerate}
-    \item $A$ is $\mathcal{L}^{n}$-measurable..
+    \item $A$ is $\mathcal{L}^{n}$-measurable.
     \item $\forall \epsilon > 0\ \exists U \supseteq A$ open with $\mathcal{L}^{n}(U \setminus A) <\epsilon$.
     \item $A$ it can be ``approximated'' from the inside and outside: $\forall \epsilon > 0\ \exists F$ closed, $U$ open with $F \subseteq A \subseteq U$ such that
       \begin{align*}
         \Leb^{n}(U \setminus A) + \Leb^{n}(A \setminus F) < \epsilon
       \end{align*}
-    \item $\forall \epsilon > 0 \exists F$ closed, $\exists U$ open, such that $\Leb^{n}(U \setminus F) < \epsilon$.
+    \item $\forall \epsilon > 0 \exists F$ closed, $\exists U$ open, such that $F \subseteq A \subseteq U$ and $\Leb^{n}(U \setminus F) < \epsilon$.
   \end{enumerate}
 \end{thm}
 
@@ -181,7 +181,7 @@ the Lebesgue measure can measure more sets than the Jordan measure can.
 \begin{thm}[]
 Let $A \subseteq \R^{n}$ be bounded, then
 \begin{enumerate}
-  \item $\underline{\mu}(A) \leq\Leb^{n}(A9 \leq \overline{\mu}(A)$
+  \item $\underline{\mu}(A) \leq\Leb^{n}(A) \leq \overline{\mu}(A)$
   \item If $A$ is Jordan-measurable, then $A$ is $\Leb^{n}$-measurable and $\Leb^{n}(A) = \mu(A)$.
 \end{enumerate}
 \end{thm}

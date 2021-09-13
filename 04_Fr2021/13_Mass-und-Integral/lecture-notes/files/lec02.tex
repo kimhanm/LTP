@@ -149,7 +149,10 @@ A subset $A \subseteq X$ is called \textbf{$\mu$-measurable} if
     \begin{empheq}[box=\bluebase]{align*}
       \mu(B) \geq \mu(B \cap A) + \mu(B \setminus A), \quad \forall B \subseteq X
     \end{empheq}
-  \item If $\mu(A) = 0$, then $A$ is $\mu$-measurable.
+  \item If $\mu(A) = 0$, then $A$ is $\mu$-measurable:
+    \begin{align*}
+      \mu(B \cap A) + \mu(B \setminus A) \leq \mu(A) + \mu(B) = \mu(B)
+    \end{align*}
 \end{enumerate}
 \end{rem}
 

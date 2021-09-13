@@ -104,7 +104,6 @@ That is:
       \begin{align*}
         \sup_{x \in C} \abs{f_k(x) - f(x)} \to 0 \text{ as } k \to  \infty
       \end{align*}
-      namely $(f_k)_{k \in \N}$ converges uniformly to $f$ on $K$.
   \end{enumerate}
 \end{thm}
 
@@ -116,11 +115,11 @@ That is:
         C_{ij} := \bigcup_{k=j}^{\infty} \left\{x \in \Omega \big\vert \abs{f_k(x) - f(x)} > \frac{1}{2^{i}}\right\}
       \end{align*}
       which are $\mu$-measurable, since they are the pre-images of open subsets under a $\mu$-measurable function.
-      They are also decreasing in $j$ (i.e. $C_{i,j + 1} \subseteq C_{i,j} \forall i,j$) and since $\mu(\Omega) < \infty$,
-      we can use continuity from above. 
-      Together with $f_k(x) \to f(x)$ for $\mu$-a.e. $x$, we get
+      They are also decreasing in $j$ (i.e. $C_{i,j + 1} \subseteq C_{i,j} \forall i,j$) and $\mu(C_{i,1}) \leq \mu(\Omega) < \infty$, so we can use continuity from above.
+      Note how $\bigcap_{j=1}^{\infty}C_{ij}$ consists of points in $\Omega$, on which $(f_k)_{k \in \N}$ does not converge to $f$.
+      But as $f_k(x) \to f(x)$ for $\mu$-a.e. $x$ we get
       \begin{align*}
-        \lim_{j \to \infty} \mu(C_{ij}) = \mu\left(
+        \lim_{j \to \infty} \mu(C_{ij}) \stackrel{\text{c.f.a.}}{=} \mu\left(
           \bigcap_{j=1}^{\infty}C_{ij}
         \right)
         = 0, \quad \forall i \in \N
@@ -131,7 +130,7 @@ That is:
           \bigcap_{j=1}^{N(i)}C_{i,j}
         \right)
         =
-        \mu(C_{i,N(i)})  < \frac{\delta}{2^{i+1}}
+        \mu(C_{i,N(i)})  < \frac{\delta}{2^{i}}
       \end{align*}
       setting
       \begin{align*}
@@ -142,17 +141,17 @@ That is:
         \mu(\Omega \setminus A) = \mu \left(
           \bigcup_{i=1}^{\infty}C_{i,N(i)} 
         \right)
-        < \sum_{i=1}^{\infty} \frac{\delta}{2^{i+1}} = \frac{\delta}{2}
+        < \sum_{i=1}^{\infty} \frac{\delta}{2^{i}} = \delta
       \end{align*}
       Moreover, for all $x \in A, i \in \N, k \geq N(i)$ we have
       \begin{align*}
         \abs{f_k(x) - f(x)} \leq \frac{1}{2^{i}}
       \end{align*}
-      which shows uniform convergence of $(f_k) \to f$ on $A$.
+      which shows uniform convergence of $f_k \to f$ on $A$.
     \item 
-      By applying Theorem \ref{thm:radon-open-compact}, there exists a compact subset $K \subseteq A$ such that $\mu(A \setminus K) < \frac{\delta}{2}$, and so
+      By applying Theorem \ref{thm:radon-open-compact}, there exists a compact subset $K \subseteq A$ such that $\mu(A \setminus K) < \delta$, and so
       \begin{align*}
-        \mu(\Omega \setminus K) \leq \mu(\Omega \setminus A) + \mu(A \setminus K) \leq \delta
+        \mu(\Omega \setminus K) \leq \mu(\Omega \setminus A) + \mu(A \setminus K) \leq 2\delta
       \end{align*}
   \end{enumerate}
 \end{proof}
@@ -249,8 +248,6 @@ We now show the generalisation of the other fact.
   \begin{align*}
     \mu(\Omega \setminus K) \leq \mu(\tilde{\Omega} \setminus K) + \mu(f^{-1}\{\pm \infty\} \setminus K) \leq \epsilon + 0
   \end{align*}
-
-  
 
 \end{proof}
 

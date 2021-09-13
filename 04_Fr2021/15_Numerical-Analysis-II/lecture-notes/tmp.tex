@@ -1,0 +1,38 @@
+
+$$
+\Phi_{\Delta t}^{(1)} : \quad
+\left\{\begin{array}{ll}
+    p^{k + 1} = p^{k}
+    \\
+  q^{k+ 1} = q^k + \Delta t p^k
+\end{array} \right.
+$$
+$$
+\Phi_{\Delta t}^{(2)}: \quad
+\left\{\begin{array}{ll}
+    p^{k+1} = p^{k } - \Delta t q^{k }
+    \\
+    q^{k+1} = q^{k }
+\end{array} \right.
+$$
+
+whose adjoints can be obtained by exchanging the indices $k$,$k+ \frac{1}{2}$ with $k+\frac{1}{2},k+1$, respectively and changing the sign of $\Delta t$.
+
+$$
+(\Phi_{\Delta t}^{(1)})^{*} : \quad
+\left\{\begin{array}{ll}
+    p^{k + 1} = p^{k}
+    \\
+  q^{k+ 1} = q^k + \Delta t p^{k+ 1}
+\end{array} \right.
+$$
+$$
+(\Phi_{\Delta t}^{(2)})^{\ast}: \quad
+\left\{\begin{array}{ll}
+    p^{k+1} = p^{k } - \Delta t q^{k + 1}
+    \\
+    q^{k+1} = q^{k }
+\end{array} \right.
+$$
+
+Since $(\Phi_{\Delta t}^{(2)} \circ \Phi_{\Delta t}^{(1)})^{\ast} = (\Phi_{\Delta t}^{(1)})^{\ast} \circ (\Phi_{\Delta t}^{(2)})^{\ast}$.

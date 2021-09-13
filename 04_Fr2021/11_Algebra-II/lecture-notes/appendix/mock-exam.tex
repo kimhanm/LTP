@@ -1,0 +1,183 @@
+
+\section*{Mock Exam FS 2021}
+
+
+\subsection*{2.a}
+Das Lemma über Fixpunkte sagt, dass für eine $p$-Gruppe $G$ und eine $G$-Menge $T$ gilt
+$$
+\abs{\text{Fix}_G(T)} \underset{\mod p}{=} \abs{T}.
+$$
+Wir betrachten die Gruppenwirkung 
+$$
+\rho: G \times G \to G, (g,h) \mapsto ghg^{-1}
+$$
+und sehen, dass 
+$$
+h \in \text{Fix}_G(G) \iff \forall g \in G: ghg^{-1} = h \iff h \in Z_G.
+$$
+Nach dem Lemma gilt also
+$$
+\abs{Z_G} =
+\abs{\text{Fix}_G(G)} 
+\underset{\mod p}{=} \abs{G} = p^{m} \underset{\mod p}{=} 0
+$$
+Nun ist das neutrale Element $1 \in G$ im Zentrum, also ist $\abs{Z_G}$ ein vielfaches von $p$ und darum nicht-trivial.
+
+\subsection*{2.b}
+Nach (a) hat $Z_G$ Ordnung $p^k$ für ein $1 \leq k \leq m$ und darum hat
+$G^{(1)} := G/Z_G$ Ordnung $p^{m-k} < p^{m}$ und ist somit entweder trivial (und somit $G$ nilpotent), oder wiederum eine $p$-Gruppe.
+
+Wiederholt man im zweiten Fall das Argument für $G^{(1)}$, so sieht man dass $G^{(2)} := G^{(1)}/Z_{G^{(1)}}$ wieder entweder trivial oder eine $p$-Gruppe ist und kleinere Ordnung als $G^{(1)}$ hat.
+
+Macht man das für $G^{(k+1) := G^{(k)}/Z_{G^{(k)}}}$, falls $G^{(k)}$ nicht trivial, immer so weiter, so verkleinert sich die Ordnung.
+  Da $G$ endlich ist, muss dieser Prozess aufhören, d.h. $\exists n \in \N: G^{(n)} = \{1\}$.
+  Also ist $G$ nilpotent.
+
+
+\subsection*{3}
+  
+Der Klassifikationssatz sagt folgendes aus:
+
+Sei $R$ ein Hauptidealring und $M$ ein endlich erzeugtes Modul über $R$. 
+
+Dann ist $M$ isomorph zu $R^n \times M_{\text{tors}}$, wobei $n$ der Rang von $M/M_{\text{tors}}$ ist.
+
+Zum Beweis betrachten wir die Abbildung
+$$
+\Psi: R^{n} \times M_{\text{tors}} \to M
+$$
+$$
+(a,m) \mapsto \sum_{i=1}^{n}a_i (x_i + M_{\text{tors}})
+$$
+
+
+
+\subsection*{4.a}
+Für $\xi$ eine primitive $n$-te Wurzel von $1$ ist das $n$-te Zyklotomische Polynom definiert als
+$$
+\Phi_n(X) = \prod_{a \in A_n}(X - \xi^{a})
+,
+A_n = \{a \in \{1,\ldots,n-1\}\big\vert \ggT(a,n) = 1\}
+$$
+Wir zeigen 
+
+
+
+
+
+\subsection*{7.a}
+Sei $G$ eine Gruppe der Ordnung $8 = 2^{3}$.
+Wir gehen alle Teiler von $8$ durch und schauen was passiert wenn $G$ Elemente solcher Ordnung enthält.
+
+\begin{itemize}
+  \item Enthält $G$ ein Element der Ordnung $8$, so ist $G \cong \mathbb{Z}/8 \mathbb{Z}$.
+  \item Angenommen, ein Element $g\in G$ hat Ordnung $4$. 
+    Für $N := \langle g\rangle$ ist $|G|/|H| = 2$ d.h. $N$ ist ein Normalteiler und $G/N \cong \mathbb{Z}/2 \mathbb{Z}$.
+
+    Für ein $x \in G \setminus N$ gilt dann $x^{2}N = (xN)(xN) = N$, also $x^{2} \in N$.
+
+    Weil $N$ durch $g$ generiert wird, wird $N$ auch von $xgx^{-1}$ generiert, da
+    $$
+    N = xNx^{-1} = \{1,xgx^{-1},xg^{2}x^{-1},xg^{3}x^{-1}\}
+    $$
+    des weiteren hat $xgx^{-1}$ auch Ordnung $4$ und ist darum entweder $xgx^{-1} = g$ oder $xgx^{-1} = g^{3}$.
+    Wir wissen nun
+    $$
+    x^{2} \in \{1,g,g^{2},g^{3}\}, \text{ und } xgx^{-1} \in \{g, g^{3}\}
+    $$
+    (Man beachte dass nicht jede der $4 \cdot 2$ Möglichkeiten unbedingt alle Gruppenaxiome erfüllt z.B. $x^{2} = g, xgx^{-1} = g^{3}$ vertragen sich nicht. Wir betrachten nur die, die das tun.)
+    \begin{itemize}
+      \item Hat $x$ die Ordnung $8$, so ist $G \cong \mathbb{Z}/8 \mathbb{Z}$.
+      \item Hat $x$ Ordnung $2$ und $xgx^{-1} = g$, so ist $G$ abelsch und $G \cong \mathbb{Z}/4 \mathbb{Z} \times \mathbb{Z}/2 \mathbb{Z}$.
+
+        Ist $xgx^{-1} = g^{3}$, so beschreibt
+        $$
+        G = \langle x,g \big\vert x^{2} = 1, xgx^{-1} = g^{-1}\rangle
+        $$
+        gerade die Diedergruppe $D_{2 \cdot 4}$.
+
+         \item Hat $x$ Ordnung $4$, so ist $x^{2} = g^{2}$.
+           Im Falle $xgx^{-1} = g$ ist $G$ abelsch und
+           $$(xg)^{2} = xgx^{-1} x^{2}g = gx^{2}g = g^{4} = 1
+           $$
+           d.h. $xg$ ist ein Element der Ordnung $2$ und somit $G \cong \mathbb{Z}/4 \mathbb{Z} \times \mathbb{Z}/2 \mathbb{Z}$.
+
+           Im Fall $xgx^{-1} = g^{3}$, so beschreibt
+           $$
+           G = \langle x,g \big\vert g^{4} = 1, x^{2} = g^{2}, xgx^{-1} = g^{-1}\rangle
+           $$
+           die Quaternionengruppe $Q_8$.
+
+    \end{itemize}
+
+  \item Haben alle Elemente von $G$ Ordnung $\leq 2$, so ist $G \cong (\mathbb{Z}/2 \mathbb{Z})^{3}$.
+\end{itemize}
+
+
+\subsection*{7.b}
+Sei $G$ eine abelsche Gruppe der Ordnung $50$.
+Wir wissen vom Klassifikationssatz über endlich erzeugte abelsche Gruppen, dass 
+$$
+G \cong \mathbb{Z}/(d_1) \times \ldots \times \mathbb{Z}/(d_n)
+$$
+für $1 \leq d_1 | \ldots | d_n \neq 0$.
+Die Grupppen sind also
+$$
+\mathbb{Z}/50 \mathbb{Z}, \quad \mathbb{Z}/5 \times \mathbb{Z}/10 \mathbb{Z}
+$$
+
+
+Alternativ betrachtet man die Primfaktorzerlegung $50 = 2 \cdot 5^{2} = 2 \cdot 5 \cdot 5$, und erhält
+$$
+\mathbb{Z}/2 \mathbb{Z} \times \mathbb{Z}/25 \mathbb{Z} \left(
+  \cong \mathbb{Z}/50\mathbb{Z}
+\right), \quad \mathbb{Z}/2 \mathbb{Z} \times \mathbb{Z}/5 \mathbb{Z} \times \mathbb{Z}/ 5 \mathbb{Z} \left(
+  \cong \mathbb{Z}/10 \mathbb{Z} \times \mathbb{Z}/5 \mathbb{Z}
+\right)
+$$
+
+
+
+\subsection*{8}
+Angenommen $[K(\alpha) : K] = n$. Seien $g,h \in R[X]$ mit $f = gh$.
+
+
+
+
+
+
+\subsection*{11}
+Wir zeigen, dass $f := X^{4} - X - 1 \in \mathbb{Z}[X]$ irreduzibel und primitiv ist und wenden dann den Gauss'schen Satz an.
+
+$f$ ist offensichtlich primitiv. Für Irreduzibilität verwenden wir folgende Proposition:
+Sei $R$ ein faktorieller Ring, $p \in R$ prim, und $f \in R[X] \setminus \{0\}$.
+Gilt für $f_{\mathrm{mod }p} \in R/(p)[X]$, dass $\mathrm{deg} f = \mathrm{deg} f_{\mathrm{mod }p}$ und $f_{\mathrm{mod }p} \in R/(p)[X]$ irreduzibel ist,
+so ist $f \in R[X]$ prim.
+
+Wir setzen $p=2$ und zeigen, dass $f_{\mathrm{mod }p} = X^{4} + X + 1 \in \mathbb{F}_2[X]$ irreduzibel ist.
+Angenommen $f_{\mathrm{mod }p} = gh$ für $g,h \in \mathbb{F}_2[X]$. 
+Dann ist o.B.d.A $\deg g \leq 2$.
+Die irreduziblen Polynome in $\mathbb{F}_2[X]$ mit grad $\leq 2$ sind gerade
+$$
+X, X + 1, X^{2} + X + 1
+$$
+Den Faktor $x$ ist offensichtlich nicht möglich und
+den Fall $\deg g = \deg h = 2$ können wir ausschliessen, da $(X^{2} + X + 1)^{2} = X^{4} + X^{2} + 1 \neq f_{\mathrm{mod }p}$.
+
+Des weiteren ist ein Polynom genau dann durch $X+1$ teilbar, wenn die Summe der Koeffizienten gerade ist. 
+Das ist bei $f_{\mathrm{mod }p}$ nicht der Fall, also ist $f_{\mathrm{mod }p}$ irreduzibel in $\mathbb{F}_2[X]$.
+
+Nach der Proposition ist $X^{4} - X - 1 \in \mathbb{Z}[X]$ irreduzibel und nach dem Gauss'schen Satz auch in $\mathbb{Q}[X]$.
+
+\subsection*{12}
+Nach dem Eisenstein Kriterium für $p = 5$ ist $f := X^{5} - 20 X + 5 \in \mathbb{Q}[X]$ irreduzibel.
+
+Des weiteren ist 
+$$f' = 5X^{4} - 20X = 5(X^{4} - 4)$$
+mit $2$ reellen Nullstellen $\pm \sqrt[4]{4} = \pm \sqrt{2}$.
+$f$ hat also $3 = p-2$ reelle Nullstellen und nach Satz \ref{thm:p-minus-two-roots} ist $\Gal(f) \cong S_5$.
+
+
+
+
+

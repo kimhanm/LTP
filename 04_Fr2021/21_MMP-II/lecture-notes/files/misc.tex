@@ -1,0 +1,12 @@
+
+\section{Misc}
+
+Finding the dimension of a Lie-Group $G$ is equivalent to finding the dimension it's corresponding Lie-Algebra $\text{Lie}(G)$, which corresponds to the tangent space of $G$ at the $1$ element.
+Often, this is much easier to compute.
+For example, to find the dimension of $O(n)$, we know that
+\begin{align*}
+  X \in \text{Lie}(G) \iff \exp(tX) \exp(tX^{T}) = 1 \iff X + X^{T} = 0
+\end{align*}
+So the diagonal of $X$ must be zero, and the lower-left triangle of $X$ is determine by its upper right triangle.
+
+
